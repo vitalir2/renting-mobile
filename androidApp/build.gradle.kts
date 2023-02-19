@@ -5,11 +5,11 @@ plugins {
 
 android {
     namespace = "com.renting.app.android"
-    compileSdk = 32
+    compileSdk = 33
     defaultConfig {
         applicationId = "com.renting.app.android"
         minSdk = 23
-        targetSdk = 32
+        targetSdk = 33
         versionCode = 1
         versionName = "1.0"
     }
@@ -34,5 +34,6 @@ android {
 dependencies {
     implementation(project(":shared"))
     implementation(libs.bundles.androidx.compose.ui.common)
+    implementation(libs.androidx.compose.material2)
     implementation(libs.androidx.activity.compose)
 }
