@@ -1,18 +1,10 @@
 plugins {
-    id("com.android.application")
+    id("android-app.conventions")
     kotlin("android")
 }
 
 android {
     namespace = "com.renting.app.android"
-    compileSdk = 33
-    defaultConfig {
-        applicationId = "com.renting.app.android"
-        minSdk = 23
-        targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
-    }
     buildFeatures {
         compose = true
     }
@@ -35,5 +27,6 @@ dependencies {
     implementation(project(":shared"))
     implementation(libs.bundles.androidx.compose.ui.common)
     implementation(libs.androidx.compose.material2)
+    implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.activity.compose)
 }

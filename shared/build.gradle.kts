@@ -1,6 +1,6 @@
 plugins {
     kotlin("multiplatform")
-    id("com.android.library")
+    id("android-lib.conventions")
 }
 
 kotlin {
@@ -48,9 +48,4 @@ kotlin {
 
 android {
     namespace = "com.renting.app"
-    compileSdk = 33
-    defaultConfig {
-        minSdk = 23
-        targetSdk = 33
-    }
 }
