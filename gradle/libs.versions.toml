@@ -4,6 +4,8 @@ mvikotlin = "3.1.0"
 
 kotlin = "1.7.10"
 android-gradle = "7.3.1"
+androidx-compose = "1.2.1"
+androidx-activity = "1.5.1"
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "android-gradle" }
@@ -18,10 +20,24 @@ mvikotlin-main = { module = "com.arkivanov.mvikotlin:mvikotlin-main", version.re
 mvikotlin-logging = { module = "com.arkivanov.mvikotlin:mvikotlin-logging", version.ref = "mvikotlin" }
 mvikotlin-extensions-coroutines = { module = "com.arkivanov.mvikotlin:mvikotlin-extensions-coroutines", version.ref = "mvikotlin" }
 
+androidx-compose-ui = { module = "androidx.compose.ui:ui", version.ref = "androidx-compose" }
+androidx-compose-ui-tooling = { module = "androidx.compose.ui:ui-tooling", version.ref = "androidx-compose" }
+androidx-compose-ui-preview = { module = "androidx.compose.ui:ui-tooling-preview", version.ref = "androidx-compose" }
+androidx-compose-foundation = { module = "androidx.compose.foundation:foundation", version.ref = "androidx-compose" }
+androidx-compose-material2 = { module = "androidx.compose.material:material", version.ref = "androidx-compose" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
+
 [bundles]
 mvikotlin = [
     "mvikotlin-core",
     "mvikotlin-main",
     "mvikotlin-logging",
     "mvikotlin-extensions-coroutines",
+]
+
+androidx-compose-ui-common = [
+    "androidx-compose-ui",
+    "androidx-compose-ui-tooling",
+    "androidx-compose-ui-preview",
+    "androidx-compose-foundation",
 ]
