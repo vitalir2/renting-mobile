@@ -2,6 +2,12 @@
 decompose = "1.0.0"
 mvikotlin = "3.1.0"
 
+kotlin = "1.7.10"
+android-gradle = "7.3.1"
+
+[plugins]
+android-application = { id = "com.android.application", version.ref = "android-gradle" }
+android-library = { id = "com.android.library", version.ref = "android-gradle" }
 
 [libraries]
 decompose = { module = "com.arkivanov.decompose:decompose", version.ref = "decompose" }
