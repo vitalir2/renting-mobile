@@ -7,6 +7,6 @@ plugins {
     kotlin("multiplatform") version libs.versions.kotlin.get() apply false
 }
 
-//tasks.register("clean", Delete::class) {
-//    delete(rootProject.buildDir)
-//}
+tasks.register("clean", Delete::class) {
+    delete(rootProject.buildDir)
+}
