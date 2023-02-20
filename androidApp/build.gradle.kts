@@ -1,5 +1,5 @@
 plugins {
-    id("android-app.conventions")
+    id("renting.android.app")
     kotlin("android")
 }
 
@@ -25,8 +25,12 @@ android {
 
 dependencies {
     implementation(project(":shared"))
+    implementation(platform(libs.androidx.compose.bom))
     implementation(libs.bundles.androidx.compose.ui.common)
+    implementation(libs.androidx.compose.ui.preview)
     implementation(libs.androidx.compose.material2)
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.activity.compose)
+
+    debugImplementation(libs.androidx.compose.ui.tooling)
 }

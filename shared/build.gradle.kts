@@ -1,6 +1,6 @@
 plugins {
     kotlin("multiplatform")
-    id("android-lib.conventions")
+    id("renting.android.lib")
 }
 
 kotlin {
