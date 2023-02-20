@@ -34,6 +34,8 @@ dependencies {
     implementation(libs.androidx.activity.compose)
 
     debugImplementation(libs.androidx.compose.ui.tooling)
+
+    detektPlugins(libs.detekt.ktlint)
 }
 
 detekt {

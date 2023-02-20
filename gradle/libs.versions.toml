@@ -33,6 +33,8 @@ androidx-compose-material2 = { module = "androidx.compose.material:material" }
 androidx-activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "androidx-activity" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activity" }
 
+detekt-ktlint =  { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
+
 # Dependencies of the included build-logic
 android-gradle = { group = "com.android.tools.build", name = "gradle", version.ref = "android-gradle" }
 
