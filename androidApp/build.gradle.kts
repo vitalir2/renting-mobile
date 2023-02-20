@@ -1,5 +1,6 @@
 plugins {
     id("renting.android.app")
+    alias(libs.plugins.detekt)
     kotlin("android")
 }
 
@@ -33,4 +34,11 @@ dependencies {
     implementation(libs.androidx.activity.compose)
 
     debugImplementation(libs.androidx.compose.ui.tooling)
+}
+
+detekt {
+    buildUponDefaultConfig = true
+    allRules = false
+    config = files("$rootDir/config/detekt.yml")
+    baseline = file("$rootDir/config/baseline.xml")
 }

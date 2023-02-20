@@ -1,6 +1,7 @@
 plugins {
-    kotlin("multiplatform")
     id("renting.android.lib")
+    alias(libs.plugins.detekt)
+    kotlin("multiplatform")
 }
 
 kotlin {
@@ -48,4 +49,12 @@ kotlin {
 
 android {
     namespace = "com.renting.app"
+}
+
+// TODO add to convenience plugin
+detekt {
+    buildUponDefaultConfig = true
+    allRules = false
+    config = files("$rootDir/config/detekt.yml")
+    baseline = file("$rootDir/config/baseline.xml")
 }
