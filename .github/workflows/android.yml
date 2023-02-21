@@ -3,7 +3,8 @@ name: Renting Android CI
 on:
   push:
     paths:
-      - '**.kt'
+      - 'androidApp/**'
+      - 'shared/**'
       - '**.kts'
     branches: [ "master" ]
   pull_request:
