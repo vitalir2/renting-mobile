@@ -58,3 +58,31 @@ detekt {
     config = files("$rootDir/config/detekt.yml")
     baseline = file("$rootDir/config/baseline.xml")
 }
+
+internal val platformNames = listOf(
+    "common",
+    "android",
+    "ios",
+)
+
+tasks.register<io.gitlab.arturbosch.detekt.Detekt>("detektMultiplatform") {
+    description = "Runs a mutliplatform lint check"
+    setSource(
+        files(
+            *platformNames.map { name -> "src/${name}Main/kotlin" }.toTypedArray(),
+            *platformNames.map { name -> "src/${name}Test/kotlin" }.toTypedArray(),
+        )
+    )
+    config.setFrom(files("$rootDir/config/detekt.yml"))
+    reports {
+        txt.required.set(false)
+        sarif.required.set(false)
+        xml.required.set(false)
+        md.required.set(false)
+        html.required.set(true)
+        html.outputLocation.set(File("build/reports/detekt/detekt.html"))
+    }
+    include("**/*.kt")
+    include("**/*.kts")
+    exclude("build/")
+}
