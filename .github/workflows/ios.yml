@@ -2,7 +2,7 @@ name: Renting iOS workflow
 
 on:
   push:
-    pathes:
+    paths:
       - 'shared/**'
       - 'iosApp/**'
     branches: [ "master" ]
