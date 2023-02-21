@@ -19,4 +19,4 @@ jobs:
     - name: Install pods
       run: cd iosApp && pod install
     - name: Build
-      run: xcodebuild clean build -workspace iosApp.xcworkspace -scheme iosApp -destination 'platform=iOS Simulator,name=iPhone 14 Pro,OS=16.2'
+      run: cd iosApp && xcodebuild clean build -workspace iosApp.xcworkspace -scheme iosApp -destination 'platform=iOS Simulator,name=iPhone 14 Pro,OS=16.2'
