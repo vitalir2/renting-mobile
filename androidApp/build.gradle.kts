@@ -6,6 +6,9 @@ plugins {
 
 android {
     namespace = "com.renting.app.android"
+    defaultConfig {
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
     buildFeatures {
         compose = true
     }
@@ -32,9 +35,18 @@ dependencies {
     implementation(libs.androidx.compose.material2)
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.activity.compose)
-    implementation("androidx.core:core-ktx:+")
 
     debugImplementation(libs.androidx.compose.ui.tooling)
+
+    val kaspresso = "1.5.1"
+    androidTestImplementation("com.kaspersky.android-components:kaspresso:$kaspresso")
+    androidTestImplementation("com.kaspersky.android-components:kaspresso-compose-support:$kaspresso")
+    androidTestImplementation("androidx.test:core:1.5.0")
+    androidTestImplementation("androidx.test:core-ktx:1.5.0")
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")
+    androidTestImplementation("androidx.test.ext:junit-ktx:1.1.5")
+    androidTestImplementation("androidx.test:runner:1.5.2")
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
 
     detektPlugins(libs.detekt.ktlint)
 }
