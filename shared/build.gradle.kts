@@ -2,6 +2,7 @@ plugins {
     id("renting.android.lib")
     alias(libs.plugins.detekt)
     kotlin("multiplatform")
+    alias(libs.plugins.kotest.multiplatform)
 }
 
 kotlin {
@@ -21,11 +22,18 @@ kotlin {
         val commonMain by getting
         val commonTest by getting {
             dependencies {
-                implementation(kotlin("test"))
+                implementation(kotlin("test-common"))
+                implementation(kotlin("test-annotations-common"))
+                implementation(libs.kotest.assertions.core)
+                implementation(libs.kotest.framework.engine)
             }
         }
         val androidMain by getting
-        val androidTest by getting
+        val androidTest by getting {
+            dependencies {
+                implementation(libs.kotest.runner.junit5)
+            }
+        }
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
@@ -85,4 +93,10 @@ tasks.register<io.gitlab.arturbosch.detekt.Detekt>("detektMultiplatform") {
     include("**/*.kt")
     include("**/*.kts")
     exclude("build/")
+}
+
+android.testOptions {
+    unitTests.all {
+        it.useJUnitPlatform()
+    }
 }

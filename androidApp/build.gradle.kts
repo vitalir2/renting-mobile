@@ -32,6 +32,7 @@ dependencies {
     implementation(libs.androidx.compose.material2)
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.activity.compose)
+    implementation("androidx.core:core-ktx:+")
 
     debugImplementation(libs.androidx.compose.ui.tooling)
 
