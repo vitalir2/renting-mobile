@@ -3,7 +3,7 @@ package com.renting.app
 import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
-class SampleAndroidSpec : StringSpec() {
+class SampleSpec : StringSpec() {
 
     init {
         "2 + 2 = 4" {
