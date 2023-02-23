@@ -39,6 +39,17 @@
                ReferencedContainer = "container:RentingApp.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "FAA873D229A7545500D2E202"
+               BuildableName = "RentingAppUITests.xctest"
+               BlueprintName = "RentingAppUITests"
+               ReferencedContainer = "container:RentingApp.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
