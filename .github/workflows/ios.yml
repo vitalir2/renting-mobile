@@ -7,6 +7,9 @@ on:
       - 'iosApp/**'
     branches: [ "master" ]
   pull_request:
+    paths:
+      - 'shared/**'
+      - 'iosApp/**'
     branches: [ "master" ]
 
 jobs:
@@ -20,10 +23,10 @@ jobs:
     - name: Select Xcode
       run: sudo Xcode-select -switch /Applications/Xcode_14.2.app
     - name: Install pods
-      run: cd iosApp && pod install
+      run: cd Renting && pod install
     - uses: actions/setup-java@v3 # For KMM shared module
       with:
         distribution: 'temurin'
         java-version: '11'
-    - name: Build
-      run: cd iosApp && xcodebuild clean build test -workspace iosApp.xcworkspace -scheme iosApp -destination 'platform=iOS Simulator,name=iPhone 14 Pro,OS=16.2'
+    - name: Build and test
+      run: cd Renting && xcodebuild clean build test -workspace Renting.xcworkspace -scheme iosApp -destination 'platform=iOS Simulator,name=iPhone 14 Pro,OS=16.2'
