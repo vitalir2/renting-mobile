@@ -16,6 +16,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                     versionCode = 1
                     versionName = "0.0.1"
                     targetSdk = AndroidConstants.TARGET_SDK
+                    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
                 }
             }
         }

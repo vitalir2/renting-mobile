@@ -1,7 +1,7 @@
 plugins {
     id("renting.android.lib")
-    alias(libs.plugins.detekt)
     kotlin("multiplatform")
+    alias(libs.plugins.detekt)
     alias(libs.plugins.kotest.multiplatform)
 }
 
