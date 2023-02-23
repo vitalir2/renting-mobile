@@ -1,4 +1,4 @@
-name: Renting iOS workflow
+name: Renting iOS CI
 
 on:
   push:
@@ -26,4 +26,4 @@ jobs:
         distribution: 'temurin'
         java-version: '11'
     - name: Build
-      run: cd iosApp && xcodebuild clean build -workspace iosApp.xcworkspace -scheme iosApp -destination 'platform=iOS Simulator,name=iPhone 14 Pro,OS=16.2'
+      run: cd iosApp && xcodebuild clean build test -workspace iosApp.xcworkspace -scheme iosApp -destination 'platform=iOS Simulator,name=iPhone 14 Pro,OS=16.2'
