@@ -13,7 +13,18 @@
 		70453A594A4847DB98479761 /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB3B816A0749AD31FF85CBFB /* Pods_iosApp.framework */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 		FA0E0C9A29A533B400EECB1E /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = FA0E0C9929A533B400EECB1E /* Podfile */; };
+		FAA873C929A7513900D2E202 /* RentingAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA873C829A7513900D2E202 /* RentingAppTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FAA873CA29A7513900D2E202 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7555FF73242A565900829871 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7555FF7A242A565900829871;
+			remoteInfo = RentingApp;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		7555FFB4242A642300829871 /* Embed Frameworks */ = {
@@ -38,6 +49,8 @@
 		BD0AF7894FFAB9224429ECBA /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
 		DFC36202475D9403AE4C1E24 /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
 		FA0E0C9929A533B400EECB1E /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		FAA873C629A7513900D2E202 /* RentingAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RentingAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAA873C829A7513900D2E202 /* RentingAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentingAppTests.swift; sourceTree = "<group>"; };
 		FB3B816A0749AD31FF85CBFB /* Pods_iosApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -47,6 +60,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				70453A594A4847DB98479761 /* Pods_iosApp.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAA873C329A7513900D2E202 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +86,7 @@
 			children = (
 				FA0E0C9929A533B400EECB1E /* Podfile */,
 				7555FF7D242A565900829871 /* RentingApp */,
+				FAA873C729A7513900D2E202 /* RentingAppTests */,
 				7555FF7C242A565900829871 /* Products */,
 				7555FFB0242A642200829871 /* Frameworks */,
 				C10C4380DE1205B5AE83BD57 /* Pods */,
@@ -76,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				7555FF7B242A565900829871 /* RentingApp.app */,
+				FAA873C629A7513900D2E202 /* RentingAppTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -109,6 +131,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		FAA873C729A7513900D2E202 /* RentingAppTests */ = {
+			isa = PBXGroup;
+			children = (
+				FAA873C829A7513900D2E202 /* RentingAppTests.swift */,
+			);
+			path = RentingAppTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -133,18 +163,40 @@
 			productReference = 7555FF7B242A565900829871 /* RentingApp.app */;
 			productType = "com.apple.product-type.application";
 		};
+		FAA873C529A7513900D2E202 /* RentingAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FAA873CC29A7513900D2E202 /* Build configuration list for PBXNativeTarget "RentingAppTests" */;
+			buildPhases = (
+				FAA873C229A7513900D2E202 /* Sources */,
+				FAA873C329A7513900D2E202 /* Frameworks */,
+				FAA873C429A7513900D2E202 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FAA873CB29A7513900D2E202 /* PBXTargetDependency */,
+			);
+			name = RentingAppTests;
+			productName = RentingAppTests;
+			productReference = FAA873C629A7513900D2E202 /* RentingAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		7555FF73242A565900829871 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1130;
+				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1420;
 				ORGANIZATIONNAME = Renting;
 				TargetAttributes = {
 					7555FF7A242A565900829871 = {
 						CreatedOnToolsVersion = 11.3.1;
+					};
+					FAA873C529A7513900D2E202 = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = 7555FF7A242A565900829871;
 					};
 				};
 			};
@@ -163,6 +215,7 @@
 			projectRoot = "";
 			targets = (
 				7555FF7A242A565900829871 /* RentingApp */,
+				FAA873C529A7513900D2E202 /* RentingAppTests */,
 			);
 		};
 /* End PBXProject section */
@@ -175,6 +228,13 @@
 				FA0E0C9A29A533B400EECB1E /* Podfile in Resources */,
 				058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */,
 				058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FAA873C429A7513900D2E202 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,7 +312,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FAA873C229A7513900D2E202 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAA873C929A7513900D2E202 /* RentingAppTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FAA873CB29A7513900D2E202 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7555FF7A242A565900829871 /* RentingApp */;
+			targetProxy = FAA873CA29A7513900D2E202 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		7555FFA3242A565B00829871 /* Debug */ = {
@@ -437,6 +513,45 @@
 			};
 			name = Release;
 		};
+		FAA873CD29A7513900D2E202 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.renting.RentingAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RentingApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RentingApp";
+			};
+			name = Debug;
+		};
+		FAA873CE29A7513900D2E202 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.renting.RentingAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RentingApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/RentingApp";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -454,6 +569,15 @@
 			buildConfigurations = (
 				7555FFA6242A565B00829871 /* Debug */,
 				7555FFA7242A565B00829871 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FAA873CC29A7513900D2E202 /* Build configuration list for PBXNativeTarget "RentingAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FAA873CD29A7513900D2E202 /* Debug */,
+				FAA873CE29A7513900D2E202 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
