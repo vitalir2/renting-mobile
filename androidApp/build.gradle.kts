@@ -38,15 +38,8 @@ dependencies {
 
     debugImplementation(libs.androidx.compose.ui.tooling)
 
-    val kaspresso = "1.5.1"
-    androidTestImplementation("com.kaspersky.android-components:kaspresso:$kaspresso")
-    androidTestImplementation("com.kaspersky.android-components:kaspresso-compose-support:$kaspresso")
-    androidTestImplementation("androidx.test:core:1.5.0")
-    androidTestImplementation("androidx.test:core-ktx:1.5.0")
-    androidTestImplementation("androidx.test.ext:junit:1.1.5")
-    androidTestImplementation("androidx.test.ext:junit-ktx:1.1.5")
-    androidTestImplementation("androidx.test:runner:1.5.2")
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
+    androidTestImplementation(libs.bundles.androidx.test.common)
+    androidTestImplementation(libs.bundles.androidx.compose.uitest)
 
     detektPlugins(libs.detekt.ktlint)
 }
