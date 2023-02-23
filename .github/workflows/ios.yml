@@ -23,10 +23,10 @@ jobs:
     - name: Select Xcode
       run: sudo Xcode-select -switch /Applications/Xcode_14.2.app
     - name: Install pods
-      run: cd Renting && pod install
+      run: cd iosApp && pod install
     - uses: actions/setup-java@v3 # For KMM shared module
       with:
         distribution: 'temurin'
         java-version: '11'
     - name: Build and test
-      run: cd Renting && xcodebuild clean build test -workspace Renting.xcworkspace -scheme iosApp -destination 'platform=iOS Simulator,name=iPhone 14 Pro,OS=16.2'
+      run: cd iosApp && xcodebuild clean build test -workspace Renting.xcworkspace -scheme iosApp -destination 'platform=iOS Simulator,name=iPhone 14 Pro,OS=16.2'
