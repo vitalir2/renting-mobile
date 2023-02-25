@@ -19,7 +19,17 @@ kotlin {
     }
 
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                // TODO to the version catalog
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+
+                implementation(libs.mvikotlin.core)
+                implementation(libs.mvikotlin.main)
+                implementation(libs.mvikotlin.extensions.coroutines)
+                implementation(libs.mvikotlin.logging)
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test-common"))
