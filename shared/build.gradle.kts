@@ -28,6 +28,8 @@ kotlin {
                 implementation(libs.mvikotlin.main)
                 implementation(libs.mvikotlin.extensions.coroutines)
                 implementation(libs.mvikotlin.logging)
+
+                implementation(libs.decompose)
             }
         }
         val commonTest by getting {
