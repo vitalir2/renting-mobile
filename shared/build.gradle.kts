@@ -16,6 +16,9 @@ kotlin {
     ).forEach {
         it.binaries.framework {
             baseName = "shared"
+            export(libs.mvikotlin.main)
+            export(libs.decompose)
+            export("com.arkivanov.essenty:lifecycle:1.0.0")
         }
     }
 
