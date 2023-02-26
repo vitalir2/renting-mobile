@@ -2,11 +2,19 @@ import SwiftUI
 import shared
 
 struct ContentView: View {
-	let greet = Greeting().greet()
+    @State
+    private var componentHolder = ComponentHolder {
+        DefaultRootComponent(
+            componentContext: $0,
+            storeFactory: DefaultStoreFactory()
+        )
+    }
 
 	var body: some View {
-		Text(greet)
-	}
+        RootView(component: componentHolder.component)
+            .onAppear { LifecycleRegistryExtKt.resume(self.componentHolder.lifecycle) }
+            .onDisappear { LifecycleRegistryExtKt.stop(self.componentHolder.lifecycle) }
+    }
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -14,4 +22,3 @@ struct ContentView_Previews: PreviewProvider {
 		ContentView()
 	}
 }
-
