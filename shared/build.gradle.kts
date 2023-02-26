@@ -3,6 +3,7 @@ plugins {
     kotlin("multiplatform")
     alias(libs.plugins.detekt)
     alias(libs.plugins.kotest.multiplatform)
+    id("kotlin-parcelize")
 }
 
 kotlin {
@@ -22,14 +23,15 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 // TODO to the version catalog
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+                api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
 
-                implementation(libs.mvikotlin.core)
-                implementation(libs.mvikotlin.main)
+                api(libs.mvikotlin.core)
+                api(libs.mvikotlin.main)
+                api(libs.mvikotlin.rx)
                 implementation(libs.mvikotlin.extensions.coroutines)
                 implementation(libs.mvikotlin.logging)
 
-                implementation(libs.decompose)
+                api(libs.decompose)
             }
         }
         val commonTest by getting {
