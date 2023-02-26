@@ -18,7 +18,7 @@ class DefaultLoginComponent(
             ).create()
         }
 
-    override val models: Value<LoginScreen.Model> = store.asValue().map(stateToModel)
+    override val models: Value<LoginComponent.Model> = store.stateAsValue().map(stateToModel)
 
     override fun onLoginInputChanged(login: String) {
         store.accept(LoginStore.Intent.SetLogin(login))

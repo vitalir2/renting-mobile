@@ -19,8 +19,8 @@ internal class LoginStoreFactory(private val storeFactory: StoreFactory) {
 
         override fun LoginStore.State.reduce(msg: LoginStore.Intent): LoginStore.State =
             when (msg) {
-                is LoginStore.Intent.SetLogin -> copy(login = login)
-                is LoginStore.Intent.SetPassword -> copy(password = password)
+                is LoginStore.Intent.SetLogin -> copy(login = msg.value)
+                is LoginStore.Intent.SetPassword -> copy(password = msg.value)
             }
     }
 }

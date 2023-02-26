@@ -33,6 +33,8 @@ dependencies {
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.activity.compose)
 
+    implementation(libs.decompose.compose)
+
     debugImplementation(libs.androidx.compose.ui.tooling)
 
     androidTestImplementation(libs.bundles.androidx.test.common)
