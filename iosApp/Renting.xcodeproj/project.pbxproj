@@ -136,16 +136,12 @@
 		7555FF7D242A565900829871 /* Renting */ = {
 			isa = PBXGroup;
 			children = (
+				FA4CD77729AE704700BA40E9 /* App */,
+				FA4CD77529AE701D00BA40E9 /* Feature */,
+				FA4CD77429AE700200BA40E9 /* Utils */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
-				7555FF82242A565900829871 /* ContentView.swift */,
 				7555FF8C242A565B00829871 /* Info.plist */,
-				2152FB032600AC8F00CF470E /* iOSApp.swift */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
-				FA98B2F529AB420C008E1CE4 /* ComponentHolder.swift */,
-				FA98B2F729AB4863008E1CE4 /* RootView.swift */,
-				FA98B2F929AB496C008E1CE4 /* ObservableValue.swift */,
-				FA98B2FB29AB4A4B008E1CE4 /* LoginView.swift */,
-				FA98B2FD29AB4CF7008E1CE4 /* MutableStateBuilder.swift */,
 			);
 			path = Renting;
 			sourceTree = "<group>";
@@ -165,6 +161,42 @@
 				DFC36202475D9403AE4C1E24 /* Pods-iosApp.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		FA4CD77429AE700200BA40E9 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				FA98B2FD29AB4CF7008E1CE4 /* MutableStateBuilder.swift */,
+				FA98B2F929AB496C008E1CE4 /* ObservableValue.swift */,
+				FA98B2F529AB420C008E1CE4 /* ComponentHolder.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		FA4CD77529AE701D00BA40E9 /* Feature */ = {
+			isa = PBXGroup;
+			children = (
+				FA4CD77629AE702400BA40E9 /* Login */,
+			);
+			path = Feature;
+			sourceTree = "<group>";
+		};
+		FA4CD77629AE702400BA40E9 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				FA98B2FB29AB4A4B008E1CE4 /* LoginView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		FA4CD77729AE704700BA40E9 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				7555FF82242A565900829871 /* ContentView.swift */,
+				2152FB032600AC8F00CF470E /* iOSApp.swift */,
+				FA98B2F729AB4863008E1CE4 /* RootView.swift */,
+			);
+			path = App;
 			sourceTree = "<group>";
 		};
 		FAA873C729A7513900D2E202 /* RentingTests */ = {
