@@ -1,4 +1,4 @@
-package com.renting.app.android.navigation
+package com.renting.app.android.app
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
