@@ -1,4 +1,4 @@
-package com.renting.app.android
+package com.renting.app.android.navigation
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
@@ -9,7 +9,9 @@ import androidx.compose.ui.Modifier
 import com.arkivanov.decompose.extensions.compose.jetpack.stack.Children
 import com.arkivanov.decompose.extensions.compose.jetpack.subscribeAsState
 import com.arkivanov.decompose.router.stack.ChildStack
+import com.renting.app.android.feature.login.LoginScreen
 import com.renting.app.feature.root.RootComponent
+import com.renting.app.feature.root.RootComponent.Child
 
 @Composable
 fun RootScreen(
@@ -25,10 +27,10 @@ fun RootScreen(
 }
 
 @Composable
-private fun RootNavigation(stack: State<ChildStack<*, RootComponent.Child>>) {
+private fun RootNavigation(stack: State<ChildStack<*, Child>>) {
     Children(stack = stack.value) { child ->
         when (val screen = child.instance) {
-            is RootComponent.Child.Login -> LoginScreen(component = screen.component)
+            is Child.Login -> LoginScreen(component = screen.component)
         }
     }
 }

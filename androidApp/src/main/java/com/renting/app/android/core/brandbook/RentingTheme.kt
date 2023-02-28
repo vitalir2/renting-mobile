@@ -1,4 +1,4 @@
-package com.renting.app.android
+package com.renting.app.android.core.brandbook
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -23,7 +23,7 @@ private val lightPrimaryVariant = Color(0xFF3700B3)
 private val lightSecondary = Color(0xFF03DAC5)
 
 @Composable
-fun MyApplicationTheme(
+fun RentingTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     content: @Composable () -> Unit
 ) {
