@@ -4,7 +4,7 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.renting.app.android.MainActivity
 import com.renting.app.core.ComposeTestCase
-import com.renting.app.screen.MainScreen
+import com.renting.app.screen.LoginScreen
 import io.github.kakaocup.compose.node.element.ComposeScreen.Companion.onComposeScreen
 import org.junit.Rule
 import org.junit.Test
@@ -18,8 +18,8 @@ class LaunchAppTest : ComposeTestCase() {
 
     @Test
     fun testLaunch() = run {
-        step("Assert screen is visible") {
-            onComposeScreen<MainScreen>(composeTestRule) {
+        step("Assert first screen is visible") {
+            onComposeScreen<LoginScreen>(composeTestRule) {
                 isVisible()
             }
         }
