@@ -4,23 +4,27 @@ import com.arkivanov.mvikotlin.core.store.Reducer
 import com.arkivanov.mvikotlin.core.store.Store
 import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.arkivanov.mvikotlin.core.store.create
+import com.renting.app.feature.login.LoginStore.Intent
+import com.renting.app.feature.login.LoginStore.State
 
-internal class LoginStoreFactory(private val storeFactory: StoreFactory) {
+internal class LoginStoreFactory(
+    private val storeFactory: StoreFactory,
+) {
 
     fun create(): LoginStore =
         object : LoginStore,
-            Store<LoginStore.Intent, LoginStore.State, Nothing> by storeFactory.create(
+            Store<Intent, State, Nothing> by storeFactory.create(
                 name = "LoginStore",
-                initialState = LoginStore.State(),
+                initialState = State(),
                 reducer = ReducerImpl,
             ) {}
 
-    private object ReducerImpl : Reducer<LoginStore.State, LoginStore.Intent> {
+    private object ReducerImpl : Reducer<State, Intent> {
 
-        override fun LoginStore.State.reduce(msg: LoginStore.Intent): LoginStore.State =
+        override fun State.reduce(msg: Intent): State =
             when (msg) {
-                is LoginStore.Intent.SetLogin -> copy(login = msg.value)
-                is LoginStore.Intent.SetPassword -> copy(password = msg.value)
+                is Intent.SetLogin -> copy(login = msg.value)
+                is Intent.SetPassword -> copy(password = msg.value)
             }
     }
 }

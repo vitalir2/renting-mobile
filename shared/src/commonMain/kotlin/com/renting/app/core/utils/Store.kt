@@ -1,4 +1,4 @@
-package com.renting.app.feature.login
+package com.renting.app.core.utils
 
 import com.arkivanov.decompose.value.Value
 import com.arkivanov.mvikotlin.core.store.Store
