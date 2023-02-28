@@ -1,4 +1,4 @@
-package com.renting.app.android
+package com.renting.app.android.feature.login
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.arkivanov.decompose.extensions.compose.jetpack.subscribeAsState
+import com.renting.app.android.core.brandbook.RentingTheme
 import com.renting.app.feature.login.LoginComponent
 
 @Composable
@@ -49,7 +50,7 @@ private fun LoginScreen(
 @Preview
 @Composable
 private fun DefaultPreview() {
-    MyApplicationTheme {
+    RentingTheme {
         LoginScreen(
             login = "Hello",
             password = "World",
