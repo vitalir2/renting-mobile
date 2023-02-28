@@ -18,16 +18,14 @@ kotlin {
             baseName = "shared"
             export(libs.mvikotlin.main)
             export(libs.decompose)
-            export("com.arkivanov.essenty:lifecycle:1.0.0")
+            export(libs.essenty.lifecycle)
         }
     }
 
     sourceSets {
         val commonMain by getting {
             dependencies {
-                // TODO to the version catalog
-                api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
-
+                api(libs.kotlinx.coroutines.core)
                 api(libs.mvikotlin.core)
                 api(libs.mvikotlin.main)
                 api(libs.mvikotlin.rx)

@@ -26,6 +26,7 @@ android {
 
 dependencies {
     implementation(project(":shared"))
+
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.bundles.androidx.compose.ui.common)
     implementation(libs.androidx.compose.ui.preview)
