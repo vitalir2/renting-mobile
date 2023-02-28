@@ -1,4 +1,4 @@
-package com.renting.app.android
+package com.renting.app.android.app
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -7,7 +7,6 @@ import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.defaultComponentContext
 import com.arkivanov.mvikotlin.main.store.DefaultStoreFactory
 import com.renting.app.android.core.brandbook.RentingTheme
-import com.renting.app.android.navigation.RootScreen
 import com.renting.app.feature.root.DefaultRootComponent
 import com.renting.app.feature.root.RootComponent
 

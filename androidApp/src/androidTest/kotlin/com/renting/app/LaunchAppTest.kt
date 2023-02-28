@@ -2,7 +2,7 @@ package com.renting.app
 
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.renting.app.android.MainActivity
+import com.renting.app.android.app.MainActivity
 import com.renting.app.core.ComposeTestCase
 import com.renting.app.screen.LoginScreen
 import io.github.kakaocup.compose.node.element.ComposeScreen.Companion.onComposeScreen
