@@ -38,7 +38,7 @@ internal class LoginStoreFactory(
             when (msg) {
                 is Msg.Login -> copy(login = msg.value)
                 is Msg.Password -> copy(password = msg.value)
-                is Msg.LoggedIn -> this // TODO save
+                is Msg.LoggedIn -> copy(token = msg.token)
             }
     }
 
@@ -56,6 +56,7 @@ internal class LoginStoreFactory(
                             login = state.login,
                             password = state.password,
                         )
+                        // TODO save in cache
                         dispatch(Msg.LoggedIn(token))
                     }
                 }
