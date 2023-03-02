@@ -32,8 +32,10 @@ struct LoginView: View {
                 "Password",
                 text: Binding(get: { model.password }, set: component.onPasswordInputChanged)
             )
+            .foregroundColor(Color.appPrimary)
         }
         .padding(12)
+        .textFieldStyle(.roundedBorder)
     }
 }
 
