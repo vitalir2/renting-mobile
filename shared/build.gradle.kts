@@ -23,6 +23,8 @@ kotlin {
     }
 
     sourceSets {
+        val ktorVersion = "2.2.3"
+
         val commonMain by getting {
             dependencies {
                 api(libs.kotlinx.coroutines.core)
@@ -31,6 +33,8 @@ kotlin {
                 api(libs.mvikotlin.rx)
                 implementation(libs.mvikotlin.extensions.coroutines)
                 implementation(libs.mvikotlin.logging)
+
+                implementation("io.ktor:ktor-client-core:$ktorVersion")
 
                 api(libs.decompose)
             }
@@ -43,7 +47,11 @@ kotlin {
                 implementation(libs.kotest.framework.engine)
             }
         }
-        val androidMain by getting
+        val androidMain by getting {
+            dependencies {
+                implementation("io.ktor:ktor-client-okhttp:$ktorVersion")
+            }
+        }
         val androidTest by getting {
             dependencies {
                 implementation(libs.kotest.runner.junit5)
@@ -57,6 +65,10 @@ kotlin {
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
+
+            dependencies {
+                implementation("io.ktor:ktor-client-darwin:$ktorVersion")
+            }
         }
         val iosX64Test by getting
         val iosArm64Test by getting
