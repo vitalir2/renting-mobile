@@ -1,5 +1,6 @@
 package com.renting.app.feature.login
 
+import com.arkivanov.mvikotlin.logging.logger.DefaultLogger
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
@@ -19,7 +20,14 @@ internal class DefaultLoginRepository(
                 )
             )
         }
-        val responseBody = response.body<LoginResponse>()
-        return responseBody.token
+        return if (response.status.value in 200..299) {
+            val responseBody = response.body<LoginResponse>()
+            responseBody.token
+        } else {
+            val responseBody = response.body<ErrorResponse>()
+            // TODO replace by our logger / interceptor
+            DefaultLogger.log("Error: message=${responseBody.message},status=${responseBody.status}")
+            "" // TODO
+        }
     }
 }
