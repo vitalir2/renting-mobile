@@ -15,5 +15,6 @@ interface LoginComponent {
     data class Model(
         val login: String = "",
         val password: String = "",
+        val token: String = "",
     )
 }

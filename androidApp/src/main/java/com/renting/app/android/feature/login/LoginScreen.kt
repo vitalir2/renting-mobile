@@ -1,11 +1,19 @@
 package com.renting.app.android.feature.login
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.Button
+import androidx.compose.material.Text
 import androidx.compose.material.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.Preview
@@ -20,12 +28,23 @@ fun LoginScreen(
 ) {
     val state by component.models.subscribeAsState()
 
-    LoginScreen(
-        login = state.login,
-        password = state.password,
-        onLoginInputChanged = component::onLoginInputChanged,
-        onPasswordInputChanged = component::onPasswordInputChanged,
-    )
+    if (state.token.isEmpty()) {
+        LoginScreen(
+            login = state.login,
+            password = state.password,
+            onLoginInputChanged = component::onLoginInputChanged,
+            onPasswordInputChanged = component::onPasswordInputChanged,
+            onSubmitButtonClick = component::onLoginStarted,
+        )
+    } else {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp)
+        ) {
+            Text(state.token, Modifier.align(Alignment.Center))
+        }
+    }
 }
 
 @Composable
@@ -34,8 +53,15 @@ private fun LoginScreen(
     password: String,
     onLoginInputChanged: (String) -> Unit,
     onPasswordInputChanged: (String) -> Unit,
+    onSubmitButtonClick: () -> Unit,
 ) {
-    Column {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center,
+    ) {
         TextField(
             modifier = Modifier
                 .testTag(LoginScreenTags.LOGIN_INPUT),
@@ -49,6 +75,15 @@ private fun LoginScreen(
             value = password,
             onValueChange = onPasswordInputChanged,
         )
+        Spacer(modifier = Modifier.height(8.dp))
+        Button(
+            onClick = onSubmitButtonClick,
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(32.dp)
+        ) {
+            Text("Login")
+        }
     }
 }
 
@@ -61,6 +96,7 @@ private fun DefaultPreview() {
             password = "World",
             onLoginInputChanged = {},
             onPasswordInputChanged = {},
+            onSubmitButtonClick = {},
         )
     }
 }
