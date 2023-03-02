@@ -10,6 +10,8 @@ interface LoginComponent {
 
     fun onPasswordInputChanged(password: String)
 
+    fun onLoginStarted()
+
     data class Model(
         val login: String = "",
         val password: String = "",
