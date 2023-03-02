@@ -1,6 +1,10 @@
 package com.renting.app.feature.login
 
-internal class DefaultLoginRepository : LoginRepository {
+import io.ktor.client.*
+
+internal class DefaultLoginRepository(
+    private val httpClient: HttpClient,
+) : LoginRepository {
 
     override suspend fun login(login: String, password: String): String {
         return "" // TODO
