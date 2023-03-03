@@ -24,18 +24,26 @@ struct LoginView: View {
         let model = models.value
 
         return VStack {
-            TextField(
-                "Login",
-                text: Binding(get: { model.login }, set: component.onLoginInputChanged)
-            )
-            TextField(
-                "Password",
-                text: Binding(get: { model.password }, set: component.onPasswordInputChanged)
-            )
-            .foregroundColor(Color.appPrimary)
+            if model.token.isEmpty {
+                TextField(
+                    "Login",
+                    text: Binding(get: { model.login }, set: component.onLoginInputChanged)
+                )
+                TextField(
+                    "Password",
+                    text: Binding(get: { model.password }, set: component.onPasswordInputChanged)
+                )
+                Button("Login", action: {
+                    component.onLoginStarted()
+                })
+                .buttonStyle(PrimaryButtonStyle())
+                .offset(y: 20)
+            } else {
+                Text(model.token)
+                    .foregroundColor(Color.accentColor)
+            }
         }
         .padding(12)
-        .textFieldStyle(.roundedBorder)
     }
 }
 
@@ -46,13 +54,16 @@ struct LoginView_Previews: PreviewProvider {
 
     class StubComponent: LoginComponent {
         let models: Value<LoginComponentModel> = valueOf(
-            LoginComponentModel(login: "Vitalir", password: "123")
+            LoginComponentModel(login: "Vitalir", password: "123", token: "")
         )
 
         func onLoginInputChanged(login: String) {
         }
 
         func onPasswordInputChanged(password: String) {
+        }
+
+        func onLoginStarted() {
         }
     }
 }
