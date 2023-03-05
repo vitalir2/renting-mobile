@@ -16,5 +16,6 @@ interface LoginComponent {
         val login: String = "",
         val password: String = "",
         val token: String = "",
+        val error: String? = null,
     )
 }

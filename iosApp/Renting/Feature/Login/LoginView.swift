@@ -54,7 +54,7 @@ struct LoginView_Previews: PreviewProvider {
 
     class StubComponent: LoginComponent {
         let models: Value<LoginComponentModel> = valueOf(
-            LoginComponentModel(login: "Vitalir", password: "123", token: "")
+            LoginComponentModel(login: "Vitalir", password: "123", token: "", error: nil)
         )
 
         func onLoginInputChanged(login: String) {
