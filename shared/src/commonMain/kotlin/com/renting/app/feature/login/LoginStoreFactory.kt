@@ -4,6 +4,7 @@ import com.arkivanov.mvikotlin.core.store.Reducer
 import com.arkivanov.mvikotlin.core.store.Store
 import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
+import com.renting.app.core.monad.Either
 import com.renting.app.feature.login.LoginStore.Intent
 import com.renting.app.feature.login.LoginStore.State
 import kotlinx.coroutines.launch
@@ -30,6 +31,7 @@ internal class LoginStoreFactory(
         data class Login(val value: String) : Msg
         data class Password(val value: String) : Msg
         data class LoggedIn(val token: String) : Msg
+        data class Error(val message: String?) : Msg
     }
 
     private object ReducerImpl : Reducer<State, Msg> {
@@ -39,6 +41,7 @@ internal class LoginStoreFactory(
                 is Msg.Login -> copy(login = msg.value)
                 is Msg.Password -> copy(password = msg.value)
                 is Msg.LoggedIn -> copy(token = msg.token)
+                is Msg.Error -> copy(error = msg.message)
             }
     }
 
@@ -52,12 +55,15 @@ internal class LoginStoreFactory(
                 is Intent.StartLogin -> {
                     val state = getState()
                     scope.launch {
-                        val token = loginRepository.login(
+                        val result = loginRepository.login(
                             login = state.login,
                             password = state.password,
                         )
-                        // TODO save in cache
-                        dispatch(Msg.LoggedIn(token))
+                        when (result) {
+                            is Either.Left -> dispatch(Msg.Error(result.error.message))
+                            // TODO save in cache
+                            is Either.Right -> dispatch(Msg.LoggedIn(result.value))
+                        }
                     }
                 }
             }

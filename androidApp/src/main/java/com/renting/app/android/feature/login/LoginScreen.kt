@@ -28,29 +28,43 @@ fun LoginScreen(
 ) {
     val state by component.models.subscribeAsState()
 
-    if (state.token.isEmpty()) {
-        LoginScreen(
-            login = state.login,
-            password = state.password,
+    when {
+        state.error != null -> ErrorPlaceholder(state)
+        state.token.isEmpty() -> LoginScreen(
+            model = state,
             onLoginInputChanged = component::onLoginInputChanged,
             onPasswordInputChanged = component::onPasswordInputChanged,
             onSubmitButtonClick = component::onLoginStarted,
         )
-    } else {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp)
-        ) {
-            Text(state.token, Modifier.align(Alignment.Center))
-        }
+        else -> SuccessTokenScreen(state)
+    }
+}
+
+@Composable
+private fun SuccessTokenScreen(state: LoginComponent.Model) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(16.dp)
+    ) {
+        Text(state.token, Modifier.align(Alignment.Center))
+    }
+}
+
+@Composable
+private fun ErrorPlaceholder(state: LoginComponent.Model) {
+    Box(
+        contentAlignment = Alignment.Center,
+    ) {
+        Text(
+            text = "Error ${state.error}",
+        )
     }
 }
 
 @Composable
 private fun LoginScreen(
-    login: String,
-    password: String,
+    model: LoginComponent.Model,
     onLoginInputChanged: (String) -> Unit,
     onPasswordInputChanged: (String) -> Unit,
     onSubmitButtonClick: () -> Unit,
@@ -65,14 +79,14 @@ private fun LoginScreen(
         TextField(
             modifier = Modifier
                 .testTag(LoginScreenTags.LOGIN_INPUT),
-            value = login,
+            value = model.login,
             onValueChange = onLoginInputChanged,
         )
         Spacer(modifier = Modifier.height(8.dp))
         TextField(
             modifier = Modifier
                 .testTag(LoginScreenTags.PASSWORD_INPUT),
-            value = password,
+            value = model.password,
             onValueChange = onPasswordInputChanged,
         )
         Spacer(modifier = Modifier.height(8.dp))
@@ -92,8 +106,10 @@ private fun LoginScreen(
 private fun DefaultPreview() {
     RentingTheme {
         LoginScreen(
-            login = "Hello",
-            password = "World",
+            model = LoginComponent.Model(
+                login = "Hello",
+                password = "World",
+            ),
             onLoginInputChanged = {},
             onPasswordInputChanged = {},
             onSubmitButtonClick = {},

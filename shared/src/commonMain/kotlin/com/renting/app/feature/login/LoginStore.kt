@@ -16,5 +16,6 @@ internal interface LoginStore : Store<LoginStore.Intent, LoginStore.State, Nothi
         val login: String = "",
         val password: String = "",
         val token: String = "",
+        val error: String? = null,
     )
 }
