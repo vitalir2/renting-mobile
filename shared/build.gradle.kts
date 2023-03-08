@@ -1,3 +1,6 @@
+import com.android.build.api.dsl.LibraryDefaultConfig
+import java.util.*
+
 plugins {
     id("renting.android.lib")
     kotlin("multiplatform")
@@ -88,8 +91,27 @@ kotlin {
     }
 }
 
+inline fun <reified T : Any> LibraryDefaultConfig.addBuildConfigProperty(name: String, value: T) {
+    val (fieldType, fieldValue) = when (T::class) {
+        String::class -> "String" to "\"$value\""
+        else -> error("Unknown property type=${T::class}")
+    }
+    buildConfigField(fieldType, name, fieldValue)
+}
+
 android {
     namespace = "com.renting.app"
+
+    defaultConfig {
+        val androidLocalProps = Properties().apply {
+            load(project.rootDir.resolve("local.properties").inputStream())
+        }
+
+        addBuildConfigProperty<String>(
+            name = "PRODUCTION_NETWORK_HOST",
+            value = androidLocalProps.getProperty("renting.production.network.host"),
+        )
+    }
 }
 
 // TODO add to convenience plugin

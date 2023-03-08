@@ -7,13 +7,12 @@ import com.arkivanov.mvikotlin.core.instancekeeper.getStore
 import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.renting.app.core.coroutines.createIODispatcher
 import com.renting.app.core.network.createHttpClient
+import com.renting.app.core.utils.Environment
 import com.renting.app.core.utils.stateAsValue
 import com.renting.app.feature.login.LoginStore.Intent
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
-import io.ktor.http.ContentType.Application.Json
 import io.ktor.serialization.kotlinx.json.*
-import kotlinx.coroutines.Dispatchers
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 
@@ -36,7 +35,7 @@ class DefaultLoginComponent(
                             })
                         }
                         defaultRequest {
-                            url("http://158.160.25.116:8080")
+                            url(Environment.PRODUCTION_NETWORK_HOST)
                         }
                     },
                     ioDispatcher = createIODispatcher(),
