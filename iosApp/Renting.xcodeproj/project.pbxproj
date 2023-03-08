@@ -10,8 +10,8 @@
 		058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557BA273AAA24004C7B11 /* Assets.xcassets */; };
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
-		70453A594A4847DB98479761 /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB3B816A0749AD31FF85CBFB /* Pods_iosApp.framework */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
+		B6DB54D7992C4BA8EEDC4F4A /* Pods_Renting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CCA8426D3B6FDA34F2BF2BE /* Pods_Renting.framework */; };
 		FA0E0C9A29A533B400EECB1E /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = FA0E0C9929A533B400EECB1E /* Podfile */; };
 		FA2B96F729B1B64B00563065 /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B96F629B1B64B00563065 /* PrimaryButtonStyle.swift */; };
 		FA556CBB29B104FD00F2C2C8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA556CBA29B104FD00F2C2C8 /* Colors.swift */; };
@@ -58,12 +58,13 @@
 /* Begin PBXFileReference section */
 		058557BA273AAA24004C7B11 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		201B4B2F17F9C9F7AB4E7B56 /* Pods-Renting.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Renting.release.xcconfig"; path = "Target Support Files/Pods-Renting/Pods-Renting.release.xcconfig"; sourceTree = "<group>"; };
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
+		6CCA8426D3B6FDA34F2BF2BE /* Pods_Renting.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Renting.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF7B242A565900829871 /* Renting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Renting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BD0AF7894FFAB9224429ECBA /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
-		DFC36202475D9403AE4C1E24 /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
+		B9D38A03E20123BCFE0B256A /* Pods-Renting.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Renting.debug.xcconfig"; path = "Target Support Files/Pods-Renting/Pods-Renting.debug.xcconfig"; sourceTree = "<group>"; };
 		FA0E0C9929A533B400EECB1E /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		FA2B96F629B1B64B00563065 /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
 		FA556CBA29B104FD00F2C2C8 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -77,7 +78,6 @@
 		FAA873D329A7545500D2E202 /* RentingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RentingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA873D529A7545500D2E202 /* RentingAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentingAppUITests.swift; sourceTree = "<group>"; };
 		FAA873D729A7545500D2E202 /* RentingAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentingAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		FB3B816A0749AD31FF85CBFB /* Pods_iosApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,7 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70453A594A4847DB98479761 /* Pods_iosApp.framework in Frameworks */,
+				B6DB54D7992C4BA8EEDC4F4A /* Pods_Renting.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,8 +122,8 @@
 				FAA873C729A7513900D2E202 /* RentingTests */,
 				FAA873D429A7545500D2E202 /* RentingUITests */,
 				7555FF7C242A565900829871 /* Products */,
-				7555FFB0242A642200829871 /* Frameworks */,
 				C10C4380DE1205B5AE83BD57 /* Pods */,
+				C6A2414C68F284FB4E330F42 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -152,21 +152,21 @@
 			path = Renting;
 			sourceTree = "<group>";
 		};
-		7555FFB0242A642200829871 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				FB3B816A0749AD31FF85CBFB /* Pods_iosApp.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		C10C4380DE1205B5AE83BD57 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				BD0AF7894FFAB9224429ECBA /* Pods-iosApp.debug.xcconfig */,
-				DFC36202475D9403AE4C1E24 /* Pods-iosApp.release.xcconfig */,
+				B9D38A03E20123BCFE0B256A /* Pods-Renting.debug.xcconfig */,
+				201B4B2F17F9C9F7AB4E7B56 /* Pods-Renting.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		C6A2414C68F284FB4E330F42 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6CCA8426D3B6FDA34F2BF2BE /* Pods_Renting.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		FA2B96F429B1B62300563065 /* Core */ = {
@@ -253,8 +253,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7555FFA5242A565B00829871 /* Build configuration list for PBXNativeTarget "Renting" */;
 			buildPhases = (
-				9125282A87A5C468D56BACC8 /* [CP] Check Pods Manifest.lock */,
-				7555FFB5242A651A00829871 /* ShellScript */,
+				3AF09499A5CFAA61D3F6B3B9 /* [CP] Check Pods Manifest.lock */,
+				7555FFB5242A651A00829871 /* Run Script */,
 				7555FF77242A565900829871 /* Sources */,
 				FA0E0C9B29A5362300EECB1E /* Linter (SwiftLint) */,
 				7555FF78242A565900829871 /* Frameworks */,
@@ -378,25 +378,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		7555FFB5242A651A00829871 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "cd \"$SRCROOT/..\"\n./gradlew :shared:embedAndSignAppleFrameworkForXcode\n";
-		};
-		9125282A87A5C468D56BACC8 /* [CP] Check Pods Manifest.lock */ = {
+		3AF09499A5CFAA61D3F6B3B9 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -411,12 +393,31 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-iosApp-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Renting-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
+		};
+		7555FFB5242A651A00829871 /* Run Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"$SRCROOT/..\"\n./gradlew :shared:embedAndSignAppleFrameworkForXcode\n";
 		};
 		FA0E0C9B29A5362300EECB1E /* Linter (SwiftLint) */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -609,7 +610,7 @@
 		};
 		7555FFA6242A565B00829871 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BD0AF7894FFAB9224429ECBA /* Pods-iosApp.debug.xcconfig */;
+			baseConfigurationReference = B9D38A03E20123BCFE0B256A /* Pods-Renting.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -641,7 +642,7 @@
 		};
 		7555FFA7242A565B00829871 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DFC36202475D9403AE4C1E24 /* Pods-iosApp.release.xcconfig */;
+			baseConfigurationReference = 201B4B2F17F9C9F7AB4E7B56 /* Pods-Renting.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
