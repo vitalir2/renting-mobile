@@ -1,4 +1,4 @@
-package com.renting.app.feature.login
+package com.renting.app.feature.login.mvi
 
 import com.arkivanov.mvikotlin.core.store.Store
 

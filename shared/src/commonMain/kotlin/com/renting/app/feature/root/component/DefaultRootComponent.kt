@@ -8,8 +8,8 @@ import com.arkivanov.decompose.value.Value
 import com.arkivanov.essenty.parcelable.Parcelable
 import com.arkivanov.essenty.parcelable.Parcelize
 import com.arkivanov.mvikotlin.core.store.StoreFactory
-import com.renting.app.feature.login.DefaultLoginComponent
-import com.renting.app.feature.login.LoginComponent
+import com.renting.app.feature.login.component.DefaultLoginComponent
+import com.renting.app.feature.login.component.LoginComponent
 import com.renting.app.feature.root.component.RootComponent.Child
 import com.renting.app.feature.root.di.DefaultRootGraph
 import com.renting.app.feature.root.di.RootGraph

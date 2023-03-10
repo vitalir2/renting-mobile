@@ -1,4 +1,4 @@
-package com.renting.app.feature.login
+package com.renting.app.feature.login.repository
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

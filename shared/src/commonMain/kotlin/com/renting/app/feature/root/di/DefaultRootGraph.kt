@@ -3,8 +3,8 @@ package com.renting.app.feature.root.di
 import com.renting.app.core.coroutines.createIODispatcher
 import com.renting.app.core.network.createHttpClient
 import com.renting.app.core.utils.Environment
-import com.renting.app.feature.login.DefaultLoginGraph
-import com.renting.app.feature.login.LoginGraph
+import com.renting.app.feature.login.di.DefaultLoginGraph
+import com.renting.app.feature.login.di.LoginGraph
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.serialization.kotlinx.json.*

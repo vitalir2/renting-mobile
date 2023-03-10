@@ -1,12 +1,13 @@
-package com.renting.app.feature.login
+package com.renting.app.feature.login.mvi
 
 import com.arkivanov.mvikotlin.core.store.Reducer
 import com.arkivanov.mvikotlin.core.store.Store
 import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
 import com.renting.app.core.monad.Either
-import com.renting.app.feature.login.LoginStore.Intent
-import com.renting.app.feature.login.LoginStore.State
+import com.renting.app.feature.login.repository.LoginRepository
+import com.renting.app.feature.login.mvi.LoginStore.Intent
+import com.renting.app.feature.login.mvi.LoginStore.State
 import kotlinx.coroutines.launch
 
 internal class LoginStoreFactory(
