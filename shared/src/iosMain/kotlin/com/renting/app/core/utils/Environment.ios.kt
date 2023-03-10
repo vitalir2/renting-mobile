@@ -9,6 +9,7 @@ actual object Environment {
     @Suppress("UNCHECKED_CAST")
     private val config: Map<String, Any?> by lazy {
         val configPath = getConfigPath("EnvironmentConfig")
+            ?: getConfigPath("DefaultEnvironmentConfig")
             ?: error("No environment config found")
         NSDictionary.dictionaryWithContentsOfFile(configPath) as Map<String, Any?>
     }
