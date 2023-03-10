@@ -1,4 +1,4 @@
-package com.renting.app.feature.root
+package com.renting.app.feature.root.component
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.router.stack.ChildStack
@@ -10,7 +10,9 @@ import com.arkivanov.essenty.parcelable.Parcelize
 import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.renting.app.feature.login.DefaultLoginComponent
 import com.renting.app.feature.login.LoginComponent
-import com.renting.app.feature.root.RootComponent.Child
+import com.renting.app.feature.root.component.RootComponent.Child
+import com.renting.app.feature.root.di.DefaultRootGraph
+import com.renting.app.feature.root.di.RootGraph
 
 class DefaultRootComponent(
     componentContext: ComponentContext,

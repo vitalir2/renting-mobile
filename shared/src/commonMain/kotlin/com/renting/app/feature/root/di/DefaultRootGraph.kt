@@ -1,4 +1,4 @@
-package com.renting.app.feature.root
+package com.renting.app.feature.root.di
 
 import com.renting.app.core.coroutines.createIODispatcher
 import com.renting.app.core.network.createHttpClient

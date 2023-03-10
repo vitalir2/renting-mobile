@@ -1,4 +1,4 @@
-package com.renting.app.feature.root
+package com.renting.app.feature.root.component
 
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.value.Value

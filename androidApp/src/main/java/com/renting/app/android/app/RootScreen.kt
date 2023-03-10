@@ -10,8 +10,8 @@ import com.arkivanov.decompose.extensions.compose.jetpack.stack.Children
 import com.arkivanov.decompose.extensions.compose.jetpack.subscribeAsState
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.renting.app.android.feature.login.LoginScreen
-import com.renting.app.feature.root.RootComponent
-import com.renting.app.feature.root.RootComponent.Child
+import com.renting.app.feature.root.component.RootComponent
+import com.renting.app.feature.root.component.RootComponent.Child
 
 @Composable
 fun RootScreen(

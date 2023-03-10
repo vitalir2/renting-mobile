@@ -7,8 +7,8 @@ import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.defaultComponentContext
 import com.arkivanov.mvikotlin.main.store.DefaultStoreFactory
 import com.renting.app.android.core.brandbook.RentingTheme
-import com.renting.app.feature.root.DefaultRootComponent
-import com.renting.app.feature.root.RootComponent
+import com.renting.app.feature.root.component.DefaultRootComponent
+import com.renting.app.feature.root.component.RootComponent
 
 class MainActivity : ComponentActivity() {
 
