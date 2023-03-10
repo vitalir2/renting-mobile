@@ -6,7 +6,7 @@ import com.renting.app.core.settings.SettingsFactory
 import com.renting.app.core.utils.Environment
 import com.renting.app.feature.login.di.DefaultLoginGraph
 import com.renting.app.feature.login.di.LoginGraph
-import com.russhwolf.settings.Settings
+import com.russhwolf.settings.ObservableSettings
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.serialization.kotlinx.json.*
@@ -31,7 +31,7 @@ class DefaultRootGraph(
 
     private val ioDispatcher = createIODispatcher()
 
-    private val settings: Settings by lazy {
+    private val settings: ObservableSettings by lazy {
         settingsFactory.create()
     }
 
