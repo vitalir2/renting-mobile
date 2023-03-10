@@ -62,7 +62,6 @@ internal class LoginStoreFactory(
                         )
                         when (result) {
                             is Either.Left -> dispatch(Msg.Error(result.error.message))
-                            // TODO save in cache
                             is Either.Right -> dispatch(Msg.LoggedIn(result.value))
                         }
                     }
