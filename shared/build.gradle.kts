@@ -5,7 +5,7 @@ import java.util.*
 plugins {
     id("renting.android.lib")
     kotlin("multiplatform")
-    kotlin("plugin.serialization") version libs.versions.kotlin.get()
+    kotlin("plugin.serialization")
     alias(libs.plugins.detekt)
     alias(libs.plugins.kotest.multiplatform)
     id("kotlin-parcelize")
@@ -28,9 +28,6 @@ kotlin {
     }
 
     sourceSets {
-        val ktorVersion = "2.2.3"
-        val kotlinxSerializationVersion = "1.5.0"
-
         val commonMain by getting {
             dependencies {
                 api(libs.kotlinx.coroutines.core)
@@ -40,11 +37,10 @@ kotlin {
                 implementation(libs.mvikotlin.extensions.coroutines)
                 implementation(libs.mvikotlin.logging)
 
-                implementation("io.ktor:ktor-client-core:$ktorVersion")
-                implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
-                implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
-
-                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$kotlinxSerializationVersion")
+                implementation(libs.kotlinx.serialization.json)
+                implementation(libs.ktor.client.core)
+                implementation(libs.ktor.client.contentnegotiation)
+                implementation(libs.ktor.serialization.kotlinx.json)
 
                 api(libs.decompose)
             }
@@ -59,7 +55,7 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
-                implementation("io.ktor:ktor-client-okhttp:$ktorVersion")
+                implementation(libs.ktor.client.okhttp)
             }
         }
         val androidTest by getting {
@@ -77,7 +73,7 @@ kotlin {
             iosSimulatorArm64Main.dependsOn(this)
 
             dependencies {
-                implementation("io.ktor:ktor-client-darwin:$ktorVersion")
+                implementation(libs.ktor.client.darwin)
             }
         }
         val iosX64Test by getting
