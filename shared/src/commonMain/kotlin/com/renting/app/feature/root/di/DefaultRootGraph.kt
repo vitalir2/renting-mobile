@@ -11,7 +11,7 @@ import io.ktor.serialization.kotlinx.json.*
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 
-internal class DefaultRootGraph : RootGraph {
+class DefaultRootGraph : RootGraph {
 
     @OptIn(ExperimentalSerializationApi::class)
     private val httpClient = createHttpClient().config {
