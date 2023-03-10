@@ -15,7 +15,8 @@ import com.renting.app.feature.root.RootComponent.Child
 class DefaultRootComponent(
     componentContext: ComponentContext,
     private val storeFactory: StoreFactory,
-) : RootComponent, ComponentContext by componentContext {
+    private val rootGraph: RootGraph = DefaultRootGraph(),
+) : RootComponent, ComponentContext by componentContext, RootGraph by rootGraph {
 
     private val navigation = StackNavigation<Configuration>()
 
@@ -39,6 +40,7 @@ class DefaultRootComponent(
     ): LoginComponent = DefaultLoginComponent(
         componentContext = componentContext,
         storeFactory = storeFactory,
+        loginGraph = loginGraph,
     )
 
     private sealed class Configuration : Parcelable {
