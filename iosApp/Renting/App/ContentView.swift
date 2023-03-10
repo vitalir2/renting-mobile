@@ -6,7 +6,8 @@ struct ContentView: View {
     private var componentHolder = ComponentHolder {
         DefaultRootComponent(
             componentContext: $0,
-            storeFactory: DefaultStoreFactory()
+            storeFactory: DefaultStoreFactory(),
+            rootGraph: DefaultRootGraph()
         )
     }
 
