@@ -1,4 +1,4 @@
-package com.renting.app.feature.login
+package com.renting.app.feature.login.component
 
 import com.arkivanov.decompose.value.Value
 

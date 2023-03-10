@@ -1,4 +1,4 @@
-package com.renting.app.feature.login
+package com.renting.app.feature.login.repository
 
 import com.renting.app.core.monad.Either
 

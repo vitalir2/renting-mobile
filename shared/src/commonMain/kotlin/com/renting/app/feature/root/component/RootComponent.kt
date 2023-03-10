@@ -2,7 +2,7 @@ package com.renting.app.feature.root.component
 
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.value.Value
-import com.renting.app.feature.login.LoginComponent
+import com.renting.app.feature.login.component.LoginComponent
 
 interface RootComponent {
 
