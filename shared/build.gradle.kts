@@ -1,4 +1,5 @@
 import com.android.build.api.dsl.LibraryDefaultConfig
+import java.io.InputStream
 import java.util.*
 
 plugins {
@@ -104,7 +105,15 @@ android {
 
     defaultConfig {
         val androidLocalProps = Properties().apply {
-            load(project.rootDir.resolve("local.properties").inputStream())
+            fun loadRootProjectPropsFrom(fileName: String) {
+                load(project.rootDir.resolve(fileName).inputStream())
+            }
+
+            try {
+                loadRootProjectPropsFrom("local.properties")
+            } catch (exception: Exception) {
+                loadRootProjectPropsFrom("gradle.properties")
+            }
         }
 
         addBuildConfigProperty<String>(
