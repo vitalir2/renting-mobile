@@ -11,13 +11,12 @@ import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.renting.app.feature.login.component.DefaultLoginComponent
 import com.renting.app.feature.login.component.LoginComponent
 import com.renting.app.feature.root.component.RootComponent.Child
-import com.renting.app.feature.root.di.DefaultRootGraph
 import com.renting.app.feature.root.di.RootGraph
 
 class DefaultRootComponent(
     componentContext: ComponentContext,
     private val storeFactory: StoreFactory,
-    private val rootGraph: RootGraph = DefaultRootGraph(),
+    private val rootGraph: RootGraph,
 ) : RootComponent, ComponentContext by componentContext, RootGraph by rootGraph {
 
     private val navigation = StackNavigation<Configuration>()
