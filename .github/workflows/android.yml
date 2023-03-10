@@ -8,6 +8,10 @@ on:
       - '**.kts'
     branches: [ "master" ]
   pull_request:
+    paths:
+      - 'androidApp/**'
+      - 'shared/**'
+      - '**.kts'
     branches: [ "master" ]
 
 jobs:
