@@ -4,6 +4,8 @@ import com.arkivanov.mvikotlin.logging.logger.DefaultLogger
 import com.renting.app.core.monad.Either
 import com.renting.app.core.monad.left
 import com.renting.app.core.monad.right
+import com.renting.app.core.settings.SettingKey
+import com.russhwolf.settings.Settings
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
@@ -15,6 +17,7 @@ import kotlinx.coroutines.withContext
 internal class DefaultLoginRepository(
     private val httpClient: HttpClient,
     private val ioDispatcher: CoroutineDispatcher,
+    private val settings: Settings,
 ) : LoginRepository {
 
     override suspend fun login(login: String, password: String): Either<Exception, String> = withContext(ioDispatcher) {
@@ -40,8 +43,9 @@ internal class DefaultLoginRepository(
     }
 
     private suspend fun handleSuccess(response: HttpResponse): Either.Right<String> {
-        val responseBody = response.body<LoginResponse>()
-        return responseBody.token.right()
+        val token = response.body<LoginResponse>().token
+        settings.putString(SettingKey.AUTH_TOKEN, token)
+        return token.right()
     }
 
     private suspend fun handleError(response: HttpResponse): Either.Left<Exception> {
