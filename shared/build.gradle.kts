@@ -42,6 +42,8 @@ kotlin {
                 implementation(libs.ktor.client.contentnegotiation)
                 implementation(libs.ktor.serialization.kotlinx.json)
 
+                implementation("com.russhwolf:multiplatform-settings:1.0.0")
+
                 api(libs.decompose)
             }
         }

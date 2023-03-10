@@ -7,7 +7,9 @@ struct ContentView: View {
         DefaultRootComponent(
             componentContext: $0,
             storeFactory: DefaultStoreFactory(),
-            rootGraph: DefaultRootGraph()
+            rootGraph: DefaultRootGraph(
+                settingsFactory: SettingsFactory()
+            )
         )
     }
 
