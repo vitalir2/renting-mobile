@@ -5,29 +5,46 @@ import com.renting.app.core.monad.Either
 import com.renting.app.core.monad.left
 import com.renting.app.core.monad.right
 import com.renting.app.core.settings.SettingKey
-import com.russhwolf.settings.Settings
+import com.russhwolf.settings.ObservableSettings
+import com.russhwolf.settings.SettingsListener
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import io.ktor.http.*
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.withContext
 
 internal class DefaultLoginRepository(
     private val httpClient: HttpClient,
     private val ioDispatcher: CoroutineDispatcher,
-    private val settings: Settings,
+    private val settings: ObservableSettings,
 ) : LoginRepository {
 
-    override suspend fun login(login: String, password: String): Either<Exception, String> = withContext(ioDispatcher) {
-        val response = makeRequest(login, password)
-        if (response.status.isSuccess()) {
-            handleSuccess(response)
-        } else {
-            handleError(response)
+    // Holds a strong reference to not be collected by GC
+    @Suppress("UNUSED", "UnusedPrivateMember")
+    private val authTokenSettingListener: SettingsListener =
+        settings.addStringOrNullListener(SettingKey.AUTH_TOKEN) { token ->
+            _authToken.value = token
         }
-    }
+
+    private val _authToken = MutableStateFlow(
+        value = settings.getStringOrNull(SettingKey.AUTH_TOKEN),
+    )
+    override val authToken: StateFlow<String?> = _authToken.asStateFlow()
+
+    override suspend fun login(login: String, password: String): Either<Exception, String> =
+        withContext(ioDispatcher) {
+            val response = makeRequest(login, password)
+            if (response.status.isSuccess()) {
+                handleSuccess(response)
+            } else {
+                handleError(response)
+            }
+        }
 
     private suspend fun makeRequest(
         login: String,

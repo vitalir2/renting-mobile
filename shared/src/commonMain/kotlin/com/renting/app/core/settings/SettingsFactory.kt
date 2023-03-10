@@ -1,8 +1,8 @@
 package com.renting.app.core.settings
 
-import com.russhwolf.settings.Settings
+import com.russhwolf.settings.ObservableSettings
 
 expect class SettingsFactory {
 
-    fun create(): Settings
+    fun create(): ObservableSettings
 }
