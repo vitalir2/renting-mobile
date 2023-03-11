@@ -25,6 +25,9 @@
 		FAA873D629A7545500D2E202 /* RentingAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA873D529A7545500D2E202 /* RentingAppUITests.swift */; };
 		FAA873D829A7545500D2E202 /* RentingAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA873D729A7545500D2E202 /* RentingAppUITestsLaunchTests.swift */; };
 		FADB4F3B29BB9535008AFBD2 /* DefaultEnvironmentConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = FADB4F3A29BB9535008AFBD2 /* DefaultEnvironmentConfig.plist */; };
+		FAE68BEF29BCC14500B71B2D /* ToastData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE68BEE29BCC14500B71B2D /* ToastData.swift */; };
+		FAE68BF129BCC16000B71B2D /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE68BF029BCC16000B71B2D /* ToastView.swift */; };
+		FAE68BF329BCC43500B71B2D /* ToastModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE68BF229BCC43500B71B2D /* ToastModifier.swift */; };
 		FAFEA76529BC823B00D62F2E /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFEA76429BC823B00D62F2E /* RegistrationView.swift */; };
 		FAFEA76829BC825400D62F2E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFEA76729BC825400D62F2E /* HomeView.swift */; };
 /* End PBXBuildFile section */
@@ -84,6 +87,9 @@
 		FAA873D529A7545500D2E202 /* RentingAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentingAppUITests.swift; sourceTree = "<group>"; };
 		FAA873D729A7545500D2E202 /* RentingAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentingAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		FADB4F3A29BB9535008AFBD2 /* DefaultEnvironmentConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = DefaultEnvironmentConfig.plist; sourceTree = "<group>"; };
+		FAE68BEE29BCC14500B71B2D /* ToastData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastData.swift; sourceTree = "<group>"; };
+		FAE68BF029BCC16000B71B2D /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		FAE68BF229BCC43500B71B2D /* ToastModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastModifier.swift; sourceTree = "<group>"; };
 		FAFEA76429BC823B00D62F2E /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		FAFEA76729BC825400D62F2E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -182,6 +188,7 @@
 		FA2B96F429B1B62300563065 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				FAE68BED29BCC09C00B71B2D /* Uikit */,
 				FA2B96F529B1B62D00563065 /* Brandbook */,
 			);
 			path = Core;
@@ -241,6 +248,16 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
+		FA92E1AA29BCFE78005592AF /* Toast */ = {
+			isa = PBXGroup;
+			children = (
+				FAE68BEE29BCC14500B71B2D /* ToastData.swift */,
+				FAE68BF029BCC16000B71B2D /* ToastView.swift */,
+				FAE68BF229BCC43500B71B2D /* ToastModifier.swift */,
+			);
+			path = Toast;
+			sourceTree = "<group>";
+		};
 		FAA873C729A7513900D2E202 /* RentingTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -256,6 +273,14 @@
 				FAA873D729A7545500D2E202 /* RentingAppUITestsLaunchTests.swift */,
 			);
 			path = RentingUITests;
+			sourceTree = "<group>";
+		};
+		FAE68BED29BCC09C00B71B2D /* Uikit */ = {
+			isa = PBXGroup;
+			children = (
+				FA92E1AA29BCFE78005592AF /* Toast */,
+			);
+			path = Uikit;
 			sourceTree = "<group>";
 		};
 		FAFEA76329BC822A00D62F2E /* Registration */ = {
@@ -475,12 +500,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAE68BF329BCC43500B71B2D /* ToastModifier.swift in Sources */,
 				FA98B2FC29AB4A4B008E1CE4 /* LoginView.swift in Sources */,
 				FA556CBB29B104FD00F2C2C8 /* Colors.swift in Sources */,
 				FA98B2F829AB4863008E1CE4 /* RootView.swift in Sources */,
+				FAE68BEF29BCC14500B71B2D /* ToastData.swift in Sources */,
 				FA98B2FE29AB4CF7008E1CE4 /* MutableStateBuilder.swift in Sources */,
 				FA98B2FA29AB496C008E1CE4 /* ObservableValue.swift in Sources */,
 				FAFEA76829BC825400D62F2E /* HomeView.swift in Sources */,
+				FAE68BF129BCC16000B71B2D /* ToastView.swift in Sources */,
 				FA2B96F729B1B64B00563065 /* PrimaryButtonStyle.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				FA98B2F629AB420C008E1CE4 /* ComponentHolder.swift in Sources */,
