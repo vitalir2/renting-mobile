@@ -38,9 +38,13 @@ struct LoginView: View {
                 })
                 .buttonStyle(PrimaryButtonStyle())
                 .offset(y: 20)
+
+                if let error = model.error {
+                    Spacer()
+                    Text("Error \(error)")
+                }
             } else {
-                Text(model.token)
-                    .foregroundColor(Color.accentColor)
+                Text("Login Completed")
             }
         }
         .padding(12)
@@ -64,6 +68,12 @@ struct LoginView_Previews: PreviewProvider {
         }
 
         func onLoginStarted() {
+        }
+
+        func onLoginCompleted() {
+        }
+
+        func onRegistrationRequested() {
         }
     }
 }

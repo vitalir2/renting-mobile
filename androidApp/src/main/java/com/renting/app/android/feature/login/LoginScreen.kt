@@ -40,20 +40,9 @@ fun LoginScreen(
             onLoginInputChanged = component::onLoginInputChanged,
             onPasswordInputChanged = component::onPasswordInputChanged,
             onSubmitButtonClick = component::onLoginStarted,
-            onSignUpClick = {}, // TODO
+            onSignUpClick = component::onRegistrationRequested,
         )
-        else -> SuccessTokenScreen(state)
-    }
-}
-
-@Composable
-private fun SuccessTokenScreen(state: LoginComponent.Model) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-    ) {
-        Text(state.token, Modifier.align(Alignment.Center))
+        else -> component.onLoginCompleted()
     }
 }
 
