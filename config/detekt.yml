@@ -727,3 +727,4 @@ style:
     excludeImports:
       - 'java.util.*'
       - 'io.ktor.*'
+      - 'androidx.compose.*'

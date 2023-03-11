@@ -40,8 +40,6 @@ dependencies {
 
     androidTestImplementation(libs.bundles.androidx.test.common)
     androidTestImplementation(libs.bundles.androidx.compose.uitest)
-
-    detektPlugins(libs.detekt.ktlint)
 }
 
 detekt {
