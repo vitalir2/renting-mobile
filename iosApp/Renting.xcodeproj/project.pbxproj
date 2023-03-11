@@ -25,6 +25,8 @@
 		FAA873D629A7545500D2E202 /* RentingAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA873D529A7545500D2E202 /* RentingAppUITests.swift */; };
 		FAA873D829A7545500D2E202 /* RentingAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA873D729A7545500D2E202 /* RentingAppUITestsLaunchTests.swift */; };
 		FADB4F3B29BB9535008AFBD2 /* DefaultEnvironmentConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = FADB4F3A29BB9535008AFBD2 /* DefaultEnvironmentConfig.plist */; };
+		FAFEA76529BC823B00D62F2E /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFEA76429BC823B00D62F2E /* RegistrationView.swift */; };
+		FAFEA76829BC825400D62F2E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFEA76729BC825400D62F2E /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -82,6 +84,8 @@
 		FAA873D529A7545500D2E202 /* RentingAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentingAppUITests.swift; sourceTree = "<group>"; };
 		FAA873D729A7545500D2E202 /* RentingAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentingAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		FADB4F3A29BB9535008AFBD2 /* DefaultEnvironmentConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = DefaultEnvironmentConfig.plist; sourceTree = "<group>"; };
+		FAFEA76429BC823B00D62F2E /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		FAFEA76729BC825400D62F2E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +208,8 @@
 		FA4CD77529AE701D00BA40E9 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				FAFEA76629BC824B00D62F2E /* Home */,
+				FAFEA76329BC822A00D62F2E /* Registration */,
 				FA4CD77629AE702400BA40E9 /* Login */,
 			);
 			path = Feature;
@@ -250,6 +256,22 @@
 				FAA873D729A7545500D2E202 /* RentingAppUITestsLaunchTests.swift */,
 			);
 			path = RentingUITests;
+			sourceTree = "<group>";
+		};
+		FAFEA76329BC822A00D62F2E /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				FAFEA76429BC823B00D62F2E /* RegistrationView.swift */,
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
+		FAFEA76629BC824B00D62F2E /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				FAFEA76729BC825400D62F2E /* HomeView.swift */,
+			);
+			path = Home;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -458,10 +480,12 @@
 				FA98B2F829AB4863008E1CE4 /* RootView.swift in Sources */,
 				FA98B2FE29AB4CF7008E1CE4 /* MutableStateBuilder.swift in Sources */,
 				FA98B2FA29AB496C008E1CE4 /* ObservableValue.swift in Sources */,
+				FAFEA76829BC825400D62F2E /* HomeView.swift in Sources */,
 				FA2B96F729B1B64B00563065 /* PrimaryButtonStyle.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				FA98B2F629AB420C008E1CE4 /* ComponentHolder.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
+				FAFEA76529BC823B00D62F2E /* RegistrationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

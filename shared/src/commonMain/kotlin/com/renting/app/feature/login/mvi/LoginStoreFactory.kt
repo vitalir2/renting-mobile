@@ -6,6 +6,7 @@ import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
 import com.renting.app.core.monad.Either
 import com.renting.app.feature.login.mvi.LoginStore.Intent
+import com.renting.app.feature.login.mvi.LoginStore.Label
 import com.renting.app.feature.login.mvi.LoginStore.State
 import com.renting.app.feature.login.repository.LoginRepository
 import kotlinx.coroutines.launch
@@ -17,7 +18,7 @@ internal class LoginStoreFactory(
 
     fun create(): LoginStore =
         object : LoginStore,
-            Store<Intent, State, Nothing> by storeFactory.create(
+            Store<Intent, State, Label> by storeFactory.create(
                 name = "LoginStore",
                 initialState = State(),
                 reducer = ReducerImpl,
@@ -31,7 +32,6 @@ internal class LoginStoreFactory(
     private sealed interface Msg {
         data class Login(val value: String) : Msg
         data class Password(val value: String) : Msg
-        data class LoggedIn(val token: String) : Msg
         data class Error(val message: String?) : Msg
     }
 
@@ -41,14 +41,13 @@ internal class LoginStoreFactory(
             when (msg) {
                 is Msg.Login -> copy(login = msg.value)
                 is Msg.Password -> copy(password = msg.value)
-                is Msg.LoggedIn -> copy(token = msg.token)
                 is Msg.Error -> copy(error = msg.message)
             }
     }
 
     private class ExecutorImpl(
         private val loginRepository: LoginRepository,
-    ) : CoroutineExecutor<Intent, Nothing, State, Msg, Nothing>() {
+    ) : CoroutineExecutor<Intent, Nothing, State, Msg, Label>() {
         override fun executeIntent(intent: Intent, getState: () -> State) {
             when (intent) {
                 is Intent.SetLogin -> dispatch(Msg.Login(intent.value))
@@ -62,7 +61,7 @@ internal class LoginStoreFactory(
                         )
                         when (result) {
                             is Either.Left -> dispatch(Msg.Error(result.error.message))
-                            is Either.Right -> dispatch(Msg.LoggedIn(result.value))
+                            is Either.Right -> publish(Label.LoggedSuccessfully)
                         }
                     }
                 }

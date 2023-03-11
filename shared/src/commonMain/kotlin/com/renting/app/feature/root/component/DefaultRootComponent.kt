@@ -4,12 +4,18 @@ import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
+import com.arkivanov.decompose.router.stack.push
+import com.arkivanov.decompose.router.stack.replaceCurrent
 import com.arkivanov.decompose.value.Value
 import com.arkivanov.essenty.parcelable.Parcelable
 import com.arkivanov.essenty.parcelable.Parcelize
 import com.arkivanov.mvikotlin.core.store.StoreFactory
+import com.renting.app.feature.home.DefaultHomeComponent
+import com.renting.app.feature.home.HomeComponent
 import com.renting.app.feature.login.component.DefaultLoginComponent
 import com.renting.app.feature.login.component.LoginComponent
+import com.renting.app.feature.registration.DefaultRegistrationComponent
+import com.renting.app.feature.registration.RegistrationComponent
 import com.renting.app.feature.root.component.RootComponent.Child
 import com.renting.app.feature.root.di.RootGraph
 
@@ -34,6 +40,20 @@ class DefaultRootComponent(
         componentContext: ComponentContext,
     ): Child = when (configuration) {
         is Configuration.Login -> Child.Login(createLoginComponent(componentContext))
+        is Configuration.Home -> Child.Home(createHomeComponent(componentContext))
+        is Configuration.Registration -> Child.Registration(createRegistrationComponent(componentContext))
+    }
+
+    private fun createRegistrationComponent(componentContext: ComponentContext): RegistrationComponent {
+        return DefaultRegistrationComponent(
+            componentContext = componentContext,
+        )
+    }
+
+    private fun createHomeComponent(componentContext: ComponentContext): HomeComponent {
+        return DefaultHomeComponent(
+            componentContext = componentContext,
+        )
     }
 
     private fun createLoginComponent(
@@ -42,10 +62,26 @@ class DefaultRootComponent(
         componentContext = componentContext,
         storeFactory = storeFactory,
         loginGraph = loginGraph,
+        openMainScreen = {
+            navigation.replaceCurrent(
+                configuration = Configuration.Home,
+            )
+        },
+        openRegistrationScreen = {
+            navigation.push(
+                configuration = Configuration.Registration,
+            )
+        }
     )
 
     private sealed class Configuration : Parcelable {
         @Parcelize
         object Login : Configuration()
+
+        @Parcelize
+        object Registration : Configuration()
+
+        @Parcelize
+        object Home : Configuration()
     }
 }

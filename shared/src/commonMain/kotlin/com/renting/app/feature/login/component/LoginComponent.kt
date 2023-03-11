@@ -12,6 +12,10 @@ interface LoginComponent {
 
     fun onLoginStarted()
 
+    fun onLoginCompleted()
+
+    fun onRegistrationRequested()
+
     data class Model(
         val login: String = "",
         val password: String = "",
