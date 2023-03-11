@@ -65,6 +65,7 @@ internal class LoginStoreFactory(
                         }
                     }
                 }
+                Intent.LoginErrorShowed -> dispatch(Msg.Error(null))
             }
         }
     }

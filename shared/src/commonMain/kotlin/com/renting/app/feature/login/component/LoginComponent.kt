@@ -16,6 +16,8 @@ interface LoginComponent {
 
     fun onRegistrationRequested()
 
+    fun onLoginErrorShowed()
+
     data class Model(
         val login: String = "",
         val password: String = "",

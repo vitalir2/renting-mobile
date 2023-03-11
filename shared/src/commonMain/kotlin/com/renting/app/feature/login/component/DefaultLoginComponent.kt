@@ -61,4 +61,8 @@ class DefaultLoginComponent(
     override fun onRegistrationRequested() {
         openRegistrationScreen()
     }
+
+    override fun onLoginErrorShowed() {
+        store.accept(Intent.LoginErrorShowed)
+    }
 }

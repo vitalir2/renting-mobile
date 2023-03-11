@@ -6,6 +6,7 @@ internal interface LoginStore : Store<LoginStore.Intent, LoginStore.State, Login
 
     sealed interface Intent {
         object StartLogin : Intent
+        object LoginErrorShowed : Intent
         data class SetLogin(val value: String) : Intent
         data class SetPassword(val value: String): Intent {
             override fun toString(): String = "***"

@@ -1,5 +1,6 @@
 package com.renting.app.android.feature.login
 
+import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -14,6 +15,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.*
 import androidx.compose.ui.text.font.FontWeight
@@ -33,28 +35,23 @@ fun LoginScreen(
 ) {
     val state by component.models.subscribeAsState()
 
-    if (state.error != null) {
-        ErrorPlaceholder(state)
-    } else {
-        LoginScreen(
-            model = state,
-            onLoginInputChanged = component::onLoginChanged,
-            onPasswordInputChanged = component::onPasswordChanged,
-            onSubmitButtonClick = component::onLoginStarted,
-            onSignUpClick = component::onRegistrationRequested,
-        )
+    val context = LocalContext.current
+    LaunchedEffect(key1 = state.error) {
+        if (state.error != null) {
+            Toast
+                .makeText(context, "Something went wrong", Toast.LENGTH_SHORT)
+                .show()
+            component.onLoginErrorShowed()
+        }
     }
-}
 
-@Composable
-private fun ErrorPlaceholder(state: LoginComponent.Model) {
-    Box(
-        contentAlignment = Alignment.Center,
-    ) {
-        Text(
-            text = "Error ${state.error}",
-        )
-    }
+    LoginScreen(
+        model = state,
+        onLoginInputChanged = component::onLoginChanged,
+        onPasswordInputChanged = component::onPasswordChanged,
+        onSubmitButtonClick = component::onLoginStarted,
+        onSignUpClick = component::onRegistrationRequested,
+    )
 }
 
 private const val SIGN_UP_TAG = "SIGNUP"

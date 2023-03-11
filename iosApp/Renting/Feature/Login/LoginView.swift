@@ -71,5 +71,8 @@ struct LoginView_Previews: PreviewProvider {
 
         func onRegistrationRequested() {
         }
+        
+        func onLoginErrorShowed() {
+        }
     }
 }
