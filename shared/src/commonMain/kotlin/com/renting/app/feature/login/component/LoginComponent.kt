@@ -6,9 +6,9 @@ interface LoginComponent {
 
     val models: Value<Model>
 
-    fun onLoginInputChanged(login: String)
+    fun onLoginChanged(login: String)
 
-    fun onPasswordInputChanged(password: String)
+    fun onPasswordChanged(password: String)
 
     fun onLoginStarted()
 
@@ -19,7 +19,6 @@ interface LoginComponent {
     data class Model(
         val login: String = "",
         val password: String = "",
-        val token: String = "",
         val error: String? = null,
     )
 }

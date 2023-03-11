@@ -33,16 +33,16 @@ fun LoginScreen(
 ) {
     val state by component.models.subscribeAsState()
 
-    when {
-        state.error != null -> ErrorPlaceholder(state)
-        state.token.isEmpty() -> LoginScreen(
+    if (state.error != null) {
+        ErrorPlaceholder(state)
+    } else {
+        LoginScreen(
             model = state,
-            onLoginInputChanged = component::onLoginInputChanged,
-            onPasswordInputChanged = component::onPasswordInputChanged,
+            onLoginInputChanged = component::onLoginChanged,
+            onPasswordInputChanged = component::onPasswordChanged,
             onSubmitButtonClick = component::onLoginStarted,
             onSignUpClick = component::onRegistrationRequested,
         )
-        else -> component.onLoginCompleted()
     }
 }
 

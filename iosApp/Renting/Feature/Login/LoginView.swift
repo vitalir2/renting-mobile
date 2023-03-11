@@ -24,27 +24,23 @@ struct LoginView: View {
         let model = models.value
 
         return VStack {
-            if model.token.isEmpty {
-                TextField(
-                    "Login",
-                    text: Binding(get: { model.login }, set: component.onLoginInputChanged)
-                )
-                TextField(
-                    "Password",
-                    text: Binding(get: { model.password }, set: component.onPasswordInputChanged)
-                )
-                Button("Login", action: {
-                    component.onLoginStarted()
-                })
-                .buttonStyle(PrimaryButtonStyle())
-                .offset(y: 20)
+            TextField(
+                "Login",
+                text: Binding(get: { model.login }, set: component.onLoginChanged)
+            )
+            TextField(
+                "Password",
+                text: Binding(get: { model.password }, set: component.onPasswordChanged)
+            )
+            Button("Login", action: {
+                component.onLoginStarted()
+            })
+            .buttonStyle(PrimaryButtonStyle())
+            .offset(y: 20)
 
-                if let error = model.error {
-                    Spacer()
-                    Text("Error \(error)")
-                }
-            } else {
-                Text("Login Completed")
+            if let error = model.error {
+                Spacer()
+                Text("Error \(error)")
             }
         }
         .padding(12)
@@ -58,13 +54,13 @@ struct LoginView_Previews: PreviewProvider {
 
     class StubComponent: LoginComponent {
         let models: Value<LoginComponentModel> = valueOf(
-            LoginComponentModel(login: "Vitalir", password: "123", token: "", error: nil)
+            LoginComponentModel(login: "Vitalir", password: "123", error: nil)
         )
 
-        func onLoginInputChanged(login: String) {
+        func onLoginChanged(login: String) {
         }
 
-        func onPasswordInputChanged(password: String) {
+        func onPasswordChanged(password: String) {
         }
 
         func onLoginStarted() {
