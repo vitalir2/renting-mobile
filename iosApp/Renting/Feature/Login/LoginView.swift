@@ -15,6 +15,8 @@ struct LoginView: View {
     @ObservedObject
     private var models: ObservableValue<LoginComponentModel>
 
+    @State private var showToast = false
+
     init(_ component: LoginComponent) {
         self.component = component
         self.models = ObservableValue(component.models)
@@ -37,13 +39,23 @@ struct LoginView: View {
             })
             .buttonStyle(PrimaryButtonStyle())
             .offset(y: 20)
-
-            if let error = model.error {
-                Spacer()
-                Text("Error \(error)")
-            }
         }
         .padding(12)
+        .onChange(of: model.error, perform: { error in
+            showToast = showToast || error != nil
+        })
+        .toast(
+            toastView: ToastView(
+                model: ToastData(
+                    title: "Something went wrong", delaySeconds: 3
+                ),
+                onShowed: {
+                    component.onLoginErrorShowed()
+                },
+                isShowed: $showToast
+            ),
+            show: $showToast
+        )
     }
 }
 
