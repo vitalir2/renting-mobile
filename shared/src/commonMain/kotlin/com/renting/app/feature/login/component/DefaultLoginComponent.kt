@@ -42,11 +42,11 @@ class DefaultLoginComponent(
 
     override val models: Value<LoginComponent.Model> = store.stateAsValue().map(stateToModel)
 
-    override fun onLoginInputChanged(login: String) {
+    override fun onLoginChanged(login: String) {
         store.accept(Intent.SetLogin(login))
     }
 
-    override fun onPasswordInputChanged(password: String) {
+    override fun onPasswordChanged(password: String) {
         store.accept(Intent.SetPassword(password))
     }
 

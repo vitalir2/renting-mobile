@@ -20,7 +20,6 @@ internal interface LoginStore : Store<LoginStore.Intent, LoginStore.State, Login
     data class State(
         val login: String = "",
         val password: String = "",
-        val token: String = "",
         val error: String? = null,
     )
 }
