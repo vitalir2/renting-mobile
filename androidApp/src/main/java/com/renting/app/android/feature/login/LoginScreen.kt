@@ -1,6 +1,7 @@
 package com.renting.app.android.feature.login
 
 import android.widget.Toast
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.ClickableText
@@ -13,8 +14,10 @@ import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.*
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
@@ -23,6 +26,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.arkivanov.decompose.extensions.compose.jetpack.subscribeAsState
+import com.renting.app.android.R
 import com.renting.app.android.core.brandbook.RentingTheme
 import com.renting.app.android.core.uikit.RentingButton
 import com.renting.app.android.core.uikit.RentingInput
@@ -86,6 +90,14 @@ private fun LoginScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ) {
+        Image(
+            painter = painterResource(id = R.drawable.renting_logo_full),
+            contentDescription = "Renting logo",
+            modifier = Modifier
+                .fillMaxWidth(0.5f),
+            contentScale = ContentScale.Crop,
+        )
+        Spacer(Modifier.height(16.dp))
         Text(
             text = "Login to your account",
             modifier = Modifier
@@ -95,7 +107,7 @@ private fun LoginScreen(
             ),
             textAlign = TextAlign.Center,
         )
-        Spacer(modifier = Modifier.height(32.dp))
+        Spacer(Modifier.height(32.dp))
         RentingInput(
             modifier = Modifier
                 .fillMaxWidth()
@@ -110,7 +122,7 @@ private fun LoginScreen(
             },
             singleLine = true,
         )
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(Modifier.height(16.dp))
         PasswordInput(
             password = model.password,
             modifier = Modifier
@@ -118,7 +130,7 @@ private fun LoginScreen(
                 .testTag(LoginScreenTags.PASSWORD_INPUT),
             onInputChanged = onPasswordInputChanged,
         )
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(Modifier.height(16.dp))
         RentingButton(
             onClick = onSubmitButtonClick,
             modifier = Modifier
@@ -129,7 +141,9 @@ private fun LoginScreen(
         Spacer(Modifier.height(16.dp))
         ClickableText(
             text = signUpText,
-            modifier = Modifier,
+            style = MaterialTheme.typography.body1.copy(
+                color = MaterialTheme.colors.onBackground,
+            ),
             onClick = { offset ->
                 signUpText.getStringAnnotations(SIGN_UP_TAG, offset, offset)
                     .firstOrNull()
