@@ -31,6 +31,7 @@ dependencies {
     implementation(libs.bundles.androidx.compose.ui.common)
     implementation(libs.androidx.compose.ui.preview)
     implementation(libs.androidx.compose.material2)
+    implementation(libs.androidx.compose.material2.icons)
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.activity.compose)
 
@@ -40,8 +41,6 @@ dependencies {
 
     androidTestImplementation(libs.bundles.androidx.test.common)
     androidTestImplementation(libs.bundles.androidx.compose.uitest)
-
-    detektPlugins(libs.detekt.ktlint)
 }
 
 detekt {

@@ -1,25 +1,27 @@
 package com.renting.app.android.feature.login
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material.Button
-import androidx.compose.material.Text
-import androidx.compose.material.TextField
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import android.widget.Toast
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.arkivanov.decompose.extensions.compose.jetpack.subscribeAsState
+import com.renting.app.android.R
 import com.renting.app.android.core.brandbook.RentingTheme
+import com.renting.app.android.core.uikit.Gap
+import com.renting.app.android.core.uikit.RentingButton
+import com.renting.app.android.core.uikit.input.LoginInput
+import com.renting.app.android.core.uikit.input.PasswordInput
 import com.renting.app.feature.login.component.LoginComponent
 
 @Composable
@@ -28,38 +30,23 @@ fun LoginScreen(
 ) {
     val state by component.models.subscribeAsState()
 
-    when {
-        state.error != null -> ErrorPlaceholder(state)
-        state.token.isEmpty() -> LoginScreen(
-            model = state,
-            onLoginInputChanged = component::onLoginInputChanged,
-            onPasswordInputChanged = component::onPasswordInputChanged,
-            onSubmitButtonClick = component::onLoginStarted,
-        )
-        else -> SuccessTokenScreen(state)
+    val context = LocalContext.current
+    LaunchedEffect(key1 = state.error) {
+        if (state.error != null) {
+            Toast
+                .makeText(context, "Something went wrong", Toast.LENGTH_SHORT)
+                .show()
+            component.onLoginErrorShowed()
+        }
     }
-}
 
-@Composable
-private fun SuccessTokenScreen(state: LoginComponent.Model) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-    ) {
-        Text(state.token, Modifier.align(Alignment.Center))
-    }
-}
-
-@Composable
-private fun ErrorPlaceholder(state: LoginComponent.Model) {
-    Box(
-        contentAlignment = Alignment.Center,
-    ) {
-        Text(
-            text = "Error ${state.error}",
-        )
-    }
+    LoginScreen(
+        model = state,
+        onLoginInputChanged = component::onLoginChanged,
+        onPasswordInputChanged = component::onPasswordChanged,
+        onSubmitButtonClick = component::onLoginStarted,
+        onSignUpClick = component::onRegistrationRequested,
+    )
 }
 
 @Composable
@@ -68,6 +55,7 @@ private fun LoginScreen(
     onLoginInputChanged: (String) -> Unit,
     onPasswordInputChanged: (String) -> Unit,
     onSubmitButtonClick: () -> Unit,
+    onSignUpClick: () -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -76,32 +64,56 @@ private fun LoginScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
     ) {
-        TextField(
+        Image(
+            painter = painterResource(id = R.drawable.renting_logo_full),
+            contentDescription = "Renting logo",
             modifier = Modifier
-                .testTag(LoginScreenTags.LOGIN_INPUT),
-            value = model.login,
-            onValueChange = onLoginInputChanged,
+                .fillMaxWidth(0.5f),
+            contentScale = ContentScale.Crop,
         )
-        Spacer(modifier = Modifier.height(8.dp))
-        TextField(
+        Gap(16.dp)
+        Text(
+            text = "Login to your account",
             modifier = Modifier
-                .testTag(LoginScreenTags.PASSWORD_INPUT),
-            value = model.password,
-            onValueChange = onPasswordInputChanged,
+                .padding(16.dp),
+            style = MaterialTheme.typography.h4.copy(
+                fontWeight = FontWeight.Bold,
+            ),
+            textAlign = TextAlign.Center,
         )
-        Spacer(modifier = Modifier.height(8.dp))
-        Button(
-            onClick = onSubmitButtonClick,
+        Gap(32.dp)
+        LoginInput(
+            login = model.login,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(32.dp)
+                .testTag(LoginScreenTags.LOGIN_INPUT),
+            onInputChanged = onLoginInputChanged,
+        )
+        Gap(16.dp)
+        PasswordInput(
+            password = model.password,
+            modifier = Modifier
+                .fillMaxWidth()
+                .testTag(LoginScreenTags.PASSWORD_INPUT),
+            onInputChanged = onPasswordInputChanged,
+        )
+        Gap(16.dp)
+        RentingButton(
+            onClick = onSubmitButtonClick,
+            modifier = Modifier
+                .fillMaxWidth(),
         ) {
             Text("Login")
         }
+        Gap(16.dp)
+        NoAccountHelp(onSignUpClick)
     }
 }
 
-@Preview
+@Preview(
+    showBackground = true,
+    backgroundColor = 0xffffff,
+)
 @Composable
 private fun DefaultPreview() {
     RentingTheme {
@@ -113,6 +125,7 @@ private fun DefaultPreview() {
             onLoginInputChanged = {},
             onPasswordInputChanged = {},
             onSubmitButtonClick = {},
+            onSignUpClick = {},
         )
     }
 }

@@ -23,6 +23,10 @@ struct RootView: View {
         switch child {
         case let login as RootComponentChildLogin:
             LoginView(login.component)
+        case let registration as RootComponentChildRegistration:
+            RegistrationView(registration.component)
+        case let home as RootComponentChildHome:
+            HomeView(home.component)
         default: EmptyView()
         }
     }

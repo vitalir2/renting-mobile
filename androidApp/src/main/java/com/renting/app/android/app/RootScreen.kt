@@ -3,6 +3,7 @@ package com.renting.app.android.app
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
@@ -10,6 +11,8 @@ import com.arkivanov.decompose.extensions.compose.jetpack.stack.Children
 import com.arkivanov.decompose.extensions.compose.jetpack.subscribeAsState
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.renting.app.android.feature.login.LoginScreen
+import com.renting.app.feature.home.HomeComponent
+import com.renting.app.feature.registration.RegistrationComponent
 import com.renting.app.feature.root.component.RootComponent
 import com.renting.app.feature.root.component.RootComponent.Child
 
@@ -31,6 +34,18 @@ private fun RootNavigation(stack: State<ChildStack<*, Child>>) {
     Children(stack = stack.value) { child ->
         when (val screen = child.instance) {
             is Child.Login -> LoginScreen(component = screen.component)
+            is Child.Home -> HomeScreen(component = screen.component)
+            is Child.Registration -> RegistrationScreen(component = screen.component)
         }
     }
+}
+
+@Composable
+fun RegistrationScreen(component: RegistrationComponent) {
+    Text("Registration screen")
+}
+
+@Composable
+fun HomeScreen(component: HomeComponent) {
+    Text("Home screen")
 }
