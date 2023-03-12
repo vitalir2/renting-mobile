@@ -20,10 +20,10 @@ fun RentingButton(
     Button(
         onClick = onClick,
         modifier = modifier,
-        shape = RoundedCornerShape(size = 16.dp),
+        shape = RoundedCornerShape(size = 100.dp),
         contentPadding = PaddingValues(
             horizontal = 16.dp,
-            vertical = 6.dp,
+            vertical = 12.dp,
         ),
     ) {
         content()
