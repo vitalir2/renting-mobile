@@ -3,7 +3,6 @@ package com.renting.app.android.feature.login
 import android.widget.Toast
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
@@ -14,7 +13,6 @@ import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.*
@@ -27,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import com.arkivanov.decompose.extensions.compose.jetpack.subscribeAsState
 import com.renting.app.android.core.brandbook.RentingTheme
 import com.renting.app.android.core.uikit.RentingButton
+import com.renting.app.android.core.uikit.RentingInput
 import com.renting.app.feature.login.component.LoginComponent
 
 @Composable
@@ -70,7 +69,10 @@ private fun LoginScreen(
         append("Don't have an account? ")
         withAnnotation(tag = SIGN_UP_TAG, annotation = "") {
             withStyle(
-                SpanStyle(color = primaryColor)
+                SpanStyle(
+                    color = primaryColor,
+                    fontWeight = FontWeight.SemiBold,
+                )
             ) {
                 append("Sign up")
             }
@@ -94,15 +96,12 @@ private fun LoginScreen(
             textAlign = TextAlign.Center,
         )
         Spacer(modifier = Modifier.height(32.dp))
-        OutlinedTextField(
+        RentingInput(
             modifier = Modifier
+                .fillMaxWidth()
                 .testTag(LoginScreenTags.LOGIN_INPUT),
             value = model.login,
             onValueChange = onLoginInputChanged,
-            colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = Color(0xffF5F5F5),
-            ),
-            shape = RoundedCornerShape(size = 12.dp),
             leadingIcon = {
                 Icon(
                     Icons.Default.AccountCircle,
@@ -115,6 +114,7 @@ private fun LoginScreen(
         PasswordInput(
             password = model.password,
             modifier = Modifier
+                .fillMaxWidth()
                 .testTag(LoginScreenTags.PASSWORD_INPUT),
             onInputChanged = onPasswordInputChanged,
         )
@@ -122,11 +122,11 @@ private fun LoginScreen(
         RentingButton(
             onClick = onSubmitButtonClick,
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(32.dp)
+                .fillMaxWidth(),
         ) {
             Text("Login")
         }
+        Spacer(Modifier.height(16.dp))
         ClickableText(
             text = signUpText,
             modifier = Modifier,
@@ -147,13 +147,9 @@ private fun PasswordInput(
 ) {
     var isPasswordVisible by remember { mutableStateOf(false) }
 
-    OutlinedTextField(
+    RentingInput(
         modifier = modifier,
         value = password,
-        colors = TextFieldDefaults.textFieldColors(
-            backgroundColor = Color(0xffF5F5F5),
-        ),
-        shape = RoundedCornerShape(size = 12.dp),
         onValueChange = onInputChanged,
         leadingIcon = {
             Icon(
