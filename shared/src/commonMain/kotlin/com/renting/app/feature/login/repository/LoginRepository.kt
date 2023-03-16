@@ -7,6 +7,8 @@ interface LoginRepository {
 
     val authToken: StateFlow<String?>
 
+    fun isLoggedIn(): Boolean
+
     suspend fun login(
         login: String,
         password: String,

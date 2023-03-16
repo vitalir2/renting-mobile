@@ -36,6 +36,10 @@ internal class DefaultLoginRepository(
     )
     override val authToken: StateFlow<String?> = _authToken.asStateFlow()
 
+    override fun isLoggedIn(): Boolean {
+        return authToken.value != null
+    }
+
     override suspend fun login(login: String, password: String): Either<LoginError, String> =
         withContext(ioDispatcher) {
             val response = makeRequest(login, password)
