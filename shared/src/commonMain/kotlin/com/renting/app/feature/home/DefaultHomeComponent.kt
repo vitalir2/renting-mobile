@@ -4,4 +4,9 @@ import com.arkivanov.decompose.ComponentContext
 
 internal class DefaultHomeComponent(
     componentContext: ComponentContext,
-) : HomeComponent, ComponentContext by componentContext
+) : HomeComponent, ComponentContext by componentContext {
+
+    override fun logout() {
+        // TODO
+    }
+}

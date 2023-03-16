@@ -1,3 +1,6 @@
 package com.renting.app.feature.home
 
-interface HomeComponent
+interface HomeComponent {
+
+    fun logout()
+}

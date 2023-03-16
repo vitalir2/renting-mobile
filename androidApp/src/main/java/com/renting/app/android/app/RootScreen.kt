@@ -10,8 +10,8 @@ import androidx.compose.ui.Modifier
 import com.arkivanov.decompose.extensions.compose.jetpack.stack.Children
 import com.arkivanov.decompose.extensions.compose.jetpack.subscribeAsState
 import com.arkivanov.decompose.router.stack.ChildStack
+import com.renting.app.android.feature.home.HomeScreen
 import com.renting.app.android.feature.login.LoginScreen
-import com.renting.app.feature.home.HomeComponent
 import com.renting.app.feature.registration.RegistrationComponent
 import com.renting.app.feature.root.component.RootComponent
 import com.renting.app.feature.root.component.RootComponent.Child
@@ -43,9 +43,4 @@ private fun RootNavigation(stack: State<ChildStack<*, Child>>) {
 @Composable
 fun RegistrationScreen(component: RegistrationComponent) {
     Text("Registration screen")
-}
-
-@Composable
-fun HomeScreen(component: HomeComponent) {
-    Text("Home screen")
 }
