@@ -30,7 +30,11 @@ class DefaultRootComponent(
     override val childStack: Value<ChildStack<*, Child>> =
         childStack(
             source = navigation,
-            initialConfiguration = Configuration.Login,
+            initialConfiguration = if (rootGraph.loginGraph.loginRepository.isLoggedIn()) {
+                Configuration.Home
+            } else {
+                Configuration.Login
+            },
             handleBackButton = true,
             childFactory = ::createChild,
         )
@@ -39,9 +43,15 @@ class DefaultRootComponent(
         configuration: Configuration,
         componentContext: ComponentContext,
     ): Child = when (configuration) {
-        is Configuration.Login -> Child.Login(createLoginComponent(componentContext))
-        is Configuration.Home -> Child.Home(createHomeComponent(componentContext))
-        is Configuration.Registration -> Child.Registration(createRegistrationComponent(componentContext))
+        is Configuration.Login -> Child.Login(
+            createLoginComponent(componentContext)
+        )
+        is Configuration.Home -> Child.Home(
+            createHomeComponent(componentContext)
+        )
+        is Configuration.Registration -> Child.Registration(
+            createRegistrationComponent(componentContext)
+        )
     }
 
     private fun createRegistrationComponent(componentContext: ComponentContext): RegistrationComponent {
