@@ -14,6 +14,7 @@
 		B6DB54D7992C4BA8EEDC4F4A /* Pods_Renting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CCA8426D3B6FDA34F2BF2BE /* Pods_Renting.framework */; };
 		FA0E0C9A29A533B400EECB1E /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = FA0E0C9929A533B400EECB1E /* Podfile */; };
 		FA2B96F729B1B64B00563065 /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B96F629B1B64B00563065 /* PrimaryButtonStyle.swift */; };
+		FA51EFCF29BDE5A200030E7E /* RentingInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA51EFCE29BDE5A200030E7E /* RentingInput.swift */; };
 		FA556CBB29B104FD00F2C2C8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA556CBA29B104FD00F2C2C8 /* Colors.swift */; };
 		FA68A0A929B8D84D00D9822F /* EnvironmentConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA68A0A829B8D84D00D9822F /* EnvironmentConfig.plist */; };
 		FA98B2F629AB420C008E1CE4 /* ComponentHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA98B2F529AB420C008E1CE4 /* ComponentHolder.swift */; };
@@ -28,6 +29,7 @@
 		FAE68BEF29BCC14500B71B2D /* ToastData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE68BEE29BCC14500B71B2D /* ToastData.swift */; };
 		FAE68BF129BCC16000B71B2D /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE68BF029BCC16000B71B2D /* ToastView.swift */; };
 		FAE68BF329BCC43500B71B2D /* ToastModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE68BF229BCC43500B71B2D /* ToastModifier.swift */; };
+		FAF6382529BF289D00AA8427 /* SecureInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF6382429BF289D00AA8427 /* SecureInput.swift */; };
 		FAFEA76529BC823B00D62F2E /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFEA76429BC823B00D62F2E /* RegistrationView.swift */; };
 		FAFEA76829BC825400D62F2E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFEA76729BC825400D62F2E /* HomeView.swift */; };
 /* End PBXBuildFile section */
@@ -74,6 +76,7 @@
 		B9D38A03E20123BCFE0B256A /* Pods-Renting.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Renting.debug.xcconfig"; path = "Target Support Files/Pods-Renting/Pods-Renting.debug.xcconfig"; sourceTree = "<group>"; };
 		FA0E0C9929A533B400EECB1E /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		FA2B96F629B1B64B00563065 /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
+		FA51EFCE29BDE5A200030E7E /* RentingInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentingInput.swift; sourceTree = "<group>"; };
 		FA556CBA29B104FD00F2C2C8 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		FA68A0A829B8D84D00D9822F /* EnvironmentConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = EnvironmentConfig.plist; sourceTree = "<group>"; };
 		FA98B2F529AB420C008E1CE4 /* ComponentHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentHolder.swift; sourceTree = "<group>"; };
@@ -90,6 +93,7 @@
 		FAE68BEE29BCC14500B71B2D /* ToastData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastData.swift; sourceTree = "<group>"; };
 		FAE68BF029BCC16000B71B2D /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		FAE68BF229BCC43500B71B2D /* ToastModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastModifier.swift; sourceTree = "<group>"; };
+		FAF6382429BF289D00AA8427 /* SecureInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureInput.swift; sourceTree = "<group>"; };
 		FAFEA76429BC823B00D62F2E /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		FAFEA76729BC825400D62F2E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -240,6 +244,15 @@
 			path = App;
 			sourceTree = "<group>";
 		};
+		FA51EFCD29BDE59300030E7E /* Input */ = {
+			isa = PBXGroup;
+			children = (
+				FA51EFCE29BDE5A200030E7E /* RentingInput.swift */,
+				FAF6382429BF289D00AA8427 /* SecureInput.swift */,
+			);
+			path = Input;
+			sourceTree = "<group>";
+		};
 		FA556CB929B104F000F2C2C8 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -278,6 +291,7 @@
 		FAE68BED29BCC09C00B71B2D /* Uikit */ = {
 			isa = PBXGroup;
 			children = (
+				FA51EFCD29BDE59300030E7E /* Input */,
 				FA92E1AA29BCFE78005592AF /* Toast */,
 			);
 			path = Uikit;
@@ -503,8 +517,10 @@
 				FAE68BF329BCC43500B71B2D /* ToastModifier.swift in Sources */,
 				FA98B2FC29AB4A4B008E1CE4 /* LoginView.swift in Sources */,
 				FA556CBB29B104FD00F2C2C8 /* Colors.swift in Sources */,
+				FAF6382529BF289D00AA8427 /* SecureInput.swift in Sources */,
 				FA98B2F829AB4863008E1CE4 /* RootView.swift in Sources */,
 				FAE68BEF29BCC14500B71B2D /* ToastData.swift in Sources */,
+				FA51EFCF29BDE5A200030E7E /* RentingInput.swift in Sources */,
 				FA98B2FE29AB4CF7008E1CE4 /* MutableStateBuilder.swift in Sources */,
 				FA98B2FA29AB496C008E1CE4 /* ObservableValue.swift in Sources */,
 				FAFEA76829BC825400D62F2E /* HomeView.swift in Sources */,
@@ -602,7 +618,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -658,7 +674,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
