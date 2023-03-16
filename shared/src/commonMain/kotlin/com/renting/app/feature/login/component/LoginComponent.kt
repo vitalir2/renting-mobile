@@ -1,6 +1,7 @@
 package com.renting.app.feature.login.component
 
 import com.arkivanov.decompose.value.Value
+import com.renting.app.feature.login.repository.LoginError
 
 interface LoginComponent {
 
@@ -21,6 +22,6 @@ interface LoginComponent {
     data class Model(
         val login: String = "",
         val password: String = "",
-        val error: String? = null,
+        val error: LoginError? = null,
     )
 }

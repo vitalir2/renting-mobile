@@ -16,7 +16,12 @@ struct RentingInput: View {
 
     @FocusState private var isEditing: Bool
 
-    init(_ title: String, text: Binding<String>, leadingIcon: Image? = nil, trailingIcon: Image? = nil) {
+    init(
+        _ title: String,
+        text: Binding<String>,
+        leadingIcon: Image? = nil,
+        trailingIcon: Image? = nil
+    ) {
         self.title = title
         self._text = text
         self.leadingIcon = leadingIcon

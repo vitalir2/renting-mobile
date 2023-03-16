@@ -2,9 +2,16 @@ package com.renting.app.android.feature.login
 
 import android.widget.Toast
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
-import androidx.compose.runtime.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -23,6 +30,7 @@ import com.renting.app.android.core.uikit.RentingButton
 import com.renting.app.android.core.uikit.input.LoginInput
 import com.renting.app.android.core.uikit.input.PasswordInput
 import com.renting.app.feature.login.component.LoginComponent
+import com.renting.app.feature.login.repository.LoginError
 
 @Composable
 fun LoginScreen(
@@ -32,7 +40,7 @@ fun LoginScreen(
 
     val context = LocalContext.current
     LaunchedEffect(key1 = state.error) {
-        if (state.error != null) {
+        if (state.error is LoginError.Unknown) {
             Toast
                 .makeText(context, "Something went wrong", Toast.LENGTH_SHORT)
                 .show()
@@ -68,12 +76,12 @@ private fun LoginScreen(
             painter = painterResource(id = R.drawable.renting_logo_full),
             contentDescription = "Renting logo",
             modifier = Modifier
-                .fillMaxWidth(0.5f),
+                .fillMaxWidth(0.3f),
             contentScale = ContentScale.Crop,
         )
         Gap(16.dp)
         Text(
-            text = "Login to your account",
+            text = "Login to Your Account",
             modifier = Modifier
                 .padding(16.dp),
             style = MaterialTheme.typography.h4.copy(
@@ -96,6 +104,12 @@ private fun LoginScreen(
                 .fillMaxWidth()
                 .testTag(LoginScreenTags.PASSWORD_INPUT),
             onInputChanged = onPasswordInputChanged,
+            error = when (model.error) {
+                is LoginError.InvalidLoginOrPassword -> "Invalid login or password"
+                is LoginError.Unknown,
+                null,
+                -> null
+            },
         )
         Gap(16.dp)
         RentingButton(
@@ -103,7 +117,7 @@ private fun LoginScreen(
             modifier = Modifier
                 .fillMaxWidth(),
         ) {
-            Text("Login")
+            Text("Sign in")
         }
         Gap(16.dp)
         NoAccountHelp(onSignUpClick)

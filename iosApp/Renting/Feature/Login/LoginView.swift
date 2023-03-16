@@ -25,6 +25,7 @@ struct LoginView: View {
 
     var body: some View {
         let model = models.value
+        let error = LoginError.fromShared(model.error)
 
         return VStack(spacing: 16) {
             Image("RentingLogoFull")
@@ -47,6 +48,16 @@ struct LoginView: View {
                 text: Binding(get: { model.password }, set: component.onPasswordChanged),
                 leadingIcon: Image(systemName: "lock")
             )
+            HStack {
+                if error == .invalidLoginOrPassword {
+                    Text("Invalid login or password")
+                        .font(.caption)
+                        .foregroundColor(Color.red)
+                        .padding(.leading, 16)
+                        .offset(y: -8)
+                    Spacer()
+                }
+            }
             Spacer()
                 .frame(height: 8)
             Button("Login", action: {
@@ -64,8 +75,8 @@ struct LoginView: View {
             }
         }
         .padding(12)
-        .onChange(of: model.error, perform: { error in
-            showToast = showToast || error != nil
+        .onChange(of: error, perform: { error in
+            showToast = showToast || error == .unknown
         })
         .toast(
             toastView: ToastView(

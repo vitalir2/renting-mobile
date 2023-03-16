@@ -1,6 +1,8 @@
 package com.renting.app.android.core.uikit
 
 import android.content.res.Configuration
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -30,27 +32,40 @@ fun RentingInput(
     placeholder: @Composable (() -> Unit)? = null,
     leadingIcon: @Composable (() -> Unit)? = null,
     trailingIcon: @Composable (() -> Unit)? = null,
+    errorMessage: String? = null,
     singleLine: Boolean = false,
     visualTransformation: VisualTransformation = VisualTransformation.None,
 ) {
-    OutlinedTextField(
-        value = value,
-        modifier = modifier,
-        onValueChange = onValueChange,
-        placeholder = placeholder,
-        leadingIcon = leadingIcon,
-        trailingIcon = trailingIcon,
-        singleLine = singleLine,
-        visualTransformation = visualTransformation,
-        textStyle = MaterialTheme.typography.body1,
-        shape = RoundedCornerShape(12.dp),
-        colors = TextFieldDefaults.textFieldColors(
-            backgroundColor = MaterialTheme.colors.surface,
-            textColor = MaterialTheme.colors.onSurface,
-            focusedIndicatorColor = MaterialTheme.colors.primary,
-            unfocusedIndicatorColor = Color.Transparent,
-        ),
-    )
+    Column {
+        OutlinedTextField(
+            value = value,
+            modifier = modifier,
+            onValueChange = onValueChange,
+            placeholder = placeholder,
+            leadingIcon = leadingIcon,
+            trailingIcon = trailingIcon,
+            singleLine = singleLine,
+            isError = errorMessage != null,
+            visualTransformation = visualTransformation,
+            textStyle = MaterialTheme.typography.body1,
+            shape = RoundedCornerShape(12.dp),
+            colors = TextFieldDefaults.textFieldColors(
+                backgroundColor = MaterialTheme.colors.surface,
+                textColor = MaterialTheme.colors.onSurface,
+                focusedIndicatorColor = MaterialTheme.colors.primary,
+                unfocusedIndicatorColor = Color.Transparent,
+            ),
+        )
+        if (errorMessage != null) {
+            Text(
+                text = errorMessage,
+                color = MaterialTheme.colors.error,
+                style = MaterialTheme.typography.caption,
+                modifier = Modifier
+                    .padding(start = 16.dp),
+            )
+        }
+    }
 }
 
 private data class RentingInputPreviewData(
@@ -59,7 +74,9 @@ private data class RentingInputPreviewData(
     val placeholder: @Composable (() -> Unit)? = null,
     val leadingIcon: @Composable (() -> Unit)? = null,
     val trailingIcon: @Composable (() -> Unit)? = null,
+    val errorMessage: String? = null,
 )
+
 private class RentingInputPreviewProvider : PreviewParameterProvider<RentingInputPreviewData> {
     private val longString = "HelloWorld".repeat(15)
 
@@ -94,6 +111,10 @@ private class RentingInputPreviewProvider : PreviewParameterProvider<RentingInpu
             leadingIcon = { Icon(Icons.Default.Accessibility, null) },
             trailingIcon = { Icon(Icons.Default.OpenInBrowser, null) },
         ),
+        RentingInputPreviewData(
+            value = "Error value",
+            errorMessage = "Invalid input data",
+        ),
     )
 }
 
@@ -121,6 +142,7 @@ private fun RentingInputPreview(
             leadingIcon = data.leadingIcon,
             trailingIcon = data.trailingIcon,
             singleLine = data.singleLine,
+            errorMessage = data.errorMessage,
         )
     }
 }

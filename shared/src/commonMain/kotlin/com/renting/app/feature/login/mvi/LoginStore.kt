@@ -1,6 +1,7 @@
 package com.renting.app.feature.login.mvi
 
 import com.arkivanov.mvikotlin.core.store.Store
+import com.renting.app.feature.login.repository.LoginError
 
 internal interface LoginStore : Store<LoginStore.Intent, LoginStore.State, LoginStore.Label> {
 
@@ -21,6 +22,6 @@ internal interface LoginStore : Store<LoginStore.Intent, LoginStore.State, Login
     data class State(
         val login: String = "",
         val password: String = "",
-        val error: String? = null,
+        val loginError: LoginError? = null,
     )
 }
