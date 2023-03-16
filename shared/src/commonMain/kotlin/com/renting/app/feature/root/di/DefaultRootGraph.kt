@@ -1,9 +1,13 @@
 package com.renting.app.feature.root.di
 
+import com.renting.app.core.auth.di.AuthGraph
+import com.renting.app.core.auth.di.DefaultAuthGraph
 import com.renting.app.core.coroutines.createIODispatcher
 import com.renting.app.core.network.createHttpClient
 import com.renting.app.core.settings.SettingsFactory
 import com.renting.app.core.utils.Environment
+import com.renting.app.feature.home.DefaultHomeGraph
+import com.renting.app.feature.home.HomeGraph
 import com.renting.app.feature.login.di.DefaultLoginGraph
 import com.renting.app.feature.login.di.LoginGraph
 import com.russhwolf.settings.ObservableSettings
@@ -35,9 +39,17 @@ class DefaultRootGraph(
         settingsFactory.create()
     }
 
-    override val loginGraph: LoginGraph = DefaultLoginGraph(
+    override val authGraph: AuthGraph = DefaultAuthGraph(
         httpClient = httpClient,
         ioDispatcher = ioDispatcher,
         settings = settings,
+    )
+
+    override val loginGraph: LoginGraph = DefaultLoginGraph(
+        authGraph = authGraph,
+    )
+
+    override val homeGraph: HomeGraph = DefaultHomeGraph(
+        authGraph = authGraph,
     )
 }

@@ -1,6 +1,6 @@
 package com.renting.app.feature.login.di
 
-import com.renting.app.feature.login.repository.LoginRepository
+import com.renting.app.core.auth.repository.LoginRepository
 import kotlinx.coroutines.CoroutineScope
 
 interface LoginGraph {
