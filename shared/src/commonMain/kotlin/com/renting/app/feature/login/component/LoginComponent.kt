@@ -1,7 +1,7 @@
 package com.renting.app.feature.login.component
 
 import com.arkivanov.decompose.value.Value
-import com.renting.app.feature.login.repository.LoginError
+import com.renting.app.core.auth.repository.LoginError
 
 interface LoginComponent {
 

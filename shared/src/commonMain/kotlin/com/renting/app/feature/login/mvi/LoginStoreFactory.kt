@@ -8,8 +8,8 @@ import com.renting.app.core.monad.Either
 import com.renting.app.feature.login.mvi.LoginStore.Intent
 import com.renting.app.feature.login.mvi.LoginStore.Label
 import com.renting.app.feature.login.mvi.LoginStore.State
-import com.renting.app.feature.login.repository.LoginError
-import com.renting.app.feature.login.repository.LoginRepository
+import com.renting.app.core.auth.repository.LoginError
+import com.renting.app.core.auth.repository.LoginRepository
 import kotlinx.coroutines.launch
 
 internal class LoginStoreFactory(

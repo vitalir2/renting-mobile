@@ -1,24 +1,15 @@
 package com.renting.app.feature.login.di
 
-import com.renting.app.feature.login.repository.DefaultLoginRepository
-import com.renting.app.feature.login.repository.LoginRepository
-import com.russhwolf.settings.ObservableSettings
-import io.ktor.client.*
-import kotlinx.coroutines.CoroutineDispatcher
+import com.renting.app.core.auth.di.AuthGraph
+import com.renting.app.core.auth.repository.LoginRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.MainScope
 
 internal class DefaultLoginGraph(
-    httpClient: HttpClient,
-    ioDispatcher: CoroutineDispatcher,
-    settings: ObservableSettings,
+    authGraph: AuthGraph,
 ) : LoginGraph {
 
     override val coroutineScope: CoroutineScope = MainScope()
 
-    override val loginRepository: LoginRepository = DefaultLoginRepository(
-        httpClient = httpClient,
-        ioDispatcher = ioDispatcher,
-        settings = settings,
-    )
+    override val loginRepository: LoginRepository = authGraph.loginRepository
 }

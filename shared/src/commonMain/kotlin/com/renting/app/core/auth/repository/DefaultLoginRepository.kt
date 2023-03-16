@@ -1,4 +1,4 @@
-package com.renting.app.feature.login.repository
+package com.renting.app.core.auth.repository
 
 import com.arkivanov.mvikotlin.logging.logger.DefaultLogger
 import com.renting.app.core.monad.Either
