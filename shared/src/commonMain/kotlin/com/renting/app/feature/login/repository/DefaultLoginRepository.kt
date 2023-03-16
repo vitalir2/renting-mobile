@@ -36,7 +36,7 @@ internal class DefaultLoginRepository(
     )
     override val authToken: StateFlow<String?> = _authToken.asStateFlow()
 
-    override suspend fun login(login: String, password: String): Either<Exception, String> =
+    override suspend fun login(login: String, password: String): Either<LoginError, String> =
         withContext(ioDispatcher) {
             val response = makeRequest(login, password)
             if (response.status.isSuccess()) {
@@ -65,10 +65,13 @@ internal class DefaultLoginRepository(
         return token.right()
     }
 
-    private suspend fun handleError(response: HttpResponse): Either.Left<Exception> {
+    private suspend fun handleError(response: HttpResponse): Either.Left<LoginError> {
         val responseBody = response.body<ErrorResponse>()
         // TODO replace by our logger / interceptor
         DefaultLogger.log("Error: message=${responseBody.message},status=${responseBody.status}")
-        return Exception(responseBody.message).left()
+        return when (response.status.value) {
+            409 -> LoginError.InvalidLoginOrPassword
+            else -> LoginError.Unknown
+        }.left()
     }
 }

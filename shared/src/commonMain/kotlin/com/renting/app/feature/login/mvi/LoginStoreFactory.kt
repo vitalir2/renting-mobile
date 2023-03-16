@@ -8,6 +8,7 @@ import com.renting.app.core.monad.Either
 import com.renting.app.feature.login.mvi.LoginStore.Intent
 import com.renting.app.feature.login.mvi.LoginStore.Label
 import com.renting.app.feature.login.mvi.LoginStore.State
+import com.renting.app.feature.login.repository.LoginError
 import com.renting.app.feature.login.repository.LoginRepository
 import kotlinx.coroutines.launch
 
@@ -32,7 +33,7 @@ internal class LoginStoreFactory(
     private sealed interface Msg {
         data class Login(val value: String) : Msg
         data class Password(val value: String) : Msg
-        data class Error(val message: String?) : Msg
+        data class Error(val error: LoginError?) : Msg
     }
 
     private object ReducerImpl : Reducer<State, Msg> {
@@ -41,7 +42,7 @@ internal class LoginStoreFactory(
             when (msg) {
                 is Msg.Login -> copy(login = msg.value)
                 is Msg.Password -> copy(password = msg.value)
-                is Msg.Error -> copy(error = msg.message)
+                is Msg.Error -> copy(loginError = msg.error)
             }
     }
 
@@ -50,8 +51,14 @@ internal class LoginStoreFactory(
     ) : CoroutineExecutor<Intent, Nothing, State, Msg, Label>() {
         override fun executeIntent(intent: Intent, getState: () -> State) {
             when (intent) {
-                is Intent.SetLogin -> dispatch(Msg.Login(intent.value))
-                is Intent.SetPassword -> dispatch(Msg.Password(intent.value))
+                is Intent.SetLogin -> {
+                    dispatch(Msg.Login(intent.value))
+                    dispatch(Msg.Error(null))
+                }
+                is Intent.SetPassword -> {
+                    dispatch(Msg.Password(intent.value))
+                    dispatch(Msg.Error(null))
+                }
                 is Intent.StartLogin -> {
                     val state = getState()
                     scope.launch {
@@ -60,12 +67,14 @@ internal class LoginStoreFactory(
                             password = state.password,
                         )
                         when (result) {
-                            is Either.Left -> dispatch(Msg.Error(result.error.message))
+                            is Either.Left -> dispatch(Msg.Error(result.error))
                             is Either.Right -> publish(Label.LoggedSuccessfully)
                         }
                     }
                 }
-                Intent.LoginErrorShowed -> dispatch(Msg.Error(null))
+                is Intent.LoginErrorShowed -> {
+                    dispatch(Msg.Error(null))
+                }
             }
         }
     }

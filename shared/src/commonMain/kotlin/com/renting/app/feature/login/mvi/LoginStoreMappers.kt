@@ -6,6 +6,6 @@ internal val stateToModel: LoginStore.State.() -> LoginComponent.Model = {
     LoginComponent.Model(
         login = login,
         password = password,
-        error = error,
+        error = loginError,
     )
 }

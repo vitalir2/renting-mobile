@@ -26,6 +26,7 @@ internal fun PasswordInput(
     password: String,
     modifier: Modifier = Modifier,
     onInputChanged: (String) -> Unit,
+    error: String?,
 ) {
     var isPasswordVisible by remember { mutableStateOf(false) }
 
@@ -62,6 +63,7 @@ internal fun PasswordInput(
         } else {
             PasswordVisualTransformation()
         },
+        errorMessage = error,
     )
 }
 
@@ -82,6 +84,7 @@ private fun PasswordInputPreview(
         PasswordInput(
             password = password,
             onInputChanged = {},
+            error = null,
         )
     }
 }
