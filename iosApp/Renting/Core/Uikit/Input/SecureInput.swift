@@ -9,18 +9,23 @@
 import SwiftUI
 
 struct SecureInput: View {
+    private var title: String
+    private var leadingIcon: Image?
+
     @Binding private var text: String
+
     @State private var isSecured: Bool = true
     @FocusState private var isFocused: Bool
-    private var title: String
 
-    init(_ title: String, text: Binding<String>) {
+    init(_ title: String, text: Binding<String>, leadingIcon: Image? = nil) {
         self.title = title
         self._text = text
+        self.leadingIcon = leadingIcon
     }
 
     var body: some View {
-        ZStack(alignment: .trailing) {
+        HStack {
+            leadingIcon
             Group {
                 if isSecured {
                     SecureField(title, text: $text)
@@ -30,14 +35,16 @@ struct SecureInput: View {
                         .focused($isFocused)
                 }
             }
-            .padding(.trailing, 32)
 
-            Button(action: {
-                isSecured.toggle()
-            }) {
-                Image(systemName: self.isSecured ? "eye.slash" : "eye")
-                    .accentColor(.gray)
-            }
+            Button(
+                action: {
+                    isSecured.toggle()
+                },
+                label: {
+                    Image(systemName: self.isSecured ? "eye.slash" : "eye")
+                        .accentColor(.gray)
+                }
+            )
         }
         .padding(.vertical, 6)
         .padding(.horizontal, 12)
@@ -61,7 +68,8 @@ struct SecureInput_Previews: PreviewProvider {
     static var previews: some View {
         SecureInput(
             "Hello",
-            text: .init(get: { "SomeText" }, set: { _ in })
+            text: .init(get: { "SomeText" }, set: { _ in }),
+            leadingIcon: Image(systemName: "lock")
         )
     }
 }

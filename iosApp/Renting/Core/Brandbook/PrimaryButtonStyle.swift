@@ -16,6 +16,9 @@ struct PrimaryButtonStyle: ButtonStyle {
             .frame(minWidth: 0, maxWidth: .infinity)
             .padding(.horizontal)
             .foregroundColor(Color.white)
-            .background(RoundedRectangle(cornerRadius: 8).fill(Color.blue))
+            .background(
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(configuration.isPressed ? Color.primaryPressed : Color.appPrimary)
+            )
     }
 }

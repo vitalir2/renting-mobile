@@ -26,7 +26,17 @@ struct LoginView: View {
     var body: some View {
         let model = models.value
 
-        return VStack {
+        return VStack(spacing: 16) {
+            Image("RentingLogoFull")
+                .resizable()
+                .frame(width: 100, height: 100)
+            Spacer()
+                .frame(height: 8)
+            Text("Create new account")
+                .font(.title)
+                .fontWeight(.bold)
+            Spacer()
+                .frame(height: 8)
             RentingInput(
                 "Login",
                 text: Binding(get: { model.login }, set: component.onLoginChanged),
@@ -34,13 +44,24 @@ struct LoginView: View {
             )
             SecureInput(
                 "Password",
-                text: Binding(get: { model.password }, set: component.onPasswordChanged)
+                text: Binding(get: { model.password }, set: component.onPasswordChanged),
+                leadingIcon: Image(systemName: "lock")
             )
+            Spacer()
+                .frame(height: 8)
             Button("Login", action: {
                 component.onLoginStarted()
             })
             .buttonStyle(PrimaryButtonStyle())
-            .offset(y: 20)
+            HStack {
+                Text("Don't have an account?")
+                    .foregroundColor(Color.textSecondary)
+                Text("Sign up")
+                    .foregroundColor(Color.appPrimary)
+                    .onTapGesture {
+                        component.onRegistrationRequested()
+                    }
+            }
         }
         .padding(12)
         .onChange(of: model.error, perform: { error in
