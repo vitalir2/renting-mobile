@@ -17,7 +17,19 @@ struct HomeView: View {
     }
 
     var body: some View {
-        Text("Home screen!")
+        VStack {
+            Text("Home screen!")
+            Button(
+                action: {
+                    component.logout()
+                },
+                label: {
+                    Text("Logout")
+                }
+            )
+            .buttonStyle(PrimaryButtonStyle())
+        }
+        .padding()
     }
 }
 
@@ -27,6 +39,7 @@ struct HomeView_Previews: PreviewProvider {
     }
 
     class StubComponent: HomeComponent {
-
+        func logout() {
+        }
     }
 }
