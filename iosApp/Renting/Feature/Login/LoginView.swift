@@ -16,6 +16,7 @@ struct LoginView: View {
     private var models: ObservableValue<LoginComponentModel>
 
     @State private var showToast = false
+    @State private var isShowingPassword = false
 
     init(_ component: LoginComponent) {
         self.component = component
@@ -26,11 +27,12 @@ struct LoginView: View {
         let model = models.value
 
         return VStack {
-            TextField(
+            RentingInput(
                 "Login",
-                text: Binding(get: { model.login }, set: component.onLoginChanged)
+                text: Binding(get: { model.login }, set: component.onLoginChanged),
+                leadingIcon: Image(systemName: "person.circle")
             )
-            TextField(
+            SecureInput(
                 "Password",
                 text: Binding(get: { model.password }, set: component.onPasswordChanged)
             )
@@ -83,7 +85,7 @@ struct LoginView_Previews: PreviewProvider {
 
         func onRegistrationRequested() {
         }
-        
+
         func onLoginErrorShowed() {
         }
     }
