@@ -26,7 +26,7 @@ class DefaultLoginComponent(
         instanceKeeper.getStore {
             LoginStoreFactory(
                 storeFactory = storeFactory,
-                loginRepository = loginRepository,
+                authRepository = authRepository,
             ).create()
         }
 
