@@ -20,5 +20,6 @@ internal interface RegistrationStore : Store<Intent, State, Label> {
 
     data class State(
         val registrationForm: FieldForm,
+        val isRegistering: Boolean = false,
     )
 }

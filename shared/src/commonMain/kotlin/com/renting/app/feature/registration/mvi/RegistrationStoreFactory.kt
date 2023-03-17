@@ -47,8 +47,10 @@ internal class RegistrationStoreFactory(
     }
 
     private sealed interface Msg {
+        object RegistrationStarted : Msg
+        object RegistrationFinished : Msg
         data class FieldValue(val id: TextField.Id, val value: String) : Msg
-        data class Error(val error: RegistrationError) : Msg
+        data class RegistrationError(val error: com.renting.app.core.auth.model.RegistrationError) : Msg
     }
 
     private class ReducerImpl : Reducer<State, Msg> {
@@ -59,14 +61,23 @@ internal class RegistrationStoreFactory(
                     copy(value = msg.value, error = null)
                 }
             )
-            is Msg.Error -> when (val error = msg.error) {
-                is RegistrationError.Unknown -> this
+            is Msg.RegistrationStarted -> copy(
+                isRegistering = true,
+            )
+            is Msg.RegistrationFinished -> copy(
+                isRegistering = false,
+            )
+            is Msg.RegistrationError -> when (val error = msg.error) {
+                is RegistrationError.Unknown -> copy(
+                    isRegistering = false,
+                )
                 is RegistrationError.ValidationFailed -> copy(
                     registrationForm = registrationForm.apply {
                         error.errors.forEach { (id, error) ->
                             updateField(id) { copy(error = error) }
                         }
                     },
+                    isRegistering = false,
                 )
             }
         }
@@ -83,9 +94,13 @@ internal class RegistrationStoreFactory(
                     scope.launch {
                         val state = getState()
                         val userData = state.registrationForm.toUserData()
+                        dispatch(Msg.RegistrationStarted)
                         when (val result = authRepository.register(userData)) {
-                            is Either.Left -> dispatch(Msg.Error(result.error))
-                            is Either.Right -> publish(Label.RegistrationCompleted)
+                            is Either.Left -> dispatch(Msg.RegistrationError(result.error))
+                            is Either.Right -> {
+                                dispatch(Msg.RegistrationFinished)
+                                publish(Label.RegistrationCompleted)
+                            }
                         }
                     }
                 }

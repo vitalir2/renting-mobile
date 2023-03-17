@@ -16,5 +16,6 @@ interface RegistrationComponent {
 
     data class Model(
         val registrationForm: FieldForm,
+        val isRegistering: Boolean,
     )
 }
