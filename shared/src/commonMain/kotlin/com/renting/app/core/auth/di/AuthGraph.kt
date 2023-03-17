@@ -1,8 +1,8 @@
 package com.renting.app.core.auth.di
 
-import com.renting.app.core.auth.repository.LoginRepository
+import com.renting.app.core.auth.repository.AuthRepository
 
 interface AuthGraph {
 
-    val loginRepository: LoginRepository
+    val authRepository: AuthRepository
 }

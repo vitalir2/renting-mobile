@@ -31,7 +31,7 @@ class DefaultRootComponent(
     override val childStack: Value<ChildStack<*, Child>> =
         childStack(
             source = navigation,
-            initialConfiguration = if (rootGraph.loginGraph.loginRepository.isLoggedIn()) {
+            initialConfiguration = if (rootGraph.loginGraph.authRepository.isLoggedIn()) {
                 Configuration.Home
             } else {
                 Configuration.Login

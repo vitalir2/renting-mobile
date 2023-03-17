@@ -17,7 +17,7 @@ internal class DefaultHomeComponent(
         instanceKeeper.getStore {
             HomeStoreFactory(
                 storeFactory = storeFactory,
-                loginRepository = loginRepository,
+                authRepository = authRepository,
             ).create()
         }
 

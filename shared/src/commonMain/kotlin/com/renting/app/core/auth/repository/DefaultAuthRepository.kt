@@ -18,11 +18,11 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.withContext
 
-internal class DefaultLoginRepository(
+internal class DefaultAuthRepository(
     private val httpClient: HttpClient,
     private val ioDispatcher: CoroutineDispatcher,
     private val settings: ObservableSettings,
-) : LoginRepository {
+) : AuthRepository {
 
     // Holds a strong reference to not be collected by GC
     @Suppress("UNUSED", "UnusedPrivateMember")
@@ -40,7 +40,7 @@ internal class DefaultLoginRepository(
         return authToken.value != null
     }
 
-    override suspend fun login(login: String, password: String): Either<LoginError, String> =
+    override suspend fun login(login: String, password: String): Either<LoginError, AuthToken> =
         withContext(ioDispatcher) {
             val response = makeRequest(login, password)
             if (response.status.isSuccess()) {
@@ -49,6 +49,30 @@ internal class DefaultLoginRepository(
                 handleError(response)
             }
         }
+
+    override suspend fun register(
+        initUserData: InitUserData,
+    ): Either<RegistrationError, AuthToken> {
+        return withContext(ioDispatcher) {
+            val response = httpClient.post("/api/signup") {
+                contentType(ContentType.Application.Json)
+                setBody(initUserData.toRequestModel())
+            }
+            if (response.status.isSuccess()) {
+                val token = response.body<RegistrationResponse>().token
+                settings.putString(SettingKey.AUTH_TOKEN, token)
+                token.right()
+            } else {
+                when (response.status.value) {
+                    400 -> {
+                        val errors = response.body<RegistrationErrorResponse>().errors
+                        errors.toDomainModel()
+                    }
+                    else -> RegistrationError.Unknown
+                }.left()
+            }
+        }
+    }
 
     override suspend fun logout(): Either<Exception, Unit> {
         settings.remove(SettingKey.AUTH_TOKEN)
@@ -82,5 +106,29 @@ internal class DefaultLoginRepository(
             409 -> LoginError.InvalidLoginOrPassword
             else -> LoginError.Unknown
         }.left()
+    }
+
+    companion object {
+        private fun InitUserData.toRequestModel(): RegistrationRequest {
+            return RegistrationRequest(
+                login = credentials.login,
+                password = credentials.password,
+                email = email,
+                phoneNumber = phoneNumber,
+                firstName = fullName.firstName,
+                lastName = fullName.lastName,
+            )
+        }
+
+        private fun RegistrationErrors.toDomainModel(): RegistrationError.ValidationFailed {
+            return RegistrationError.ValidationFailed(
+                login = login,
+                password = password,
+                email = email,
+                phoneNumber = phoneNumber,
+                firstName = firstName,
+                lastName = lastName,
+            )
+        }
     }
 }

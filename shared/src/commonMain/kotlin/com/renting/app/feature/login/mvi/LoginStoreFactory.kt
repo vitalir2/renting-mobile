@@ -9,12 +9,12 @@ import com.renting.app.feature.login.mvi.LoginStore.Intent
 import com.renting.app.feature.login.mvi.LoginStore.Label
 import com.renting.app.feature.login.mvi.LoginStore.State
 import com.renting.app.core.auth.repository.LoginError
-import com.renting.app.core.auth.repository.LoginRepository
+import com.renting.app.core.auth.repository.AuthRepository
 import kotlinx.coroutines.launch
 
 internal class LoginStoreFactory(
     private val storeFactory: StoreFactory,
-    private val loginRepository: LoginRepository,
+    private val authRepository: AuthRepository,
 ) {
 
     fun create(): LoginStore =
@@ -25,7 +25,7 @@ internal class LoginStoreFactory(
                 reducer = ReducerImpl,
                 executorFactory = {
                     ExecutorImpl(
-                        loginRepository = loginRepository,
+                        authRepository = authRepository,
                     )
                 },
             ) {}
@@ -47,7 +47,7 @@ internal class LoginStoreFactory(
     }
 
     private class ExecutorImpl(
-        private val loginRepository: LoginRepository,
+        private val authRepository: AuthRepository,
     ) : CoroutineExecutor<Intent, Nothing, State, Msg, Label>() {
         override fun executeIntent(intent: Intent, getState: () -> State) {
             when (intent) {
@@ -62,7 +62,7 @@ internal class LoginStoreFactory(
                 is Intent.StartLogin -> {
                     val state = getState()
                     scope.launch {
-                        val result = loginRepository.login(
+                        val result = authRepository.login(
                             login = state.login,
                             password = state.password,
                         )
