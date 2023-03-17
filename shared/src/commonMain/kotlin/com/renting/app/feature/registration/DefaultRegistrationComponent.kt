@@ -7,6 +7,7 @@ import com.arkivanov.mvikotlin.core.instancekeeper.getStore
 import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.arkivanov.mvikotlin.extensions.coroutines.labels
 import com.renting.app.core.utils.stateAsValue
+import com.renting.app.core.validation.TextField
 import com.renting.app.feature.registration.RegistrationComponent.Model
 import com.renting.app.feature.registration.RegistrationStore.Intent
 import com.renting.app.feature.registration.RegistrationStore.Label
@@ -40,6 +41,10 @@ internal class DefaultRegistrationComponent(
 
     override val models: Value<Model> = store.stateAsValue()
         .map(RegistrationStoreMapper.stateToModel)
+
+    override fun onFieldChanged(id: TextField.Id, value: String) {
+        store.accept(Intent.SetFieldValue(id, value))
+    }
 
     override fun completeRegistration() {
         store.accept(Intent.CompleteRegistration)

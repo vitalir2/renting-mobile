@@ -29,15 +29,15 @@ struct RegistrationView_Previews: PreviewProvider {
     class StubComponent: RegistrationComponent {
         var models: Value<RegistrationComponentModel> = valueOf(
             RegistrationComponentModel(
-                login: TextField(value: "", error: nil),
-                password: TextField(value: "", error: nil),
-                email: TextField(value: "", error: nil),
-                firstName: TextField(value: "", error: nil),
-                lastName: TextField(value: "", error: nil),
-                patronymic: nil
+                registrationForm: [
+                    SharedTextField(id: SharedTextField.Id.login, value: "", error: nil)
+                ]
             )
         )
-        
+
+        func onFieldChanged(id: SharedTextField.Id, value: String) {
+        }
+
         func completeRegistration() {
         }
     }

@@ -10,7 +10,7 @@ internal interface RegistrationStore : Store<Intent, State, Label> {
 
     sealed interface Intent {
         object CompleteRegistration : Intent
-        data class SetLogin(val login: String) : Intent
+        data class SetFieldValue(val id: TextField.Id, val value: String) : Intent
     }
 
     sealed interface Label {
@@ -18,11 +18,6 @@ internal interface RegistrationStore : Store<Intent, State, Label> {
     }
 
     data class State(
-        val login: TextField = TextField(),
-        val password: TextField = TextField(),
-        val email: TextField = TextField(),
-        val firstName: TextField = TextField(),
-        val lastName: TextField = TextField(),
-        val patronymic: TextField? = null,
+        val registrationForm: List<TextField>,
     )
 }

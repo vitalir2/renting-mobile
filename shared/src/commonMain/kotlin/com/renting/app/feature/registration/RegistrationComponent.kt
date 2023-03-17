@@ -7,14 +7,11 @@ interface RegistrationComponent {
 
     val models: Value<Model>
 
+    fun onFieldChanged(id: TextField.Id, value: String)
+
     fun completeRegistration()
 
     data class Model(
-        val login: TextField,
-        val password: TextField,
-        val email: TextField,
-        val firstName: TextField,
-        val lastName: TextField,
-        val patronymic: TextField?,
+        val registrationForm: List<TextField>,
     )
 }
