@@ -7,6 +7,7 @@ internal object RegistrationStoreMapper {
     val stateToModel: RegistrationStore.State.() -> RegistrationComponent.Model = {
         RegistrationComponent.Model(
             registrationForm = registrationForm,
+            isRegistering = isRegistering,
         )
     }
 }

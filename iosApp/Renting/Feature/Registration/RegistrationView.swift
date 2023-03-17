@@ -33,7 +33,8 @@ struct RegistrationView_Previews: PreviewProvider {
                     fields: [
                         SharedTextField(kind: SharedTextField.Kind.login)
                     ]
-                )
+                ),
+                isRegistering: false
             )
         )
 
