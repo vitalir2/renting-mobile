@@ -11,7 +11,19 @@ data class TextField(
     val error: String? = null,
 ) {
 
-    enum class Id {
+    constructor(kind: Kind) : this(Id(kind))
+
+    data class Id(
+        val kind: Kind,
+        val index: Int = FIRST_INDEX,
+    ) {
+
+        companion object {
+            private const val FIRST_INDEX = 0
+        }
+    }
+
+    enum class Kind {
         LOGIN,
         PASSWORD,
         EMAIL,
