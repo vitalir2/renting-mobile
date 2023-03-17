@@ -149,16 +149,16 @@ internal class DefaultAuthRepository(
         )
 
         private fun RegistrationErrors.toDomainModel(): RegistrationError.ValidationFailed {
-            val errors = mutableMapOf<TextField.Id, String>()
-            if (login != null) errors[TextField.Id.LOGIN] = login
-            if (password != null) errors[TextField.Id.PASSWORD] = password
-            if (email != null) errors[TextField.Id.EMAIL] = email
-            if (phoneNumber != null) errors[TextField.Id.PHONE_NUMBER] = phoneNumber
-            if (firstName != null) errors[TextField.Id.FIRST_NAME] = firstName
-            if (lastName != null) errors[TextField.Id.LAST_NAME] = lastName
+            val errors = mutableMapOf<TextField.Kind, String>()
+            if (login != null) errors[TextField.Kind.LOGIN] = login
+            if (password != null) errors[TextField.Kind.PASSWORD] = password
+            if (email != null) errors[TextField.Kind.EMAIL] = email
+            if (phoneNumber != null) errors[TextField.Kind.PHONE_NUMBER] = phoneNumber
+            if (firstName != null) errors[TextField.Kind.FIRST_NAME] = firstName
+            if (lastName != null) errors[TextField.Kind.LAST_NAME] = lastName
 
             return RegistrationError.ValidationFailed(
-                errors = errors.toMap(),
+                errors = errors.mapKeys { (key, _) -> TextField.Id(key) }.toMap(),
             )
         }
     }

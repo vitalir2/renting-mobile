@@ -32,12 +32,12 @@ internal class RegistrationStoreFactory(
 
     private fun createInitialState(): State {
         val registrationForm = listOf(
-            TextField(TextField.Id.LOGIN),
-            TextField(TextField.Id.PASSWORD),
-            TextField(TextField.Id.EMAIL),
-            TextField(TextField.Id.PHONE_NUMBER),
-            TextField(TextField.Id.FIRST_NAME),
-            TextField(TextField.Id.LAST_NAME),
+            TextField(TextField.Kind.LOGIN),
+            TextField(TextField.Kind.PASSWORD),
+            TextField(TextField.Kind.EMAIL),
+            TextField(TextField.Kind.PHONE_NUMBER),
+            TextField(TextField.Kind.FIRST_NAME),
+            TextField(TextField.Kind.LAST_NAME),
         )
         return State(
             registrationForm = registrationForm,
@@ -109,21 +109,22 @@ internal class RegistrationStoreFactory(
 
         companion object {
 
-            private fun List<TextField>.getValue(id: TextField.Id): String {
+            private fun List<TextField>.getValue(kind: TextField.Kind): String {
+                val id = TextField.Id(kind)
                 return first { it.id == id }.value
             }
 
             private fun List<TextField>.toUserData(): InitUserData {
                 return InitUserData(
                     credentials = InitUserData.Credentials(
-                        login = getValue(TextField.Id.LOGIN),
-                        password = getValue(TextField.Id.PASSWORD),
+                        login = getValue(TextField.Kind.LOGIN),
+                        password = getValue(TextField.Kind.PASSWORD),
                     ),
-                    email = getValue(TextField.Id.EMAIL),
-                    phoneNumber = getValue(TextField.Id.PHONE_NUMBER),
+                    email = getValue(TextField.Kind.EMAIL),
+                    phoneNumber = getValue(TextField.Kind.PHONE_NUMBER),
                     fullName = InitUserData.FullName(
-                        firstName = getValue(TextField.Id.FIRST_NAME),
-                        lastName = getValue(TextField.Id.LAST_NAME),
+                        firstName = getValue(TextField.Kind.FIRST_NAME),
+                        lastName = getValue(TextField.Kind.LAST_NAME),
                         patronymic = null, // TODO add later in the app and to the backend or remove completely
                     ),
                 )

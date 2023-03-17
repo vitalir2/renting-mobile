@@ -30,7 +30,7 @@ struct RegistrationView_Previews: PreviewProvider {
         var models: Value<RegistrationComponentModel> = valueOf(
             RegistrationComponentModel(
                 registrationForm: [
-                    SharedTextField(id: SharedTextField.Id.login, value: "", error: nil)
+                    SharedTextField(kind: SharedTextField.Kind.login)
                 ]
             )
         )
