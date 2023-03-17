@@ -24,6 +24,7 @@ internal class DefaultRegistrationComponent(
     private val store = instanceKeeper.getStore {
         RegistrationStoreFactory(
             storeFactory = storeFactory,
+            registrationGraph = registrationGraph,
         ).create()
     }
 

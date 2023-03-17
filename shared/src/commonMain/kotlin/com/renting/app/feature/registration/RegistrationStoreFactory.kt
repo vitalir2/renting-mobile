@@ -4,13 +4,18 @@ import com.arkivanov.mvikotlin.core.store.Reducer
 import com.arkivanov.mvikotlin.core.store.Store
 import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
+import com.renting.app.core.auth.model.InitUserData
+import com.renting.app.core.auth.model.RegistrationError
+import com.renting.app.core.monad.Either
 import com.renting.app.core.validation.TextField
 import com.renting.app.feature.registration.RegistrationStore.Intent
 import com.renting.app.feature.registration.RegistrationStore.Label
 import com.renting.app.feature.registration.RegistrationStore.State
+import kotlinx.coroutines.launch
 
 internal class RegistrationStoreFactory(
     private val storeFactory: StoreFactory,
+    private val registrationGraph: RegistrationGraph,
 ) {
 
     fun create(): RegistrationStore =
@@ -18,7 +23,9 @@ internal class RegistrationStoreFactory(
             name = "RegistrationStore",
             initialState = createInitialState(),
             executorFactory = {
-                ExecutorImpl()
+                ExecutorImpl(
+                    registrationGraph = registrationGraph,
+                )
             },
             reducer = ReducerImpl(),
         ) {}
@@ -39,6 +46,7 @@ internal class RegistrationStoreFactory(
 
     private sealed interface Msg {
         data class FieldValue(val id: TextField.Id, val value: String) : Msg
+        data class Error(val error: RegistrationError) : Msg
     }
 
     private class ReducerImpl : Reducer<State, Msg> {
@@ -49,6 +57,16 @@ internal class RegistrationStoreFactory(
                     copy(value = msg.value, error = null)
                 }
             )
+            is Msg.Error -> when (val error = msg.error) {
+                is RegistrationError.Unknown -> this
+                is RegistrationError.ValidationFailed -> copy(
+                    registrationForm = registrationForm.apply {
+                        error.errors.forEach { (id, error) ->
+                            updateField(id) { copy(error = error) }
+                        }
+                    },
+                )
+            }
         }
 
         companion object {
@@ -66,16 +84,49 @@ internal class RegistrationStoreFactory(
 
     }
 
-    private class ExecutorImpl : CoroutineExecutor<Intent, Nothing, State, Msg, Label>() {
+    private class ExecutorImpl(
+        registrationGraph: RegistrationGraph,
+    ) : RegistrationGraph by registrationGraph,
+        CoroutineExecutor<Intent, Nothing, State, Msg, Label>() {
 
         override fun executeIntent(intent: Intent, getState: () -> State) {
             when (intent) {
                 is Intent.CompleteRegistration -> {
-                    // Registration request
+                    scope.launch {
+                        val state = getState()
+                        val userData = state.registrationForm.toUserData()
+                        when (val result = authRepository.register(userData)) {
+                            is Either.Left -> dispatch(Msg.Error(result.error))
+                            is Either.Right -> publish(Label.RegistrationCompleted)
+                        }
+                    }
                 }
                 is Intent.SetFieldValue -> {
                     dispatch(Msg.FieldValue(intent.id, intent.value))
                 }
+            }
+        }
+
+        companion object {
+
+            private fun List<TextField>.getValue(id: TextField.Id): String {
+                return first { it.id == id }.value
+            }
+
+            private fun List<TextField>.toUserData(): InitUserData {
+                return InitUserData(
+                    credentials = InitUserData.Credentials(
+                        login = getValue(TextField.Id.LOGIN),
+                        password = getValue(TextField.Id.PASSWORD),
+                    ),
+                    email = getValue(TextField.Id.EMAIL),
+                    phoneNumber = getValue(TextField.Id.PHONE_NUMBER),
+                    fullName = InitUserData.FullName(
+                        firstName = getValue(TextField.Id.FIRST_NAME),
+                        lastName = getValue(TextField.Id.LAST_NAME),
+                        patronymic = null, // TODO add later in the app and to the backend or remove completely
+                    ),
+                )
             }
         }
     }
