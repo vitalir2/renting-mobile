@@ -50,6 +50,11 @@ internal class DefaultLoginRepository(
             }
         }
 
+    override suspend fun logout(): Either<Exception, Unit> {
+        settings.remove(SettingKey.AUTH_TOKEN)
+        return Unit.right()
+    }
+
     private suspend fun makeRequest(
         login: String,
         password: String

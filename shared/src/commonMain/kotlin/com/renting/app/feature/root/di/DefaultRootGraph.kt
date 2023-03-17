@@ -45,11 +45,11 @@ class DefaultRootGraph(
         settings = settings,
     )
 
-    override val loginGraph: LoginGraph = DefaultLoginGraph(
+    override val loginGraph: LoginGraph get() = DefaultLoginGraph(
         authGraph = authGraph,
     )
 
-    override val homeGraph: HomeGraph = DefaultHomeGraph(
+    override val homeGraph: HomeGraph get() = DefaultHomeGraph(
         authGraph = authGraph,
     )
 }

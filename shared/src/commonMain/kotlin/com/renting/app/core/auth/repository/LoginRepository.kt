@@ -13,4 +13,6 @@ interface LoginRepository {
         login: String,
         password: String,
     ): Either<LoginError, String>
+
+    suspend fun logout(): Either<Exception, Unit>
 }
