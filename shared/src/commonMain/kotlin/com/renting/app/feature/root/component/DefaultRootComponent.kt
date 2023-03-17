@@ -4,6 +4,7 @@ import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
+import com.arkivanov.decompose.router.stack.popWhile
 import com.arkivanov.decompose.router.stack.push
 import com.arkivanov.decompose.router.stack.replaceCurrent
 import com.arkivanov.decompose.value.Value
@@ -57,6 +58,12 @@ class DefaultRootComponent(
     private fun createRegistrationComponent(componentContext: ComponentContext): RegistrationComponent {
         return DefaultRegistrationComponent(
             componentContext = componentContext,
+            storeFactory = storeFactory,
+            onRegistrationCompleted = {
+                // Pop the whole auth stack; in the future - will create a separate auth graph
+                navigation.popWhile { true }
+                navigation.push(Configuration.Home)
+            },
         )
     }
 
