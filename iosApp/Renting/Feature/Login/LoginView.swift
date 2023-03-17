@@ -30,10 +30,10 @@ struct LoginView: View {
         return VStack(spacing: 16) {
             Image("RentingLogoFull")
                 .resizable()
-                .frame(width: 100, height: 100)
+                .frame(width: 110, height: 120)
             Spacer()
                 .frame(height: 8)
-            Text("Create new account")
+            Text("Login to Your Account")
                 .font(.title)
                 .fontWeight(.bold)
             Spacer()
