@@ -1,4 +1,4 @@
-package com.renting.app.feature.registration
+package com.renting.app.feature.registration.di
 
 import com.renting.app.core.auth.di.AuthGraph
 import com.renting.app.core.auth.repository.AuthRepository

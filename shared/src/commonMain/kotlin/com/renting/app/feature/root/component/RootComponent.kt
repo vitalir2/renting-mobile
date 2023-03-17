@@ -4,7 +4,7 @@ import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.value.Value
 import com.renting.app.feature.home.HomeComponent
 import com.renting.app.feature.login.component.LoginComponent
-import com.renting.app.feature.registration.RegistrationComponent
+import com.renting.app.feature.registration.component.RegistrationComponent
 
 interface RootComponent {
 

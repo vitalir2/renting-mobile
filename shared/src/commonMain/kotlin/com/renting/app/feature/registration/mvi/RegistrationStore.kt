@@ -1,11 +1,11 @@
-package com.renting.app.feature.registration
+package com.renting.app.feature.registration.mvi
 
 import com.arkivanov.mvikotlin.core.store.Store
 import com.renting.app.core.form.FieldForm
 import com.renting.app.core.form.TextField
-import com.renting.app.feature.registration.RegistrationStore.Intent
-import com.renting.app.feature.registration.RegistrationStore.Label
-import com.renting.app.feature.registration.RegistrationStore.State
+import com.renting.app.feature.registration.mvi.RegistrationStore.Intent
+import com.renting.app.feature.registration.mvi.RegistrationStore.Label
+import com.renting.app.feature.registration.mvi.RegistrationStore.State
 
 internal interface RegistrationStore : Store<Intent, State, Label> {
 

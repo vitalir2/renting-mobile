@@ -1,4 +1,4 @@
-package com.renting.app.feature.registration
+package com.renting.app.feature.registration.mvi
 
 import com.arkivanov.mvikotlin.core.store.Reducer
 import com.arkivanov.mvikotlin.core.store.Store
@@ -9,9 +9,10 @@ import com.renting.app.core.auth.model.RegistrationError
 import com.renting.app.core.monad.Either
 import com.renting.app.core.form.FieldForm
 import com.renting.app.core.form.TextField
-import com.renting.app.feature.registration.RegistrationStore.Intent
-import com.renting.app.feature.registration.RegistrationStore.Label
-import com.renting.app.feature.registration.RegistrationStore.State
+import com.renting.app.feature.registration.di.RegistrationGraph
+import com.renting.app.feature.registration.mvi.RegistrationStore.Intent
+import com.renting.app.feature.registration.mvi.RegistrationStore.Label
+import com.renting.app.feature.registration.mvi.RegistrationStore.State
 import kotlinx.coroutines.launch
 
 internal class RegistrationStoreFactory(

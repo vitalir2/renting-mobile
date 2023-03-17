@@ -12,7 +12,7 @@ import com.arkivanov.decompose.extensions.compose.jetpack.subscribeAsState
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.renting.app.android.feature.home.HomeScreen
 import com.renting.app.android.feature.login.LoginScreen
-import com.renting.app.feature.registration.RegistrationComponent
+import com.renting.app.feature.registration.component.RegistrationComponent
 import com.renting.app.feature.root.component.RootComponent
 import com.renting.app.feature.root.component.RootComponent.Child
 

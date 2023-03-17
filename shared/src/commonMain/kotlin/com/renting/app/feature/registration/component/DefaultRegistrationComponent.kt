@@ -1,4 +1,4 @@
-package com.renting.app.feature.registration
+package com.renting.app.feature.registration.component
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.value.Value
@@ -8,9 +8,12 @@ import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.arkivanov.mvikotlin.extensions.coroutines.labels
 import com.renting.app.core.utils.stateAsValue
 import com.renting.app.core.form.TextField
-import com.renting.app.feature.registration.RegistrationComponent.Model
-import com.renting.app.feature.registration.RegistrationStore.Intent
-import com.renting.app.feature.registration.RegistrationStore.Label
+import com.renting.app.feature.registration.component.RegistrationComponent.Model
+import com.renting.app.feature.registration.di.RegistrationGraph
+import com.renting.app.feature.registration.mvi.RegistrationStore.Intent
+import com.renting.app.feature.registration.mvi.RegistrationStore.Label
+import com.renting.app.feature.registration.mvi.RegistrationStoreFactory
+import com.renting.app.feature.registration.mvi.RegistrationStoreMapper
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 

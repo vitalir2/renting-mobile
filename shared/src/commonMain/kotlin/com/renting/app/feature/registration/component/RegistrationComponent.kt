@@ -1,4 +1,4 @@
-package com.renting.app.feature.registration
+package com.renting.app.feature.registration.component
 
 import com.arkivanov.decompose.value.Value
 import com.renting.app.core.form.FieldForm
