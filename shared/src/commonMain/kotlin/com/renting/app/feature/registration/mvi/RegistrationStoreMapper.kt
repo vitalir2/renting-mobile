@@ -1,4 +1,6 @@
-package com.renting.app.feature.registration
+package com.renting.app.feature.registration.mvi
+
+import com.renting.app.feature.registration.component.RegistrationComponent
 
 internal object RegistrationStoreMapper {
 
