@@ -1,8 +1,8 @@
 package com.renting.app.feature.registration
 
 import com.arkivanov.decompose.value.Value
-import com.renting.app.core.validation.FieldForm
-import com.renting.app.core.validation.TextField
+import com.renting.app.core.form.FieldForm
+import com.renting.app.core.form.TextField
 
 interface RegistrationComponent {
 

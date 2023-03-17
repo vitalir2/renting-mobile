@@ -1,8 +1,8 @@
 package com.renting.app.feature.registration
 
 import com.arkivanov.mvikotlin.core.store.Store
-import com.renting.app.core.validation.FieldForm
-import com.renting.app.core.validation.TextField
+import com.renting.app.core.form.FieldForm
+import com.renting.app.core.form.TextField
 import com.renting.app.feature.registration.RegistrationStore.Intent
 import com.renting.app.feature.registration.RegistrationStore.Label
 import com.renting.app.feature.registration.RegistrationStore.State

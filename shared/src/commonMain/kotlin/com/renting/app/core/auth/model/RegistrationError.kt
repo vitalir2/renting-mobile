@@ -1,6 +1,6 @@
 package com.renting.app.core.auth.model
 
-import com.renting.app.core.validation.TextField
+import com.renting.app.core.form.TextField
 import kotlin.experimental.ExperimentalObjCName
 import kotlin.native.ObjCName
 

@@ -16,7 +16,7 @@ import com.renting.app.core.monad.Either
 import com.renting.app.core.monad.left
 import com.renting.app.core.monad.right
 import com.renting.app.core.settings.SettingKey
-import com.renting.app.core.validation.TextField
+import com.renting.app.core.form.TextField
 import com.russhwolf.settings.ObservableSettings
 import com.russhwolf.settings.SettingsListener
 import io.ktor.client.*

@@ -1,4 +1,4 @@
-package com.renting.app.core.validation
+package com.renting.app.core.form
 
 import kotlin.experimental.ExperimentalObjCName
 import kotlin.native.ObjCName
