@@ -1,5 +1,6 @@
 package com.renting.app.core.auth.model
 
+import com.renting.app.core.validation.TextField
 import kotlin.experimental.ExperimentalObjCName
 import kotlin.native.ObjCName
 
@@ -7,12 +8,7 @@ import kotlin.native.ObjCName
 @ObjCName("SharedRegistrationError")
 sealed interface RegistrationError {
     data class ValidationFailed(
-        val login: String? = null,
-        val password: String? = null,
-        val email: String? = null,
-        val phoneNumber: String? = null,
-        val firstName: String? = null,
-        val lastName: String? = null,
+        val errors: Map<TextField.Id, String>,
     ) : RegistrationError
     object Unknown : RegistrationError
 }

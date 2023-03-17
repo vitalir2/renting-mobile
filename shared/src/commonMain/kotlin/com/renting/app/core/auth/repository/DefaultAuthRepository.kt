@@ -16,6 +16,7 @@ import com.renting.app.core.monad.Either
 import com.renting.app.core.monad.left
 import com.renting.app.core.monad.right
 import com.renting.app.core.settings.SettingKey
+import com.renting.app.core.validation.TextField
 import com.russhwolf.settings.ObservableSettings
 import com.russhwolf.settings.SettingsListener
 import io.ktor.client.*
@@ -147,14 +148,18 @@ internal class DefaultAuthRepository(
             lastName = fullName.lastName,
         )
 
-        private fun RegistrationErrors.toDomainModel(): RegistrationError.ValidationFailed =
-            RegistrationError.ValidationFailed(
-                login = login,
-                password = password,
-                email = email,
-                phoneNumber = phoneNumber,
-                firstName = firstName,
-                lastName = lastName,
+        private fun RegistrationErrors.toDomainModel(): RegistrationError.ValidationFailed {
+            val errors = mutableMapOf<TextField.Id, String>()
+            if (login != null) errors[TextField.Id.LOGIN] = login
+            if (password != null) errors[TextField.Id.PASSWORD] = password
+            if (email != null) errors[TextField.Id.EMAIL] = email
+            if (phoneNumber != null) errors[TextField.Id.PHONE_NUMBER] = phoneNumber
+            if (firstName != null) errors[TextField.Id.FIRST_NAME] = firstName
+            if (lastName != null) errors[TextField.Id.LAST_NAME] = lastName
+
+            return RegistrationError.ValidationFailed(
+                errors = errors.toMap(),
             )
+        }
     }
 }
