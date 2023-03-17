@@ -63,6 +63,13 @@ class DefaultRootComponent(
     private fun createHomeComponent(componentContext: ComponentContext): HomeComponent {
         return DefaultHomeComponent(
             componentContext = componentContext,
+            storeFactory = storeFactory,
+            homeGraph = homeGraph,
+            onLoggedOutSuccessfully = {
+                navigation.replaceCurrent(
+                    configuration = Configuration.Login,
+                )
+            },
         )
     }
 
