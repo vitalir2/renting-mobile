@@ -1,6 +1,17 @@
 package com.renting.app.core.auth.repository
 
 import com.arkivanov.mvikotlin.logging.logger.DefaultLogger
+import com.renting.app.core.auth.model.AuthToken
+import com.renting.app.core.auth.model.InitUserData
+import com.renting.app.core.auth.model.LoginError
+import com.renting.app.core.auth.model.RegistrationError
+import com.renting.app.core.auth.repository.external.LoginErrorResponse
+import com.renting.app.core.auth.repository.external.LoginRequest
+import com.renting.app.core.auth.repository.external.LoginResponse
+import com.renting.app.core.auth.repository.external.RegistrationErrorResponse
+import com.renting.app.core.auth.repository.external.RegistrationErrors
+import com.renting.app.core.auth.repository.external.RegistrationRequest
+import com.renting.app.core.auth.repository.external.RegistrationResponse
 import com.renting.app.core.monad.Either
 import com.renting.app.core.monad.left
 import com.renting.app.core.monad.right
@@ -99,7 +110,7 @@ internal class DefaultAuthRepository(
     }
 
     private suspend fun handleError(response: HttpResponse): Either.Left<LoginError> {
-        val responseBody = response.body<ErrorResponse>()
+        val responseBody = response.body<LoginErrorResponse>()
         // TODO replace by our logger / interceptor
         DefaultLogger.log("Error: message=${responseBody.message},status=${responseBody.status}")
         return when (response.status.value) {

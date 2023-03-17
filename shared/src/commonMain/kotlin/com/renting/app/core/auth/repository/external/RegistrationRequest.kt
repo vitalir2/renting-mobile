@@ -1,4 +1,4 @@
-package com.renting.app.core.auth.repository
+package com.renting.app.core.auth.repository.external
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
