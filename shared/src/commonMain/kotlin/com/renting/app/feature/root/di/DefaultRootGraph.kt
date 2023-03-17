@@ -10,6 +10,8 @@ import com.renting.app.feature.home.DefaultHomeGraph
 import com.renting.app.feature.home.HomeGraph
 import com.renting.app.feature.login.di.DefaultLoginGraph
 import com.renting.app.feature.login.di.LoginGraph
+import com.renting.app.feature.registration.DefaultRegistrationGraph
+import com.renting.app.feature.registration.RegistrationGraph
 import com.russhwolf.settings.ObservableSettings
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
@@ -46,6 +48,9 @@ class DefaultRootGraph(
     )
 
     override val loginGraph: LoginGraph get() = DefaultLoginGraph(
+        authGraph = authGraph,
+    )
+    override val registrationGraph: RegistrationGraph get() = DefaultRegistrationGraph(
         authGraph = authGraph,
     )
 

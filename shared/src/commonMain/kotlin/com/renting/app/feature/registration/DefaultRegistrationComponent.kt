@@ -10,23 +10,21 @@ import com.renting.app.core.utils.stateAsValue
 import com.renting.app.feature.registration.RegistrationComponent.Model
 import com.renting.app.feature.registration.RegistrationStore.Intent
 import com.renting.app.feature.registration.RegistrationStore.Label
-import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 internal class DefaultRegistrationComponent(
     componentContext: ComponentContext,
     storeFactory: StoreFactory,
+    registrationGraph: RegistrationGraph,
     private val onRegistrationCompleted: () -> Unit,
-) : RegistrationComponent, ComponentContext by componentContext {
+) : RegistrationComponent, ComponentContext by componentContext, RegistrationGraph by registrationGraph {
 
     private val store = instanceKeeper.getStore {
         RegistrationStoreFactory(
             storeFactory = storeFactory,
         ).create()
     }
-
-    private val coroutineScope = MainScope()
 
     init {
         store.labels
