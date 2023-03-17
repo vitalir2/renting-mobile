@@ -1,4 +1,4 @@
-package com.renting.app.core.validation
+package com.renting.app.core.form
 
 data class FieldForm(
     private val idToField: Map<TextField.Id, TextField>,

@@ -7,7 +7,7 @@ import com.arkivanov.mvikotlin.core.instancekeeper.getStore
 import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.arkivanov.mvikotlin.extensions.coroutines.labels
 import com.renting.app.core.utils.stateAsValue
-import com.renting.app.core.validation.TextField
+import com.renting.app.core.form.TextField
 import com.renting.app.feature.registration.RegistrationComponent.Model
 import com.renting.app.feature.registration.RegistrationStore.Intent
 import com.renting.app.feature.registration.RegistrationStore.Label

@@ -7,8 +7,8 @@ import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
 import com.renting.app.core.auth.model.InitUserData
 import com.renting.app.core.auth.model.RegistrationError
 import com.renting.app.core.monad.Either
-import com.renting.app.core.validation.FieldForm
-import com.renting.app.core.validation.TextField
+import com.renting.app.core.form.FieldForm
+import com.renting.app.core.form.TextField
 import com.renting.app.feature.registration.RegistrationStore.Intent
 import com.renting.app.feature.registration.RegistrationStore.Label
 import com.renting.app.feature.registration.RegistrationStore.State
