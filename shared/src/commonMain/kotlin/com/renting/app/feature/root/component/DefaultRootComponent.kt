@@ -67,6 +67,9 @@ class DefaultRootComponent(
                     onComplete = { navigation.push(Configuration.Home) },
                 )
             },
+            openLoginScreen = {
+                navigation.replaceCurrent(Configuration.Login)
+            },
         )
     }
 

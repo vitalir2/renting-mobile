@@ -39,6 +39,9 @@ struct RegistrationView_Previews: PreviewProvider {
 
         func onFieldChanged(id: SharedTextField.Id, value: String) {
         }
+        
+        func onLoginRequired() {
+        }
 
         func completeRegistration() {
         }

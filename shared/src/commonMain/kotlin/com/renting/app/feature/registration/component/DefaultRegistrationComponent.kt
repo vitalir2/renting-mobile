@@ -22,6 +22,7 @@ internal class DefaultRegistrationComponent(
     storeFactory: StoreFactory,
     registrationGraph: RegistrationGraph,
     private val onRegistrationCompleted: () -> Unit,
+    private val openLoginScreen: () -> Unit,
 ) : RegistrationComponent, ComponentContext by componentContext, RegistrationGraph by registrationGraph {
 
     private val store = instanceKeeper.getStore {
@@ -48,6 +49,10 @@ internal class DefaultRegistrationComponent(
 
     override fun onFieldChanged(id: TextField.Id, value: String) {
         store.accept(Intent.SetFieldValue(id, value))
+    }
+
+    override fun onLoginRequired() {
+        openLoginScreen()
     }
 
     override fun completeRegistration() {
