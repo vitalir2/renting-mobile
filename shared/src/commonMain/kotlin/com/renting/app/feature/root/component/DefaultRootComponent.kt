@@ -59,6 +59,7 @@ class DefaultRootComponent(
         return DefaultRegistrationComponent(
             componentContext = componentContext,
             storeFactory = storeFactory,
+            registrationGraph = registrationGraph,
             onRegistrationCompleted = {
                 // Pop the whole auth stack; in the future - will create a separate auth graph
                 navigation.popWhile { true }
