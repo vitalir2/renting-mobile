@@ -62,8 +62,10 @@ class DefaultRootComponent(
             registrationGraph = registrationGraph,
             onRegistrationCompleted = {
                 // Pop the whole auth stack; in the future - will create a separate auth graph
-                navigation.popWhile { true }
-                navigation.push(Configuration.Home)
+                navigation.popWhile(
+                    predicate = { true },
+                    onComplete = { navigation.push(Configuration.Home) },
+                )
             },
         )
     }
