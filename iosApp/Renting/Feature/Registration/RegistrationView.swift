@@ -29,9 +29,11 @@ struct RegistrationView_Previews: PreviewProvider {
     class StubComponent: RegistrationComponent {
         var models: Value<RegistrationComponentModel> = valueOf(
             RegistrationComponentModel(
-                registrationForm: [
-                    SharedTextField(kind: SharedTextField.Kind.login)
-                ]
+                registrationForm: FieldForm(
+                    fields: [
+                        SharedTextField(kind: SharedTextField.Kind.login)
+                    ]
+                )
             )
         )
 

@@ -7,6 +7,7 @@ import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
 import com.renting.app.core.auth.model.InitUserData
 import com.renting.app.core.auth.model.RegistrationError
 import com.renting.app.core.monad.Either
+import com.renting.app.core.validation.FieldForm
 import com.renting.app.core.validation.TextField
 import com.renting.app.feature.registration.RegistrationStore.Intent
 import com.renting.app.feature.registration.RegistrationStore.Label
@@ -31,7 +32,7 @@ internal class RegistrationStoreFactory(
         ) {}
 
     private fun createInitialState(): State {
-        val registrationForm = listOf(
+        val registrationFormFields = listOf(
             TextField(TextField.Kind.LOGIN),
             TextField(TextField.Kind.PASSWORD),
             TextField(TextField.Kind.EMAIL),
@@ -40,7 +41,7 @@ internal class RegistrationStoreFactory(
             TextField(TextField.Kind.LAST_NAME),
         )
         return State(
-            registrationForm = registrationForm,
+            registrationForm = FieldForm(registrationFormFields),
         )
     }
 
@@ -68,20 +69,6 @@ internal class RegistrationStoreFactory(
                 )
             }
         }
-
-        companion object {
-            private fun List<TextField>.updateField(
-                id: TextField.Id,
-                update: TextField.() -> TextField,
-            ): List<TextField> = this.toMutableList().apply {
-                val indexOfField = indexOfFirst { it.id === id }
-                if (indexOfField > 0) {
-                    val previousValue = this[indexOfField]
-                    this[indexOfField] = previousValue.update()
-                }
-            }
-        }
-
     }
 
     private class ExecutorImpl(
@@ -108,13 +95,7 @@ internal class RegistrationStoreFactory(
         }
 
         companion object {
-
-            private fun List<TextField>.getValue(kind: TextField.Kind): String {
-                val id = TextField.Id(kind)
-                return first { it.id == id }.value
-            }
-
-            private fun List<TextField>.toUserData(): InitUserData {
+            private fun FieldForm.toUserData(): InitUserData {
                 return InitUserData(
                     credentials = InitUserData.Credentials(
                         login = getValue(TextField.Kind.LOGIN),

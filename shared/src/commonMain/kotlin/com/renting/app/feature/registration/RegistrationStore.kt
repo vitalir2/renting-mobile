@@ -1,6 +1,7 @@
 package com.renting.app.feature.registration
 
 import com.arkivanov.mvikotlin.core.store.Store
+import com.renting.app.core.validation.FieldForm
 import com.renting.app.core.validation.TextField
 import com.renting.app.feature.registration.RegistrationStore.Intent
 import com.renting.app.feature.registration.RegistrationStore.Label
@@ -18,6 +19,6 @@ internal interface RegistrationStore : Store<Intent, State, Label> {
     }
 
     data class State(
-        val registrationForm: List<TextField>,
+        val registrationForm: FieldForm,
     )
 }

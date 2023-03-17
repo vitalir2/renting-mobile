@@ -1,6 +1,7 @@
 package com.renting.app.feature.registration
 
 import com.arkivanov.decompose.value.Value
+import com.renting.app.core.validation.FieldForm
 import com.renting.app.core.validation.TextField
 
 interface RegistrationComponent {
@@ -12,6 +13,6 @@ interface RegistrationComponent {
     fun completeRegistration()
 
     data class Model(
-        val registrationForm: List<TextField>,
+        val registrationForm: FieldForm,
     )
 }
