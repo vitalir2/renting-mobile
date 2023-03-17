@@ -10,6 +10,8 @@ interface RegistrationComponent {
 
     fun onFieldChanged(id: TextField.Id, value: String)
 
+    fun onLoginRequired()
+
     fun completeRegistration()
 
     data class Model(
