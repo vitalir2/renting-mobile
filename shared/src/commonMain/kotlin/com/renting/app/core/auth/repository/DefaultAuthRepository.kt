@@ -51,46 +51,19 @@ internal class DefaultAuthRepository(
         return authToken.value != null
     }
 
-    override suspend fun login(login: String, password: String): Either<LoginError, AuthToken> =
-        withContext(ioDispatcher) {
-            val response = makeRequest(login, password)
-            if (response.status.isSuccess()) {
-                handleSuccess(response)
-            } else {
-                handleError(response)
-            }
-        }
-
-    override suspend fun register(
-        initUserData: InitUserData,
-    ): Either<RegistrationError, AuthToken> {
-        return withContext(ioDispatcher) {
-            val response = httpClient.post("/api/signup") {
-                contentType(ContentType.Application.Json)
-                setBody(initUserData.toRequestModel())
-            }
-            if (response.status.isSuccess()) {
-                val token = response.body<RegistrationResponse>().token
-                settings.putString(SettingKey.AUTH_TOKEN, token)
-                token.right()
-            } else {
-                when (response.status.value) {
-                    400 -> {
-                        val errors = response.body<RegistrationErrorResponse>().errors
-                        errors.toDomainModel()
-                    }
-                    else -> RegistrationError.Unknown
-                }.left()
-            }
+    override suspend fun login(
+        login: String,
+        password: String,
+    ): Either<LoginError, AuthToken> = withContext(ioDispatcher) {
+        val response = makeLoginRequest(login, password)
+        if (response.status.isSuccess()) {
+            handleSuccessfulLogin(response)
+        } else {
+            handleLoginError(response)
         }
     }
 
-    override suspend fun logout(): Either<Exception, Unit> {
-        settings.remove(SettingKey.AUTH_TOKEN)
-        return Unit.right()
-    }
-
-    private suspend fun makeRequest(
+    private suspend fun makeLoginRequest(
         login: String,
         password: String
     ): HttpResponse = httpClient.post("/api/auth") {
@@ -103,36 +76,79 @@ internal class DefaultAuthRepository(
         )
     }
 
-    private suspend fun handleSuccess(response: HttpResponse): Either.Right<String> {
+    private suspend fun handleSuccessfulLogin(response: HttpResponse): Either.Right<AuthToken> {
         val token = response.body<LoginResponse>().token
-        settings.putString(SettingKey.AUTH_TOKEN, token)
+        saveToken(token)
         return token.right()
     }
 
-    private suspend fun handleError(response: HttpResponse): Either.Left<LoginError> {
+    private suspend fun handleLoginError(response: HttpResponse): Either.Left<LoginError> {
         val responseBody = response.body<LoginErrorResponse>()
         // TODO replace by our logger / interceptor
         DefaultLogger.log("Error: message=${responseBody.message},status=${responseBody.status}")
-        return when (response.status.value) {
-            409 -> LoginError.InvalidLoginOrPassword
+        return when (response.status) {
+            HttpStatusCode.Conflict -> LoginError.InvalidLoginOrPassword // 409, TODO ask backend to fix it
             else -> LoginError.Unknown
         }.left()
     }
 
-    companion object {
-        private fun InitUserData.toRequestModel(): RegistrationRequest {
-            return RegistrationRequest(
-                login = credentials.login,
-                password = credentials.password,
-                email = email,
-                phoneNumber = phoneNumber,
-                firstName = fullName.firstName,
-                lastName = fullName.lastName,
-            )
+    override suspend fun register(
+        initUserData: InitUserData,
+    ): Either<RegistrationError, AuthToken> = withContext(ioDispatcher) {
+        val response = makeRegistrationRequest(initUserData)
+        if (response.status.isSuccess()) {
+            handleSuccessfulRegistration(response)
+        } else {
+            handleRegistrationError(response)
+        }
+    }
+
+    private suspend fun makeRegistrationRequest(initUserData: InitUserData) =
+        httpClient.post("/api/signup") {
+            contentType(ContentType.Application.Json)
+            setBody(initUserData.toRequestModel())
         }
 
-        private fun RegistrationErrors.toDomainModel(): RegistrationError.ValidationFailed {
-            return RegistrationError.ValidationFailed(
+    private suspend fun handleSuccessfulRegistration(response: HttpResponse): Either.Right<AuthToken> {
+        val token = response.body<RegistrationResponse>().token
+        saveToken(token)
+        return token.right()
+    }
+
+    private suspend fun handleRegistrationError(response: HttpResponse) =
+        when (response.status) {
+            HttpStatusCode.BadRequest -> {
+                val errors = response.body<RegistrationErrorResponse>().errors
+                errors.toDomainModel()
+            }
+            else -> RegistrationError.Unknown
+        }.left()
+
+    override suspend fun logout(): Either<Exception, Unit> {
+        dropToken()
+        return Unit.right()
+    }
+
+    private fun saveToken(token: AuthToken) {
+        settings.putString(SettingKey.AUTH_TOKEN, token)
+    }
+
+    private fun dropToken() {
+        settings.remove(SettingKey.AUTH_TOKEN)
+    }
+
+    companion object {
+        private fun InitUserData.toRequestModel(): RegistrationRequest = RegistrationRequest(
+            login = credentials.login,
+            password = credentials.password,
+            email = email,
+            phoneNumber = phoneNumber,
+            firstName = fullName.firstName,
+            lastName = fullName.lastName,
+        )
+
+        private fun RegistrationErrors.toDomainModel(): RegistrationError.ValidationFailed =
+            RegistrationError.ValidationFailed(
                 login = login,
                 password = password,
                 email = email,
@@ -140,6 +156,5 @@ internal class DefaultAuthRepository(
                 firstName = firstName,
                 lastName = lastName,
             )
-        }
     }
 }
