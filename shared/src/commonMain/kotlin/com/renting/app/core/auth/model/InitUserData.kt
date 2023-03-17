@@ -1,4 +1,4 @@
-package com.renting.app.core.auth.repository
+package com.renting.app.core.auth.model
 
 data class InitUserData(
     val credentials: Credentials,

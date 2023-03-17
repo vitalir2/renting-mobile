@@ -1,7 +1,7 @@
 package com.renting.app.feature.login.mvi
 
 import com.arkivanov.mvikotlin.core.store.Store
-import com.renting.app.core.auth.repository.LoginError
+import com.renting.app.core.auth.model.LoginError
 
 internal interface LoginStore : Store<LoginStore.Intent, LoginStore.State, LoginStore.Label> {
 

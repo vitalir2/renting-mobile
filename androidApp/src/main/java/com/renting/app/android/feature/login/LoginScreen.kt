@@ -30,7 +30,7 @@ import com.renting.app.android.core.uikit.RentingButton
 import com.renting.app.android.core.uikit.input.LoginInput
 import com.renting.app.android.core.uikit.input.PasswordInput
 import com.renting.app.feature.login.component.LoginComponent
-import com.renting.app.core.auth.repository.LoginError
+import com.renting.app.core.auth.model.LoginError
 
 @Composable
 fun LoginScreen(

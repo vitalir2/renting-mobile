@@ -1,5 +1,10 @@
-package com.renting.app.core.auth.repository
+package com.renting.app.core.auth.model
 
+import kotlin.experimental.ExperimentalObjCName
+import kotlin.native.ObjCName
+
+@OptIn(ExperimentalObjCName::class)
+@ObjCName("SharedRegistrationError")
 sealed interface RegistrationError {
     data class ValidationFailed(
         val login: String? = null,

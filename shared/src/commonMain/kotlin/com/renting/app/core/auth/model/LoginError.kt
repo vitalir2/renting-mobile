@@ -1,4 +1,4 @@
-package com.renting.app.core.auth.repository
+package com.renting.app.core.auth.model
 
 import kotlin.experimental.ExperimentalObjCName
 import kotlin.native.ObjCName

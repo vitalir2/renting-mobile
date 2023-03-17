@@ -1,10 +1,10 @@
-package com.renting.app.core.auth.repository
+package com.renting.app.core.auth.repository.external
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-internal class ErrorResponse(
+internal class LoginErrorResponse(
     @SerialName("message")
     val message: String,
     @SerialName("type")
