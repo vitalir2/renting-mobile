@@ -4,7 +4,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.runtime.Composable
@@ -27,6 +26,7 @@ internal fun PasswordInput(
     modifier: Modifier = Modifier,
     onInputChanged: (String) -> Unit,
     error: String?,
+    leadingIcon: @Composable (() -> Unit)? = null,
 ) {
     var isPasswordVisible by remember { mutableStateOf(false) }
 
@@ -37,12 +37,7 @@ internal fun PasswordInput(
         placeholder = {
             Text("Password")
         },
-        leadingIcon = {
-            Icon(
-                Icons.Default.Lock,
-                contentDescription = null,
-            )
-        },
+        leadingIcon = leadingIcon,
         trailingIcon = {
             Icon(
                 if (isPasswordVisible) {
