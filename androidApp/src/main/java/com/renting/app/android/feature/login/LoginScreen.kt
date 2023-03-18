@@ -27,8 +27,8 @@ import com.renting.app.android.R
 import com.renting.app.android.core.brandbook.RentingTheme
 import com.renting.app.android.core.uikit.Gap
 import com.renting.app.android.core.uikit.RentingButton
-import com.renting.app.android.core.uikit.input.LoginInput
-import com.renting.app.android.core.uikit.input.PasswordInput
+import com.renting.app.android.core.uikit.form.textfield.LoginInput
+import com.renting.app.android.core.uikit.form.textfield.PasswordInput
 import com.renting.app.feature.login.component.LoginComponent
 import com.renting.app.core.auth.model.LoginError
 

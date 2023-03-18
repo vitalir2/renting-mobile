@@ -1,7 +1,6 @@
-package com.renting.app.android.core.uikit.input
+package com.renting.app.android.core.uikit.form.textfield
 
 import androidx.compose.material.Icon
-import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.runtime.Composable
@@ -10,7 +9,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import com.renting.app.android.core.brandbook.RentingTheme
-import com.renting.app.android.core.uikit.RentingInput
 
 @Composable
 internal fun LoginInput(
@@ -18,7 +16,7 @@ internal fun LoginInput(
     modifier: Modifier = Modifier,
     onInputChanged: (String) -> Unit,
 ) {
-    RentingInput(
+    NameInput(
         value = login,
         modifier = modifier,
         onValueChange = onInputChanged,
@@ -28,10 +26,7 @@ internal fun LoginInput(
                 contentDescription = null,
             )
         },
-        placeholder = {
-            Text("Login")
-        },
-        singleLine = true,
+        placeholder = "Login",
     )
 }
 

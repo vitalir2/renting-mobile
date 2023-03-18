@@ -1,4 +1,4 @@
-package com.renting.app.android.core.uikit.input
+package com.renting.app.android.core.uikit.form.textfield
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.text.KeyboardActions
