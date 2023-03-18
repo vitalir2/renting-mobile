@@ -63,7 +63,5 @@ private val TextField.Kind.namePlaceholder: String
         TextField.Kind.LOGIN -> "Login"
         TextField.Kind.FIRST_NAME -> "First name"
         TextField.Kind.LAST_NAME -> "Last name"
-        TextField.Kind.EMAIL,
-        TextField.Kind.PHONE_NUMBER,
-        TextField.Kind.PASSWORD -> ""
+        else -> ""
     }

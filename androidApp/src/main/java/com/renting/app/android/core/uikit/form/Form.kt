@@ -64,21 +64,22 @@ fun Form(
                 .fillParentMaxWidth()
                 .focusRequester(focusRequesters.getValue(field.id))
 
-            val keyboardOptions = if (index < fields.lastIndex) {
+            val isLastField = index == fields.lastIndex
+            val keyboardOptions = if (isLastField) {
+                KeyboardOptions.Default
+            } else {
                 KeyboardOptions.Default.copy(
                     imeAction = ImeAction.Next,
                 )
-            } else {
-                KeyboardOptions.Default
             }
 
-            val keyboardActions = if (index < fields.lastIndex) {
+            val keyboardActions = if (isLastField) {
                 KeyboardActions(
-                    onNext = { focusManager.moveFocus(FocusDirection.Down) },
+                    onDone = { focusManager.clearFocus() },
                 )
             } else {
                 KeyboardActions(
-                    onDone = { focusManager.clearFocus() },
+                    onNext = { focusManager.moveFocus(FocusDirection.Down) },
                 )
             }
 
