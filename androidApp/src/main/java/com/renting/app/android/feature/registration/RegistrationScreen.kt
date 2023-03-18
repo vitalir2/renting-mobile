@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -13,6 +14,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardCapitalization
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -80,6 +83,7 @@ private fun RegistrationScreen(
                         Text("Login")
                     },
                     error = field.error,
+                    singleLine = true,
                 )
                 TextField.Kind.PASSWORD -> PasswordInput(
                     password = field.value,
@@ -95,6 +99,10 @@ private fun RegistrationScreen(
                         Text("Email")
                     },
                     error = field.error,
+                    keyboardOptions = KeyboardOptions.Default.copy(
+                        keyboardType = KeyboardType.Email,
+                    ),
+                    singleLine = true,
                 )
                 TextField.Kind.PHONE_NUMBER -> RentingInput(
                     value = field.value,
@@ -104,6 +112,10 @@ private fun RegistrationScreen(
                         Text("Phone number")
                     },
                     error = field.error,
+                    keyboardOptions = KeyboardOptions.Default.copy(
+                        keyboardType = KeyboardType.Phone,
+                    ),
+                    singleLine = true,
                 )
                 TextField.Kind.FIRST_NAME -> RentingInput(
                     value = field.value,
@@ -113,6 +125,11 @@ private fun RegistrationScreen(
                         Text("First name")
                     },
                     error = field.error,
+                    keyboardOptions = KeyboardOptions.Default.copy(
+                        capitalization = KeyboardCapitalization.Words,
+                        keyboardType = KeyboardType.Text,
+                    ),
+                    singleLine = true,
                 )
                 TextField.Kind.LAST_NAME -> RentingInput(
                     value = field.value,
@@ -122,6 +139,11 @@ private fun RegistrationScreen(
                         Text("Last name")
                     },
                     error = field.error,
+                    keyboardOptions = KeyboardOptions.Default.copy(
+                        capitalization = KeyboardCapitalization.Words,
+                        keyboardType = KeyboardType.Text,
+                    ),
+                    singleLine = true,
                 )
             }
         }
