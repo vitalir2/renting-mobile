@@ -24,10 +24,10 @@ import com.renting.app.feature.registration.component.RegistrationComponent
 
 @Composable
 fun RegistrationScreen(component: RegistrationComponent) {
-    val state by component.models.subscribeAsState()
+    val model by component.models.subscribeAsState()
 
     RegistrationScreen(
-        model = state,
+        model = model,
         onFieldChanged = component::onFieldChanged,
         onActionButtonClicked = component::completeRegistration,
         onSignInClick = component::onLoginRequired,
