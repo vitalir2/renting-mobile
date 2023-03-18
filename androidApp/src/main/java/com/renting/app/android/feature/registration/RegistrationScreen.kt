@@ -75,6 +75,7 @@ private fun RegistrationScreen(
         },
         appendedContent = {
             registerButtonGroup(
+                isButtonLoading = model.isRegistering,
                 onActionButtonClicked = {
                     onActionButtonClicked()
                     shouldScrollToError = true
@@ -87,6 +88,7 @@ private fun RegistrationScreen(
 }
 
 private fun LazyListScope.registerButtonGroup(
+    isButtonLoading: Boolean,
     onActionButtonClicked: () -> Unit,
     onSignInClick: () -> Unit
 ) {
@@ -96,6 +98,7 @@ private fun LazyListScope.registerButtonGroup(
             onClick = onActionButtonClicked,
             modifier = Modifier
                 .fillParentMaxWidth(),
+            isLoading = isButtonLoading,
         ) {
             Text("Register")
         }
