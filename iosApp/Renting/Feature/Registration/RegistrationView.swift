@@ -34,14 +34,18 @@ struct RegistrationView_Previews: PreviewProvider {
                         SharedTextField(kind: SharedTextField.Kind.login)
                     ]
                 ),
-                isRegistering: false
+                isRegistering: false,
+                scrollToErrorFieldId: nil
             )
         )
 
         func onFieldChanged(id: SharedTextField.Id, value: String) {
         }
-        
+
         func onLoginRequired() {
+        }
+
+        func onScrollToErrorCompleted() {
         }
 
         func completeRegistration() {

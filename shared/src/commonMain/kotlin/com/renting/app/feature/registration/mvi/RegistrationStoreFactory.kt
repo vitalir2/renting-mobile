@@ -51,6 +51,7 @@ internal class RegistrationStoreFactory(
         object RegistrationFinished : Msg
         data class FieldValue(val id: TextField.Id, val value: String) : Msg
         data class RegistrationError(val error: DomainRegistrationError) : Msg
+        data class ScrollToError(val id: TextField.Id?) : Msg
     }
 
     private class ReducerImpl : Reducer<State, Msg> {
@@ -71,11 +72,18 @@ internal class RegistrationStoreFactory(
                 is DomainRegistrationError.Unknown -> copy(
                     isRegistering = false,
                 )
-                is DomainRegistrationError.ValidationFailed -> copy(
-                    registrationForm = registrationForm.applyErrors(error.errors),
-                    isRegistering = false,
-                )
+                is DomainRegistrationError.ValidationFailed -> {
+                    val updatedForm = registrationForm.applyErrors(error.errors)
+                    copy(
+                        registrationForm = updatedForm,
+                        isRegistering = false,
+                        scrollToErrorFieldId = updatedForm.firstErrorField?.id,
+                    )
+                }
             }
+            is Msg.ScrollToError -> copy(
+                scrollToErrorFieldId = msg.id,
+            )
         }
     }
 
@@ -102,6 +110,9 @@ internal class RegistrationStoreFactory(
                 }
                 is Intent.SetFieldValue -> {
                     dispatch(Msg.FieldValue(intent.id, intent.value))
+                }
+                is Intent.ScrollToErrorCompleted -> {
+                    dispatch(Msg.ScrollToError(null))
                 }
             }
         }

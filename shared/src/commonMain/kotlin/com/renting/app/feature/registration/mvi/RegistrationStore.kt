@@ -11,6 +11,7 @@ internal interface RegistrationStore : Store<Intent, State, Label> {
 
     sealed interface Intent {
         object CompleteRegistration : Intent
+        object ScrollToErrorCompleted : Intent
         data class SetFieldValue(val id: TextField.Id, val value: String) : Intent
     }
 
@@ -21,5 +22,6 @@ internal interface RegistrationStore : Store<Intent, State, Label> {
     data class State(
         val registrationForm: FieldForm,
         val isRegistering: Boolean = false,
+        val scrollToErrorFieldId: TextField.Id? = null,
     )
 }

@@ -9,9 +9,6 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -21,7 +18,6 @@ import com.arkivanov.decompose.extensions.compose.jetpack.subscribeAsState
 import com.renting.app.android.core.brandbook.RentingTheme
 import com.renting.app.android.core.uikit.RentingButton
 import com.renting.app.android.core.uikit.form.Form
-import com.renting.app.android.core.uikit.form.ScrollToError
 import com.renting.app.core.form.FieldForm
 import com.renting.app.core.form.TextField
 import com.renting.app.feature.registration.component.RegistrationComponent
@@ -35,6 +31,7 @@ fun RegistrationScreen(component: RegistrationComponent) {
         onFieldChanged = component::onFieldChanged,
         onActionButtonClicked = component::completeRegistration,
         onSignInClick = component::onLoginRequired,
+        onScrollToErrorCompleted = component::onScrollToErrorCompleted,
     )
 }
 
@@ -44,26 +41,23 @@ private fun RegistrationScreen(
     onFieldChanged: (id: TextField.Id, value: String) -> Unit,
     onActionButtonClicked: () -> Unit,
     onSignInClick: () -> Unit,
+    onScrollToErrorCompleted: () -> Unit,
 ) {
-    var shouldScrollToError by remember { mutableStateOf(false) }
-
-    val form = model.registrationForm
-    val scrollToError =  if (shouldScrollToError && !model.isRegistering) {
-        form.firstErrorField?.let {
-            ScrollToError(
-                id = it.id,
-                onComplete = { shouldScrollToError = false },
-            )
-        }
+    val scrollToErrorFieldId = model.scrollToErrorFieldId
+    val errorFieldIdScrollTo = if (scrollToErrorFieldId != null && !model.isRegistering) {
+        scrollToErrorFieldId
     } else {
         null
     }
 
     Form(
-        form = form,
+        form = model.registrationForm,
         modifier = Modifier
             .fillMaxSize(),
         onFieldChange = onFieldChanged,
+        onScrollCompleted = {
+            onScrollToErrorCompleted()
+        },
         prependedContent = {
             item("Title") {
                 RegistrationScreenTitle(
@@ -76,14 +70,11 @@ private fun RegistrationScreen(
         appendedContent = {
             registerButtonGroup(
                 isButtonLoading = model.isRegistering,
-                onActionButtonClicked = {
-                    onActionButtonClicked()
-                    shouldScrollToError = true
-                },
+                onActionButtonClicked = onActionButtonClicked,
                 onSignInClick = onSignInClick,
             )
         },
-        scrollToError = scrollToError,
+        scrollToFieldId = errorFieldIdScrollTo,
     )
 }
 
@@ -144,10 +135,12 @@ private fun RegistrationScreenPreview() {
                         )
                     ),
                     isRegistering = false,
+                    scrollToErrorFieldId = null,
                 ),
                 onFieldChanged = { _, _ -> },
                 onActionButtonClicked = {},
                 onSignInClick = {},
+                onScrollToErrorCompleted = {},
             )
         }
     }

@@ -8,6 +8,7 @@ internal object RegistrationStoreMapper {
         RegistrationComponent.Model(
             registrationForm = registrationForm,
             isRegistering = isRegistering,
+            scrollToErrorFieldId = scrollToErrorFieldId,
         )
     }
 }
