@@ -10,6 +10,11 @@ data class FieldForm(
         return idToField.values.iterator()
     }
 
+    val firstErrorField: TextField?
+        get() {
+            return idToField.values.firstOrNull { it.error != null }
+        }
+
     fun getValue(kind: TextField.Kind): String {
         return idToField.getValue(TextField.Id(kind)).value
     }

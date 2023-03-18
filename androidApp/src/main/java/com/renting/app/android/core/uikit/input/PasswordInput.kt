@@ -1,6 +1,7 @@
 package com.renting.app.android.core.uikit.input
 
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
@@ -30,6 +31,8 @@ internal fun PasswordInput(
     onInputChanged: (String) -> Unit,
     error: String?,
     leadingIcon: @Composable (() -> Unit)? = null,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
 ) {
     var isPasswordVisible by remember { mutableStateOf(false) }
 
@@ -61,10 +64,11 @@ internal fun PasswordInput(
         } else {
             PasswordVisualTransformation()
         },
-        keyboardOptions = KeyboardOptions.Default.copy(
+        keyboardOptions = keyboardOptions.copy(
             capitalization = KeyboardCapitalization.None,
             keyboardType = KeyboardType.Password,
         ),
+        keyboardActions = keyboardActions,
         error = error,
     )
 }
