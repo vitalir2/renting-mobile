@@ -28,6 +28,7 @@ class DefaultRootGraph(
         install(ContentNegotiation) {
             json(Json {
                 explicitNulls = false
+                ignoreUnknownKeys = true
             })
         }
         defaultRequest {
