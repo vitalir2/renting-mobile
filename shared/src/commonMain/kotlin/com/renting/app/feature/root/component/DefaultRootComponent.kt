@@ -4,8 +4,6 @@ import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
-import com.arkivanov.decompose.router.stack.popWhile
-import com.arkivanov.decompose.router.stack.push
 import com.arkivanov.decompose.router.stack.replaceCurrent
 import com.arkivanov.decompose.value.Value
 import com.arkivanov.essenty.parcelable.Parcelable
@@ -61,11 +59,7 @@ class DefaultRootComponent(
             storeFactory = storeFactory,
             registrationGraph = registrationGraph,
             onRegistrationCompleted = {
-                // Pop the whole auth stack; in the future - will create a separate auth graph
-                navigation.popWhile(
-                    predicate = { true },
-                    onComplete = { navigation.push(Configuration.Home) },
-                )
+                navigation.replaceCurrent(Configuration.Home)
             },
             openLoginScreen = {
                 navigation.replaceCurrent(Configuration.Login)
