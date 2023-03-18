@@ -22,4 +22,10 @@ data class FieldForm(
             },
         )
     }
+
+    fun applyErrors(errors: Map<TextField.Id, String>): FieldForm {
+        return errors.toList().fold(this) { form, (id, error) ->
+            form.updateField(id) { copy(error = error) }
+        }
+    }
 }

@@ -4,6 +4,8 @@ import android.content.res.Configuration
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.OutlinedTextField
@@ -32,9 +34,11 @@ fun RentingInput(
     placeholder: @Composable (() -> Unit)? = null,
     leadingIcon: @Composable (() -> Unit)? = null,
     trailingIcon: @Composable (() -> Unit)? = null,
-    errorMessage: String? = null,
+    error: String? = null,
     singleLine: Boolean = false,
     visualTransformation: VisualTransformation = VisualTransformation.None,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
 ) {
     Column {
         OutlinedTextField(
@@ -45,8 +49,10 @@ fun RentingInput(
             leadingIcon = leadingIcon,
             trailingIcon = trailingIcon,
             singleLine = singleLine,
-            isError = errorMessage != null,
+            isError = error != null,
             visualTransformation = visualTransformation,
+            keyboardOptions = keyboardOptions,
+            keyboardActions = keyboardActions,
             textStyle = MaterialTheme.typography.body1,
             shape = RoundedCornerShape(12.dp),
             colors = TextFieldDefaults.textFieldColors(
@@ -56,9 +62,9 @@ fun RentingInput(
                 unfocusedIndicatorColor = Color.Transparent,
             ),
         )
-        if (errorMessage != null) {
+        if (error != null) {
             Text(
-                text = errorMessage,
+                text = error,
                 color = MaterialTheme.colors.error,
                 style = MaterialTheme.typography.caption,
                 modifier = Modifier
@@ -142,7 +148,7 @@ private fun RentingInputPreview(
             leadingIcon = data.leadingIcon,
             trailingIcon = data.trailingIcon,
             singleLine = data.singleLine,
-            errorMessage = data.errorMessage,
+            error = data.errorMessage,
         )
     }
 }

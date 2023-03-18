@@ -58,7 +58,7 @@ internal fun PasswordInput(
         } else {
             PasswordVisualTransformation()
         },
-        errorMessage = error,
+        error = error,
     )
 }
 
