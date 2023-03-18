@@ -5,7 +5,6 @@ import com.arkivanov.mvikotlin.core.store.Store
 import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
 import com.renting.app.core.auth.model.InitUserData
-import com.renting.app.core.auth.model.RegistrationError
 import com.renting.app.core.monad.Either
 import com.renting.app.core.form.FieldForm
 import com.renting.app.core.form.TextField
@@ -14,6 +13,7 @@ import com.renting.app.feature.registration.mvi.RegistrationStore.Intent
 import com.renting.app.feature.registration.mvi.RegistrationStore.Label
 import com.renting.app.feature.registration.mvi.RegistrationStore.State
 import kotlinx.coroutines.launch
+import com.renting.app.core.auth.model.RegistrationError as DomainRegistrationError
 
 internal class RegistrationStoreFactory(
     private val storeFactory: StoreFactory,
@@ -50,7 +50,7 @@ internal class RegistrationStoreFactory(
         object RegistrationStarted : Msg
         object RegistrationFinished : Msg
         data class FieldValue(val id: TextField.Id, val value: String) : Msg
-        data class RegistrationError(val error: com.renting.app.core.auth.model.RegistrationError) : Msg
+        data class RegistrationError(val error: DomainRegistrationError) : Msg
     }
 
     private class ReducerImpl : Reducer<State, Msg> {
@@ -68,15 +68,11 @@ internal class RegistrationStoreFactory(
                 isRegistering = false,
             )
             is Msg.RegistrationError -> when (val error = msg.error) {
-                is RegistrationError.Unknown -> copy(
+                is DomainRegistrationError.Unknown -> copy(
                     isRegistering = false,
                 )
-                is RegistrationError.ValidationFailed -> copy(
-                    registrationForm = registrationForm.apply {
-                        error.errors.forEach { (id, error) ->
-                            updateField(id) { copy(error = error) }
-                        }
-                    },
+                is DomainRegistrationError.ValidationFailed -> copy(
+                    registrationForm = registrationForm.applyErrors(error.errors),
                     isRegistering = false,
                 )
             }

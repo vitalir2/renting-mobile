@@ -79,6 +79,7 @@ private fun RegistrationScreen(
                     placeholder = {
                         Text("Login")
                     },
+                    error = field.error,
                 )
                 TextField.Kind.PASSWORD -> PasswordInput(
                     password = field.value,
@@ -93,8 +94,8 @@ private fun RegistrationScreen(
                     placeholder = {
                         Text("Email")
                     },
-
-                    )
+                    error = field.error,
+                )
                 TextField.Kind.PHONE_NUMBER -> RentingInput(
                     value = field.value,
                     modifier = modifier,
@@ -102,6 +103,7 @@ private fun RegistrationScreen(
                     placeholder = {
                         Text("Phone number")
                     },
+                    error = field.error,
                 )
                 TextField.Kind.FIRST_NAME -> RentingInput(
                     value = field.value,
@@ -110,6 +112,7 @@ private fun RegistrationScreen(
                     placeholder = {
                         Text("First name")
                     },
+                    error = field.error,
                 )
                 TextField.Kind.LAST_NAME -> RentingInput(
                     value = field.value,
@@ -118,6 +121,7 @@ private fun RegistrationScreen(
                     placeholder = {
                         Text("Last name")
                     },
+                    error = field.error,
                 )
             }
         }
