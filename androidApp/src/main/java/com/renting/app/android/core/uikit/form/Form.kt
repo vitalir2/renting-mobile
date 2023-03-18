@@ -29,9 +29,10 @@ fun Form(
     form: FieldForm,
     modifier: Modifier = Modifier,
     onFieldChange: (id: TextField.Id, value: String) -> Unit,
+    onScrollCompleted: (id: TextField.Id) -> Unit,
     prependedContent:  (LazyListScope.() -> Unit)? = null,
     appendedContent:  (LazyListScope.() -> Unit)? = null,
-    scrollToError: ScrollToError? = null,
+    scrollToFieldId: TextField.Id? = null,
 ) {
     val fields = form.toList()
 
@@ -39,10 +40,10 @@ fun Form(
         fields.associate { it.id to FocusRequester() }
     }
 
-    scrollToError?.let { scroll ->
-        LaunchedEffect(key1 = scroll) {
-            focusRequesters.getValue(scroll.id).requestFocus()
-            scrollToError.onComplete(scroll.id)
+    scrollToFieldId?.let { fieldId ->
+        LaunchedEffect(key1 = fieldId) {
+            focusRequesters.getValue(fieldId).requestFocus()
+            onScrollCompleted(fieldId)
         }
     }
 
@@ -94,11 +95,6 @@ fun Form(
     }
 }
 
-class ScrollToError(
-    val id: TextField.Id,
-    val onComplete: (id: TextField.Id) -> Unit,
-)
-
 @Preview
 @Composable
 private fun FormPreview() {
@@ -113,6 +109,7 @@ private fun FormPreview() {
                     )
                 ),
                 onFieldChange = { _, _ -> },
+                onScrollCompleted = {},
             )
         }
     }

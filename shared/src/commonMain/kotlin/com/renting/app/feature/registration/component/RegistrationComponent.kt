@@ -12,10 +12,13 @@ interface RegistrationComponent {
 
     fun onLoginRequired()
 
+    fun onScrollToErrorCompleted()
+
     fun completeRegistration()
 
     data class Model(
         val registrationForm: FieldForm,
         val isRegistering: Boolean,
+        val scrollToErrorFieldId: TextField.Id?,
     )
 }

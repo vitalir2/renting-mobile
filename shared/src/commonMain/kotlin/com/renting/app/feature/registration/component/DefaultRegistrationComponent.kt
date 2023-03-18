@@ -55,6 +55,10 @@ internal class DefaultRegistrationComponent(
         openLoginScreen()
     }
 
+    override fun onScrollToErrorCompleted() {
+        store.accept(Intent.ScrollToErrorCompleted)
+    }
+
     override fun completeRegistration() {
         store.accept(Intent.CompleteRegistration)
     }
