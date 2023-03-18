@@ -93,14 +93,10 @@ class DefaultRootComponent(
         storeFactory = storeFactory,
         loginGraph = loginGraph,
         openMainScreen = {
-            navigation.replaceCurrent(
-                configuration = Configuration.Home,
-            )
+            navigation.replaceCurrent(Configuration.Home)
         },
         openRegistrationScreen = {
-            navigation.push(
-                configuration = Configuration.Registration,
-            )
+            navigation.replaceCurrent(Configuration.Registration)
         }
     )
 
