@@ -34,7 +34,7 @@ fun Form(
 ) {
     val scrollState = rememberScrollState()
 
-    val fields = form.toList()
+    val fields = form.fields
 
     val focusRequesters = remember(key1 = fields.size) {
         fields.associate { it.id to FocusRequester() }
