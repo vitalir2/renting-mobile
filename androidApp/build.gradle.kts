@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 plugins {
     id("renting.android.app")
     alias(libs.plugins.detekt)
@@ -21,6 +23,10 @@ android {
         getByName("release") {
             isMinifyEnabled = false
         }
+    }
+    lint {
+        // https://issuetracker.google.com/issues/257072917
+        disable += "RememberReturnType"
     }
 }
 
