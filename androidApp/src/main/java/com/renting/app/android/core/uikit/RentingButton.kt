@@ -1,5 +1,7 @@
 package com.renting.app.android.core.uikit
 
+import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -11,6 +13,9 @@ import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewParameter
@@ -24,6 +29,9 @@ fun RentingButton(
     isLoading: Boolean = false,
     content: @Composable () -> Unit,
 ) {
+    val interactionSource by remember { mutableStateOf(MutableInteractionSource()) }
+    val isPressed by interactionSource.collectIsPressedAsState()
+
     Button(
         onClick = onClick,
         modifier = modifier,
@@ -33,10 +41,20 @@ fun RentingButton(
             horizontal = 16.dp,
             vertical = 12.dp,
         ),
+        elevation = ButtonDefaults.elevation(
+            defaultElevation = 2.dp,
+            pressedElevation = 4.dp,
+        ),
         colors = ButtonDefaults.buttonColors(
+            backgroundColor = if (isPressed) {
+                MaterialTheme.colors.primaryVariant
+            } else {
+                MaterialTheme.colors.primary
+            },
             disabledBackgroundColor = MaterialTheme.colors.primary,
             disabledContentColor = MaterialTheme.colors.onPrimary,
-        )
+        ),
+        interactionSource = interactionSource,
 
     ) {
         if (isLoading) {
