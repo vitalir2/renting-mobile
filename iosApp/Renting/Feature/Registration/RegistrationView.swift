@@ -45,10 +45,17 @@ struct RegistrationView: View {
             Button(
                 action: component.completeRegistration,
                 label: {
-                    Text("Register")
+                    if model.isRegistering {
+                        ProgressView()
+                            .progressViewStyle(CircularProgressViewStyle())
+                            .tint(Color.onPrimary)
+                    } else {
+                        Text("Register")
+                    }
                 }
             )
             .buttonStyle(PrimaryButtonStyle())
+            .disabled(model.isRegistering)
             
             HStack {
                 Text("Already have an account?")
