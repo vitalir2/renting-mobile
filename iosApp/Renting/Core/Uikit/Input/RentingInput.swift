@@ -32,7 +32,7 @@ struct RentingInput: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 0) {
             HStack {
                 leadingIcon
                 field
@@ -49,8 +49,8 @@ struct RentingInput: View {
             if let error = error {
                 Text(error)
                     .foregroundColor(Color.red)
+                    .font(.caption)
                     .padding(.leading, 24)
-                    .offset(y: -4)
             }
         }
     }

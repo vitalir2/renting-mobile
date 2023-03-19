@@ -12,12 +12,16 @@ import shared
 struct RegistrationView: View {
     private let component: RegistrationComponent
     
+    @ObservedObject
+    private var models: ObservableValue<RegistrationComponentModel>
+
     init(_ component: RegistrationComponent) {
         self.component = component
+        self.models = ObservableValue(component.models)
     }
     
     var body: some View {
-        let model = component.models.value
+        let model = models.value
         
         VStack(alignment: .center, spacing: 16) {
             Text("Create New Account")
@@ -27,7 +31,6 @@ struct RegistrationView: View {
             ForEach(model.registrationForm.swiftFields()) { field in
                 FieldView(
                     field,
-                    text: field.value,
                     onChanged: {
                         component.onFieldChanged(id: field.fieldId.toSharedModel(), value: $0)
                     }
@@ -59,13 +62,13 @@ struct RegistrationView: View {
 }
 
 struct FieldView: View {
-    private let field: Field
+    private var field: Field
     @State private var text: String
     private let onChanged: (String) -> Void
     
-    init(_ field: Field, text: String, onChanged: @escaping (String) -> Void) {
+    init(_ field: Field, onChanged: @escaping (String) -> Void) {
         self.field = field
-        self.text = text
+        self.text = field.value
         self.onChanged = onChanged
     }
     
@@ -82,7 +85,7 @@ struct FieldView: View {
             case .email:
                 RentingInput(placeholder, text: $text, error: field.error)
             case .phoneNumber:
-                RentingInput(placeholder, text: $text)
+                RentingInput(placeholder, text: $text, error: field.error)
             }
         }
         .onChange(of: text) { value in
@@ -151,7 +154,7 @@ struct Field: Identifiable {
 
 extension FieldForm {
     func swiftFields() -> [Field] {
-        self.fields.map { sharedField in
+        return self.fields.map { sharedField in
             Field(
                 fieldId: Field.Id(
                     kind: sharedField.id.kind.toSwiftModel(),
@@ -221,7 +224,14 @@ struct RegistrationView_Previews: PreviewProvider {
             RegistrationComponentModel(
                 registrationForm: FieldForm(
                     fields: [
-                        SharedTextField(kind: SharedTextField.Kind.login),
+                        SharedTextField(
+                            id: SharedTextField.Id(
+                                kind: SharedTextField.Kind.login,
+                                index: 0
+                            ),
+                            value: "Hello",
+                            error: "World"
+                        ),
                         SharedTextField(kind: SharedTextField.Kind.password),
                         SharedTextField(kind: SharedTextField.Kind.email),
                         SharedTextField(kind: SharedTextField.Kind.phoneNumber),
