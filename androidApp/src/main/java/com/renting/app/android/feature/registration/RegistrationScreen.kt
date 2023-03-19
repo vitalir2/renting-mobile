@@ -1,9 +1,11 @@
 package com.renting.app.android.feature.registration
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.lazy.LazyListScope
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
@@ -43,63 +45,57 @@ private fun RegistrationScreen(
     onSignInClick: () -> Unit,
     onScrollToErrorCompleted: () -> Unit,
 ) {
-    val scrollToErrorFieldId = model.scrollToErrorFieldId
-    val errorFieldIdScrollTo = if (scrollToErrorFieldId != null && !model.isRegistering) {
-        scrollToErrorFieldId
-    } else {
-        null
-    }
-
-    Form(
-        form = model.registrationForm,
+    Column(
         modifier = Modifier
-            .fillMaxSize(),
-        onFieldChange = onFieldChanged,
-        onScrollCompleted = {
-            onScrollToErrorCompleted()
-        },
-        prependedContent = {
-            item("Title") {
-                RegistrationScreenTitle(
-                    modifier = Modifier
-                        .fillParentMaxWidth(),
-                )
-                Spacer(Modifier.height(16.dp))
-            }
-        },
-        appendedContent = {
-            registerButtonGroup(
-                isButtonLoading = model.isRegistering,
-                onActionButtonClicked = onActionButtonClicked,
-                onSignInClick = onSignInClick,
-            )
-        },
-        scrollToFieldId = errorFieldIdScrollTo,
-    )
+            .fillMaxSize()
+            .padding(16.dp),
+    ) {
+        RegistrationScreenTitle(
+            modifier = Modifier
+                .fillMaxWidth(),
+        )
+        Spacer(Modifier.height(16.dp))
+        Form(
+            form = model.registrationForm,
+            modifier = Modifier
+                .fillMaxWidth(),
+            onFieldChanged = onFieldChanged,
+            onScrollCompleted = {
+                onScrollToErrorCompleted()
+            },
+            scrollToField = model.scrollToErrorFieldId.takeIf {
+                it != null && !model.isRegistering
+            },
+        )
+        RegisterButtonGroup(
+            isButtonLoading = model.isRegistering,
+            onActionButtonClicked = onActionButtonClicked,
+            onSignInClick = onSignInClick,
+        )
+    }
 }
 
-private fun LazyListScope.registerButtonGroup(
+@Composable
+private fun RegisterButtonGroup(
     isButtonLoading: Boolean,
     onActionButtonClicked: () -> Unit,
     onSignInClick: () -> Unit
 ) {
-    item("Action") {
+    Column {
         Spacer(Modifier.height(24.dp))
         RentingButton(
             onClick = onActionButtonClicked,
             modifier = Modifier
-                .fillParentMaxWidth(),
+                .fillMaxWidth(),
             isLoading = isButtonLoading,
         ) {
             Text("Register")
         }
-    }
-    item("LoginInstead") {
         Spacer(Modifier.height(8.dp))
         AlreadyHaveAccount(
             onSignInClick = onSignInClick,
             modifier = Modifier
-                .fillParentMaxWidth(),
+                .fillMaxWidth(),
         )
     }
 }
@@ -111,8 +107,8 @@ private fun RegistrationScreenTitle(
     Text(
         text = "Create New Account",
         modifier = modifier,
-        style = MaterialTheme.typography.h5,
-        fontWeight = FontWeight.SemiBold,
+        style = MaterialTheme.typography.h4,
+        fontWeight = FontWeight.Bold,
         textAlign = TextAlign.Center,
     )
 }
