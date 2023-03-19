@@ -14,7 +14,10 @@ struct RegistrationView: View {
     
     @ObservedObject
     private var models: ObservableValue<RegistrationComponentModel>
-
+    
+    @FocusState
+    private var showError: Field.Id?
+    
     init(_ component: RegistrationComponent) {
         self.component = component
         self.models = ObservableValue(component.models)
@@ -22,7 +25,7 @@ struct RegistrationView: View {
     
     var body: some View {
         let model = models.value
-        
+                
         VStack(alignment: .center, spacing: 12) {
             Text("Create New Account")
                 .font(.title)
@@ -35,6 +38,7 @@ struct RegistrationView: View {
                         component.onFieldChanged(id: field.fieldId.toSharedModel(), value: $0)
                     }
                 )
+                .focused($showError, equals: field.fieldId)
             }
             Spacer()
                 .frame(height: 8)
@@ -58,12 +62,16 @@ struct RegistrationView: View {
             Spacer()
         }
         .padding()
+        .onChange(of: model.scrollToErrorFieldId) { value in
+            showError = value?.toSwiftModel()
+        }
     }
 }
 
 struct FieldView: View {
     private var field: Field
     @State private var text: String
+    
     private let onChanged: (String) -> Void
     
     init(_ field: Field, onChanged: @escaping (String) -> Void) {
@@ -147,11 +155,16 @@ struct Field: Identifiable {
         }
     }
     
-    struct Id: Identifiable {
+    struct Id: Identifiable, Hashable {
         let kind: Kind
         let index: Int32
         
         var id: String { kind.name + String(index) }
+        
+        func hash(into hasher: inout Hasher) {
+            kind.hash(into: &hasher)
+            index.hash(into: &hasher)
+        }
     }
 }
 
@@ -167,6 +180,15 @@ extension FieldForm {
                 error: sharedField.error
             )
         }
+    }
+}
+
+extension SharedTextField.Id {
+    func toSwiftModel() -> Field.Id {
+        return Field.Id(
+            kind: self.kind.toSwiftModel(),
+            index: self.index
+        )
     }
 }
 
