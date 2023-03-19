@@ -26,6 +26,9 @@
 		FAA873C929A7513900D2E202 /* RentingAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA873C829A7513900D2E202 /* RentingAppTests.swift */; };
 		FAA873D629A7545500D2E202 /* RentingAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA873D529A7545500D2E202 /* RentingAppUITests.swift */; };
 		FAA873D829A7545500D2E202 /* RentingAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA873D729A7545500D2E202 /* RentingAppUITestsLaunchTests.swift */; };
+		FAB875F929C71C29007F1378 /* FieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB875F829C71C29007F1378 /* FieldView.swift */; };
+		FAB875FC29C71C54007F1378 /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB875FB29C71C54007F1378 /* Field.swift */; };
+		FAB875FE29C71C6E007F1378 /* FieldMappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB875FD29C71C6E007F1378 /* FieldMappers.swift */; };
 		FADB4F3B29BB9535008AFBD2 /* DefaultEnvironmentConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = FADB4F3A29BB9535008AFBD2 /* DefaultEnvironmentConfig.plist */; };
 		FAE68BEF29BCC14500B71B2D /* ToastData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE68BEE29BCC14500B71B2D /* ToastData.swift */; };
 		FAE68BF129BCC16000B71B2D /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE68BF029BCC16000B71B2D /* ToastView.swift */; };
@@ -91,6 +94,9 @@
 		FAA873D329A7545500D2E202 /* RentingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RentingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA873D529A7545500D2E202 /* RentingAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentingAppUITests.swift; sourceTree = "<group>"; };
 		FAA873D729A7545500D2E202 /* RentingAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentingAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FAB875F829C71C29007F1378 /* FieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldView.swift; sourceTree = "<group>"; };
+		FAB875FB29C71C54007F1378 /* Field.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Field.swift; sourceTree = "<group>"; };
+		FAB875FD29C71C6E007F1378 /* FieldMappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldMappers.swift; sourceTree = "<group>"; };
 		FADB4F3A29BB9535008AFBD2 /* DefaultEnvironmentConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = DefaultEnvironmentConfig.plist; sourceTree = "<group>"; };
 		FAE68BEE29BCC14500B71B2D /* ToastData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastData.swift; sourceTree = "<group>"; };
 		FAE68BF029BCC16000B71B2D /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
@@ -194,6 +200,7 @@
 		FA2B96F429B1B62300563065 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				FAB875FA29C71C42007F1378 /* Form */,
 				FAE68BED29BCC09C00B71B2D /* Uikit */,
 				FA2B96F529B1B62D00563065 /* Brandbook */,
 			);
@@ -252,6 +259,7 @@
 			children = (
 				FA51EFCE29BDE5A200030E7E /* RentingInput.swift */,
 				FAF6382429BF289D00AA8427 /* SecureInput.swift */,
+				FAB875F829C71C29007F1378 /* FieldView.swift */,
 			);
 			path = Input;
 			sourceTree = "<group>";
@@ -289,6 +297,15 @@
 				FAA873D729A7545500D2E202 /* RentingAppUITestsLaunchTests.swift */,
 			);
 			path = RentingUITests;
+			sourceTree = "<group>";
+		};
+		FAB875FA29C71C42007F1378 /* Form */ = {
+			isa = PBXGroup;
+			children = (
+				FAB875FB29C71C54007F1378 /* Field.swift */,
+				FAB875FD29C71C6E007F1378 /* FieldMappers.swift */,
+			);
+			path = Form;
 			sourceTree = "<group>";
 		};
 		FAE68BED29BCC09C00B71B2D /* Uikit */ = {
@@ -524,14 +541,17 @@
 				FA98B2F829AB4863008E1CE4 /* RootView.swift in Sources */,
 				FAE68BEF29BCC14500B71B2D /* ToastData.swift in Sources */,
 				FA51EFCF29BDE5A200030E7E /* RentingInput.swift in Sources */,
+				FAB875F929C71C29007F1378 /* FieldView.swift in Sources */,
 				FA98B2FE29AB4CF7008E1CE4 /* MutableStateBuilder.swift in Sources */,
 				FA98B2FA29AB496C008E1CE4 /* ObservableValue.swift in Sources */,
+				FAB875FC29C71C54007F1378 /* Field.swift in Sources */,
 				FAFEA76829BC825400D62F2E /* HomeView.swift in Sources */,
 				FAE68BF129BCC16000B71B2D /* ToastView.swift in Sources */,
 				FA2B96F729B1B64B00563065 /* PrimaryButtonStyle.swift in Sources */,
 				FA9C189429C37AF500EF8517 /* LoginError.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				FA98B2F629AB420C008E1CE4 /* ComponentHolder.swift in Sources */,
+				FAB875FE29C71C6E007F1378 /* FieldMappers.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 				FAFEA76529BC823B00D62F2E /* RegistrationView.swift in Sources */,
 			);
