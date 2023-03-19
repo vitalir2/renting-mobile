@@ -46,12 +46,11 @@ struct RentingInput: View {
             )
             .overlay(border)
             
-            if let error = error {
-                Text(error)
-                    .foregroundColor(Color.red)
-                    .font(.caption)
-                    .padding(.leading, 24)
-            }
+            Text(error ?? "")
+                .foregroundColor(Color.red)
+                .font(.caption)
+                .padding(.leading, 24)
+                .opacity(error != nil ? 1 : 0)
         }
     }
 
@@ -62,6 +61,7 @@ struct RentingInput: View {
             .foregroundColor(Color.onBackgroundSecondary)
             .font(.body)
             .focused($isEditing)
+            .textInputAutocapitalization(.never)
     }
 
     var border: some View {

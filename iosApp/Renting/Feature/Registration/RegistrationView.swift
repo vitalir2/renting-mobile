@@ -23,7 +23,7 @@ struct RegistrationView: View {
     var body: some View {
         let model = models.value
         
-        VStack(alignment: .center, spacing: 16) {
+        VStack(alignment: .center, spacing: 12) {
             Text("Create New Account")
                 .font(.title)
                 .fontWeight(.bold)
@@ -80,12 +80,15 @@ struct FieldView: View {
             switch kind {
             case .login, .firstName, .lastName:
                 RentingInput(placeholder, text: $text, error: field.error)
+                    .textInputAutocapitalization(.words)
             case .password:
                 SecureInput(placeholder, text: $text, error: field.error)
             case .email:
                 RentingInput(placeholder, text: $text, error: field.error)
+                    .keyboardType(.emailAddress)
             case .phoneNumber:
                 RentingInput(placeholder, text: $text, error: field.error)
+                    .keyboardType(.phonePad)
             }
         }
         .onChange(of: text) { value in

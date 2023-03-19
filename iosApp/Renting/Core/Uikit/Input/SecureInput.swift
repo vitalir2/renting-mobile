@@ -57,12 +57,11 @@ struct SecureInput: View {
             )
             .overlay(border)
             
-            if let error = error {
-                Text(error)
-                    .foregroundColor(Color.red)
-                    .font(.caption)
-                    .padding(.leading, 16)
-            }
+            Text(error ?? "")
+                .foregroundColor(Color.red)
+                .font(.caption)
+                .padding(.leading, 24)
+                .opacity(error != nil ? 1 : 0)
         }
     }
 
