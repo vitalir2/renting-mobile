@@ -13,6 +13,7 @@ struct RentingInput: View {
     @Binding var text: String
     var leadingIcon: Image?
     var trailingIcon: Image?
+    var error: String?
 
     @FocusState private var isEditing: Bool
 
@@ -20,27 +21,38 @@ struct RentingInput: View {
         _ title: String,
         text: Binding<String>,
         leadingIcon: Image? = nil,
-        trailingIcon: Image? = nil
+        trailingIcon: Image? = nil,
+        error: String? = nil
     ) {
         self.title = title
         self._text = text
         self.leadingIcon = leadingIcon
         self.trailingIcon = trailingIcon
+        self.error = error
     }
 
     var body: some View {
-        HStack {
-            leadingIcon
-            field
-            trailingIcon
+        VStack(alignment: .leading) {
+            HStack {
+                leadingIcon
+                field
+                trailingIcon
+            }
+            .padding(.vertical, 6)
+            .padding(.horizontal, 12)
+            .background(
+                RoundedRectangle(cornerRadius: 100)
+                    .fill(Color.backgroundSecondary)
+            )
+            .overlay(border)
+            
+            if let error = error {
+                Text(error)
+                    .foregroundColor(Color.red)
+                    .padding(.leading, 24)
+                    .offset(y: -4)
+            }
         }
-        .padding(.vertical, 6)
-        .padding(.horizontal, 12)
-        .background(
-            RoundedRectangle(cornerRadius: 100)
-                .fill(Color.backgroundSecondary)
-        )
-        .overlay(border)
     }
 
     var field: some View {
@@ -70,7 +82,8 @@ struct RentingInput_Previews: PreviewProvider {
                 set: { _ in }
             ),
             leadingIcon: Image(systemName: "person.circle"),
-            trailingIcon: Image(systemName: "eye")
+            trailingIcon: Image(systemName: "eye"),
+            error: "Error"
         )
     }
 }

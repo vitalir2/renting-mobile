@@ -1,10 +1,19 @@
 package com.renting.app.core.form
 
-data class FieldForm(
+class FieldForm private constructor(
     private val idToField: Map<TextField.Id, TextField>,
+    val fields: List<TextField>,
 ) : Iterable<TextField> {
 
-    constructor(fields: List<TextField>) : this(fields.associateBy(TextField::id))
+    constructor(idToField: Map<TextField.Id, TextField>) : this(
+        idToField = idToField,
+        fields = idToField.values.toList(),
+    )
+
+    constructor(fields: List<TextField>) : this(
+        idToField = fields.associateBy(TextField::id),
+        fields = fields,
+    )
 
     override operator fun iterator(): Iterator<TextField> {
         return idToField.values.iterator()
@@ -32,5 +41,22 @@ data class FieldForm(
         return errors.toList().fold(this) { form, (id, error) ->
             form.updateField(id) { copy(error = error) }
         }
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other == null || this::class != other::class) return false
+
+        other as FieldForm
+
+        if (fields != other.fields) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int = fields.hashCode()
+
+    override fun toString(): String {
+        return "FieldForm(fields=$fields)"
     }
 }
