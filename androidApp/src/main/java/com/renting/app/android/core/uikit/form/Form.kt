@@ -1,13 +1,13 @@
 package com.renting.app.android.core.uikit.form
 
-import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyListScope
-import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -28,40 +28,43 @@ import com.renting.app.core.form.TextField
 fun Form(
     form: FieldForm,
     modifier: Modifier = Modifier,
-    onFieldChange: (id: TextField.Id, value: String) -> Unit,
+    onFieldChanged: (id: TextField.Id, value: String) -> Unit,
     onScrollCompleted: (id: TextField.Id) -> Unit,
-    prependedContent:  (LazyListScope.() -> Unit)? = null,
-    appendedContent:  (LazyListScope.() -> Unit)? = null,
-    scrollToFieldId: TextField.Id? = null,
+    scrollToField: TextField.Id? = null,
 ) {
+    val scrollState = rememberScrollState()
+
     val fields = form.toList()
 
     val focusRequesters = remember(key1 = fields.size) {
         fields.associate { it.id to FocusRequester() }
     }
 
-    scrollToFieldId?.let { fieldId ->
+    val indexes = remember(key1 = fields.size) {
+        fields.withIndex().associate { it.value.id to it.index }
+    }
+
+    scrollToField?.let { fieldId ->
         LaunchedEffect(key1 = fieldId) {
             focusRequesters.getValue(fieldId).requestFocus()
+            scrollState.scrollTo(indexes.getValue(fieldId))
             onScrollCompleted(fieldId)
         }
     }
 
-    LazyColumn(
-        modifier = modifier,
-        contentPadding = PaddingValues(16.dp),
+    Column(
+        modifier = modifier
+            .verticalScroll(scrollState),
     ) {
-        if (prependedContent != null) prependedContent()
-
-        itemsIndexed(fields) { index, field ->
+        for ((index, field) in fields.withIndex()) {
             Spacer(Modifier.height(8.dp))
             val onValueChange = { value: String ->
-                onFieldChange(field.id, value)
+                onFieldChanged(field.id, value)
             }
 
             val focusManager = LocalFocusManager.current
             val fieldModifier = Modifier
-                .fillParentMaxWidth()
+                .fillMaxWidth()
                 .focusRequester(focusRequesters.getValue(field.id))
 
             val isLastField = index == fields.lastIndex
@@ -91,8 +94,6 @@ fun Form(
                 keyboardActions = keyboardActions,
             )
         }
-
-        if (appendedContent != null) appendedContent()
     }
 }
 
@@ -107,9 +108,10 @@ private fun FormPreview() {
                         TextField(TextField.Kind.LOGIN),
                         TextField(TextField.Kind.PASSWORD),
                         TextField(TextField.Kind.EMAIL),
+                        TextField(TextField.Kind.PHONE_NUMBER),
                     )
                 ),
-                onFieldChange = { _, _ -> },
+                onFieldChanged = { _, _ -> },
                 onScrollCompleted = {},
             )
         }
