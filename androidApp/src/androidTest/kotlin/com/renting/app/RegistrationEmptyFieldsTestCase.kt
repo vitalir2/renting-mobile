@@ -5,30 +5,29 @@ import com.renting.app.android.app.MainActivity
 import com.renting.app.core.ComposeTestCase
 import com.renting.app.screen.LoginScreen
 import com.renting.app.screen.RegistrationScreen
-import io.github.kakaocup.compose.node.element.ComposeScreen.Companion.onComposeScreen
 import org.junit.Rule
 import org.junit.Test
 
 class RegistrationEmptyFieldsTestCase : ComposeTestCase() {
 
     @get:Rule
-    val composeTestRule = createAndroidComposeRule<MainActivity>()
+    override val composeTestRule = createAndroidComposeRule<MainActivity>()
 
     @Test
     fun run() = run {
         step("Open Registration screen from the Login") {
-            onComposeScreen<LoginScreen>(composeTestRule) {
+            onComposeScreen<LoginScreen> {
                 openRegistrationScreen()
             }
         }
         step("Click on the action button and await registration response") {
-            onComposeScreen<RegistrationScreen>(composeTestRule) {
+            onComposeScreen<RegistrationScreen> {
                 startRegistration()
                 awaitRegistrationEnd(composeTestRule)
             }
         }
         step("Check that form has any error") {
-            onComposeScreen<RegistrationScreen>(composeTestRule) {
+            onComposeScreen<RegistrationScreen> {
                 formHasAnyError()
             }
         }
