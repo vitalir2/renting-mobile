@@ -16,12 +16,14 @@ fun EmailInput(
     error: String? = null,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default,
+    errorModifier: Modifier = Modifier,
 ) {
     RentingInput(
         value = value,
         modifier = modifier,
         onValueChange = onValueChange,
         error = error,
+        errorModifier = errorModifier,
         placeholder = {
             Text("Email")
         },

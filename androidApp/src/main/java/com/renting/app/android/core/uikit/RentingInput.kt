@@ -35,6 +35,7 @@ fun RentingInput(
     leadingIcon: @Composable (() -> Unit)? = null,
     trailingIcon: @Composable (() -> Unit)? = null,
     error: String? = null,
+    errorModifier: Modifier = Modifier,
     singleLine: Boolean = false,
     visualTransformation: VisualTransformation = VisualTransformation.None,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
@@ -67,7 +68,7 @@ fun RentingInput(
                 text = error,
                 color = MaterialTheme.colors.error,
                 style = MaterialTheme.typography.caption,
-                modifier = Modifier
+                modifier = errorModifier
                     .padding(start = 16.dp),
             )
         }

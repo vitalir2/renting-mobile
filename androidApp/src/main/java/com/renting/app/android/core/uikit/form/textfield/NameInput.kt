@@ -18,6 +18,7 @@ fun NameInput(
     onValueChange: (String) -> Unit,
     placeholder: String,
     error: String? = null,
+    errorModifier: Modifier = Modifier,
     leadingIcon: @Composable (() -> Unit)? = null,
     trailingIcon: @Composable (() -> Unit)? = null,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
@@ -28,6 +29,7 @@ fun NameInput(
         modifier = modifier,
         onValueChange = onValueChange,
         error = error,
+        errorModifier = errorModifier,
         placeholder = {
             Text(placeholder)
         },

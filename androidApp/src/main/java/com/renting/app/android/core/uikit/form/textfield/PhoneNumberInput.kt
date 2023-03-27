@@ -14,6 +14,7 @@ fun PhoneNumberInput(
     modifier: Modifier = Modifier,
     onValueChange: (value: String) -> Unit,
     error: String? = null,
+    errorModifier: Modifier = Modifier,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default,
 ) {
@@ -22,6 +23,7 @@ fun PhoneNumberInput(
         modifier = modifier,
         onValueChange = onValueChange,
         error = error,
+        errorModifier = errorModifier,
         placeholder = {
             Text("Phone number")
         },

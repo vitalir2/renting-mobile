@@ -30,6 +30,7 @@ internal fun PasswordInput(
     modifier: Modifier = Modifier,
     onInputChanged: (String) -> Unit,
     error: String?,
+    errorModifier: Modifier = Modifier,
     leadingIcon: @Composable (() -> Unit)? = null,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default,
@@ -70,6 +71,7 @@ internal fun PasswordInput(
         ),
         keyboardActions = keyboardActions,
         error = error,
+        errorModifier = errorModifier,
     )
 }
 

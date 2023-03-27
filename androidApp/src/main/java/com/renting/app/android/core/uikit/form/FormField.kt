@@ -15,6 +15,7 @@ fun FormField(
     field: TextField,
     modifier: Modifier = Modifier,
     onValueChange: (String) -> Unit,
+    errorModifier: Modifier = Modifier,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default,
 ) {
@@ -27,6 +28,7 @@ fun FormField(
             modifier = modifier,
             onValueChange = onValueChange,
             error = field.error,
+            errorModifier = errorModifier,
             placeholder = kind.namePlaceholder,
             keyboardOptions = keyboardOptions,
             keyboardActions = keyboardActions,
@@ -36,6 +38,7 @@ fun FormField(
             modifier = modifier,
             onInputChanged = onValueChange,
             error = field.error,
+            errorModifier = errorModifier,
             keyboardOptions = keyboardOptions,
             keyboardActions = keyboardActions,
         )
@@ -44,6 +47,7 @@ fun FormField(
             modifier = modifier,
             onValueChange = onValueChange,
             error = field.error,
+            errorModifier = errorModifier,
             keyboardOptions = keyboardOptions,
             keyboardActions = keyboardActions,
         )
@@ -52,11 +56,28 @@ fun FormField(
             modifier = modifier,
             onValueChange = onValueChange,
             error = field.error,
+            errorModifier = errorModifier,
             keyboardOptions = keyboardOptions,
             keyboardActions = keyboardActions,
         )
     }
 }
+
+val TextField.testTag: String
+    get() {
+        val kind = when (id.kind) {
+            TextField.Kind.LOGIN -> "login"
+            TextField.Kind.PASSWORD -> "password"
+            TextField.Kind.EMAIL -> "email"
+            TextField.Kind.PHONE_NUMBER -> "phoneNumber"
+            TextField.Kind.FIRST_NAME -> "firstName"
+            TextField.Kind.LAST_NAME -> "lastName"
+        }
+        return "${kind}_${id.index}"
+    }
+
+val TextField.errorTestTag: String
+    get() = "${testTag}_error"
 
 private val TextField.Kind.namePlaceholder: String
     get() = when (this) {
