@@ -4,6 +4,7 @@ import com.renting.app.core.auth.di.AuthGraph
 import com.renting.app.core.auth.di.DefaultAuthGraph
 import com.renting.app.core.coroutines.createIODispatcher
 import com.renting.app.core.network.createHttpClient
+import com.renting.app.core.settings.SettingKey
 import com.renting.app.core.settings.SettingsFactory
 import com.renting.app.core.utils.Environment
 import com.renting.app.feature.home.DefaultHomeGraph
@@ -15,13 +16,22 @@ import com.renting.app.feature.registration.di.RegistrationGraph
 import com.russhwolf.settings.ObservableSettings
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
+import io.ktor.client.request.*
+import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
+import io.ktor.util.*
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
 
 class DefaultRootGraph(
     private val settingsFactory: SettingsFactory,
 ) : RootGraph {
+
+    private val ioDispatcher = createIODispatcher()
+
+    private val settings: ObservableSettings by lazy {
+        settingsFactory.create()
+    }
 
     @OptIn(ExperimentalSerializationApi::class)
     private val httpClient = createHttpClient().config {
@@ -33,13 +43,10 @@ class DefaultRootGraph(
         }
         defaultRequest {
             url(Environment.PRODUCTION_NETWORK_HOST)
+            headers {
+                bearerAuth(settings.getStringOrNull(SettingKey.AUTH_TOKEN).orEmpty())
+            }
         }
-    }
-
-    private val ioDispatcher = createIODispatcher()
-
-    private val settings: ObservableSettings by lazy {
-        settingsFactory.create()
     }
 
     override val authGraph: AuthGraph = DefaultAuthGraph(
