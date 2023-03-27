@@ -17,6 +17,7 @@ import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -66,6 +67,10 @@ fun Form(
             val fieldModifier = Modifier
                 .fillMaxWidth()
                 .focusRequester(focusRequesters.getValue(field.id))
+                .testTag(field.testTag)
+
+            val errorModifier = Modifier
+                .testTag(field.errorTestTag)
 
             val isLastField = index == fields.lastIndex
             val keyboardOptions = if (isLastField) {
@@ -90,6 +95,7 @@ fun Form(
                 field = field,
                 modifier = fieldModifier,
                 onValueChange = onValueChange,
+                errorModifier = errorModifier,
                 keyboardOptions = keyboardOptions,
                 keyboardActions = keyboardActions,
             )

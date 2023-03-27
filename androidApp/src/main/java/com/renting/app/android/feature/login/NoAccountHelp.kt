@@ -5,6 +5,8 @@ import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.ExperimentalTextApi
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -14,8 +16,6 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import com.renting.app.android.core.brandbook.RentingTheme
 
-private const val SIGN_UP_TAG = "SIGNUP"
-
 @OptIn(ExperimentalTextApi::class)
 @Composable
 internal fun NoAccountHelp(
@@ -24,7 +24,7 @@ internal fun NoAccountHelp(
     val primaryColor = MaterialTheme.colors.primary
     val signUpText = buildAnnotatedString {
         append("Don't have an account? ")
-        withAnnotation(tag = SIGN_UP_TAG, annotation = "") {
+        withAnnotation(tag = LoginScreenTags.SIGN_UP_SPAN_TAG, annotation = "") {
             withStyle(
                 SpanStyle(
                     color = primaryColor,
@@ -38,13 +38,15 @@ internal fun NoAccountHelp(
 
     ClickableText(
         text = signUpText,
+        modifier = Modifier
+            .testTag(LoginScreenTags.SIGN_UP_TEXT),
         style = MaterialTheme.typography.body1.copy(
             color = MaterialTheme.colors.onBackground,
         ),
         onClick = { offset ->
-            signUpText.getStringAnnotations(SIGN_UP_TAG, offset, offset)
-                .firstOrNull()
-                ?.let { onSignUpClick() }
+            signUpText.getStringAnnotations(
+                LoginScreenTags.SIGN_UP_SPAN_TAG, offset, offset
+            ).firstOrNull()?.let { onSignUpClick() }
         },
     )
 }
