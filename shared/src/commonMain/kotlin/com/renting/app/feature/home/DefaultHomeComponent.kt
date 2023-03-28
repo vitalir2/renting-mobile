@@ -18,6 +18,7 @@ internal class DefaultHomeComponent(
             HomeStoreFactory(
                 storeFactory = storeFactory,
                 authRepository = authRepository,
+                userRepository = userRepository,
             ).create()
         }
 
