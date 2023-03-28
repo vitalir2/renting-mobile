@@ -39,6 +39,15 @@ struct HomeView_Previews: PreviewProvider {
     }
 
     class StubComponent: HomeComponent {
+        var models: Value<HomeComponentModel> = valueOf(
+            HomeComponentModel(
+                userInfo: UserInfo(
+                    login: "Login",
+                    imageUrl: "Image url"
+                )
+            )
+        )
+        
         func logout() {
         }
     }
