@@ -29,12 +29,18 @@ internal class DefaultRecommendationRepository(
         }
         if (result.status.isSuccess()) {
             val recommendationsResponse = result.body<List<NetworkRecommendation>>()
-            recommendationsResponse.map(NetworkRecommendation::toDomainModel).right()
+            recommendationsResponse
+                .take(RECOMMENDATION_SNIPPETS_COUNT)
+                .map(NetworkRecommendation::toDomainModel).right()
         } else {
             val errorBody = result.body<CommonErrorResponse>()
             DefaultLogger.log(errorBody.message)
             Exception(errorBody.message).left()
         }
+    }
+
+    companion object {
+        private const val RECOMMENDATION_SNIPPETS_COUNT = 20
     }
 }
 
