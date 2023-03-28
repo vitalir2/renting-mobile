@@ -44,7 +44,9 @@ class DefaultRootGraph(
         defaultRequest {
             url(Environment.PRODUCTION_NETWORK_HOST)
             headers {
-                bearerAuth(settings.getStringOrNull(SettingKey.AUTH_TOKEN).orEmpty())
+                settings.getStringOrNull(SettingKey.AUTH_TOKEN)?.let { token ->
+                    bearerAuth(token)
+                }
             }
         }
     }
