@@ -1,9 +1,12 @@
 package com.renting.app.feature.home
 
 import com.arkivanov.decompose.ComponentContext
+import com.arkivanov.decompose.value.Value
+import com.arkivanov.decompose.value.operator.map
 import com.arkivanov.mvikotlin.core.instancekeeper.getStore
 import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.arkivanov.mvikotlin.extensions.coroutines.labels
+import com.renting.app.core.utils.stateAsValue
 import kotlinx.coroutines.launch
 
 internal class DefaultHomeComponent(
@@ -31,6 +34,9 @@ internal class DefaultHomeComponent(
             }
         }
     }
+
+    override val models: Value<HomeComponent.Model> = store.stateAsValue()
+        .map(HomeStoreMappers.stateToModel)
 
     override fun logout() {
         store.accept(HomeStore.Intent.Logout)
