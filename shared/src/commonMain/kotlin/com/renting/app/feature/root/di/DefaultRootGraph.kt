@@ -11,6 +11,8 @@ import com.renting.app.feature.home.DefaultHomeGraph
 import com.renting.app.feature.home.HomeGraph
 import com.renting.app.feature.login.di.DefaultLoginGraph
 import com.renting.app.feature.login.di.LoginGraph
+import com.renting.app.feature.recommendation.DefaultRecommendationGraph
+import com.renting.app.feature.recommendation.RecommendationGraph
 import com.renting.app.feature.registration.di.DefaultRegistrationGraph
 import com.renting.app.feature.registration.di.RegistrationGraph
 import com.russhwolf.settings.ObservableSettings
@@ -70,4 +72,9 @@ class DefaultRootGraph(
         get() = DefaultHomeGraph(
             authGraph = authGraph,
         )
+
+    override val recommendationGraph: RecommendationGraph = DefaultRecommendationGraph(
+        httpClient = httpClient,
+        ioDispatcher = ioDispatcher,
+    )
 }
