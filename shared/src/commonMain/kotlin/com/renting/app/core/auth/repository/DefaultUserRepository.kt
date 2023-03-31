@@ -27,6 +27,8 @@ internal class DefaultUserRepository(
             val userResponse = response.body<UserResponse>()
             UserInfo(
                 login = userResponse.login,
+                firstName = userResponse.firstName,
+                lastName = userResponse.lastName,
                 imageUrl = "${Environment.PRODUCTION_NETWORK_HOST}${userResponse.imagePathWithoutHost}",
             ).right()
         } else {
@@ -40,6 +42,10 @@ internal class DefaultUserRepository(
 private class UserResponse(
     @SerialName("username")
     val login: String,
+    @SerialName("firstName")
+    val firstName: String,
+    @SerialName("lastName")
+    val lastName: String,
     @SerialName("imagePath")
     val imagePathWithoutHost: String,
 )
