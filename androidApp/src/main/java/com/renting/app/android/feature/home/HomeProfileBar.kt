@@ -66,6 +66,8 @@ fun HomeProfileBarPreview() {
         HomeProfileBar(
             userInfo = UserInfo(
                 login = "login",
+                firstName = "Jenny",
+                lastName = "Kerry",
                 imageUrl = imageUrl,
             ),
         )
