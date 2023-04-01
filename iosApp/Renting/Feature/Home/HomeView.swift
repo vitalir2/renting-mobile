@@ -11,14 +11,25 @@ import shared
 
 struct HomeView: View {
     private let component: HomeComponent
+    
+    @ObservedObject
+    private var models: ObservableValue<HomeComponentModel>
 
     init(_ component: HomeComponent) {
         self.component = component
+        self.models = ObservableValue(component.models)
     }
 
     var body: some View {
+        let model = models.value
+        
         VStack {
-            Text("Home screen!")
+            if let userInfo = model.userInfo {
+                HomeToolbarView(userInfo: userInfo)
+            } else {
+                Text("Loading")
+            }
+            Spacer()
             Button(
                 action: {
                     component.logout()
