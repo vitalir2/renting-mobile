@@ -56,7 +56,7 @@ struct HomeView_Previews: PreviewProvider {
                     login: "Login",
                     firstName: "Jenny",
                     lastName: "Keddy",
-                    imageUrl: "Image url"
+                    avatar: SharedImageUrl(path: "Image url")
                 )
             )
         )
