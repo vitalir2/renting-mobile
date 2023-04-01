@@ -1,5 +1,6 @@
 package com.renting.app.core.auth.repository
 
+import com.arkivanov.mvikotlin.logging.logger.DefaultLogger
 import com.renting.app.core.auth.model.UserInfo
 import com.renting.app.core.monad.Either
 import com.renting.app.core.monad.left
@@ -33,7 +34,9 @@ internal class DefaultUserRepository(
             ).right()
         } else {
             val errorResponse = response.body<UserErrorResponse>()
-            Exception(errorResponse.message).left()
+            val errorMessage = errorResponse.message
+            DefaultLogger.log(errorMessage)
+            Exception(errorMessage).left()
         }
     }
 }
