@@ -42,10 +42,13 @@ fun PropertySnippetCard(
                 color = MaterialTheme.colors.surface,
                 shape = RoundedCornerShape(16.dp),
             )
-            .padding(16.dp)
-            .clickable { onClick() },
+            .clickable { onClick() }
+            .padding(16.dp),
     ) {
-        Column {
+        Column(
+            modifier = Modifier
+                .background(MaterialTheme.colors.surface),
+        ) {
             val imageModifier = Modifier
                 .fillMaxWidth()
                 .aspectRatio(1f, matchHeightConstraintsFirst = true)
@@ -62,6 +65,13 @@ fun PropertySnippetCard(
                     image = snippet.image,
                     contentDescription = "Property $snippet", // TODO make content description better
                     modifier = imageModifier,
+                    error = {
+                        // TODO replace by real placeholder
+                        Image(
+                            painter = painterResource(id = R.drawable.renting_logo_full),
+                            contentDescription = null,
+                        )
+                    },
                 )
             }
             Gap(8.dp)
@@ -85,7 +95,7 @@ fun PropertySnippetCard(
 
 @Preview
 @Composable
-fun PropertySnippetCardPreview() {
+private fun PropertySnippetCardPreview() {
     RentingPreviewContainer {
         Box(modifier = Modifier
             .fillMaxSize(0.85f)

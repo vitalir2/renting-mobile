@@ -23,7 +23,7 @@ fun RootScreen(
 ) {
     Surface(
         modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colors.background
+        color = MaterialTheme.colors.background,
     ) {
         val stack = component.childStack.subscribeAsState()
         RootNavigation(stack)
