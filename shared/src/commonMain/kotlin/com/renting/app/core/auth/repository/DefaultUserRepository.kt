@@ -2,10 +2,10 @@ package com.renting.app.core.auth.repository
 
 import com.arkivanov.mvikotlin.logging.logger.DefaultLogger
 import com.renting.app.core.auth.model.UserInfo
+import com.renting.app.core.model.Image
 import com.renting.app.core.monad.Either
 import com.renting.app.core.monad.left
 import com.renting.app.core.monad.right
-import com.renting.app.core.utils.Environment
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
@@ -30,7 +30,7 @@ internal class DefaultUserRepository(
                 login = userResponse.login,
                 firstName = userResponse.firstName,
                 lastName = userResponse.lastName,
-                imageUrl = "${Environment.PRODUCTION_NETWORK_HOST}${userResponse.imagePathWithoutHost}",
+                avatar = Image.Url(userResponse.imagePathWithoutHost),
             ).right()
         } else {
             val errorResponse = response.body<UserErrorResponse>()

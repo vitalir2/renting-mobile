@@ -1,5 +1,4 @@
 import com.android.build.api.dsl.LibraryDefaultConfig
-import java.io.InputStream
 import java.util.*
 
 plugins {
@@ -117,6 +116,10 @@ android {
         addBuildConfigProperty<String>(
             name = "PRODUCTION_NETWORK_HOST",
             value = androidLocalProps.getProperty("renting.production.network.host"),
+        )
+        addBuildConfigProperty<String>(
+            name = "PRODUCTION_IMAGE_HOST",
+            value = androidLocalProps.getProperty("renting.production.image.host"),
         )
     }
 }

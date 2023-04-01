@@ -26,6 +26,7 @@
 		FAA873C929A7513900D2E202 /* RentingAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA873C829A7513900D2E202 /* RentingAppTests.swift */; };
 		FAA873D629A7545500D2E202 /* RentingAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA873D529A7545500D2E202 /* RentingAppUITests.swift */; };
 		FAA873D829A7545500D2E202 /* RentingAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA873D729A7545500D2E202 /* RentingAppUITestsLaunchTests.swift */; };
+		FAAC6DCD29D8794700BCE652 /* RentingImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAAC6DCC29D8794700BCE652 /* RentingImage.swift */; };
 		FAB875F929C71C29007F1378 /* FieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB875F829C71C29007F1378 /* FieldView.swift */; };
 		FAB875FC29C71C54007F1378 /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB875FB29C71C54007F1378 /* Field.swift */; };
 		FAB875FE29C71C6E007F1378 /* FieldMappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB875FD29C71C6E007F1378 /* FieldMappers.swift */; };
@@ -95,6 +96,7 @@
 		FAA873D329A7545500D2E202 /* RentingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RentingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA873D529A7545500D2E202 /* RentingAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentingAppUITests.swift; sourceTree = "<group>"; };
 		FAA873D729A7545500D2E202 /* RentingAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentingAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		FAAC6DCC29D8794700BCE652 /* RentingImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentingImage.swift; sourceTree = "<group>"; };
 		FAB875F829C71C29007F1378 /* FieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldView.swift; sourceTree = "<group>"; };
 		FAB875FB29C71C54007F1378 /* Field.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Field.swift; sourceTree = "<group>"; };
 		FAB875FD29C71C6E007F1378 /* FieldMappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldMappers.swift; sourceTree = "<group>"; };
@@ -315,6 +317,7 @@
 			children = (
 				FA51EFCD29BDE59300030E7E /* Input */,
 				FA92E1AA29BCFE78005592AF /* Toast */,
+				FAAC6DCC29D8794700BCE652 /* RentingImage.swift */,
 			);
 			path = Uikit;
 			sourceTree = "<group>";
@@ -544,6 +547,7 @@
 				FA98B2F829AB4863008E1CE4 /* RootView.swift in Sources */,
 				FAE68BEF29BCC14500B71B2D /* ToastData.swift in Sources */,
 				FA51EFCF29BDE5A200030E7E /* RentingInput.swift in Sources */,
+				FAAC6DCD29D8794700BCE652 /* RentingImage.swift in Sources */,
 				FAD2733B29D830DC008D045B /* HomeToolbarView.swift in Sources */,
 				FAB875F929C71C29007F1378 /* FieldView.swift in Sources */,
 				FA98B2FE29AB4CF7008E1CE4 /* MutableStateBuilder.swift in Sources */,

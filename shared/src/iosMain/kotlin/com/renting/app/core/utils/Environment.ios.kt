@@ -19,6 +19,10 @@ actual object Environment {
         config["PRODUCTION_NETWORK_HOST"] as String
     }
 
+    actual val PRODUCTION_IMAGE_HOST: String by lazy {
+        config["PRODUCTION_IMAGE_HOST"] as String
+    }
+
     private fun getConfigPath(name: String): String? {
         return NSBundle.mainBundle.pathForResource(name, ofType = "plist")
     }

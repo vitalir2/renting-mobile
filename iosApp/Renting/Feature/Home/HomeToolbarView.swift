@@ -14,7 +14,7 @@ struct HomeToolbarView: View {
     
     var body: some View {
         HStack {
-            AsyncImage(url: URL(string: userInfo.imageUrl)) { phase in
+            RentingImage(image: userInfo.avatar) { phase in
                 if let image = phase.image {
                     image.resizable()
                         .clipShape(Circle())
@@ -60,7 +60,7 @@ struct HomeToolbarView_Previews: PreviewProvider {
                 login: "Login",
                 firstName: "Kenny",
                 lastName: "Jeddy",
-                imageUrl: "something"
+                avatar: SharedImageUrl(path: "something")
             )
         )
     }
