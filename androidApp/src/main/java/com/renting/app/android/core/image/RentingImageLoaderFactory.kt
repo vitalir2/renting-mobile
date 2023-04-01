@@ -6,14 +6,10 @@ import coil.ImageLoaderFactory
 
 class RentingImageLoaderFactory(
     private val context: Context,
-    private val getAuthToken: () -> String?,
 ) : ImageLoaderFactory {
 
     override fun newImageLoader(): ImageLoader {
         return ImageLoader.Builder(context)
-            .components {
-                add(AuthImageInterceptor(getAuthToken))
-            }
             .build()
     }
 }
