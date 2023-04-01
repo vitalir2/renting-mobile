@@ -29,6 +29,7 @@
 		FAB875F929C71C29007F1378 /* FieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB875F829C71C29007F1378 /* FieldView.swift */; };
 		FAB875FC29C71C54007F1378 /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB875FB29C71C54007F1378 /* Field.swift */; };
 		FAB875FE29C71C6E007F1378 /* FieldMappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB875FD29C71C6E007F1378 /* FieldMappers.swift */; };
+		FAD2733B29D830DC008D045B /* HomeToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD2733A29D830DC008D045B /* HomeToolbarView.swift */; };
 		FADB4F3B29BB9535008AFBD2 /* DefaultEnvironmentConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = FADB4F3A29BB9535008AFBD2 /* DefaultEnvironmentConfig.plist */; };
 		FAE68BEF29BCC14500B71B2D /* ToastData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE68BEE29BCC14500B71B2D /* ToastData.swift */; };
 		FAE68BF129BCC16000B71B2D /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE68BF029BCC16000B71B2D /* ToastView.swift */; };
@@ -97,6 +98,7 @@
 		FAB875F829C71C29007F1378 /* FieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldView.swift; sourceTree = "<group>"; };
 		FAB875FB29C71C54007F1378 /* Field.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Field.swift; sourceTree = "<group>"; };
 		FAB875FD29C71C6E007F1378 /* FieldMappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldMappers.swift; sourceTree = "<group>"; };
+		FAD2733A29D830DC008D045B /* HomeToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeToolbarView.swift; sourceTree = "<group>"; };
 		FADB4F3A29BB9535008AFBD2 /* DefaultEnvironmentConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = DefaultEnvironmentConfig.plist; sourceTree = "<group>"; };
 		FAE68BEE29BCC14500B71B2D /* ToastData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastData.swift; sourceTree = "<group>"; };
 		FAE68BF029BCC16000B71B2D /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				FAFEA76729BC825400D62F2E /* HomeView.swift */,
+				FAD2733A29D830DC008D045B /* HomeToolbarView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -541,6 +544,7 @@
 				FA98B2F829AB4863008E1CE4 /* RootView.swift in Sources */,
 				FAE68BEF29BCC14500B71B2D /* ToastData.swift in Sources */,
 				FA51EFCF29BDE5A200030E7E /* RentingInput.swift in Sources */,
+				FAD2733B29D830DC008D045B /* HomeToolbarView.swift in Sources */,
 				FAB875F929C71C29007F1378 /* FieldView.swift in Sources */,
 				FA98B2FE29AB4CF7008E1CE4 /* MutableStateBuilder.swift in Sources */,
 				FA98B2FA29AB496C008E1CE4 /* ObservableValue.swift in Sources */,
