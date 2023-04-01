@@ -14,19 +14,18 @@ internal class DefaultHomeComponent(
     componentContext: ComponentContext,
     homeGraph: HomeGraph,
     onLoggedOutSuccessfully: () -> Unit,
-) : HomeComponent, ComponentContext by componentContext, HomeGraph by homeGraph {
+) : HomeComponent, ComponentContext by componentContext {
 
     private val store =
         instanceKeeper.getStore {
             HomeStoreFactory(
                 storeFactory = storeFactory,
-                authRepository = authRepository,
-                userRepository = userRepository,
+                homeGraph = homeGraph,
             ).create()
         }
 
     init {
-        coroutineScope.launch {
+        homeGraph.coroutineScope.launch {
             store.labels.collect { label ->
                 when (label) {
                     is HomeStore.Label.LoggedOutSuccessfully -> onLoggedOutSuccessfully()

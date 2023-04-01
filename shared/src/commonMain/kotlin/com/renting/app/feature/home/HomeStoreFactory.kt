@@ -16,9 +16,8 @@ import kotlinx.coroutines.launch
 
 internal class HomeStoreFactory(
     private val storeFactory: StoreFactory,
-    private val authRepository: AuthRepository,
-    private val userRepository: UserRepository,
-) {
+    homeGraph: HomeGraph,
+) : HomeGraph by homeGraph {
 
     fun create(): HomeStore =
         object : HomeStore,
