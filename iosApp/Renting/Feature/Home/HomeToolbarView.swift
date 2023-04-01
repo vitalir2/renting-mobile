@@ -14,11 +14,30 @@ struct HomeToolbarView: View {
     
     var body: some View {
         HStack {
-            Image(systemName: "circle")
-                .resizable()
-                .frame(width: 40, height: 40)
+            AsyncImage(url: URL(string: userInfo.imageUrl)) { phase in
+                if let image = phase.image {
+                    image.resizable()
+                        .clipShape(Circle())
+                } else if phase.error != nil {
+                    ZStack(alignment: .center) {
+                        Circle().foregroundColor(Color.appPrimary)
+                        if let firstNameCapitalizedChar = userInfo.firstName.first?.uppercased(),
+                           let lastNameCapitalizedChar = userInfo.lastName.first?.uppercased() {
+                            let placeholderText = "\(firstNameCapitalizedChar)\(lastNameCapitalizedChar)"
+                            Text(placeholderText)
+                                .foregroundColor(Color.onPrimary)
+                                .font(.body)
+                        }
+                    }
+                } else {
+                    ProgressView()
+                }
+            }
+            .frame(width: 40, height: 40)
+            
             Spacer()
                 .frame(width: 16)
+            
             VStack(alignment: .leading) {
                 Text("Hello 👋")
                     .font(.body)
