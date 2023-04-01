@@ -43,6 +43,8 @@ struct HomeView_Previews: PreviewProvider {
             HomeComponentModel(
                 userInfo: UserInfo(
                     login: "Login",
+                    firstName: "Jenny",
+                    lastName: "Keddy",
                     imageUrl: "Image url"
                 )
             )
