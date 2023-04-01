@@ -47,7 +47,7 @@ class DefaultRootGraph(
             url(Environment.PRODUCTION_NETWORK_HOST)
             headers {
                 settings.getStringOrNull(SettingKey.AUTH_TOKEN)?.let { token ->
-                    bearerAuth(token)
+                    append(HttpHeaders.Authorization, token)
                 }
             }
         }
