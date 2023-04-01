@@ -58,6 +58,7 @@ private fun HomeScreenPreview() {
         HomeScreen(
             model = HomeComponent.Model(
                 userInfo = UserInfo.previewData,
+                recommendations = emptyList(),
             ),
             onButtonClick = {},
         )

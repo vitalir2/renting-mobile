@@ -14,6 +14,7 @@ internal class DefaultHomeComponent(
     componentContext: ComponentContext,
     homeGraph: HomeGraph,
     onLoggedOutSuccessfully: () -> Unit,
+    private val openRecommendation: (id: Long) -> Unit,
 ) : HomeComponent, ComponentContext by componentContext {
 
     private val store =
@@ -36,6 +37,10 @@ internal class DefaultHomeComponent(
 
     override val models: Value<HomeComponent.Model> = store.stateAsValue()
         .map(HomeStoreMappers.stateToModel)
+
+    override fun onRecommendationClicked(id: Long) {
+        openRecommendation(id)
+    }
 
     override fun logout() {
         store.accept(HomeStore.Intent.Logout)
