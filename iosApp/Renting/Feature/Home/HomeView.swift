@@ -57,9 +57,13 @@ struct HomeView_Previews: PreviewProvider {
                     firstName: "Jenny",
                     lastName: "Keddy",
                     avatar: SharedImageUrl(path: "Image url")
-                )
+                ),
+                recommendations: []
             )
         )
+        
+        func onRecommendationClicked(id: Int64) {
+        }
         
         func logout() {
         }

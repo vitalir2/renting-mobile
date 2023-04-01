@@ -5,6 +5,7 @@ internal object HomeStoreMappers {
     val stateToModel: HomeStore.State.() -> HomeComponent.Model = {
         HomeComponent.Model(
             userInfo = userInfo,
+            recommendations = recommendations,
         )
     }
 }

@@ -4,6 +4,7 @@ import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.router.stack.StackNavigation
 import com.arkivanov.decompose.router.stack.childStack
+import com.arkivanov.decompose.router.stack.push
 import com.arkivanov.decompose.router.stack.replaceCurrent
 import com.arkivanov.decompose.value.Value
 import com.arkivanov.essenty.parcelable.Parcelable
@@ -13,6 +14,8 @@ import com.renting.app.feature.home.DefaultHomeComponent
 import com.renting.app.feature.home.HomeComponent
 import com.renting.app.feature.login.component.DefaultLoginComponent
 import com.renting.app.feature.login.component.LoginComponent
+import com.renting.app.feature.property.details.DefaultPropertyDetailsComponent
+import com.renting.app.feature.property.details.PropertyDetailsComponent
 import com.renting.app.feature.registration.component.DefaultRegistrationComponent
 import com.renting.app.feature.registration.component.RegistrationComponent
 import com.renting.app.feature.root.component.RootComponent.Child
@@ -51,6 +54,17 @@ class DefaultRootComponent(
         is Configuration.Registration -> Child.Registration(
             createRegistrationComponent(componentContext)
         )
+        is Configuration.PropertyDetails -> Child.PropertyDetails(
+            createPropertyDetailsComponent(componentContext)
+        )
+    }
+
+    private fun createPropertyDetailsComponent(
+        componentContext: ComponentContext,
+    ): PropertyDetailsComponent {
+        return DefaultPropertyDetailsComponent(
+            componentContext = componentContext,
+        )
     }
 
     private fun createRegistrationComponent(componentContext: ComponentContext): RegistrationComponent {
@@ -77,6 +91,9 @@ class DefaultRootComponent(
                     configuration = Configuration.Login,
                 )
             },
+            openRecommendation = { id ->
+                navigation.push(Configuration.PropertyDetails(id))
+            },
         )
     }
 
@@ -95,6 +112,9 @@ class DefaultRootComponent(
     )
 
     private sealed class Configuration : Parcelable {
+        @Parcelize
+        data class PropertyDetails(val propertyId: Long) : Configuration()
+
         @Parcelize
         object Login : Configuration()
 
