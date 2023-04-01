@@ -7,10 +7,8 @@ import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.defaultComponentContext
 import com.arkivanov.mvikotlin.main.store.DefaultStoreFactory
 import com.renting.app.android.core.brandbook.RentingTheme
-import com.renting.app.core.settings.SettingsFactory
 import com.renting.app.feature.root.component.DefaultRootComponent
 import com.renting.app.feature.root.component.RootComponent
-import com.renting.app.feature.root.di.DefaultRootGraph
 
 class MainActivity : ComponentActivity() {
 
@@ -31,8 +29,6 @@ class MainActivity : ComponentActivity() {
     ): RootComponent = DefaultRootComponent(
         componentContext = componentContext,
         storeFactory = DefaultStoreFactory(),
-        rootGraph = DefaultRootGraph(
-            settingsFactory = SettingsFactory(applicationContext),
-        ),
+        rootGraph = AppGraph.rootGraph,
     )
 }

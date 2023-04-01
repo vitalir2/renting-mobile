@@ -1,5 +1,6 @@
 package com.renting.app.android.feature.home
 
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -15,10 +16,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.SubcomposeAsyncImage
+import coil.imageLoader
 import com.renting.app.android.core.uikit.RentingPreviewContainer
 import com.renting.app.android.feature.auth.previewData
 import com.renting.app.core.auth.model.UserInfo
@@ -34,6 +37,7 @@ fun HomeProfileBar(userInfo: UserInfo?) {
         ) {
             SubcomposeAsyncImage(
                 model = userInfo.imageUrl,
+                imageLoader = LocalContext.current.imageLoader,
                 modifier = Modifier
                     .size(40.dp)
                     .clip(CircleShape),
@@ -41,6 +45,7 @@ fun HomeProfileBar(userInfo: UserInfo?) {
                     CircularProgressIndicator()
                 },
                 error = {
+                    Log.e("HOME", "Error=${it.result.throwable}")
                     AvatarPlaceholder(userInfo)
                 },
                 contentDescription = "User avatar",
@@ -55,7 +60,7 @@ fun HomeProfileBar(userInfo: UserInfo?) {
                 )
                 Text(
                     text = userInfo.fullName,
-                    style = MaterialTheme.typography.h6,
+                    style = MaterialTheme.typography.subtitle1,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colors.onBackground,
                 )
