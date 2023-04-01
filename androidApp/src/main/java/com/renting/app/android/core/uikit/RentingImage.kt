@@ -17,7 +17,7 @@ import com.renting.app.core.model.Image
 
 @Composable
 fun RentingImage(
-    image: Image,
+    image: Image?,
     contentDescription: String?,
     modifier: Modifier = Modifier,
     loading: @Composable (SubcomposeAsyncImageScope.(AsyncImagePainter.State.Loading) -> Unit)? = null,
@@ -29,20 +29,24 @@ fun RentingImage(
     colorFilter: ColorFilter? = null,
     filterQuality: FilterQuality = DrawScope.DefaultFilterQuality,
 ) {
-    when (image) {
-        is Image.Url -> SubcomposeAsyncImage(
-            model = image.fullUrl,
-            contentDescription = contentDescription,
-            imageLoader = LocalContext.current.imageLoader,
-            modifier = modifier,
-            loading = loading,
-            success = success,
-            error = error,
-            alignment = alignment,
-            contentScale = contentScale,
-            alpha = alpha,
-            colorFilter = colorFilter,
-            filterQuality = filterQuality,
-        )
+    check(image != null || error != null) { "You should set placeholder if image could be null" }
+
+    val model = when (image) {
+        is Image.Url -> image.fullUrl
+        null -> null
     }
+    SubcomposeAsyncImage(
+        model = model,
+        contentDescription = contentDescription,
+        imageLoader = LocalContext.current.imageLoader,
+        modifier = modifier,
+        loading = loading,
+        success = success,
+        error = error,
+        alignment = alignment,
+        contentScale = contentScale,
+        alpha = alpha,
+        colorFilter = colorFilter,
+        filterQuality = filterQuality,
+    )
 }
