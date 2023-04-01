@@ -19,6 +19,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.renting.app.android.core.uikit.RentingPreviewContainer
+import com.renting.app.android.feature.auth.previewData
 import com.renting.app.core.auth.model.UserInfo
 
 @Composable
@@ -40,14 +41,16 @@ fun HomeProfileBar(userInfo: UserInfo?) {
             Spacer(modifier = Modifier.width(24.dp))
             Column {
                 Text(
-                    text = "Good Morning 👋",
+                    text = "Hello 👋",
                     style = MaterialTheme.typography.body2,
                     fontWeight = FontWeight.Light,
+                    color = MaterialTheme.colors.onBackground,
                 )
                 Text(
                     text = userInfo.fullName,
                     style = MaterialTheme.typography.h6,
                     fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colors.onBackground,
                 )
             }
         }
@@ -60,16 +63,8 @@ fun HomeProfileBar(userInfo: UserInfo?) {
 @Composable
 fun HomeProfileBarPreview() {
     RentingPreviewContainer {
-        val imageUrl =
-            "https://phonoteka.org/uploads/posts/2022-09/" +
-                    "1663805280_49-phonoteka-org-p-billi-kherrington-oboi-krasivo-56.jpg"
         HomeProfileBar(
-            userInfo = UserInfo(
-                login = "login",
-                firstName = "Jenny",
-                lastName = "Kerry",
-                imageUrl = imageUrl,
-            ),
+            userInfo = UserInfo.previewData,
         )
     }
 }
