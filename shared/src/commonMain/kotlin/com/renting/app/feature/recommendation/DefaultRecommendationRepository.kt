@@ -1,6 +1,7 @@
 package com.renting.app.feature.recommendation
 
 import com.arkivanov.mvikotlin.logging.logger.DefaultLogger
+import com.renting.app.core.model.Image
 import com.renting.app.core.monad.Either
 import com.renting.app.core.monad.left
 import com.renting.app.core.monad.right
@@ -64,7 +65,7 @@ private fun NetworkRecommendation.toDomainModel(): PropertySnippet {
         id = id,
         type = propertyType,
         location = description,
-        image = imagePathList.firstOrNull(),
+        image = imagePathList.firstOrNull()?.let(Image::Url),
         price = price.roundToInt(),
     )
 }
