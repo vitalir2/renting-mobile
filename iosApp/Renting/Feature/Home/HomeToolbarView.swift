@@ -19,16 +19,7 @@ struct HomeToolbarView: View {
                     image.resizable()
                         .clipShape(Circle())
                 } else if phase.error != nil {
-                    ZStack(alignment: .center) {
-                        Circle().foregroundColor(Color.appPrimary)
-                        if let firstNameCapitalizedChar = userInfo.firstName.first?.uppercased(),
-                           let lastNameCapitalizedChar = userInfo.lastName.first?.uppercased() {
-                            let placeholderText = "\(firstNameCapitalizedChar)\(lastNameCapitalizedChar)"
-                            Text(placeholderText)
-                                .foregroundColor(Color.onPrimary)
-                                .font(.body)
-                        }
-                    }
+                    placeholder
                 } else {
                     ProgressView()
                 }
@@ -50,6 +41,19 @@ struct HomeToolbarView: View {
             Spacer()
         }
         .padding(16)
+    }
+    
+    var placeholder: some View {
+        ZStack(alignment: .center) {
+            Circle().foregroundColor(Color.appPrimary)
+            if let firstNameCapitalizedChar = userInfo.firstName.first?.uppercased(),
+               let lastNameCapitalizedChar = userInfo.lastName.first?.uppercased() {
+                let placeholderText = "\(firstNameCapitalizedChar)\(lastNameCapitalizedChar)"
+                Text(placeholderText)
+                    .foregroundColor(Color.onPrimary)
+                    .font(.body)
+            }
+        }
     }
 }
 
