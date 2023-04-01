@@ -27,15 +27,13 @@ import com.renting.app.android.R
 import com.renting.app.android.core.uikit.Gap
 import com.renting.app.android.core.uikit.RentingImage
 import com.renting.app.android.core.uikit.RentingPreviewContainer
-import com.renting.app.core.model.Image
 import com.renting.app.feature.property.PropertySnippet
-import com.renting.app.feature.property.PropertyType
 
 @Composable
 fun PropertySnippetCard(
     snippet: PropertySnippet,
     modifier: Modifier = Modifier,
-    onClick: (id: Long) -> Unit,
+    onClick: () -> Unit,
 ) {
     val isPreviewEnabled = LocalInspectionMode.current
     Surface(
@@ -45,7 +43,7 @@ fun PropertySnippetCard(
                 shape = RoundedCornerShape(16.dp),
             )
             .padding(16.dp)
-            .clickable { onClick(snippet.id) },
+            .clickable { onClick() },
     ) {
         Column {
             val imageModifier = Modifier
@@ -93,15 +91,7 @@ fun PropertySnippetCardPreview() {
             .fillMaxSize(0.85f)
             .background(Color.Gray)) {
             PropertySnippetCard(
-                snippet = PropertySnippet(
-                    id = 1,
-                    type = PropertyType.FAMILY_HOUSE,
-                    location = "2857 E Detroit St, Chandler, AZ 85225",
-                    image = Image.Url(
-                        "https://photos.zillowstatic.com/fp/e57899af93feb02883e71c4a155c859f-p_e.jpg"
-                    ),
-                    price = 2350,
-                ),
+                snippet = PropertySnippet.preview,
                 modifier = Modifier
                     .align(Alignment.Center),
                 onClick = {},
