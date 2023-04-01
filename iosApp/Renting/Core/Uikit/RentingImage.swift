@@ -10,14 +10,14 @@ import SwiftUI
 import shared
 
 struct RentingImage<Content>: View where Content: View {
-    let image: SharedImage
+    let image: SharedImage?
     let scale: CGFloat
     let transaction: Transaction
     @ViewBuilder
     let content: (AsyncImagePhase) -> Content
     
     public init(
-        image: SharedImage,
+        image: SharedImage?,
         scale: CGFloat = 1,
         transaction: Transaction = Transaction(),
         @ViewBuilder content: @escaping (AsyncImagePhase) -> Content
@@ -33,6 +33,13 @@ struct RentingImage<Content>: View where Content: View {
         case let imageUrl as SharedImageUrl:
             AsyncImage(
                 url: URL(string: imageUrl.fullUrl),
+                scale: scale,
+                transaction: transaction,
+                content: content
+            )
+        case nil:
+            AsyncImage(
+                url: nil,
                 scale: scale,
                 transaction: transaction,
                 content: content

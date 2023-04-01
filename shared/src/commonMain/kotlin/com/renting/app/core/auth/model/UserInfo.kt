@@ -6,7 +6,7 @@ data class UserInfo(
     val login: String,
     val firstName: String,
     val lastName: String,
-    val avatar: Image,
+    val avatar: Image?,
 ) {
 
     val fullName: String

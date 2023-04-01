@@ -30,7 +30,7 @@ internal class DefaultUserRepository(
                 login = userResponse.login,
                 firstName = userResponse.firstName,
                 lastName = userResponse.lastName,
-                avatar = Image.Url(userResponse.imagePathWithoutHost),
+                avatar = userResponse.imagePathWithoutHost?.let(Image::Url),
             ).right()
         } else {
             val errorResponse = response.body<UserErrorResponse>()
@@ -50,7 +50,7 @@ private class UserResponse(
     @SerialName("lastName")
     val lastName: String,
     @SerialName("imagePath")
-    val imagePathWithoutHost: String,
+    val imagePathWithoutHost: String?,
 )
 
 @Serializable
