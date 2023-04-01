@@ -38,7 +38,7 @@ struct HomeToolbarView: View {
             Spacer()
                 .frame(width: 16)
             
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 2) {
                 Text("Hello 👋")
                     .font(.body)
                     .foregroundColor(.textSecondary)
@@ -46,6 +46,7 @@ struct HomeToolbarView: View {
                     .font(.subheadline)
                     .fontWeight(.semibold)
             }
+            
             Spacer()
         }
         .padding(16)
