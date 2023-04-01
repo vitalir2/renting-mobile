@@ -41,8 +41,7 @@ dependencies {
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.activity.compose)
 
-    implementation("io.coil-kt:coil:2.3.0")
-    implementation("io.coil-kt:coil-compose:2.3.0")
+    implementation(libs.bundles.coil.compose)
 
     implementation(libs.decompose.compose)
 
