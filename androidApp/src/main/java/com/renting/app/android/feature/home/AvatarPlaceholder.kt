@@ -20,16 +20,10 @@ fun AvatarPlaceholder(
     val text = remember { userInfo.avatarPlaceholderText }
     val textStyle = MaterialTheme.typography.subtitle1
     val textMeasurer = rememberTextMeasurer()
-    val textLayoutResult = remember {
-        textMeasurer.measure(
-            text = text,
-            style = textStyle,
-        )
-    }
+    val textLayoutResult = remember { textMeasurer.measure(text, textStyle) }
 
     Canvas(
-        modifier = Modifier
-            .fillMaxSize(),
+        modifier = Modifier.fillMaxSize(),
     ) {
         drawCircle(Color.Blue)
         drawCenteredText(

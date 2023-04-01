@@ -35,7 +35,7 @@ private fun HomeScreen(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(24.dp),
+            .padding(HomeScreenPadding),
         verticalArrangement = Arrangement.SpaceBetween,
     ) {
         HomeProfileBar(userInfo = model.userInfo)
@@ -48,6 +48,8 @@ private fun HomeScreen(
         }
     }
 }
+
+private val HomeScreenPadding = 24.dp
 
 @Preview
 @Composable

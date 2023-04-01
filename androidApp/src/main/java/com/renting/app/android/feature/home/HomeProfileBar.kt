@@ -30,12 +30,12 @@ fun HomeProfileBar(userInfo: UserInfo?) {
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp),
+                .padding(ProfileBarPadding),
         ) {
             RentingImage(
                 image = userInfo.avatar,
                 modifier = Modifier
-                    .size(40.dp)
+                    .size(AvatarSize)
                     .clip(CircleShape),
                 loading = {
                     CircularProgressIndicator()
@@ -45,27 +45,36 @@ fun HomeProfileBar(userInfo: UserInfo?) {
                 },
                 contentDescription = "User avatar",
             )
-            Spacer(modifier = Modifier.width(24.dp))
-            Column {
-                Text(
-                    text = "Hello 👋",
-                    style = MaterialTheme.typography.body2,
-                    fontWeight = FontWeight.Light,
-                    color = MaterialTheme.colors.onBackground,
-                )
-                Text(
-                    text = userInfo.fullName,
-                    style = MaterialTheme.typography.subtitle1,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colors.onBackground,
-                )
-            }
+            Spacer(modifier = Modifier.width(AvatarSpacing))
+            UserGreeting(userInfo)
         }
     } else {
         // TODO skeletons
         Text(text = "Loading")
     }
 }
+
+@Composable
+private fun UserGreeting(userInfo: UserInfo) {
+    Column {
+        Text(
+            text = "Hello 👋",
+            style = MaterialTheme.typography.body2,
+            fontWeight = FontWeight.Light,
+            color = MaterialTheme.colors.onBackground,
+        )
+        Text(
+            text = userInfo.fullName,
+            style = MaterialTheme.typography.subtitle1,
+            fontWeight = FontWeight.Bold,
+            color = MaterialTheme.colors.onBackground,
+        )
+    }
+}
+
+private val ProfileBarPadding = 8.dp
+private val AvatarSize = 40.dp
+private val AvatarSpacing = 24.dp
 
 @Preview
 @Composable
