@@ -71,6 +71,7 @@ class DefaultRootGraph(
     override val homeGraph: HomeGraph
         get() = DefaultHomeGraph(
             authGraph = authGraph,
+            recommendationGraph = recommendationGraph,
         )
 
     override val recommendationGraph: RecommendationGraph = DefaultRecommendationGraph(
