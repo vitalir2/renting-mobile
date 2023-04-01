@@ -4,5 +4,7 @@
 <dict>
 	<key>PRODUCTION_NETWORK_HOST</key>
 	<string>localhost</string>
+	<key>PRODUCTION_IMAGE_HOST</key>
+	<string>localhost</string>
 </dict>
 </plist>
