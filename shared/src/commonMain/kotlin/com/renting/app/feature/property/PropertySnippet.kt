@@ -8,4 +8,8 @@ data class PropertySnippet(
     val location: String,
     val image: Image?,
     val price: Int,
-)
+) {
+    companion object {
+        var previewId = 0L
+    }
+}
