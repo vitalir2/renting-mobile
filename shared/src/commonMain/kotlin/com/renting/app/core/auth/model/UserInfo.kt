@@ -9,4 +9,6 @@ data class UserInfo(
 
     val fullName: String
         get() = "$firstName $lastName"
+
+    companion object
 }
