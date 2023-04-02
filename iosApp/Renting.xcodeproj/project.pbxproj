@@ -26,6 +26,7 @@
 		FAA71C1729D966C800386CC4 /* PropertyPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA71C1629D966C800386CC4 /* PropertyPreview.swift */; };
 		FAA71C1929D9695E00386CC4 /* PropertySnippetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA71C1829D9695E00386CC4 /* PropertySnippetCard.swift */; };
 		FAA71C1B29D96EA500386CC4 /* PropertySnippetsGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA71C1A29D96EA500386CC4 /* PropertySnippetsGrid.swift */; };
+		FAA71C1E29D976B100386CC4 /* PropertyDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA71C1D29D976B100386CC4 /* PropertyDetailsView.swift */; };
 		FAA873C929A7513900D2E202 /* RentingAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA873C829A7513900D2E202 /* RentingAppTests.swift */; };
 		FAA873D629A7545500D2E202 /* RentingAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA873D529A7545500D2E202 /* RentingAppUITests.swift */; };
 		FAA873D829A7545500D2E202 /* RentingAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA873D729A7545500D2E202 /* RentingAppUITestsLaunchTests.swift */; };
@@ -97,6 +98,7 @@
 		FAA71C1629D966C800386CC4 /* PropertyPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyPreview.swift; sourceTree = "<group>"; };
 		FAA71C1829D9695E00386CC4 /* PropertySnippetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertySnippetCard.swift; sourceTree = "<group>"; };
 		FAA71C1A29D96EA500386CC4 /* PropertySnippetsGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertySnippetsGrid.swift; sourceTree = "<group>"; };
+		FAA71C1D29D976B100386CC4 /* PropertyDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyDetailsView.swift; sourceTree = "<group>"; };
 		FAA873C629A7513900D2E202 /* RentingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RentingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA873C829A7513900D2E202 /* RentingAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentingAppTests.swift; sourceTree = "<group>"; };
 		FAA873D329A7545500D2E202 /* RentingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RentingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -296,11 +298,20 @@
 		FAA71C1529D966B800386CC4 /* Property */ = {
 			isa = PBXGroup;
 			children = (
+				FAA71C1C29D976A400386CC4 /* Details */,
 				FAA71C1629D966C800386CC4 /* PropertyPreview.swift */,
 				FAA71C1829D9695E00386CC4 /* PropertySnippetCard.swift */,
 				FAA71C1A29D96EA500386CC4 /* PropertySnippetsGrid.swift */,
 			);
 			path = Property;
+			sourceTree = "<group>";
+		};
+		FAA71C1C29D976A400386CC4 /* Details */ = {
+			isa = PBXGroup;
+			children = (
+				FAA71C1D29D976B100386CC4 /* PropertyDetailsView.swift */,
+			);
+			path = Details;
 			sourceTree = "<group>";
 		};
 		FAA873C729A7513900D2E202 /* RentingTests */ = {
@@ -559,6 +570,7 @@
 			files = (
 				FAE68BF329BCC43500B71B2D /* ToastModifier.swift in Sources */,
 				FA98B2FC29AB4A4B008E1CE4 /* LoginView.swift in Sources */,
+				FAA71C1E29D976B100386CC4 /* PropertyDetailsView.swift in Sources */,
 				FA556CBB29B104FD00F2C2C8 /* Colors.swift in Sources */,
 				FAA71C1729D966C800386CC4 /* PropertyPreview.swift in Sources */,
 				FAF6382529BF289D00AA8427 /* SecureInput.swift in Sources */,

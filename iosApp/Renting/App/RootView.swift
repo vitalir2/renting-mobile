@@ -27,7 +27,9 @@ struct RootView: View {
             RegistrationView(registration.component)
         case let home as RootComponentChildHome:
             HomeView(home.component)
-        default: EmptyView()
+        case let propertyDetails as RootComponentChildPropertyDetails:
+            PropertyDetailsView(propertyDetails.component)
+        default: Text("Unknown screen")
         }
     }
 }
