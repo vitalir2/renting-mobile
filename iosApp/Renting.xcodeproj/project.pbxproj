@@ -25,6 +25,7 @@
 		FA9C189429C37AF500EF8517 /* LoginError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9C189329C37AF500EF8517 /* LoginError.swift */; };
 		FAA71C1729D966C800386CC4 /* PropertyPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA71C1629D966C800386CC4 /* PropertyPreview.swift */; };
 		FAA71C1929D9695E00386CC4 /* PropertySnippetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA71C1829D9695E00386CC4 /* PropertySnippetCard.swift */; };
+		FAA71C1B29D96EA500386CC4 /* PropertySnippetsGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA71C1A29D96EA500386CC4 /* PropertySnippetsGrid.swift */; };
 		FAA873C929A7513900D2E202 /* RentingAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA873C829A7513900D2E202 /* RentingAppTests.swift */; };
 		FAA873D629A7545500D2E202 /* RentingAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA873D529A7545500D2E202 /* RentingAppUITests.swift */; };
 		FAA873D829A7545500D2E202 /* RentingAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA873D729A7545500D2E202 /* RentingAppUITestsLaunchTests.swift */; };
@@ -95,6 +96,7 @@
 		FA9C189329C37AF500EF8517 /* LoginError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginError.swift; sourceTree = "<group>"; };
 		FAA71C1629D966C800386CC4 /* PropertyPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyPreview.swift; sourceTree = "<group>"; };
 		FAA71C1829D9695E00386CC4 /* PropertySnippetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertySnippetCard.swift; sourceTree = "<group>"; };
+		FAA71C1A29D96EA500386CC4 /* PropertySnippetsGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertySnippetsGrid.swift; sourceTree = "<group>"; };
 		FAA873C629A7513900D2E202 /* RentingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RentingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FAA873C829A7513900D2E202 /* RentingAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentingAppTests.swift; sourceTree = "<group>"; };
 		FAA873D329A7545500D2E202 /* RentingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RentingUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -296,6 +298,7 @@
 			children = (
 				FAA71C1629D966C800386CC4 /* PropertyPreview.swift */,
 				FAA71C1829D9695E00386CC4 /* PropertySnippetCard.swift */,
+				FAA71C1A29D96EA500386CC4 /* PropertySnippetsGrid.swift */,
 			);
 			path = Property;
 			sourceTree = "<group>";
@@ -572,6 +575,7 @@
 				FAE68BF129BCC16000B71B2D /* ToastView.swift in Sources */,
 				FA2B96F729B1B64B00563065 /* PrimaryButtonStyle.swift in Sources */,
 				FA9C189429C37AF500EF8517 /* LoginError.swift in Sources */,
+				FAA71C1B29D96EA500386CC4 /* PropertySnippetsGrid.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				FA98B2F629AB420C008E1CE4 /* ComponentHolder.swift in Sources */,
 				FAB875FE29C71C6E007F1378 /* FieldMappers.swift in Sources */,
