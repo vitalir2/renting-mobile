@@ -58,7 +58,9 @@ struct HomeView_Previews: PreviewProvider {
                     lastName: "Keddy",
                     avatar: SharedImageUrl(path: "Image url")
                 ),
-                recommendations: []
+                recommendations: [
+                    PropertySnippet.preview
+                ]
             )
         )
         
