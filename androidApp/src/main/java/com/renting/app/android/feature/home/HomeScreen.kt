@@ -1,22 +1,22 @@
 package com.renting.app.android.feature.home
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.grid.GridItemSpan
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.arkivanov.decompose.extensions.compose.jetpack.subscribeAsState
+import com.renting.app.android.core.uikit.Gap
 import com.renting.app.android.core.uikit.RentingButton
 import com.renting.app.android.core.uikit.RentingPreviewContainer
 import com.renting.app.android.feature.auth.previewData
@@ -43,37 +43,38 @@ private fun HomeScreen(
     onRecommendationClick: (id: Long) -> Unit,
     onButtonClick: () -> Unit,
 ) {
-    Box(
+    val scrollState = rememberScrollState()
+
+    Column(
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colors.background)
-            .padding(HomeScreenPadding),
+            .padding(HomeScreenPadding)
+            .verticalScroll(scrollState),
     ) {
+        HomeProfileBar(userInfo = model.userInfo)
+        Gap(12.dp)
+        Text(
+            text = "Our Recommendation",
+            style = MaterialTheme.typography.h5,
+            fontWeight = FontWeight.Bold,
+        )
+        Gap(8.dp)
         PropertySnippetsGrid(
             snippets = model.recommendations,
             onSnippetClick = onRecommendationClick,
             modifier = Modifier
-                .fillMaxSize(),
-            prependedItems = {
-                item(key = "Toolbar", span = { GridItemSpan(maxLineSpan) }) {
-                    HomeProfileBar(userInfo = model.userInfo)
-                }
-                item(key = "Recommendations title", span = { GridItemSpan(maxLineSpan) }) {
-                    Spacer(Modifier.height(12.dp))
-                    Text(
-                        text = "Our Recommendation",
-                        style = MaterialTheme.typography.h5,
-                        fontWeight = FontWeight.Bold,
-                    )
-                    Spacer(Modifier.height(8.dp))
-                }
-            },
+                .fillMaxWidth()
+                .background(
+                    color = MaterialTheme.colors.surface,
+                    shape = RoundedCornerShape(16.dp),
+                ),
         )
+        Gap(16.dp)
         RentingButton(
             onClick = onButtonClick,
             modifier = Modifier
-                .fillMaxWidth()
-                .align(Alignment.BottomCenter),
+                .fillMaxWidth(),
         ) {
             Text(text = "Logout")
         }
@@ -89,7 +90,7 @@ private fun HomeScreenPreview() {
         HomeScreen(
             model = HomeComponent.Model(
                 userInfo = UserInfo.previewData,
-                recommendations = List(5) { PropertySnippet.preview },
+                recommendations = List(3) { PropertySnippet.preview },
             ),
             onRecommendationClick = {},
             onButtonClick = {},

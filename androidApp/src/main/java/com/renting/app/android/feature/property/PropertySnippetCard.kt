@@ -39,7 +39,7 @@ fun PropertySnippetCard(
     Surface(
         modifier = modifier
             .background(
-                color = MaterialTheme.colors.surface,
+                color = MaterialTheme.colors.background,
                 shape = RoundedCornerShape(16.dp),
             )
             .clickable { onClick() }
@@ -47,7 +47,7 @@ fun PropertySnippetCard(
     ) {
         Column(
             modifier = Modifier
-                .background(MaterialTheme.colors.surface),
+                .background(MaterialTheme.colors.background),
         ) {
             val imageModifier = Modifier
                 .fillMaxWidth()
