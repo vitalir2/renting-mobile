@@ -23,12 +23,17 @@ struct HomeView: View {
     var body: some View {
         let model = models.value
         
-        VStack {
+        ScrollView(showsIndicators: false) {
             if let userInfo = model.userInfo {
                 HomeToolbarView(userInfo: userInfo)
             } else {
                 Text("Loading")
             }
+            Spacer()
+                .frame(height: 16)
+            PropertySnippetsGrid(snippets: model.recommendations)
+                .background(Color.backgroundSecondary)
+                .cornerRadius(16)
             Spacer()
             Button(
                 action: {
@@ -59,6 +64,10 @@ struct HomeView_Previews: PreviewProvider {
                     avatar: SharedImageUrl(path: "Image url")
                 ),
                 recommendations: [
+                    PropertySnippet.preview,
+                    PropertySnippet.preview,
+                    PropertySnippet.preview,
+                    PropertySnippet.preview,
                     PropertySnippet.preview
                 ]
             )
