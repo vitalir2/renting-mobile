@@ -31,9 +31,12 @@ struct HomeView: View {
             }
             Spacer()
                 .frame(height: 16)
-            PropertySnippetsGrid(snippets: model.recommendations)
-                .background(Color.backgroundSecondary)
-                .cornerRadius(16)
+            PropertySnippetsGrid(
+                snippets: model.recommendations,
+                onSnippetClick: component.onRecommendationClicked
+            )
+            .background(Color.backgroundSecondary)
+            .cornerRadius(16)
             Spacer()
             Button(
                 action: {

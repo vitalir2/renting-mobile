@@ -11,6 +11,7 @@ import shared
 
 struct PropertySnippetsGrid: View {
     let snippets: [PropertySnippet]
+    let onSnippetClick: (Int64) -> Void
     var body: some View {
         ScrollView {
             LazyVGrid(
@@ -22,6 +23,7 @@ struct PropertySnippetsGrid: View {
                 ForEach(snippets, id: \PropertySnippet.id) { snippet in
                     PropertySnippetCard(snippet: snippet)
                         .padding(8)
+                        .onTapGesture { onSnippetClick(snippet.id) }
                 }
             }
         }
@@ -35,7 +37,8 @@ struct PropertySnippetsGrid_Previews: PreviewProvider {
                 PropertySnippet.preview,
                 PropertySnippet.preview,
                 PropertySnippet.preview
-            ]
+            ],
+            onSnippetClick: { _ in }
         )
         .background(Color.backgroundSecondary)
     }
