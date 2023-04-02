@@ -1,7 +1,6 @@
 package com.renting.app.android.feature.property
 
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -20,7 +19,7 @@ fun PropertySnippetsGrid(
         columns = 2,
         modifier = modifier,
     ) {
-        snippets.forEach { snippet ->
+        for (snippet in snippets) {
             PropertySnippetCard(
                 snippet = snippet,
                 onClick = { onSnippetClick(snippet.id) },
