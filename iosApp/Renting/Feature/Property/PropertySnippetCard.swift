@@ -46,7 +46,7 @@ struct PropertySnippetCard: View {
                 .foregroundColor(Color.textSecondary)
         }
         .padding(16)
-        .background(RoundedRectangle(cornerRadius: 4).fill(Color.backgroundPrimary))
+        .background(RoundedRectangle(cornerRadius: 16).fill(Color.backgroundPrimary))
     }
 }
 

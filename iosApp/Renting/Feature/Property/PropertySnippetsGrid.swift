@@ -21,6 +21,7 @@ struct PropertySnippetsGrid: View {
             ) {
                 ForEach(snippets, id: \PropertySnippet.id) { snippet in
                     PropertySnippetCard(snippet: snippet)
+                        .padding(8)
                 }
             }
         }
@@ -36,5 +37,6 @@ struct PropertySnippetsGrid_Previews: PreviewProvider {
                 PropertySnippet.preview
             ]
         )
+        .background(Color.backgroundSecondary)
     }
 }
