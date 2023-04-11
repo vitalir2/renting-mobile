@@ -13,6 +13,7 @@ import com.arkivanov.decompose.router.stack.ChildStack
 import com.renting.app.android.feature.home.HomeScreen
 import com.renting.app.android.feature.login.LoginScreen
 import com.renting.app.android.feature.registration.RegistrationScreen
+import com.renting.app.feature.filters.FiltersComponent
 import com.renting.app.feature.property.details.PropertyDetailsComponent
 import com.renting.app.feature.root.component.RootComponent
 import com.renting.app.feature.root.component.RootComponent.Child
@@ -38,6 +39,7 @@ private fun RootNavigation(stack: State<ChildStack<*, Child>>) {
             is Child.Home -> HomeScreen(component = screen.component)
             is Child.Registration -> RegistrationScreen(component = screen.component)
             is Child.PropertyDetails -> PropertyDetailsScreen(component = screen.component)
+            is Child.Filters -> FiltersScreen(component = screen.component)
         }
     }
 }
@@ -45,4 +47,9 @@ private fun RootNavigation(stack: State<ChildStack<*, Child>>) {
 @Composable
 fun PropertyDetailsScreen(component: PropertyDetailsComponent) {
     Text("Property details")
+}
+
+@Composable
+fun FiltersScreen(component: FiltersComponent) {
+    Text("Filters")
 }
