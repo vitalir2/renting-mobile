@@ -18,5 +18,6 @@ interface HomeComponent {
     data class Model(
         val userInfo: UserInfo?,
         val recommendations: List<PropertySnippet>,
+        val searchInputContent: String,
     )
 }

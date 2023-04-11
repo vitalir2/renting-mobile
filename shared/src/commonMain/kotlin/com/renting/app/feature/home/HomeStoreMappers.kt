@@ -6,6 +6,7 @@ internal object HomeStoreMappers {
         HomeComponent.Model(
             userInfo = userInfo,
             recommendations = recommendations,
+            searchInputContent = searchInputContent,
         )
     }
 }
