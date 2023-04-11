@@ -3,7 +3,10 @@ package com.renting.app.core.utils
 import platform.Foundation.NSBundle
 import platform.Foundation.NSDictionary
 import platform.Foundation.dictionaryWithContentsOfFile
+import kotlin.experimental.ExperimentalObjCName
 
+@OptIn(ExperimentalObjCName::class)
+@ObjCName("SharedEnvironment")
 actual object Environment {
 
     @Suppress("UNCHECKED_CAST")

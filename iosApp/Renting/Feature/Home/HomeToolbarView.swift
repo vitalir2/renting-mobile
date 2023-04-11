@@ -18,10 +18,8 @@ struct HomeToolbarView: View {
                 if let image = phase.image {
                     image.resizable()
                         .clipShape(Circle())
-                } else if phase.error != nil {
-                    placeholder
                 } else {
-                    ProgressView()
+                    placeholder
                 }
             }
             .frame(width: 40, height: 40)
