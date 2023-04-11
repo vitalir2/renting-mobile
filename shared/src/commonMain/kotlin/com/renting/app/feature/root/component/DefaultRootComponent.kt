@@ -3,6 +3,7 @@ package com.renting.app.feature.root.component
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.arkivanov.decompose.router.stack.StackNavigation
+import com.arkivanov.decompose.router.stack.bringToFront
 import com.arkivanov.decompose.router.stack.childStack
 import com.arkivanov.decompose.router.stack.pop
 import com.arkivanov.decompose.router.stack.push
@@ -11,6 +12,8 @@ import com.arkivanov.decompose.value.Value
 import com.arkivanov.essenty.parcelable.Parcelable
 import com.arkivanov.essenty.parcelable.Parcelize
 import com.arkivanov.mvikotlin.core.store.StoreFactory
+import com.renting.app.feature.filters.DefaultFiltersComponent
+import com.renting.app.feature.filters.FiltersComponent
 import com.renting.app.feature.home.DefaultHomeComponent
 import com.renting.app.feature.home.HomeComponent
 import com.renting.app.feature.login.component.DefaultLoginComponent
@@ -58,6 +61,15 @@ class DefaultRootComponent(
         is Configuration.PropertyDetails -> Child.PropertyDetails(
             createPropertyDetailsComponent(componentContext)
         )
+        is Configuration.Filters -> Child.Filters(
+            createFiltersComponent(componentContext)
+        )
+    }
+
+    private fun createFiltersComponent(componentContext: ComponentContext): FiltersComponent {
+        return DefaultFiltersComponent(
+            componentContext = componentContext,
+        )
     }
 
     private fun createPropertyDetailsComponent(
@@ -93,6 +105,7 @@ class DefaultRootComponent(
                     configuration = Configuration.Login,
                 )
             },
+            openFullFilters = { navigation.bringToFront(Configuration.Filters) },
             openRecommendation = { id ->
                 navigation.push(Configuration.PropertyDetails(id))
             },
@@ -125,5 +138,8 @@ class DefaultRootComponent(
 
         @Parcelize
         object Home : Configuration()
+
+        @Parcelize
+        object Filters : Configuration()
     }
 }

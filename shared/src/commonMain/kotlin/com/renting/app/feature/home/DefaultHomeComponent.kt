@@ -18,6 +18,7 @@ internal class DefaultHomeComponent(
     componentContext: ComponentContext,
     homeGraph: HomeGraph,
     onLoggedOutSuccessfully: () -> Unit,
+    openFullFilters: () -> Unit,
     private val openRecommendation: (id: Long) -> Unit,
 ) : HomeComponent, ComponentContext by componentContext {
 
@@ -42,9 +43,7 @@ internal class DefaultHomeComponent(
     override val searchInput: SearchInputComponent = DefaultSearchInputComponent(
         componentContext = childContext("search_input"),
         changeContent = { content -> store.accept(Intent.ChangeSearchInput(content)) },
-        openFullFilters = {
-            // TODO
-        },
+        openFullFilters = openFullFilters,
         openSearchResults = {
             // TODO
         }
