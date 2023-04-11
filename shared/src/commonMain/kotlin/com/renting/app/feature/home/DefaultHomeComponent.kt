@@ -1,12 +1,16 @@
 package com.renting.app.feature.home
 
 import com.arkivanov.decompose.ComponentContext
+import com.arkivanov.decompose.childContext
 import com.arkivanov.decompose.value.Value
 import com.arkivanov.decompose.value.operator.map
 import com.arkivanov.mvikotlin.core.instancekeeper.getStore
 import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.arkivanov.mvikotlin.extensions.coroutines.labels
 import com.renting.app.core.utils.stateAsValue
+import com.renting.app.feature.home.HomeStore.Intent
+import com.renting.app.feature.search.DefaultSearchInputComponent
+import com.renting.app.feature.search.SearchInputComponent
 import kotlinx.coroutines.launch
 
 internal class DefaultHomeComponent(
@@ -35,6 +39,17 @@ internal class DefaultHomeComponent(
         }
     }
 
+    override val searchInput: SearchInputComponent = DefaultSearchInputComponent(
+        componentContext = childContext("search_input"),
+        changeContent = { content -> store.accept(Intent.ChangeSearchInput(content)) },
+        openFullFilters = {
+            // TODO
+        },
+        openSearchResults = {
+            // TODO
+        }
+    )
+
     override val models: Value<HomeComponent.Model> = store.stateAsValue()
         .map(HomeStoreMappers.stateToModel)
 
@@ -43,6 +58,6 @@ internal class DefaultHomeComponent(
     }
 
     override fun logout() {
-        store.accept(HomeStore.Intent.Logout)
+        store.accept(Intent.Logout)
     }
 }

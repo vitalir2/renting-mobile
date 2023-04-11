@@ -76,6 +76,8 @@ struct HomeView_Previews: PreviewProvider {
             )
         )
         
+        var searchInput: SearchInputComponent = DummySearchInputComponent()
+        
         func onRecommendationClicked(id: Int64) {
         }
         
