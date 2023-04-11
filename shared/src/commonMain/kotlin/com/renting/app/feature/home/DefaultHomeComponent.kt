@@ -13,12 +13,14 @@ import com.renting.app.feature.search.DefaultSearchInputComponent
 import com.renting.app.feature.search.SearchInputComponent
 import kotlinx.coroutines.launch
 
+@Suppress("LongParameterList")
 internal class DefaultHomeComponent(
     storeFactory: StoreFactory,
     componentContext: ComponentContext,
     homeGraph: HomeGraph,
     onLoggedOutSuccessfully: () -> Unit,
     openFullFilters: () -> Unit,
+    openSearchResults: (query: String) -> Unit,
     private val openRecommendation: (id: Long) -> Unit,
 ) : HomeComponent, ComponentContext by componentContext {
 
@@ -44,9 +46,7 @@ internal class DefaultHomeComponent(
         componentContext = childContext("search_input"),
         changeContent = { content -> store.accept(Intent.ChangeSearchInput(content)) },
         openFullFilters = openFullFilters,
-        openSearchResults = {
-            // TODO
-        }
+        openSearchResults = { openSearchResults(store.state.searchInputContent) },
     )
 
     override val models: Value<HomeComponent.Model> = store.stateAsValue()

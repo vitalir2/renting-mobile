@@ -7,6 +7,7 @@ import com.renting.app.feature.home.HomeComponent
 import com.renting.app.feature.login.component.LoginComponent
 import com.renting.app.feature.property.details.PropertyDetailsComponent
 import com.renting.app.feature.registration.component.RegistrationComponent
+import com.renting.app.feature.search.results.SearchResultsComponent
 
 interface RootComponent {
 
@@ -18,5 +19,6 @@ interface RootComponent {
         data class Home(val component: HomeComponent) : Child
         data class PropertyDetails(val component: PropertyDetailsComponent) : Child
         data class Filters(val component: FiltersComponent) : Child
+        data class SearchResults(val component: SearchResultsComponent) : Child
     }
 }
