@@ -22,9 +22,12 @@ import com.renting.app.android.core.uikit.RentingPreviewContainer
 import com.renting.app.android.feature.auth.previewData
 import com.renting.app.android.feature.property.PropertySnippetsGrid
 import com.renting.app.android.feature.property.preview
+import com.renting.app.android.feature.search.SearchInput
 import com.renting.app.core.auth.model.UserInfo
 import com.renting.app.feature.home.HomeComponent
 import com.renting.app.feature.property.PropertySnippet
+import com.renting.app.feature.search.DummySearchInputComponent
+import com.renting.app.feature.search.SearchInputComponent
 
 @Composable
 fun HomeScreen(component: HomeComponent) {
@@ -32,6 +35,7 @@ fun HomeScreen(component: HomeComponent) {
 
     HomeScreen(
         model = models.value,
+        searchInputComponent = component.searchInput,
         onRecommendationClick = component::onRecommendationClicked,
         onButtonClick = component::logout,
     )
@@ -40,6 +44,7 @@ fun HomeScreen(component: HomeComponent) {
 @Composable
 private fun HomeScreen(
     model: HomeComponent.Model,
+    searchInputComponent: SearchInputComponent,
     onRecommendationClick: (id: Long) -> Unit,
     onButtonClick: () -> Unit,
 ) {
@@ -53,7 +58,14 @@ private fun HomeScreen(
             .verticalScroll(scrollState),
     ) {
         HomeProfileBar(userInfo = model.userInfo)
-        Gap(12.dp)
+        Gap(8.dp)
+        SearchInput(
+            component = searchInputComponent,
+            content = model.searchInputContent,
+            modifier = Modifier
+                .fillMaxWidth(),
+        )
+        Gap(24.dp)
         Text(
             text = "Our Recommendation",
             style = MaterialTheme.typography.h5,
@@ -93,6 +105,7 @@ private fun HomeScreenPreview() {
                 recommendations = List(3) { PropertySnippet.preview },
                 searchInputContent = "",
             ),
+            searchInputComponent = DummySearchInputComponent(),
             onRecommendationClick = {},
             onButtonClick = {},
         )

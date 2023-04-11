@@ -32,39 +32,38 @@ fun SearchInput(
     content: String,
     modifier: Modifier = Modifier,
 ) {
-    Row(modifier = modifier) {
-        OutlinedTextField(
-            value = content,
-            onValueChange = component::onContentChanged,
-            shape = RoundedCornerShape(16.dp),
-            colors = TextFieldDefaults.outlinedTextFieldColors(
-                unfocusedBorderColor = Color.Transparent,
-                focusedBorderColor = MaterialTheme.colors.primary,
-                backgroundColor = MaterialTheme.colors.surface,
-            ),
-            placeholder = {
-                Text("Search")
-            },
-            leadingIcon = {
-                Icon(
-                    imageVector = Icons.Default.Search,
-                    contentDescription = null,
-                    modifier = Modifier
-                        .clickable { component.onSearchClicked() },
-                )
-            },
-            trailingIcon = {
-                Icon(
-                    imageVector = Icons.Default.Tune,
-                    contentDescription = null,
-                    modifier = Modifier
-                        .clickable { component.onFullFiltersClicked() },
-                    tint = MaterialTheme.colors.primary,
-                )
-            },
-            singleLine = true,
-        )
-    }
+    OutlinedTextField(
+        value = content,
+        onValueChange = component::onContentChanged,
+        modifier = modifier,
+        shape = RoundedCornerShape(16.dp),
+        colors = TextFieldDefaults.outlinedTextFieldColors(
+            unfocusedBorderColor = Color.Transparent,
+            focusedBorderColor = MaterialTheme.colors.primary,
+            backgroundColor = MaterialTheme.colors.surface,
+        ),
+        placeholder = {
+            Text("Search")
+        },
+        leadingIcon = {
+            Icon(
+                imageVector = Icons.Default.Search,
+                contentDescription = null,
+                modifier = Modifier
+                    .clickable { component.onSearchClicked() },
+            )
+        },
+        trailingIcon = {
+            Icon(
+                imageVector = Icons.Default.Tune,
+                contentDescription = null,
+                modifier = Modifier
+                    .clickable { component.onFullFiltersClicked() },
+                tint = MaterialTheme.colors.primary,
+            )
+        },
+        singleLine = true,
+    )
 }
 
 @Preview
