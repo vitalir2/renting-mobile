@@ -17,6 +17,7 @@ import com.renting.app.feature.filters.FiltersComponent
 import com.renting.app.feature.property.details.PropertyDetailsComponent
 import com.renting.app.feature.root.component.RootComponent
 import com.renting.app.feature.root.component.RootComponent.Child
+import com.renting.app.feature.search.results.SearchResultsComponent
 
 @Composable
 fun RootScreen(
@@ -40,8 +41,14 @@ private fun RootNavigation(stack: State<ChildStack<*, Child>>) {
             is Child.Registration -> RegistrationScreen(component = screen.component)
             is Child.PropertyDetails -> PropertyDetailsScreen(component = screen.component)
             is Child.Filters -> FiltersScreen(component = screen.component)
+            is Child.SearchResults -> SearchResultsScreen(component = screen.component)
         }
     }
+}
+
+@Composable
+fun SearchResultsScreen(component: SearchResultsComponent) {
+    Text("Search Results")
 }
 
 @Composable

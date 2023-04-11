@@ -24,6 +24,8 @@ import com.renting.app.feature.registration.component.DefaultRegistrationCompone
 import com.renting.app.feature.registration.component.RegistrationComponent
 import com.renting.app.feature.root.component.RootComponent.Child
 import com.renting.app.feature.root.di.RootGraph
+import com.renting.app.feature.search.results.DefaultSearchResultsComponent
+import com.renting.app.feature.search.results.SearchResultsComponent
 
 class DefaultRootComponent(
     componentContext: ComponentContext,
@@ -64,9 +66,22 @@ class DefaultRootComponent(
         is Configuration.Filters -> Child.Filters(
             createFiltersComponent(componentContext)
         )
+        is Configuration.SearchResults -> Child.SearchResults(
+            createSearchResultsComponent(componentContext)
+        )
     }
 
-    private fun createFiltersComponent(componentContext: ComponentContext): FiltersComponent {
+    private fun createSearchResultsComponent(
+        componentContext: ComponentContext,
+    ): SearchResultsComponent {
+        return DefaultSearchResultsComponent(
+            componentContext = componentContext,
+        )
+    }
+
+    private fun createFiltersComponent(
+        componentContext: ComponentContext,
+    ): FiltersComponent {
         return DefaultFiltersComponent(
             componentContext = componentContext,
         )
@@ -106,6 +121,7 @@ class DefaultRootComponent(
                 )
             },
             openFullFilters = { navigation.bringToFront(Configuration.Filters) },
+            openSearchResults = { query -> navigation.push(Configuration.SearchResults(query)) },
             openRecommendation = { id ->
                 navigation.push(Configuration.PropertyDetails(id))
             },
@@ -129,6 +145,9 @@ class DefaultRootComponent(
     private sealed class Configuration : Parcelable {
         @Parcelize
         data class PropertyDetails(val propertyId: Long) : Configuration()
+
+        @Parcelize
+        data class SearchResults(val query: String) : Configuration()
 
         @Parcelize
         object Login : Configuration()
