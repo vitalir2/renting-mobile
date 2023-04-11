@@ -2,6 +2,12 @@ package com.renting.app.feature.property.details
 
 import com.arkivanov.decompose.ComponentContext
 
-class DefaultPropertyDetailsComponent(
+internal class DefaultPropertyDetailsComponent(
     componentContext: ComponentContext,
-) : PropertyDetailsComponent, ComponentContext by componentContext
+    private val navigateBack: () -> Unit,
+) : PropertyDetailsComponent, ComponentContext by componentContext {
+
+    override fun onBackButtonClick() {
+        navigateBack()
+    }
+}

@@ -25,13 +25,10 @@ struct PropertySnippetCard: View {
                             .aspectRatio(contentMode: .fit)
                             .frame(width: .infinity)
                             .clipShape(RoundedRectangle(cornerRadius: 4))
-                    } else if phase.error != nil {
+                    } else {
                         Image("RentingLogoFull")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(width: .infinity)
-                    } else {
-                        ProgressView()
                     }
                     Spacer()
                 }
@@ -39,7 +36,7 @@ struct PropertySnippetCard: View {
             Spacer()
                 .frame(height: 8)
             Text("\(snippet.price) ₽")
-                .font(.title)
+                .font(.title3)
                 .fontWeight(.bold)
             Text(snippet.location)
                 .font(.subheadline)

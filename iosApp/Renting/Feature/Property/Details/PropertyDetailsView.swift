@@ -17,13 +17,32 @@ struct PropertyDetailsView: View {
     }
     
     var body: some View {
-        Text("Property Details")
+        VStack {
+            HStack {
+                backButton
+                Text("Property Details")
+                Spacer()
+            }
+            .padding(16)
+            Spacer()
+            Text("Property Details")
+            Spacer()
+        }
+    }
+    
+    var backButton: some View {
+        Button {
+            component.onBackButtonClick()
+        } label: {
+            Image(systemName: "arrow.backward")
+        }
     }
 }
 
 struct PropertyDetailsView_Previews: PreviewProvider {
-    class Stub : PropertyDetailsComponent {
-        
+    class Stub: PropertyDetailsComponent {
+        func onBackButtonClick() {
+        }
     }
     
     static var previews: some View {

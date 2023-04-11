@@ -1,3 +1,5 @@
 package com.renting.app.feature.property.details
 
-interface PropertyDetailsComponent
+interface PropertyDetailsComponent {
+    fun onBackButtonClick()
+}
