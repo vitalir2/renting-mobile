@@ -91,6 +91,7 @@ private fun HomeScreenPreview() {
             model = HomeComponent.Model(
                 userInfo = UserInfo.previewData,
                 recommendations = List(3) { PropertySnippet.preview },
+                searchInputContent = "",
             ),
             onRecommendationClick = {},
             onButtonClick = {},
