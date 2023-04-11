@@ -45,6 +45,7 @@ internal class HomeStoreFactory(
     private sealed interface Msg {
         data class UserInfoReceived(val userInfo: UserInfo) : Msg
         data class Recommendations(val value: List<PropertySnippet>) : Msg
+        data class SearchInputContent(val content: String) : Msg
     }
 
     private class BootstrapperImpl : CoroutineBootstrapper<Action>() {
@@ -64,6 +65,7 @@ internal class HomeStoreFactory(
         override fun executeIntent(intent: Intent, getState: () -> State) {
             when (intent) {
                 Intent.Logout -> logout()
+                is Intent.ChangeSearchInput -> dispatch(Msg.SearchInputContent(intent.content))
             }
         }
 
@@ -118,6 +120,7 @@ internal class HomeStoreFactory(
             return when (msg) {
                 is Msg.UserInfoReceived -> copy(userInfo = msg.userInfo)
                 is Msg.Recommendations -> copy(recommendations = msg.value)
+                is Msg.SearchInputContent -> copy(searchInputContent = msg.content)
             }
         }
     }
