@@ -1,23 +1,34 @@
 package com.renting.app.feature.search
 
 import com.arkivanov.decompose.ComponentContext
+import com.arkivanov.decompose.value.MutableValue
+import com.arkivanov.decompose.value.Value
+import com.renting.app.feature.search.SearchInputComponent.Model
 
 internal class DefaultSearchInputComponent(
     componentContext: ComponentContext,
-    private val changeContent: (content: String) -> Unit,
     private val openFullFilters: () -> Unit,
-    private val openSearchResults: () -> Unit,
+    private val openSearchResults: (query: String) -> Unit,
 ) : SearchInputComponent, ComponentContext by componentContext {
+
+    private val innerModels = MutableValue(
+        Model(
+            query = "",
+        )
+    )
+    override val models: Value<Model> = innerModels
 
     override fun onFullFiltersClicked() {
         openFullFilters()
     }
 
-    override fun onContentChanged(content: String) {
-        changeContent(content)
+    override fun onQueryChanged(content: String) {
+        innerModels.value = innerModels.value.copy(
+            query = content,
+        )
     }
 
     override fun onSearchClicked() {
-        openSearchResults()
+        openSearchResults(innerModels.value.query)
     }
 }
