@@ -8,11 +8,12 @@
 
 import SwiftUI
 
-struct RentingInput: View {
+struct RentingInput<LeadingIcon, TrailingIcon>: View
+where LeadingIcon: View, TrailingIcon: View {
     let title: String
     @Binding var text: String
-    var leadingIcon: Image?
-    var trailingIcon: Image?
+    var leadingIcon: LeadingIcon?
+    var trailingIcon: TrailingIcon?
     var error: String?
 
     @FocusState private var isEditing: Bool
@@ -20,14 +21,14 @@ struct RentingInput: View {
     init(
         _ title: String,
         text: Binding<String>,
-        leadingIcon: Image? = nil,
-        trailingIcon: Image? = nil,
+        leadingIcon: (() -> LeadingIcon)? = nil,
+        trailingIcon: (() -> TrailingIcon)? = nil,
         error: String? = nil
     ) {
         self.title = title
         self._text = text
-        self.leadingIcon = leadingIcon
-        self.trailingIcon = trailingIcon
+        self.leadingIcon = leadingIcon?()
+        self.trailingIcon = trailingIcon?()
         self.error = error
     }
 
@@ -73,6 +74,51 @@ struct RentingInput: View {
     }
 }
 
+extension RentingInput where LeadingIcon == EmptyView {
+    init(
+        _ title: String,
+        text: Binding<String>,
+        trailingIcon: (() -> TrailingIcon)? = nil,
+        error: String? = nil
+    ) {
+        self.title = title
+        self._text = text
+        self.leadingIcon = nil
+        self.trailingIcon = trailingIcon?()
+        self.error = error
+    }
+}
+
+extension RentingInput where TrailingIcon == EmptyView {
+    init(
+        _ title: String,
+        text: Binding<String>,
+        leadingIcon: (() -> LeadingIcon)? = nil,
+        error: String? = nil
+    ) {
+        self.title = title
+        self._text = text
+        self.leadingIcon = leadingIcon?()
+        self.trailingIcon = nil
+        self.error = error
+    }
+}
+
+extension RentingInput
+where LeadingIcon == EmptyView, TrailingIcon == EmptyView {
+    init(
+        _ title: String,
+        text: Binding<String>,
+        error: String? = nil
+    ) {
+        self.title = title
+        self._text = text
+        self.leadingIcon = nil
+        self.trailingIcon = nil
+        self.error = error
+    }
+}
+
 struct RentingInput_Previews: PreviewProvider {
     static var previews: some View {
         RentingInput(
@@ -81,8 +127,12 @@ struct RentingInput_Previews: PreviewProvider {
                 get: { "Hello" },
                 set: { _ in }
             ),
-            leadingIcon: Image(systemName: "person.circle"),
-            trailingIcon: Image(systemName: "eye"),
+            leadingIcon: {
+                Image(systemName: "person.circle")
+            },
+            trailingIcon: {
+                Image(systemName: "eye")
+            },
             error: "Error"
         )
     }

@@ -34,6 +34,7 @@
 		FAB875F929C71C29007F1378 /* FieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB875F829C71C29007F1378 /* FieldView.swift */; };
 		FAB875FC29C71C54007F1378 /* Field.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB875FB29C71C54007F1378 /* Field.swift */; };
 		FAB875FE29C71C6E007F1378 /* FieldMappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB875FD29C71C6E007F1378 /* FieldMappers.swift */; };
+		FACBB63629E8764100667A96 /* SearchInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACBB63529E8764100667A96 /* SearchInput.swift */; };
 		FAD2733B29D830DC008D045B /* HomeToolbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD2733A29D830DC008D045B /* HomeToolbarView.swift */; };
 		FADB4F3B29BB9535008AFBD2 /* DefaultEnvironmentConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = FADB4F3A29BB9535008AFBD2 /* DefaultEnvironmentConfig.plist */; };
 		FAE68BEF29BCC14500B71B2D /* ToastData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE68BEE29BCC14500B71B2D /* ToastData.swift */; };
@@ -108,6 +109,7 @@
 		FAB875F829C71C29007F1378 /* FieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldView.swift; sourceTree = "<group>"; };
 		FAB875FB29C71C54007F1378 /* Field.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Field.swift; sourceTree = "<group>"; };
 		FAB875FD29C71C6E007F1378 /* FieldMappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldMappers.swift; sourceTree = "<group>"; };
+		FACBB63529E8764100667A96 /* SearchInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInput.swift; sourceTree = "<group>"; };
 		FAD2733A29D830DC008D045B /* HomeToolbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeToolbarView.swift; sourceTree = "<group>"; };
 		FADB4F3A29BB9535008AFBD2 /* DefaultEnvironmentConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = DefaultEnvironmentConfig.plist; sourceTree = "<group>"; };
 		FAE68BEE29BCC14500B71B2D /* ToastData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastData.swift; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 		FA4CD77529AE701D00BA40E9 /* Feature */ = {
 			isa = PBXGroup;
 			children = (
+				FACBB63429E8763600667A96 /* Search */,
 				FAA71C1529D966B800386CC4 /* Property */,
 				FAFEA76629BC824B00D62F2E /* Home */,
 				FAFEA76329BC822A00D62F2E /* Registration */,
@@ -338,6 +341,14 @@
 				FAB875FD29C71C6E007F1378 /* FieldMappers.swift */,
 			);
 			path = Form;
+			sourceTree = "<group>";
+		};
+		FACBB63429E8763600667A96 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				FACBB63529E8764100667A96 /* SearchInput.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 		FAE68BED29BCC09C00B71B2D /* Uikit */ = {
@@ -594,6 +605,7 @@
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 				FAA71C1929D9695E00386CC4 /* PropertySnippetCard.swift in Sources */,
 				FAFEA76529BC823B00D62F2E /* RegistrationView.swift in Sources */,
+				FACBB63629E8764100667A96 /* SearchInput.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
