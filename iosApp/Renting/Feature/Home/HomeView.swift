@@ -29,6 +29,7 @@ struct HomeView: View {
             } else {
                 Text("Loading")
             }
+            SearchInput(component.searchInput)
             Spacer()
                 .frame(height: 16)
             PropertySnippetsGrid(
