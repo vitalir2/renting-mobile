@@ -41,7 +41,9 @@ struct LoginView: View {
             RentingInput(
                 "Login",
                 text: Binding(get: { model.login }, set: component.onLoginChanged),
-                leadingIcon: Image(systemName: "person.circle")
+                leadingIcon: {
+                    Image(systemName: "person.circle")
+                }
             )
             SecureInput(
                 "Password",
