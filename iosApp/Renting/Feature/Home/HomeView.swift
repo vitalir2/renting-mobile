@@ -72,8 +72,7 @@ struct HomeView_Previews: PreviewProvider {
                     PropertySnippet.preview,
                     PropertySnippet.preview,
                     PropertySnippet.preview
-                ],
-                searchInputContent: ""
+                ]
             )
         )
         

@@ -1,12 +1,22 @@
 package com.renting.app.feature.search
 
+import com.arkivanov.decompose.value.MutableValue
+import com.arkivanov.decompose.value.Value
+import com.renting.app.feature.search.SearchInputComponent.Model
+
 class DummySearchInputComponent : SearchInputComponent {
+
+    override val models: Value<Model> = MutableValue(
+        Model(
+            query = "",
+        )
+    )
 
     override fun onFullFiltersClicked() {
         // Do nothing
     }
 
-    override fun onContentChanged(content: String) {
+    override fun onQueryChanged(content: String) {
         // Do nothing
     }
 

@@ -61,7 +61,6 @@ private fun HomeScreen(
         Gap(8.dp)
         SearchInput(
             component = searchInputComponent,
-            content = model.searchInputContent,
             modifier = Modifier
                 .fillMaxWidth(),
         )
@@ -103,7 +102,6 @@ private fun HomeScreenPreview() {
             model = HomeComponent.Model(
                 userInfo = UserInfo.previewData,
                 recommendations = List(3) { PropertySnippet.preview },
-                searchInputContent = "",
             ),
             searchInputComponent = DummySearchInputComponent(),
             onRecommendationClick = {},

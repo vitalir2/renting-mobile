@@ -10,7 +10,6 @@ import com.renting.app.feature.property.PropertySnippet
 internal interface HomeStore : Store<Intent, State, Label> {
 
     sealed interface Intent {
-        data class ChangeSearchInput(val content: String) : Intent
         object Logout : Intent
     }
 
@@ -21,6 +20,5 @@ internal interface HomeStore : Store<Intent, State, Label> {
     data class State(
         val userInfo: UserInfo? = null,
         val recommendations: List<PropertySnippet> = emptyList(),
-        val searchInputContent: String = "",
     )
 }
