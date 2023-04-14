@@ -21,4 +21,12 @@ data class PropertyTypeQuickFilters(
             },
         )
     }
+
+    companion object {
+        val filtersOrder: List<PropertyType> = listOf(
+            PropertyType.FAMILY_HOUSE,
+            PropertyType.APARTMENT,
+            PropertyType.LAND,
+        )
+    }
 }
