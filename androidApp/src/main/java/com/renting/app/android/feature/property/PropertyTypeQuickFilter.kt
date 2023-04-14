@@ -18,16 +18,27 @@ fun PropertyTypeQuickFilter(
     filter: PropertyTypeQuickFilter,
     onFilterSelected: (PropertyType) -> Unit,
 ) {
-    PropertySelectableQuickFilter(
+    PropertyTypeQuickFilter(
         isApplied = filter.isApplied,
-        onClick = {
-            onFilterSelected(filter.type)
-        },
+        onSelected = { onFilterSelected(filter.type) },
+        name = filter.getName(),
+    )
+}
+
+@Composable
+fun PropertyTypeQuickFilter(
+    isApplied: Boolean,
+    onSelected: () -> Unit,
+    name: String,
+) {
+    PropertySelectableQuickFilter(
+        isApplied = isApplied,
+        onClick = { onSelected() },
     ) {
         Text(
-            text = filter.getName(),
+            text = name,
             modifier = Modifier
-                .padding(4.dp),
+                .padding(8.dp),
             style = MaterialTheme.typography.caption,
         )
     }

@@ -2,12 +2,9 @@ package com.renting.app.android.feature.property
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.selection.selectableGroup
-import androidx.compose.material.MaterialTheme
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -21,7 +18,7 @@ import com.renting.app.feature.property.PropertyTypeQuickFilters
 fun PropertyTypeQuickFilters(
     quickFilters: PropertyTypeQuickFilters?,
     onFilterSelected: (PropertyType) -> Unit,
-    clearSelectedFilters: () -> Unit,
+    onSelectedFiltersCleared: () -> Unit,
 ) {
     if (quickFilters == null) {
         PropertySnippetTypeQuickFiltersSkeletons()
@@ -33,17 +30,11 @@ fun PropertyTypeQuickFilters(
             horizontalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             item(key = "All") {
-                PropertySelectableQuickFilter(
+                PropertyTypeQuickFilter(
                     isApplied = quickFilters.appliedFilter == null,
-                    onClick = { clearSelectedFilters() }
-                ) {
-                    Text(
-                        modifier = Modifier
-                            .padding(4.dp),
-                        text = "✅ All",
-                        style = MaterialTheme.typography.caption,
-                    )
-                }
+                    onSelected = { onSelectedFiltersCleared() },
+                    name = "✅ All",
+                )
             }
             items(quickFilters.list) { filter ->
                 PropertyTypeQuickFilter(
@@ -70,7 +61,7 @@ private fun PropertyTypeQuickFiltersPreview() {
                     .map(::PropertyTypeQuickFilter),
             ),
             onFilterSelected = {},
-            clearSelectedFilters = {},
+            onSelectedFiltersCleared = {},
         )
     }
 }
