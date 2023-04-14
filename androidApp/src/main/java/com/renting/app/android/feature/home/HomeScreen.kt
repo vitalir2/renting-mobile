@@ -21,6 +21,7 @@ import com.renting.app.android.core.uikit.RentingButton
 import com.renting.app.android.core.uikit.RentingPreviewContainer
 import com.renting.app.android.feature.auth.previewData
 import com.renting.app.android.feature.property.PropertySnippetsGrid
+import com.renting.app.android.feature.property.PropertyTypeQuickFilters
 import com.renting.app.android.feature.property.preview
 import com.renting.app.android.feature.search.SearchInput
 import com.renting.app.core.auth.model.UserInfo
@@ -41,6 +42,8 @@ fun HomeScreen(component: HomeComponent) {
         searchInputComponent = component.searchInput,
         onRecommendationClick = component::onRecommendationClicked,
         onButtonClick = component::logout,
+        onQuickFilterSelected = component::onTypeQuickFilterClicked,
+        onSelectedFiltersCleared = component::clearTypeQuickFiltersSelection,
     )
 }
 
@@ -50,6 +53,8 @@ private fun HomeScreen(
     searchInputComponent: SearchInputComponent,
     onRecommendationClick: (id: Long) -> Unit,
     onButtonClick: () -> Unit,
+    onQuickFilterSelected: (PropertyType) -> Unit,
+    onSelectedFiltersCleared: () -> Unit,
 ) {
     val scrollState = rememberScrollState()
 
@@ -72,6 +77,12 @@ private fun HomeScreen(
             text = "Our Recommendation",
             style = MaterialTheme.typography.h5,
             fontWeight = FontWeight.Bold,
+        )
+        Gap(12.dp)
+        PropertyTypeQuickFilters(
+            quickFilters = model.recommendationQuickFilters,
+            onFilterSelected = onQuickFilterSelected,
+            onSelectedFiltersCleared = onSelectedFiltersCleared,
         )
         Gap(8.dp)
         PropertySnippetsGrid(
@@ -112,6 +123,8 @@ private fun HomeScreenPreview() {
             searchInputComponent = DummySearchInputComponent(),
             onRecommendationClick = {},
             onButtonClick = {},
+            onQuickFilterSelected = {},
+            onSelectedFiltersCleared = {},
         )
     }
 }
