@@ -1,4 +1,4 @@
-package com.renting.app.android.feature.property
+package com.renting.app.android.feature.property.quickfilter
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.MaterialTheme

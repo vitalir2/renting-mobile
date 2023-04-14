@@ -21,7 +21,7 @@ import com.renting.app.android.core.uikit.RentingButton
 import com.renting.app.android.core.uikit.RentingPreviewContainer
 import com.renting.app.android.feature.auth.previewData
 import com.renting.app.android.feature.property.PropertySnippetsGrid
-import com.renting.app.android.feature.property.PropertyTypeQuickFilters
+import com.renting.app.android.feature.property.quickfilter.PropertyTypeQuickFilters
 import com.renting.app.android.feature.property.preview
 import com.renting.app.android.feature.search.SearchInput
 import com.renting.app.core.auth.model.UserInfo

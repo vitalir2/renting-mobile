@@ -1,4 +1,4 @@
-package com.renting.app.android.feature.property
+package com.renting.app.android.feature.property.quickfilter
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -48,7 +48,7 @@ fun PropertyTypeQuickFilters(
 
 @Composable
 fun PropertySnippetTypeQuickFiltersSkeletons() {
-    // TODO
+    // TODO RENTING-44
 }
 
 @Preview
