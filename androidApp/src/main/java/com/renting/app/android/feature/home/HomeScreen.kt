@@ -26,6 +26,9 @@ import com.renting.app.android.feature.search.SearchInput
 import com.renting.app.core.auth.model.UserInfo
 import com.renting.app.feature.home.HomeComponent
 import com.renting.app.feature.property.PropertySnippet
+import com.renting.app.feature.property.PropertyType
+import com.renting.app.feature.property.PropertyTypeQuickFilter
+import com.renting.app.feature.property.PropertyTypeQuickFilters
 import com.renting.app.feature.search.DummySearchInputComponent
 import com.renting.app.feature.search.SearchInputComponent
 
@@ -102,6 +105,9 @@ private fun HomeScreenPreview() {
             model = HomeComponent.Model(
                 userInfo = UserInfo.previewData,
                 recommendations = List(3) { PropertySnippet.preview },
+                recommendationQuickFilters = PropertyTypeQuickFilters(
+                    list = PropertyType.values().map { PropertyTypeQuickFilter(type = it) },
+                ),
             ),
             searchInputComponent = DummySearchInputComponent(),
             onRecommendationClick = {},

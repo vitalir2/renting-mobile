@@ -59,6 +59,12 @@ struct HomeView_Previews: PreviewProvider {
     }
 
     class StubComponent: HomeComponent {
+        func onTypeQuickFilterClicked(type: PropertyType) {
+        }
+        
+        func clearTypeQuickFiltersSelection() {
+        }
+        
         var models: Value<HomeComponentModel> = valueOf(
             HomeComponentModel(
                 userInfo: UserInfo(
@@ -73,7 +79,16 @@ struct HomeView_Previews: PreviewProvider {
                     PropertySnippet.preview,
                     PropertySnippet.preview,
                     PropertySnippet.preview
-                ]
+                ],
+                recommendationQuickFilters: PropertyTypeQuickFilters(
+                    list: [
+                        PropertyType.familyHouse,
+                        PropertyType.apartment,
+                        PropertyType.land
+                    ].map { type in
+                        PropertyTypeQuickFilter(type: type, isApplied: false)
+                    }
+                )
             )
         )
         

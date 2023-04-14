@@ -12,7 +12,10 @@ import com.renting.app.core.monad.Either
 import com.renting.app.feature.home.HomeStore.Intent
 import com.renting.app.feature.home.HomeStore.Label
 import com.renting.app.feature.home.HomeStore.State
+import com.renting.app.feature.property.PropertyTypeQuickFilter
 import com.renting.app.feature.property.PropertySnippet
+import com.renting.app.feature.property.PropertyType
+import com.renting.app.feature.property.PropertyTypeQuickFilters
 import com.renting.app.feature.recommendation.RecommendationRepository
 import kotlinx.coroutines.launch
 
@@ -40,11 +43,14 @@ internal class HomeStoreFactory(
     private sealed interface Action {
         object InitProfile : Action
         object InitRecommendations : Action
+        object InitQuickFilters : Action
     }
 
     private sealed interface Msg {
         data class UserInfoReceived(val userInfo: UserInfo) : Msg
         data class Recommendations(val value: List<PropertySnippet>) : Msg
+        data class UpdatedQuickFilter(val type: PropertyType) : Msg
+        data class QuickFilters(val quickFilters: PropertyTypeQuickFilters) : Msg
     }
 
     private class BootstrapperImpl : CoroutineBootstrapper<Action>() {
@@ -52,6 +58,7 @@ internal class HomeStoreFactory(
         override fun invoke() {
             dispatch(Action.InitProfile)
             dispatch(Action.InitRecommendations)
+            dispatch(Action.InitQuickFilters)
         }
     }
 
@@ -64,6 +71,15 @@ internal class HomeStoreFactory(
         override fun executeIntent(intent: Intent, getState: () -> State) {
             when (intent) {
                 Intent.Logout -> logout()
+                is Intent.ToggleTypeQuickFilter -> dispatch(
+                    Msg.UpdatedQuickFilter(intent.type)
+                )
+                Intent.ClearTypeQuickFiltersSelection -> {
+                    dispatch(
+                        // TODO RENTING-44: remove double bang by creating more than one screen state
+                        Msg.QuickFilters(getState().recommendationQuickFilters!!.clearSelection())
+                    )
+                }
             }
         }
 
@@ -84,7 +100,19 @@ internal class HomeStoreFactory(
             when (action) {
                 Action.InitProfile -> initProfile()
                 Action.InitRecommendations -> initRecommendations()
+                Action.InitQuickFilters -> initQuickFilters()
             }
+        }
+
+        private fun initQuickFilters() {
+            val quickFilters = listOf(
+                PropertyType.FAMILY_HOUSE,
+                PropertyType.APARTMENT,
+                PropertyType.LAND,
+            )
+                .map(::PropertyTypeQuickFilter)
+                .let(::PropertyTypeQuickFilters)
+            dispatch(Msg.QuickFilters(quickFilters))
         }
 
         private fun initRecommendations() {
@@ -117,7 +145,15 @@ internal class HomeStoreFactory(
         override fun State.reduce(msg: Msg): State {
             return when (msg) {
                 is Msg.UserInfoReceived -> copy(userInfo = msg.userInfo)
-                is Msg.Recommendations -> copy(recommendations = msg.value)
+                is Msg.Recommendations -> copy(
+                    recommendations = msg.value,
+                )
+                is Msg.UpdatedQuickFilter -> copy(
+                    recommendationQuickFilters = recommendationQuickFilters?.setActive(msg.type),
+                )
+                is Msg.QuickFilters -> copy(
+                    recommendationQuickFilters = msg.quickFilters,
+                )
             }
         }
     }
