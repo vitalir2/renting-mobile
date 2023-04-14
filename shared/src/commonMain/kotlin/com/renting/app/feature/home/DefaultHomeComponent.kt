@@ -9,6 +9,7 @@ import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.arkivanov.mvikotlin.extensions.coroutines.labels
 import com.renting.app.core.utils.stateAsValue
 import com.renting.app.feature.home.HomeStore.Intent
+import com.renting.app.feature.property.PropertyType
 import com.renting.app.feature.search.DefaultSearchInputComponent
 import com.renting.app.feature.search.SearchInputComponent
 import kotlinx.coroutines.launch
@@ -57,5 +58,13 @@ internal class DefaultHomeComponent(
 
     override fun logout() {
         store.accept(Intent.Logout)
+    }
+
+    override fun onTypeQuickFilterClicked(type: PropertyType) {
+        store.accept(Intent.ToggleTypeQuickFilter(type))
+    }
+
+    override fun clearTypeQuickFiltersSelection() {
+        store.accept(Intent.ClearTypeQuickFiltersSelection)
     }
 }
