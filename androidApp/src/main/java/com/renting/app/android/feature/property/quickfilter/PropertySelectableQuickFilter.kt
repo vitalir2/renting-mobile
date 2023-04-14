@@ -1,4 +1,4 @@
-package com.renting.app.android.feature.property
+package com.renting.app.android.feature.property.quickfilter
 
 import androidx.compose.foundation.border
 import androidx.compose.foundation.selection.selectable
