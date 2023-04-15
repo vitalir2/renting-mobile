@@ -124,6 +124,10 @@ android {
             name = "PRODUCTION_IMAGE_HOST",
             value = androidLocalProps.getProperty("renting.production.image.host"),
         )
+        addBuildConfigProperty<String>(
+            name = "ENVIRONMENT_MODE",
+            value = androidLocalProps.getProperty("renting.environment_mode"),
+        )
     }
 }
 
