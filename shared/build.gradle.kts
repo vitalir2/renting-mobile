@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 import com.android.build.api.dsl.LibraryDefaultConfig
 import java.util.*
 
@@ -40,6 +42,7 @@ kotlin {
                 implementation(libs.ktor.client.core)
                 implementation(libs.ktor.client.contentnegotiation)
                 implementation(libs.ktor.serialization.kotlinx.json)
+                implementation("io.ktor:ktor-client-logging:${libs.versions.ktor.get()}")
 
                 implementation(libs.multiplatform.settings.core)
 
