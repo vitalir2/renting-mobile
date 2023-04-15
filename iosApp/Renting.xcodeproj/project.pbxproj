@@ -15,6 +15,7 @@
 		FA0E0C9A29A533B400EECB1E /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = FA0E0C9929A533B400EECB1E /* Podfile */; };
 		FA10CFFB29EA6C140068572C /* QuickFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA10CFFA29EA6C140068572C /* QuickFilterView.swift */; };
 		FA10CFFD29EA6D9A0068572C /* PropertyTypeQuickFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA10CFFC29EA6D9A0068572C /* PropertyTypeQuickFiltersView.swift */; };
+		FA10CFFF29EA70E90068572C /* PropertyTypeQuickFiltersSkeleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA10CFFE29EA70E90068572C /* PropertyTypeQuickFiltersSkeleton.swift */; };
 		FA2B96F729B1B64B00563065 /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B96F629B1B64B00563065 /* PrimaryButtonStyle.swift */; };
 		FA51EFCF29BDE5A200030E7E /* RentingInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA51EFCE29BDE5A200030E7E /* RentingInput.swift */; };
 		FA556CBB29B104FD00F2C2C8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA556CBA29B104FD00F2C2C8 /* Colors.swift */; };
@@ -91,6 +92,7 @@
 		FA0E0C9929A533B400EECB1E /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		FA10CFFA29EA6C140068572C /* QuickFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickFilterView.swift; sourceTree = "<group>"; };
 		FA10CFFC29EA6D9A0068572C /* PropertyTypeQuickFiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyTypeQuickFiltersView.swift; sourceTree = "<group>"; };
+		FA10CFFE29EA70E90068572C /* PropertyTypeQuickFiltersSkeleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyTypeQuickFiltersSkeleton.swift; sourceTree = "<group>"; };
 		FA2B96F629B1B64B00563065 /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
 		FA51EFCE29BDE5A200030E7E /* RentingInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentingInput.swift; sourceTree = "<group>"; };
 		FA556CBA29B104FD00F2C2C8 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -374,6 +376,7 @@
 				FAEF027629E9CDDB0082C908 /* PropertyTypeQuickFilterView.swift */,
 				FA10CFFA29EA6C140068572C /* QuickFilterView.swift */,
 				FA10CFFC29EA6D9A0068572C /* PropertyTypeQuickFiltersView.swift */,
+				FA10CFFE29EA70E90068572C /* PropertyTypeQuickFiltersSkeleton.swift */,
 			);
 			path = QuickFilters;
 			sourceTree = "<group>";
@@ -621,6 +624,7 @@
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				FA98B2F629AB420C008E1CE4 /* ComponentHolder.swift in Sources */,
 				FAB875FE29C71C6E007F1378 /* FieldMappers.swift in Sources */,
+				FA10CFFF29EA70E90068572C /* PropertyTypeQuickFiltersSkeleton.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 				FAEF027729E9CDDB0082C908 /* PropertyTypeQuickFilterView.swift in Sources */,
 				FAA71C1929D9695E00386CC4 /* PropertySnippetCard.swift in Sources */,

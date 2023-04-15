@@ -10,27 +10,31 @@ import SwiftUI
 import shared
 
 struct PropertyTypeQuickFiltersView: View {
-    let filters: PropertyTypeQuickFilters
+    let filters: PropertyTypeQuickFilters?
     let onFilterSelected: (PropertyType) -> Void
     let clearSelectedFilters: () -> Void
     
     var body: some View {
-        ScrollView(Axis.Set.horizontal, showsIndicators: false) {
-            HStack {
-                QuickFilter(
-                    name: "✅ All",
-                    isApplied: filters.appliedFilter == nil,
-                    onSelected: clearSelectedFilters
-                )
-                ForEach(filters.list, id: \PropertyTypeQuickFilter.type) { filter in
-                    PropertyTypeQuickFilterView(
-                        quickFilter: filter,
-                        onSelected: {
-                            onFilterSelected(filter.type)
-                        }
+        if let filters = filters {
+            ScrollView(Axis.Set.horizontal, showsIndicators: false) {
+                HStack {
+                    QuickFilter(
+                        name: "✅ All",
+                        isApplied: filters.appliedFilter == nil,
+                        onSelected: clearSelectedFilters
                     )
+                    ForEach(filters.list, id: \PropertyTypeQuickFilter.type) { filter in
+                        PropertyTypeQuickFilterView(
+                            quickFilter: filter,
+                            onSelected: {
+                                onFilterSelected(filter.type)
+                            }
+                        )
+                    }
                 }
             }
+        } else {
+            PropertyTypeQuickFiltersSkeleton()
         }
     }
 }
