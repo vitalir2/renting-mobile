@@ -44,6 +44,8 @@ dependencies {
 
     implementation(libs.bundles.coil.compose)
 
+    implementation("androidx.core:core-splashscreen:1.0.0")
+
     implementation(libs.decompose.compose)
 
     debugImplementation(libs.androidx.compose.ui.tooling)
