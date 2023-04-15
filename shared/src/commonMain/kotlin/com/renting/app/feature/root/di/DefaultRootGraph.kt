@@ -46,7 +46,7 @@ class DefaultRootGraph(
             })
         }
         install(Logging) {
-            level = LogLevel.ALL
+            level = if (Environment.MODE.isDevelopment) LogLevel.ALL else LogLevel.NONE
             logger = object : Logger {
                 override fun log(message: String) {
                     LoggerStore.logger.info { message }

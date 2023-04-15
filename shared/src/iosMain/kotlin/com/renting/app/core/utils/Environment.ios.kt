@@ -26,6 +26,11 @@ actual object Environment {
         config["PRODUCTION_IMAGE_HOST"] as String
     }
 
+    actual val MODE: EnvironmentMode by lazy {
+        val name = config["ENVIRONMENT_MODE"] as String
+        EnvironmentMode.createFromName(name)
+    }
+
     private fun getConfigPath(name: String): String? {
         return NSBundle.mainBundle.pathForResource(name, ofType = "plist")
     }

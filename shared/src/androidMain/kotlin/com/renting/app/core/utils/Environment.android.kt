@@ -9,4 +9,9 @@ actual object Environment {
 
     actual val PRODUCTION_IMAGE_HOST: String
         get() = BuildConfig.PRODUCTION_IMAGE_HOST
+
+    actual val MODE: EnvironmentMode by lazy {
+        val name = BuildConfig.ENVIRONMENT_MODE
+        EnvironmentMode.createFromName(name)
+    }
 }
