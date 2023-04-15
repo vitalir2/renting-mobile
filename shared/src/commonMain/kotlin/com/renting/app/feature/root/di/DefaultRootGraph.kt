@@ -61,6 +61,10 @@ class DefaultRootGraph(
                 }
             }
         }
+        install(HttpRequestRetry)
+        install(HttpTimeout) {
+            requestTimeoutMillis = 20_000L
+        }
     }
 
     override val authGraph: AuthGraph = DefaultAuthGraph(
