@@ -42,7 +42,7 @@ kotlin {
                 implementation(libs.ktor.client.core)
                 implementation(libs.ktor.client.contentnegotiation)
                 implementation(libs.ktor.serialization.kotlinx.json)
-                implementation("io.ktor:ktor-client-logging:${libs.versions.ktor.get()}")
+                implementation(libs.ktor.client.logging)
 
                 implementation(libs.multiplatform.settings.core)
 
