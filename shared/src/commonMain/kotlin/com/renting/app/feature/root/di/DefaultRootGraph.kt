@@ -8,6 +8,7 @@ import com.renting.app.core.network.createHttpClient
 import com.renting.app.core.settings.SettingKey
 import com.renting.app.core.settings.SettingsFactory
 import com.renting.app.core.utils.Environment
+import com.renting.app.core.utils.isDevelopment
 import com.renting.app.feature.home.DefaultHomeGraph
 import com.renting.app.feature.home.HomeGraph
 import com.renting.app.feature.login.di.DefaultLoginGraph
@@ -46,7 +47,7 @@ class DefaultRootGraph(
             })
         }
         install(Logging) {
-            level = if (Environment.MODE.isDevelopment) LogLevel.ALL else LogLevel.NONE
+            level = if (Environment.isDevelopment) LogLevel.ALL else LogLevel.NONE
             logger = object : Logger {
                 override fun log(message: String) {
                     LoggerStore.logger.info { message }

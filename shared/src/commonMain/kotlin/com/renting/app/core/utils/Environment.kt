@@ -9,6 +9,9 @@ expect object Environment {
     val PRODUCTION_IMAGE_HOST: String
 }
 
+val Environment.isDevelopment: Boolean
+    get() = MODE.isDevelopment
+
 enum class EnvironmentMode(val stringName: String) {
     DEVELOPMENT("dev"),
     PRODUCTION("prod"),
