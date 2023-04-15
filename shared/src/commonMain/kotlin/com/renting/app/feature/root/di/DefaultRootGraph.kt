@@ -3,6 +3,7 @@ package com.renting.app.feature.root.di
 import com.renting.app.core.auth.di.AuthGraph
 import com.renting.app.core.auth.di.DefaultAuthGraph
 import com.renting.app.core.coroutines.createIODispatcher
+import com.renting.app.core.logger.LoggerStore
 import com.renting.app.core.network.createHttpClient
 import com.renting.app.core.settings.SettingKey
 import com.renting.app.core.settings.SettingsFactory
@@ -18,6 +19,7 @@ import com.renting.app.feature.registration.di.RegistrationGraph
 import com.russhwolf.settings.ObservableSettings
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
+import io.ktor.client.plugins.logging.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
@@ -42,6 +44,14 @@ class DefaultRootGraph(
                 explicitNulls = false
                 ignoreUnknownKeys = true
             })
+        }
+        install(Logging) {
+            level = LogLevel.ALL
+            logger = object : Logger {
+                override fun log(message: String) {
+                    LoggerStore.logger.info { message }
+                }
+            }
         }
         defaultRequest {
             url(Environment.PRODUCTION_NETWORK_HOST)
