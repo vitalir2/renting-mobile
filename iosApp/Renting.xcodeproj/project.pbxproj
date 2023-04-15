@@ -13,6 +13,7 @@
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 		B6DB54D7992C4BA8EEDC4F4A /* Pods_Renting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CCA8426D3B6FDA34F2BF2BE /* Pods_Renting.framework */; };
 		FA0E0C9A29A533B400EECB1E /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = FA0E0C9929A533B400EECB1E /* Podfile */; };
+		FA10CFFB29EA6C140068572C /* QuickFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA10CFFA29EA6C140068572C /* QuickFilter.swift */; };
 		FA2B96F729B1B64B00563065 /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B96F629B1B64B00563065 /* PrimaryButtonStyle.swift */; };
 		FA51EFCF29BDE5A200030E7E /* RentingInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA51EFCE29BDE5A200030E7E /* RentingInput.swift */; };
 		FA556CBB29B104FD00F2C2C8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA556CBA29B104FD00F2C2C8 /* Colors.swift */; };
@@ -40,6 +41,7 @@
 		FAE68BEF29BCC14500B71B2D /* ToastData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE68BEE29BCC14500B71B2D /* ToastData.swift */; };
 		FAE68BF129BCC16000B71B2D /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE68BF029BCC16000B71B2D /* ToastView.swift */; };
 		FAE68BF329BCC43500B71B2D /* ToastModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAE68BF229BCC43500B71B2D /* ToastModifier.swift */; };
+		FAEF027729E9CDDB0082C908 /* PropertyTypeQuickFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAEF027629E9CDDB0082C908 /* PropertyTypeQuickFilter.swift */; };
 		FAF6382529BF289D00AA8427 /* SecureInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF6382429BF289D00AA8427 /* SecureInput.swift */; };
 		FAFEA76529BC823B00D62F2E /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFEA76429BC823B00D62F2E /* RegistrationView.swift */; };
 		FAFEA76829BC825400D62F2E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFEA76729BC825400D62F2E /* HomeView.swift */; };
@@ -86,6 +88,7 @@
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B9D38A03E20123BCFE0B256A /* Pods-Renting.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Renting.debug.xcconfig"; path = "Target Support Files/Pods-Renting/Pods-Renting.debug.xcconfig"; sourceTree = "<group>"; };
 		FA0E0C9929A533B400EECB1E /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		FA10CFFA29EA6C140068572C /* QuickFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickFilter.swift; sourceTree = "<group>"; };
 		FA2B96F629B1B64B00563065 /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
 		FA51EFCE29BDE5A200030E7E /* RentingInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentingInput.swift; sourceTree = "<group>"; };
 		FA556CBA29B104FD00F2C2C8 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -115,6 +118,7 @@
 		FAE68BEE29BCC14500B71B2D /* ToastData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastData.swift; sourceTree = "<group>"; };
 		FAE68BF029BCC16000B71B2D /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
 		FAE68BF229BCC43500B71B2D /* ToastModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastModifier.swift; sourceTree = "<group>"; };
+		FAEF027629E9CDDB0082C908 /* PropertyTypeQuickFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyTypeQuickFilter.swift; sourceTree = "<group>"; };
 		FAF6382429BF289D00AA8427 /* SecureInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureInput.swift; sourceTree = "<group>"; };
 		FAFEA76429BC823B00D62F2E /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 		FAFEA76729BC825400D62F2E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -301,6 +305,7 @@
 		FAA71C1529D966B800386CC4 /* Property */ = {
 			isa = PBXGroup;
 			children = (
+				FAEF027529E9CDCB0082C908 /* QuickFilters */,
 				FAA71C1C29D976A400386CC4 /* Details */,
 				FAA71C1629D966C800386CC4 /* PropertyPreview.swift */,
 				FAA71C1829D9695E00386CC4 /* PropertySnippetCard.swift */,
@@ -359,6 +364,15 @@
 				FAAC6DCC29D8794700BCE652 /* RentingImage.swift */,
 			);
 			path = Uikit;
+			sourceTree = "<group>";
+		};
+		FAEF027529E9CDCB0082C908 /* QuickFilters */ = {
+			isa = PBXGroup;
+			children = (
+				FAEF027629E9CDDB0082C908 /* PropertyTypeQuickFilter.swift */,
+				FA10CFFA29EA6C140068572C /* QuickFilter.swift */,
+			);
+			path = QuickFilters;
 			sourceTree = "<group>";
 		};
 		FAFEA76329BC822A00D62F2E /* Registration */ = {
@@ -582,6 +596,7 @@
 				FAE68BF329BCC43500B71B2D /* ToastModifier.swift in Sources */,
 				FA98B2FC29AB4A4B008E1CE4 /* LoginView.swift in Sources */,
 				FAA71C1E29D976B100386CC4 /* PropertyDetailsView.swift in Sources */,
+				FA10CFFB29EA6C140068572C /* QuickFilter.swift in Sources */,
 				FA556CBB29B104FD00F2C2C8 /* Colors.swift in Sources */,
 				FAA71C1729D966C800386CC4 /* PropertyPreview.swift in Sources */,
 				FAF6382529BF289D00AA8427 /* SecureInput.swift in Sources */,
@@ -603,6 +618,7 @@
 				FA98B2F629AB420C008E1CE4 /* ComponentHolder.swift in Sources */,
 				FAB875FE29C71C6E007F1378 /* FieldMappers.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
+				FAEF027729E9CDDB0082C908 /* PropertyTypeQuickFilter.swift in Sources */,
 				FAA71C1929D9695E00386CC4 /* PropertySnippetCard.swift in Sources */,
 				FAFEA76529BC823B00D62F2E /* RegistrationView.swift in Sources */,
 				FACBB63629E8764100667A96 /* SearchInput.swift in Sources */,
