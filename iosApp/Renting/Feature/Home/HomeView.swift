@@ -32,6 +32,21 @@ struct HomeView: View {
             SearchInput(component.searchInput)
             Spacer()
                 .frame(height: 16)
+            HStack {
+                Text("Our Recommendations")
+                    .font(.title2)
+                    .fontWeight(.semibold)
+                Spacer()
+            }
+            Spacer()
+                .frame(height: 16)
+            PropertyTypeQuickFiltersView(
+                filters: model.recommendationQuickFilters,
+                onFilterSelected: component.onTypeQuickFilterClicked,
+                clearSelectedFilters: component.clearTypeQuickFiltersSelection
+            )
+            Spacer()
+                .frame(height: 20)
             PropertySnippetsGrid(
                 snippets: model.recommendations,
                 onSnippetClick: component.onRecommendationClicked
