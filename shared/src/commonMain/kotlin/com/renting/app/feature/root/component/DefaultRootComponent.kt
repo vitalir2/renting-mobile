@@ -67,15 +67,22 @@ class DefaultRootComponent(
             createFiltersComponent(componentContext)
         )
         is Configuration.SearchResults -> Child.SearchResults(
-            createSearchResultsComponent(componentContext)
+            createSearchResultsComponent(
+                componentContext = componentContext,
+                initQuery = configuration.query,
+            )
         )
     }
 
     private fun createSearchResultsComponent(
         componentContext: ComponentContext,
+        initQuery: String,
     ): SearchResultsComponent {
         return DefaultSearchResultsComponent(
             componentContext = componentContext,
+            initQuery = initQuery,
+            storeFactory = storeFactory,
+            searchRepository = searchRepository,
             openFullFilters = { navigation.bringToFront(Configuration.Filters) },
             openPropertyDetails = { id -> navigation.push(Configuration.PropertyDetails(id)) },
             navigateBack = { navigation.pop() },
