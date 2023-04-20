@@ -24,6 +24,7 @@ internal interface SearchResultsStore : Store<Intent, State, Nothing> {
     sealed interface SearchState {
         object Loading : SearchState
         object EmptyResults : SearchState
+        object Error : SearchState
         data class Results(val snippets: List<PropertySnippet>) : SearchState
     }
 }
