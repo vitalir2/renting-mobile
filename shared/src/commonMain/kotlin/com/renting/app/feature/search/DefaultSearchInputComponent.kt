@@ -7,8 +7,8 @@ import com.renting.app.feature.search.SearchInputComponent.Model
 
 internal class DefaultSearchInputComponent(
     componentContext: ComponentContext,
-    private val openFullFilters: () -> Unit,
-    private val openSearchResults: (query: String) -> Unit,
+    private val onFullFiltersClick: () -> Unit,
+    private val onSearchClick: (query: String) -> Unit,
 ) : SearchInputComponent, ComponentContext by componentContext {
 
     private val innerModels = MutableValue(
@@ -19,7 +19,7 @@ internal class DefaultSearchInputComponent(
     override val models: Value<Model> = innerModels
 
     override fun onFullFiltersClicked() {
-        openFullFilters()
+        onFullFiltersClick()
     }
 
     override fun onQueryChanged(content: String) {
@@ -29,6 +29,6 @@ internal class DefaultSearchInputComponent(
     }
 
     override fun onSearchClicked() {
-        openSearchResults(innerModels.value.query)
+        onSearchClick(innerModels.value.query)
     }
 }

@@ -45,8 +45,8 @@ internal class DefaultHomeComponent(
 
     override val searchInput: SearchInputComponent = DefaultSearchInputComponent(
         componentContext = childContext("search_input"),
-        openFullFilters = openFullFilters,
-        openSearchResults = openSearchResults,
+        onFullFiltersClick = openFullFilters,
+        onSearchClick = openSearchResults,
     )
 
     override val models: Value<HomeComponent.Model> = store.stateAsValue()

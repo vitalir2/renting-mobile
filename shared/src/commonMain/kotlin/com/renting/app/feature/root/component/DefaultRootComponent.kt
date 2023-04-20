@@ -76,6 +76,9 @@ class DefaultRootComponent(
     ): SearchResultsComponent {
         return DefaultSearchResultsComponent(
             componentContext = componentContext,
+            openFullFilters = { navigation.bringToFront(Configuration.Filters) },
+            openPropertyDetails = { id -> navigation.push(Configuration.PropertyDetails(id)) },
+            navigateBack = { navigation.pop() },
         )
     }
 
