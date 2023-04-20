@@ -6,8 +6,8 @@ import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineBootstrapper
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
 import com.renting.app.core.monad.Either
-import com.renting.app.core.monad.right
 import com.renting.app.feature.property.PropertySnippet
+import com.renting.app.feature.search.SearchRepository
 import com.renting.app.feature.search.results.SearchResultsStore.Intent
 import com.renting.app.feature.search.results.SearchResultsStore.SearchState
 import com.renting.app.feature.search.results.SearchResultsStore.State
@@ -16,6 +16,7 @@ import kotlinx.coroutines.launch
 internal class SearchResultsStoreFactory(
     private val initQuery: String,
     private val storeFactory: StoreFactory,
+    private val searchRepository: SearchRepository,
 ) {
 
     fun create(): SearchResultsStore =
@@ -27,12 +28,7 @@ internal class SearchResultsStoreFactory(
             bootstrapper = BootstrapperImpl(),
             executorFactory = {
                 ExecutorImpl(
-                    searchRepository = object : SearchRepository {
-                        // TODO Replace by the real one
-                        override suspend fun search(query: String): Either<Exception, List<PropertySnippet>> {
-                            return emptyList<PropertySnippet>().right()
-                        }
-                    }
+                    searchRepository = searchRepository,
                 )
             },
             reducer = ReducerImpl(),

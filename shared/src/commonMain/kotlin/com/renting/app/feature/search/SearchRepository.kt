@@ -1,4 +1,4 @@
-package com.renting.app.feature.search.results
+package com.renting.app.feature.search
 
 import com.renting.app.core.monad.Either
 import com.renting.app.feature.property.PropertySnippet
