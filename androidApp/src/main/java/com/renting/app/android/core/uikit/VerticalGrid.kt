@@ -25,7 +25,7 @@ fun VerticalGrid(
             measurable.measure(measurableConstraints).also { placeable ->
                 val isFirstItemInRow = index % columns == 0
                 if (isFirstItemInRow) {
-                    layoutHeight += placeable.height
+                    layoutHeight = minOf(layoutHeight + placeable.height, constraints.maxHeight)
                 }
             }
         }
@@ -38,7 +38,7 @@ fun VerticalGrid(
                 val isLastRowItem = (index + 1) % columns == 0
                 if (isLastRowItem) {
                     xPosition = 0
-                    yPosition += placeable.height
+                    yPosition = minOf(yPosition + placeable.height, constraints.maxHeight)
                 } else {
                     xPosition += placeable.width
                 }
