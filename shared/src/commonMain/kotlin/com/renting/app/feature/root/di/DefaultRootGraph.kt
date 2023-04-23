@@ -17,8 +17,8 @@ import com.renting.app.feature.recommendation.DefaultRecommendationGraph
 import com.renting.app.feature.recommendation.RecommendationGraph
 import com.renting.app.feature.registration.di.DefaultRegistrationGraph
 import com.renting.app.feature.registration.di.RegistrationGraph
-import com.renting.app.feature.search.DefaultSearchRepository
-import com.renting.app.feature.search.SearchRepository
+import com.renting.app.feature.search.results.DefaultSearchGraph
+import com.renting.app.feature.search.results.SearchGraph
 import com.russhwolf.settings.ObservableSettings
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
@@ -96,7 +96,8 @@ class DefaultRootGraph(
         ioDispatcher = ioDispatcher,
     )
 
-    override val searchRepository: SearchRepository = DefaultSearchRepository(
-        httpClient = httpClient,
-    )
+    override val searchGraph: SearchGraph
+        get() = DefaultSearchGraph(
+            httpClient = httpClient,
+        )
 }

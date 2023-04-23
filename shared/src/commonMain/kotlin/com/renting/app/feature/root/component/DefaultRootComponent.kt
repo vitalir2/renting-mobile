@@ -24,8 +24,8 @@ import com.renting.app.feature.registration.component.DefaultRegistrationCompone
 import com.renting.app.feature.registration.component.RegistrationComponent
 import com.renting.app.feature.root.component.RootComponent.Child
 import com.renting.app.feature.root.di.RootGraph
-import com.renting.app.feature.search.results.DefaultSearchResultsComponent
-import com.renting.app.feature.search.results.SearchResultsComponent
+import com.renting.app.feature.search.results.component.DefaultSearchResultsComponent
+import com.renting.app.feature.search.results.component.SearchResultsComponent
 
 class DefaultRootComponent(
     componentContext: ComponentContext,
@@ -82,7 +82,7 @@ class DefaultRootComponent(
             componentContext = componentContext,
             initQuery = initQuery,
             storeFactory = storeFactory,
-            searchRepository = searchRepository,
+            searchGraph = searchGraph,
             openFullFilters = { navigation.bringToFront(Configuration.Filters) },
             openPropertyDetails = { id -> navigation.push(Configuration.PropertyDetails(id)) },
             navigateBack = { navigation.pop() },
