@@ -29,6 +29,8 @@ struct RootView: View {
             HomeView(home.component)
         case let propertyDetails as RootComponentChildPropertyDetails:
             PropertyDetailsView(propertyDetails.component)
+        case let searchResults as RootComponentChildSearchResults:
+            SearchResultsView(searchResults.component)
         default: Text("Unknown screen")
         }
     }
