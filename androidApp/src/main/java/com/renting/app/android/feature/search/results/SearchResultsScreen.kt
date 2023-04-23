@@ -2,7 +2,6 @@ package com.renting.app.android.feature.search.results
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -25,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.arkivanov.decompose.extensions.compose.jetpack.subscribeAsState
+import com.renting.app.android.core.uikit.Gap
 import com.renting.app.android.core.uikit.RentingPreviewContainer
 import com.renting.app.android.feature.property.PropertySnippetsGrid
 import com.renting.app.android.feature.property.preview
@@ -92,6 +92,7 @@ private fun SearchResultsScreen(
             onFilterSelected = onFiltersSelected,
             onSelectedFiltersCleared = onSelectedFiltersCleared,
         )
+        Gap(16.dp)
         SearchScreen(
             state = model.searchState,
             onSnippetClicked = onSnippetClicked,
@@ -100,9 +101,35 @@ private fun SearchResultsScreen(
 }
 
 @Composable
-fun SearchScreen(
+private fun SearchScreen(
     state: SearchState,
     onSnippetClicked: (id: Long) -> Unit,
+) {
+    Column {
+        SearchScreenHeader(state)
+        Gap(16.dp)
+        SearchScreenContent(state, onSnippetClicked)
+    }
+}
+
+@Composable
+private fun SearchScreenHeader(state: SearchState) {
+    val snippetsCount = when (state) {
+        is SearchState.EmptyResults -> 0
+        is SearchState.Results -> state.snippets.size
+        is SearchState.Error, is SearchState.Loading -> null
+    } ?: return
+
+    Text(
+        text = "$snippetsCount found",
+        style = MaterialTheme.typography.h6,
+    )
+}
+
+@Composable
+private fun SearchScreenContent(
+    state: SearchState,
+    onSnippetClicked: (id: Long) -> Unit
 ) {
     when (state) {
         is SearchState.Loading -> {
