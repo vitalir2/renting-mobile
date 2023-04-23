@@ -5,7 +5,7 @@ import com.renting.app.core.auth.model.UserInfo
 import com.renting.app.feature.property.PropertySnippet
 import com.renting.app.feature.property.PropertyType
 import com.renting.app.feature.property.PropertyTypeQuickFilters
-import com.renting.app.feature.search.SearchInputComponent
+import com.renting.app.feature.search.input.SearchInputComponent
 
 interface HomeComponent {
 

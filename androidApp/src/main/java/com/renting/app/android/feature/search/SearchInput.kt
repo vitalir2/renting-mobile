@@ -18,7 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.arkivanov.decompose.extensions.compose.jetpack.subscribeAsState
 import com.renting.app.android.core.uikit.RentingPreviewContainer
-import com.renting.app.feature.search.SearchInputComponent
+import com.renting.app.feature.search.input.SearchInputComponent
 
 @Composable
 fun SearchInput(

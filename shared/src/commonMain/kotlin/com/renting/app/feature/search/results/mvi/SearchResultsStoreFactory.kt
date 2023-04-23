@@ -1,4 +1,4 @@
-package com.renting.app.feature.search.results
+package com.renting.app.feature.search.results.mvi
 
 import com.arkivanov.mvikotlin.core.store.Reducer
 import com.arkivanov.mvikotlin.core.store.Store
@@ -10,8 +10,9 @@ import com.renting.app.feature.property.PropertySnippet
 import com.renting.app.feature.property.PropertyTypeQuickFilter
 import com.renting.app.feature.property.PropertyTypeQuickFilters
 import com.renting.app.feature.search.SearchRepository
-import com.renting.app.feature.search.results.SearchResultsStore.Intent
-import com.renting.app.feature.search.results.SearchResultsStore.State
+import com.renting.app.feature.search.results.SearchState
+import com.renting.app.feature.search.results.mvi.SearchResultsStore.Intent
+import com.renting.app.feature.search.results.mvi.SearchResultsStore.State
 import kotlinx.coroutines.launch
 
 internal class SearchResultsStoreFactory(

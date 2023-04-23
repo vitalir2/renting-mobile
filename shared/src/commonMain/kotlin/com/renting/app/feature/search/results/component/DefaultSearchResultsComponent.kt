@@ -1,4 +1,4 @@
-package com.renting.app.feature.search.results
+package com.renting.app.feature.search.results.component
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.childContext
@@ -8,9 +8,12 @@ import com.arkivanov.mvikotlin.core.instancekeeper.getStore
 import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.renting.app.core.utils.stateAsValue
 import com.renting.app.feature.property.PropertyType
-import com.renting.app.feature.search.DefaultSearchInputComponent
-import com.renting.app.feature.search.SearchInputComponent
-import com.renting.app.feature.search.results.SearchResultsStore.Intent
+import com.renting.app.feature.search.input.DefaultSearchInputComponent
+import com.renting.app.feature.search.input.SearchInputComponent
+import com.renting.app.feature.search.di.SearchGraph
+import com.renting.app.feature.search.results.mvi.SearchResultsMappers
+import com.renting.app.feature.search.results.mvi.SearchResultsStore.Intent
+import com.renting.app.feature.search.results.mvi.SearchResultsStoreFactory
 
 internal class DefaultSearchResultsComponent(
     componentContext: ComponentContext,

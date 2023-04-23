@@ -1,9 +1,10 @@
-package com.renting.app.feature.search.results
+package com.renting.app.feature.search.results.component
 
 import com.arkivanov.decompose.value.Value
 import com.renting.app.feature.property.PropertyType
 import com.renting.app.feature.property.PropertyTypeQuickFilters
-import com.renting.app.feature.search.SearchInputComponent
+import com.renting.app.feature.search.input.SearchInputComponent
+import com.renting.app.feature.search.results.SearchState
 
 interface SearchResultsComponent {
 

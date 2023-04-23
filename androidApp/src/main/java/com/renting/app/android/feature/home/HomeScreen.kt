@@ -30,8 +30,8 @@ import com.renting.app.feature.property.PropertySnippet
 import com.renting.app.feature.property.PropertyType
 import com.renting.app.feature.property.PropertyTypeQuickFilter
 import com.renting.app.feature.property.PropertyTypeQuickFilters
-import com.renting.app.feature.search.DummySearchInputComponent
-import com.renting.app.feature.search.SearchInputComponent
+import com.renting.app.feature.search.input.DummySearchInputComponent
+import com.renting.app.feature.search.input.SearchInputComponent
 
 @Composable
 fun HomeScreen(component: HomeComponent) {

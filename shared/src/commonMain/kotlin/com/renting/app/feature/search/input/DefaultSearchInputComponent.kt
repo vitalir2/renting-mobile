@@ -1,9 +1,9 @@
-package com.renting.app.feature.search
+package com.renting.app.feature.search.input
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
-import com.renting.app.feature.search.SearchInputComponent.Model
+import com.renting.app.feature.search.input.SearchInputComponent.Model
 
 internal class DefaultSearchInputComponent(
     componentContext: ComponentContext,
