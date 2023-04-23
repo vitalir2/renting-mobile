@@ -1,10 +1,11 @@
-package com.renting.app.feature.search.results
+package com.renting.app.feature.search.results.mvi
 
 import com.arkivanov.mvikotlin.core.store.Store
 import com.renting.app.feature.property.PropertyType
 import com.renting.app.feature.property.PropertyTypeQuickFilters
-import com.renting.app.feature.search.results.SearchResultsStore.Intent
-import com.renting.app.feature.search.results.SearchResultsStore.State
+import com.renting.app.feature.search.results.SearchState
+import com.renting.app.feature.search.results.mvi.SearchResultsStore.Intent
+import com.renting.app.feature.search.results.mvi.SearchResultsStore.State
 
 internal interface SearchResultsStore : Store<Intent, State, Nothing> {
 

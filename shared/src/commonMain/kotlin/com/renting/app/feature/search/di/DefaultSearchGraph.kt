@@ -1,4 +1,4 @@
-package com.renting.app.feature.search.results
+package com.renting.app.feature.search.di
 
 import com.renting.app.feature.search.DefaultSearchRepository
 import com.renting.app.feature.search.SearchRepository

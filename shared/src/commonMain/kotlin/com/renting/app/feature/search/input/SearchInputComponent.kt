@@ -1,4 +1,4 @@
-package com.renting.app.feature.search
+package com.renting.app.feature.search.input
 
 import com.arkivanov.decompose.value.Value
 

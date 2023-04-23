@@ -7,7 +7,7 @@ import com.renting.app.feature.home.HomeComponent
 import com.renting.app.feature.login.component.LoginComponent
 import com.renting.app.feature.property.details.PropertyDetailsComponent
 import com.renting.app.feature.registration.component.RegistrationComponent
-import com.renting.app.feature.search.results.SearchResultsComponent
+import com.renting.app.feature.search.results.component.SearchResultsComponent
 
 interface RootComponent {
 

@@ -1,10 +1,11 @@
-package com.renting.app.feature.search.results
+package com.renting.app.feature.search.results.component
 
 import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
 import com.renting.app.feature.property.PropertyType
-import com.renting.app.feature.search.DummySearchInputComponent
-import com.renting.app.feature.search.SearchInputComponent
+import com.renting.app.feature.search.input.DummySearchInputComponent
+import com.renting.app.feature.search.input.SearchInputComponent
+import com.renting.app.feature.search.results.SearchState
 
 class DummySearchResultsComponent(
     initModel: SearchResultsComponent.Model? = null

@@ -1,4 +1,7 @@
-package com.renting.app.feature.search.results
+package com.renting.app.feature.search.results.mvi
+
+import com.renting.app.feature.search.results.SearchState
+import com.renting.app.feature.search.results.component.SearchResultsComponent
 
 internal object SearchResultsMappers {
 
