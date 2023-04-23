@@ -2,7 +2,7 @@ package com.renting.app.feature.search.results
 
 import com.arkivanov.decompose.value.MutableValue
 import com.arkivanov.decompose.value.Value
-import com.renting.app.feature.property.PropertyTypeQuickFilter
+import com.renting.app.feature.property.PropertyType
 import com.renting.app.feature.search.DummySearchInputComponent
 import com.renting.app.feature.search.SearchInputComponent
 
@@ -23,7 +23,7 @@ class DummySearchResultsComponent(
         // Nothing to do
     }
 
-    override fun onQuickFilterToggled(quickFilter: PropertyTypeQuickFilter) {
+    override fun onQuickFilterToggled(type: PropertyType) {
         // Nothing to do
     }
 

@@ -1,7 +1,7 @@
 package com.renting.app.feature.search.results
 
 import com.arkivanov.decompose.value.Value
-import com.renting.app.feature.property.PropertyTypeQuickFilter
+import com.renting.app.feature.property.PropertyType
 import com.renting.app.feature.property.PropertyTypeQuickFilters
 import com.renting.app.feature.search.SearchInputComponent
 
@@ -13,7 +13,7 @@ interface SearchResultsComponent {
 
     fun onResetQuickFiltersSelected()
 
-    fun onQuickFilterToggled(quickFilter: PropertyTypeQuickFilter)
+    fun onQuickFilterToggled(type: PropertyType)
 
     fun onNavigateBackRequested()
 

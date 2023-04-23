@@ -76,9 +76,9 @@ internal class SearchResultsStoreFactory(
 
         override fun executeIntent(intent: Intent, getState: () -> State) {
             when (intent) {
-                is Intent.ApplyFilter -> {
+                is Intent.ApplyQuickFilter -> {
                     val filters = getState().quickFilters ?: return
-                    val updatedFilters = filters.setActive(intent.quickFilter.type)
+                    val updatedFilters = filters.setActive(intent.type)
                     dispatch(Msg.UpdatedQuickTypeFilters(updatedFilters))
                 }
                 is Intent.ResetFilters -> {

@@ -17,6 +17,7 @@ import com.renting.app.feature.property.PropertyTypeQuickFilters
 @Composable
 fun PropertyTypeQuickFilters(
     quickFilters: PropertyTypeQuickFilters?,
+    modifier: Modifier = Modifier,
     onFilterSelected: (PropertyType) -> Unit,
     onSelectedFiltersCleared: () -> Unit,
 ) {
@@ -24,7 +25,7 @@ fun PropertyTypeQuickFilters(
         PropertySnippetTypeQuickFiltersSkeletons()
     } else {
         LazyRow(
-            modifier = Modifier
+            modifier = modifier
                 .selectableGroup(),
             contentPadding = PaddingValues(8.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -36,7 +37,7 @@ fun PropertyTypeQuickFilters(
                     name = "✅ All",
                 )
             }
-            items(quickFilters.list) { filter ->
+            items(quickFilters.list, key = PropertyTypeQuickFilter::type) { filter ->
                 PropertyTypeQuickFilter(
                     filter = filter,
                     onFilterSelected = onFilterSelected,

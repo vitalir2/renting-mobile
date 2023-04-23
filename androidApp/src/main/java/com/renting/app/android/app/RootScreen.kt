@@ -13,11 +13,11 @@ import com.arkivanov.decompose.router.stack.ChildStack
 import com.renting.app.android.feature.home.HomeScreen
 import com.renting.app.android.feature.login.LoginScreen
 import com.renting.app.android.feature.registration.RegistrationScreen
+import com.renting.app.android.feature.search.results.SearchResultsScreen
 import com.renting.app.feature.filters.FiltersComponent
 import com.renting.app.feature.property.details.PropertyDetailsComponent
 import com.renting.app.feature.root.component.RootComponent
 import com.renting.app.feature.root.component.RootComponent.Child
-import com.renting.app.feature.search.results.SearchResultsComponent
 
 @Composable
 fun RootScreen(
@@ -44,11 +44,6 @@ private fun RootNavigation(stack: State<ChildStack<*, Child>>) {
             is Child.SearchResults -> SearchResultsScreen(component = screen.component)
         }
     }
-}
-
-@Composable
-fun SearchResultsScreen(component: SearchResultsComponent) {
-    Text("Search Results")
 }
 
 @Composable

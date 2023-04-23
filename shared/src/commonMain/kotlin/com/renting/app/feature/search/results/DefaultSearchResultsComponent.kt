@@ -7,7 +7,7 @@ import com.arkivanov.decompose.value.operator.map
 import com.arkivanov.mvikotlin.core.instancekeeper.getStore
 import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.renting.app.core.utils.stateAsValue
-import com.renting.app.feature.property.PropertyTypeQuickFilter
+import com.renting.app.feature.property.PropertyType
 import com.renting.app.feature.search.DefaultSearchInputComponent
 import com.renting.app.feature.search.SearchInputComponent
 import com.renting.app.feature.search.SearchRepository
@@ -43,8 +43,8 @@ internal class DefaultSearchResultsComponent(
         store.accept(Intent.ResetFilters)
     }
 
-    override fun onQuickFilterToggled(quickFilter: PropertyTypeQuickFilter) {
-        store.accept(Intent.ApplyFilter(quickFilter))
+    override fun onQuickFilterToggled(type: PropertyType) {
+        store.accept(Intent.ApplyQuickFilter(type))
     }
 
     override fun onNavigateBackRequested() {
