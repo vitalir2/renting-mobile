@@ -5,7 +5,7 @@ import com.renting.app.feature.home.HomeGraph
 import com.renting.app.feature.login.di.LoginGraph
 import com.renting.app.feature.recommendation.RecommendationGraph
 import com.renting.app.feature.registration.di.RegistrationGraph
-import com.renting.app.feature.search.SearchRepository
+import com.renting.app.feature.search.results.SearchGraph
 
 interface RootGraph {
 
@@ -19,5 +19,5 @@ interface RootGraph {
 
     val recommendationGraph: RecommendationGraph
 
-    val searchRepository: SearchRepository
+    val searchGraph: SearchGraph
 }

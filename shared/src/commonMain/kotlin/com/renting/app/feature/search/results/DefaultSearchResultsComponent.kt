@@ -10,18 +10,17 @@ import com.renting.app.core.utils.stateAsValue
 import com.renting.app.feature.property.PropertyType
 import com.renting.app.feature.search.DefaultSearchInputComponent
 import com.renting.app.feature.search.SearchInputComponent
-import com.renting.app.feature.search.SearchRepository
 import com.renting.app.feature.search.results.SearchResultsStore.Intent
 
 internal class DefaultSearchResultsComponent(
     componentContext: ComponentContext,
     initQuery: String,
     storeFactory: StoreFactory,
-    searchRepository: SearchRepository,
     openFullFilters: () -> Unit,
+    searchGraph: SearchGraph,
     private val openPropertyDetails: (id: Long) -> Unit,
     private val navigateBack: () -> Unit,
-) : SearchResultsComponent, ComponentContext by componentContext {
+) : SearchResultsComponent, ComponentContext by componentContext, SearchGraph by searchGraph {
 
     private val store = instanceKeeper.getStore {
         SearchResultsStoreFactory(
