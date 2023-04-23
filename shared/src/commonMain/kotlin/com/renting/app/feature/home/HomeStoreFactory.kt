@@ -105,11 +105,7 @@ internal class HomeStoreFactory(
         }
 
         private fun initQuickFilters() {
-            val quickFilters = listOf(
-                PropertyType.FAMILY_HOUSE,
-                PropertyType.APARTMENT,
-                PropertyType.LAND,
-            )
+            val quickFilters = PropertyTypeQuickFilters.filtersOrder
                 .map(::PropertyTypeQuickFilter)
                 .let(::PropertyTypeQuickFilters)
             dispatch(Msg.QuickFilters(quickFilters))

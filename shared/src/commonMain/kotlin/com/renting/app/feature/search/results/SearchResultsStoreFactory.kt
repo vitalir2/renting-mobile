@@ -7,6 +7,8 @@ import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineBootstrapper
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
 import com.renting.app.core.monad.Either
 import com.renting.app.feature.property.PropertySnippet
+import com.renting.app.feature.property.PropertyTypeQuickFilter
+import com.renting.app.feature.property.PropertyTypeQuickFilters
 import com.renting.app.feature.search.SearchRepository
 import com.renting.app.feature.search.results.SearchResultsStore.Intent
 import com.renting.app.feature.search.results.SearchResultsStore.SearchState
@@ -36,17 +38,20 @@ internal class SearchResultsStoreFactory(
 
     private sealed interface Action {
         object InitSearch : Action
+        object InitQuickFilters : Action
     }
 
     private sealed interface Msg {
         object SearchStarted : Msg
         object SearchError : Msg
         data class PropertySnippets(val snippets: List<PropertySnippet>) : Msg
+        data class UpdatedQuickTypeFilters(val filters: PropertyTypeQuickFilters) : Msg
     }
 
     private class BootstrapperImpl : CoroutineBootstrapper<Action>() {
         override fun invoke() {
             dispatch(Action.InitSearch)
+            dispatch(Action.InitQuickFilters)
         }
     }
 
@@ -57,16 +62,28 @@ internal class SearchResultsStoreFactory(
         override fun executeAction(action: Action, getState: () -> State) {
             when (action) {
                 is Action.InitSearch -> searchSnippets(getState().query)
+                is Action.InitQuickFilters -> initQuickFilters()
             }
+        }
+
+        private fun initQuickFilters() {
+            val quickFilters = PropertyTypeQuickFilters.filtersOrder
+                .map(::PropertyTypeQuickFilter)
+                .let(::PropertyTypeQuickFilters)
+            dispatch(Msg.UpdatedQuickTypeFilters(quickFilters))
         }
 
         override fun executeIntent(intent: Intent, getState: () -> State) {
             when (intent) {
                 is Intent.ApplyFilter -> {
-                    // TODO handle filters
+                    val filters = getState().quickFilters ?: return
+                    val updatedFilters = filters.setActive(intent.quickFilter.type)
+                    dispatch(Msg.UpdatedQuickTypeFilters(updatedFilters))
                 }
                 is Intent.ResetFilters -> {
-                    // TODO handle filters
+                    val filters = getState().quickFilters ?: return
+                    val updatedFilters = filters.clearSelection()
+                    dispatch(Msg.UpdatedQuickTypeFilters(updatedFilters))
                 }
                 is Intent.SearchSnippets -> {
                     searchSnippets(getState().query)
@@ -105,6 +122,9 @@ internal class SearchResultsStoreFactory(
                 )
                 is Msg.SearchError -> copy(
                     searchState = SearchState.Error,
+                )
+                is Msg.UpdatedQuickTypeFilters -> copy(
+                    quickFilters = msg.filters,
                 )
             }
         }
