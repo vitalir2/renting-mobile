@@ -11,7 +11,6 @@ import com.renting.app.feature.property.PropertyTypeQuickFilter
 import com.renting.app.feature.property.PropertyTypeQuickFilters
 import com.renting.app.feature.search.SearchRepository
 import com.renting.app.feature.search.results.SearchResultsStore.Intent
-import com.renting.app.feature.search.results.SearchResultsStore.SearchState
 import com.renting.app.feature.search.results.SearchResultsStore.State
 import kotlinx.coroutines.launch
 
@@ -24,10 +23,10 @@ internal class SearchResultsStoreFactory(
     fun create(): SearchResultsStore =
         object : SearchResultsStore, Store<Intent, State, Nothing> by storeFactory.create(
             name = "SearchResults",
-            initialState = State(
-                query = initQuery,
+            initialState = State(),
+            bootstrapper = BootstrapperImpl(
+                initQuery = initQuery,
             ),
-            bootstrapper = BootstrapperImpl(),
             executorFactory = {
                 ExecutorImpl(
                     searchRepository = searchRepository,
@@ -37,8 +36,8 @@ internal class SearchResultsStoreFactory(
         ) {}
 
     private sealed interface Action {
-        object InitSearch : Action
         object InitQuickFilters : Action
+        data class InitSearch(val query: String) : Action
     }
 
     private sealed interface Msg {
@@ -48,9 +47,11 @@ internal class SearchResultsStoreFactory(
         data class UpdatedQuickTypeFilters(val filters: PropertyTypeQuickFilters) : Msg
     }
 
-    private class BootstrapperImpl : CoroutineBootstrapper<Action>() {
+    private class BootstrapperImpl(
+        private val initQuery: String,
+    ) : CoroutineBootstrapper<Action>() {
         override fun invoke() {
-            dispatch(Action.InitSearch)
+            dispatch(Action.InitSearch(initQuery))
             dispatch(Action.InitQuickFilters)
         }
     }
@@ -61,7 +62,7 @@ internal class SearchResultsStoreFactory(
 
         override fun executeAction(action: Action, getState: () -> State) {
             when (action) {
-                is Action.InitSearch -> searchSnippets(getState().query)
+                is Action.InitSearch -> searchSnippets(action.query)
                 is Action.InitQuickFilters -> initQuickFilters()
             }
         }
@@ -86,7 +87,7 @@ internal class SearchResultsStoreFactory(
                     dispatch(Msg.UpdatedQuickTypeFilters(updatedFilters))
                 }
                 is Intent.SearchSnippets -> {
-                    searchSnippets(getState().query)
+                    searchSnippets(intent.query)
                 }
             }
         }

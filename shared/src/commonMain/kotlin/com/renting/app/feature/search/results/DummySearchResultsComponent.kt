@@ -1,10 +1,21 @@
 package com.renting.app.feature.search.results
 
+import com.arkivanov.decompose.value.MutableValue
+import com.arkivanov.decompose.value.Value
 import com.renting.app.feature.property.PropertyTypeQuickFilter
 import com.renting.app.feature.search.DummySearchInputComponent
 import com.renting.app.feature.search.SearchInputComponent
 
-class DummySearchResultsComponent : SearchResultsComponent {
+class DummySearchResultsComponent(
+    initModel: SearchResultsComponent.Model? = null
+) : SearchResultsComponent {
+
+    override val models: Value<SearchResultsComponent.Model> = MutableValue(
+        initModel ?: SearchResultsComponent.Model(
+            searchState = SearchState.Loading,
+            quickFilters = null,
+        )
+    )
 
     override val searchInputComponent: SearchInputComponent = DummySearchInputComponent()
 
