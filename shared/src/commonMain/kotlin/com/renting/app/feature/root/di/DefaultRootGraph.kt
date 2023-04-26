@@ -20,7 +20,9 @@ import com.renting.app.feature.registration.di.RegistrationGraph
 import com.renting.app.feature.search.di.DefaultSearchGraph
 import com.renting.app.feature.search.di.SearchGraph
 import com.russhwolf.settings.ObservableSettings
+import io.ktor.client.*
 import io.ktor.client.plugins.*
+import io.ktor.client.plugins.api.*
 import io.ktor.client.plugins.contentnegotiation.*
 import io.ktor.client.plugins.logging.*
 import io.ktor.client.request.*
