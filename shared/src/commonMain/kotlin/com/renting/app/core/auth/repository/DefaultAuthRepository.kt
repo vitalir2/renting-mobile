@@ -17,6 +17,7 @@ import com.renting.app.core.monad.left
 import com.renting.app.core.monad.right
 import com.renting.app.core.settings.SettingKey
 import com.renting.app.core.form.TextField
+import com.renting.app.core.network.postOrLeft
 import com.russhwolf.settings.ObservableSettings
 import com.russhwolf.settings.SettingsListener
 import io.ktor.client.*
@@ -56,7 +57,10 @@ internal class DefaultAuthRepository(
         login: String,
         password: String,
     ): Either<LoginError, AuthToken> = withContext(ioDispatcher) {
-        val response = makeLoginRequest(login, password)
+        val response = when (val result = makeLoginRequest(login, password)) {
+            is Either.Left -> return@withContext LoginError.Unknown.left()
+            is Either.Right -> result.value
+        }
         if (response.status.isSuccess()) {
             handleSuccessfulLogin(response)
         } else {
@@ -67,7 +71,7 @@ internal class DefaultAuthRepository(
     private suspend fun makeLoginRequest(
         login: String,
         password: String
-    ): HttpResponse = httpClient.post("/api/auth") {
+    ): Either<Exception, HttpResponse> = httpClient.postOrLeft("/api/auth") {
         contentType(ContentType.Application.Json)
         setBody(
             LoginRequest(
@@ -96,7 +100,10 @@ internal class DefaultAuthRepository(
     override suspend fun register(
         initUserData: InitUserData,
     ): Either<RegistrationError, AuthToken> = withContext(ioDispatcher) {
-        val response = makeRegistrationRequest(initUserData)
+        val response = when (val result = makeRegistrationRequest(initUserData)) {
+            is Either.Left -> return@withContext RegistrationError.Unknown.left()
+            is Either.Right -> result.value
+        }
         if (response.status.isSuccess()) {
             handleSuccessfulRegistration(response)
         } else {
@@ -104,11 +111,12 @@ internal class DefaultAuthRepository(
         }
     }
 
-    private suspend fun makeRegistrationRequest(initUserData: InitUserData) =
-        httpClient.post("/api/signup") {
-            contentType(ContentType.Application.Json)
-            setBody(initUserData.toRequestModel())
-        }
+    private suspend fun makeRegistrationRequest(
+        initUserData: InitUserData,
+    ): Either<Exception, HttpResponse> = httpClient.postOrLeft("/api/signup") {
+        contentType(ContentType.Application.Json)
+        setBody(initUserData.toRequestModel())
+    }
 
     private suspend fun handleSuccessfulRegistration(response: HttpResponse): Either.Right<AuthToken> {
         val token = response.body<RegistrationResponse>().token

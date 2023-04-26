@@ -6,6 +6,7 @@ import com.renting.app.core.model.Image
 import com.renting.app.core.monad.Either
 import com.renting.app.core.monad.left
 import com.renting.app.core.monad.right
+import com.renting.app.core.network.getOrLeft
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
@@ -21,9 +22,14 @@ internal class DefaultUserRepository(
 ) : UserRepository {
 
     override suspend fun getUserInfo(): Either<Exception, UserInfo> = withContext(ioDispatcher) {
-        val response = httpClient.get("/api/users/current") {
+        val result = httpClient.getOrLeft("/api/users/current") {
             contentType(ContentType.Application.Json)
         }
+        val response = when (result) {
+            is Either.Left -> return@withContext result.error.left()
+            is Either.Right -> result.value
+        }
+
         if (response.status.isSuccess()) {
             val userResponse = response.body<UserResponse>()
             UserInfo(
