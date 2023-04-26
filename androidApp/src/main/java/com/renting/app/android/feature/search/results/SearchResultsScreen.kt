@@ -1,12 +1,16 @@
 package com.renting.app.android.feature.search.results
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -21,9 +25,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.arkivanov.decompose.extensions.compose.jetpack.subscribeAsState
+import com.renting.app.android.R
 import com.renting.app.android.core.uikit.Gap
 import com.renting.app.android.core.uikit.RentingPreviewContainer
 import com.renting.app.android.feature.property.PropertySnippetsGrid
@@ -156,9 +163,28 @@ private fun SearchScreenContent(
             )
         }
         is SearchState.EmptyResults -> {
-            Box(contentAlignment = Alignment.Center) {
-                // TODO RENTING-49 show real placeholder
-                Text(text = "Empty results")
+            Column(modifier = Modifier.fillMaxSize()) {
+                Image(
+                    painter = painterResource(id = R.drawable.search_results_empty),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(24.dp),
+                )
+                Text(
+                    text = "Not found",
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    style = MaterialTheme.typography.h6,
+                    textAlign = TextAlign.Center,
+                )
+                Gap(8.dp)
+                Text(
+                    text = "Sorry, the keyword you entered cannot be found," +
+                            " please check again or search with another keyword",
+                    style = MaterialTheme.typography.body1,
+                    textAlign = TextAlign.Center,
+                )
             }
         }
         is SearchState.Error -> {
@@ -179,9 +205,7 @@ private fun SearchResultsScreenPreview() {
                 quickFilters = PropertyTypeQuickFilters.filtersOrder
                     .map(::PropertyTypeQuickFilter)
                     .let(::PropertyTypeQuickFilters),
-                searchState = SearchState.Results(
-                    snippets = List(5) { PropertySnippet.preview },
-                ),
+                searchState = SearchState.EmptyResults,
             ),
             searchInputComponent = DummySearchInputComponent(),
             onFiltersSelected = {},
