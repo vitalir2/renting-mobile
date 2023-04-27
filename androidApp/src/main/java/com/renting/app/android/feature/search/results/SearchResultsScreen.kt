@@ -6,11 +6,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -32,6 +29,8 @@ import androidx.compose.ui.unit.dp
 import com.arkivanov.decompose.extensions.compose.jetpack.subscribeAsState
 import com.renting.app.android.R
 import com.renting.app.android.core.uikit.Gap
+import com.renting.app.android.core.uikit.RentingButtonAction
+import com.renting.app.android.core.uikit.RentingErrorPlaceholder
 import com.renting.app.android.core.uikit.RentingPreviewContainer
 import com.renting.app.android.feature.property.PropertySnippetsGrid
 import com.renting.app.android.feature.property.preview
@@ -57,6 +56,7 @@ fun SearchResultsScreen(component: SearchResultsComponent) {
         onSelectedFiltersCleared = component::onResetQuickFiltersSelected,
         onSnippetClicked = component::onSnippetClicked,
         onNavigationBackRequested = component::onNavigateBackRequested,
+        onErrorPlaceholderActionRequested = component.searchInputComponent::onSearchClicked,
     )
 }
 
@@ -68,6 +68,7 @@ private fun SearchResultsScreen(
     onSelectedFiltersCleared: () -> Unit,
     onSnippetClicked: (id: Long) -> Unit,
     onNavigationBackRequested: () -> Unit,
+    onErrorPlaceholderActionRequested: () -> Unit,
 ) {
     Column(
         modifier = Modifier
@@ -103,6 +104,7 @@ private fun SearchResultsScreen(
         SearchScreen(
             state = model.searchState,
             onSnippetClicked = onSnippetClicked,
+            onErrorPlaceholderActionRequested = onErrorPlaceholderActionRequested,
         )
     }
 }
@@ -111,11 +113,12 @@ private fun SearchResultsScreen(
 private fun SearchScreen(
     state: SearchState,
     onSnippetClicked: (id: Long) -> Unit,
+    onErrorPlaceholderActionRequested: () -> Unit,
 ) {
     Column {
         SearchScreenHeader(state)
         Gap(16.dp)
-        SearchScreenContent(state, onSnippetClicked)
+        SearchScreenContent(state, onSnippetClicked, onErrorPlaceholderActionRequested)
     }
 }
 
@@ -136,7 +139,8 @@ private fun SearchScreenHeader(state: SearchState) {
 @Composable
 private fun SearchScreenContent(
     state: SearchState,
-    onSnippetClicked: (id: Long) -> Unit
+    onSnippetClicked: (id: Long) -> Unit,
+    onErrorPlaceholderActionRequested: () -> Unit,
 ) {
     when (state) {
         is SearchState.Loading -> {
@@ -163,35 +167,52 @@ private fun SearchScreenContent(
             )
         }
         is SearchState.EmptyResults -> {
-            Column(modifier = Modifier.fillMaxSize()) {
-                Image(
-                    painter = painterResource(id = R.drawable.search_results_empty),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(24.dp),
-                )
-                Text(
-                    text = "Not found",
-                    modifier = Modifier
-                        .fillMaxWidth(),
-                    style = MaterialTheme.typography.h6,
-                    textAlign = TextAlign.Center,
-                )
-                Gap(8.dp)
-                Text(
-                    text = "Sorry, the keyword you entered cannot be found," +
-                            " please check again or search with another keyword",
-                    style = MaterialTheme.typography.body1,
-                    textAlign = TextAlign.Center,
+            EmptyResultsPlaceholder()
+        }
+        is SearchState.Error -> {
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center,
+            ) {
+                RentingErrorPlaceholder(
+                    action = RentingButtonAction(
+                        title = "Retry",
+                        handler = onErrorPlaceholderActionRequested,
+                    ),
                 )
             }
         }
-        is SearchState.Error -> {
-            Box(contentAlignment = Alignment.Center) {
-                // TODO RENTING-49 show real placeholder
-                Text(text = "Error happened")
-            }
+    }
+}
+
+@Composable
+private fun EmptyResultsPlaceholder() {
+    Box(
+        modifier = Modifier.fillMaxSize(),
+        contentAlignment = Alignment.Center,
+    ) {
+        Column {
+            Image(
+                painter = painterResource(id = R.drawable.search_results_empty),
+                contentDescription = null,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(24.dp),
+            )
+            Text(
+                text = "Not found",
+                modifier = Modifier
+                    .fillMaxWidth(),
+                style = MaterialTheme.typography.h6,
+                textAlign = TextAlign.Center,
+            )
+            Gap(8.dp)
+            Text(
+                text = "Sorry, the keyword you entered cannot be found," +
+                        " please check again or search with another keyword",
+                style = MaterialTheme.typography.body1,
+                textAlign = TextAlign.Center,
+            )
         }
     }
 }
@@ -205,13 +226,16 @@ private fun SearchResultsScreenPreview() {
                 quickFilters = PropertyTypeQuickFilters.filtersOrder
                     .map(::PropertyTypeQuickFilter)
                     .let(::PropertyTypeQuickFilters),
-                searchState = SearchState.EmptyResults,
+                searchState = SearchState.Results(
+                    snippets = List(5) { PropertySnippet.preview },
+                ),
             ),
             searchInputComponent = DummySearchInputComponent(),
             onFiltersSelected = {},
             onSelectedFiltersCleared = {},
             onSnippetClicked = {},
             onNavigationBackRequested = {},
+            onErrorPlaceholderActionRequested = {},
         )
     }
 }
