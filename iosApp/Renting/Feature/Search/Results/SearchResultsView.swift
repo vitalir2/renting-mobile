@@ -82,8 +82,13 @@ struct SearchResultsView: View {
                 // TODO RENTING-49
                 Text("Empty results")
             case _ as SearchStateError:
-                // TODO RENTING-49
-                Text("Error")
+                RentingErrorPlaceholder(
+                    action: RentingButtonAction(
+                        title: "Retry",
+                        handler: component.searchInputComponent
+                            .onSearchClicked
+                    )
+                )
             default:
                 Text("Unknown")
             }

@@ -25,6 +25,7 @@
 		FA98B2FA29AB496C008E1CE4 /* ObservableValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA98B2F929AB496C008E1CE4 /* ObservableValue.swift */; };
 		FA98B2FC29AB4A4B008E1CE4 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA98B2FB29AB4A4B008E1CE4 /* LoginView.swift */; };
 		FA98B2FE29AB4CF7008E1CE4 /* MutableStateBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA98B2FD29AB4CF7008E1CE4 /* MutableStateBuilder.swift */; };
+		FA9A5D4429FA363200BA305B /* RentingErrorPlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9A5D4329FA363200BA305B /* RentingErrorPlaceholder.swift */; };
 		FA9C189429C37AF500EF8517 /* LoginError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA9C189329C37AF500EF8517 /* LoginError.swift */; };
 		FAA71C1729D966C800386CC4 /* PropertyPreview.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA71C1629D966C800386CC4 /* PropertyPreview.swift */; };
 		FAA71C1929D9695E00386CC4 /* PropertySnippetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA71C1829D9695E00386CC4 /* PropertySnippetCard.swift */; };
@@ -103,6 +104,7 @@
 		FA98B2F929AB496C008E1CE4 /* ObservableValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableValue.swift; sourceTree = "<group>"; };
 		FA98B2FB29AB4A4B008E1CE4 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		FA98B2FD29AB4CF7008E1CE4 /* MutableStateBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MutableStateBuilder.swift; sourceTree = "<group>"; };
+		FA9A5D4329FA363200BA305B /* RentingErrorPlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentingErrorPlaceholder.swift; sourceTree = "<group>"; };
 		FA9C189329C37AF500EF8517 /* LoginError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginError.swift; sourceTree = "<group>"; };
 		FAA71C1629D966C800386CC4 /* PropertyPreview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyPreview.swift; sourceTree = "<group>"; };
 		FAA71C1829D9695E00386CC4 /* PropertySnippetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertySnippetCard.swift; sourceTree = "<group>"; };
@@ -369,6 +371,7 @@
 				FA51EFCD29BDE59300030E7E /* Input */,
 				FA92E1AA29BCFE78005592AF /* Toast */,
 				FAAC6DCC29D8794700BCE652 /* RentingImage.swift */,
+				FA9A5D4329FA363200BA305B /* RentingErrorPlaceholder.swift */,
 			);
 			path = Uikit;
 			sourceTree = "<group>";
@@ -636,6 +639,7 @@
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				FA98B2F629AB420C008E1CE4 /* ComponentHolder.swift in Sources */,
 				FAB875FE29C71C6E007F1378 /* FieldMappers.swift in Sources */,
+				FA9A5D4429FA363200BA305B /* RentingErrorPlaceholder.swift in Sources */,
 				FA10CFFF29EA70E90068572C /* PropertyTypeQuickFiltersSkeleton.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 				FAEF027729E9CDDB0082C908 /* PropertyTypeQuickFilterView.swift in Sources */,
