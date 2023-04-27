@@ -79,8 +79,7 @@ struct SearchResultsView: View {
                     onSnippetClick: component.onSnippetClicked
                 )
             case _ as SearchStateEmptyResults:
-                // TODO RENTING-49
-                Text("Empty results")
+                emptyResultsPlaceholder
             case _ as SearchStateError:
                 RentingErrorPlaceholder(
                     action: RentingButtonAction(
@@ -97,6 +96,20 @@ struct SearchResultsView: View {
             minWidth: 0, maxWidth: .infinity,
             minHeight: 0, maxHeight: .infinity
         )
+    }
+    
+    var emptyResultsPlaceholder: some View {
+        VStack {
+            Image("EmptySearchResults")
+                .padding(16)
+            Text("Not found")
+                .font(.title3)
+                .fontWeight(.semibold)
+            Spacer().frame(height: 8)
+            Text("Sorry, the keyword you entered cannot be found," +
+                 " please check again or search with another keyword")
+                .font(.body)
+        }
     }
 }
 
