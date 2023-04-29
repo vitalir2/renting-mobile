@@ -61,7 +61,7 @@ class DefaultRootComponent(
             createRegistrationComponent(componentContext)
         )
         is Configuration.PropertyDetails -> Child.PropertyDetails(
-            createPropertyDetailsComponent(componentContext)
+            createPropertyDetailsComponent(componentContext, configuration.propertyId)
         )
         is Configuration.Filters -> Child.Filters(
             createFiltersComponent(componentContext)
@@ -99,11 +99,14 @@ class DefaultRootComponent(
 
     private fun createPropertyDetailsComponent(
         componentContext: ComponentContext,
+        propertyId: Long,
     ): PropertyDetailsComponent {
         return DefaultPropertyDetailsComponent(
+            propertyId = propertyId,
             componentContext = componentContext,
             storeFactory = storeFactory,
             navigateBack = { navigation.pop() },
+            propertyGraph = propertyGraph,
         )
     }
 
