@@ -7,8 +7,9 @@ import com.renting.app.core.monad.left
 import com.renting.app.core.monad.right
 import com.renting.app.core.network.CommonErrorResponse
 import com.renting.app.feature.property.model.FamilyHouse
-import com.renting.app.feature.property.model.Property
+import com.renting.app.feature.property.model.PropertyDetails
 import com.renting.app.feature.property.model.PropertyId
+import com.renting.app.feature.property.model.PropertyOffer
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.request.*
@@ -20,18 +21,28 @@ internal class DefaultPropertyRepository(
     private val httpClient: HttpClient,
 ) : PropertyRepository {
 
-    override suspend fun get(id: PropertyId): Either<Exception, Property> {
+    override suspend fun get(id: PropertyId): Either<Exception, PropertyDetails> {
         val response = httpClient.get("/api/properties/housing/family-houses/$id") {
             contentType(ContentType.Application.Json)
         }
         return if (response.status.isSuccess()) {
             val property = response.body<NetworkFamilyHouse>()
-            property.toDomainModel().right()
+            PropertyDetails(
+                property = property.toDomainModel(),
+                propertyOffer = property.toOfferModel(),
+            ).right()
         } else {
             val error = response.body<CommonErrorResponse>()
             IllegalStateException(error.message).left()
         }
     }
+}
+
+private fun NetworkFamilyHouse.toOfferModel(): PropertyOffer {
+    return PropertyOffer(
+        price = price,
+        priceType = PropertyOffer.PriceType.PER_NIGHT,
+    )
 }
 
 private fun NetworkFamilyHouse.toDomainModel(): FamilyHouse {
@@ -49,6 +60,7 @@ internal sealed class NetworkProperty {
     abstract val id: Long
     abstract val owner: NetworkUser
     abstract val area: Int
+    abstract val price: Int
 }
 
 @Serializable
@@ -57,4 +69,5 @@ internal class NetworkFamilyHouse(
     override val id: Long,
     override val owner: NetworkUser,
     override val area: Int,
+    override val price: Int,
 ) : NetworkProperty()
