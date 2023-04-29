@@ -13,6 +13,8 @@ import com.renting.app.feature.home.DefaultHomeGraph
 import com.renting.app.feature.home.HomeGraph
 import com.renting.app.feature.login.di.DefaultLoginGraph
 import com.renting.app.feature.login.di.LoginGraph
+import com.renting.app.feature.property.DefaultPropertyGraph
+import com.renting.app.feature.property.PropertyGraph
 import com.renting.app.feature.recommendation.DefaultRecommendationGraph
 import com.renting.app.feature.recommendation.RecommendationGraph
 import com.renting.app.feature.registration.di.DefaultRegistrationGraph
@@ -100,6 +102,11 @@ class DefaultRootGraph(
 
     override val searchGraph: SearchGraph
         get() = DefaultSearchGraph(
+            httpClient = httpClient,
+        )
+
+    override val propertyGraph: PropertyGraph
+        get() = DefaultPropertyGraph(
             httpClient = httpClient,
         )
 }
