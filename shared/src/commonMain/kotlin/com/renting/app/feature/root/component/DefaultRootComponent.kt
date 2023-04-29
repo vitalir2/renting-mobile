@@ -102,6 +102,7 @@ class DefaultRootComponent(
     ): PropertyDetailsComponent {
         return DefaultPropertyDetailsComponent(
             componentContext = componentContext,
+            storeFactory = storeFactory,
             navigateBack = { navigation.pop() },
         )
     }
