@@ -2,6 +2,7 @@ package com.renting.app.core.auth.repository
 
 import com.arkivanov.mvikotlin.logging.logger.DefaultLogger
 import com.renting.app.core.auth.model.UserInfo
+import com.renting.app.core.auth.repository.external.NetworkUser
 import com.renting.app.core.model.Image
 import com.renting.app.core.monad.Either
 import com.renting.app.core.monad.left
@@ -31,13 +32,8 @@ internal class DefaultUserRepository(
         }
 
         if (response.status.isSuccess()) {
-            val userResponse = response.body<UserResponse>()
-            UserInfo(
-                login = userResponse.login,
-                firstName = userResponse.firstName,
-                lastName = userResponse.lastName,
-                avatar = userResponse.imagePathWithoutHost?.let(Image::Url),
-            ).right()
+            val networkUser = response.body<NetworkUser>()
+            networkUser.toDomainModel().right()
         } else {
             val errorResponse = response.body<UserErrorResponse>()
             val errorMessage = errorResponse.message
@@ -47,17 +43,14 @@ internal class DefaultUserRepository(
     }
 }
 
-@Serializable
-private class UserResponse(
-    @SerialName("username")
-    val login: String,
-    @SerialName("firstName")
-    val firstName: String,
-    @SerialName("lastName")
-    val lastName: String,
-    @SerialName("imagePath")
-    val imagePathWithoutHost: String?,
-)
+fun NetworkUser.toDomainModel(): UserInfo {
+    return UserInfo(
+        login = login,
+        firstName = firstName,
+        lastName = lastName,
+        avatar = imagePathWithoutHost?.let(Image::Url),
+    )
+}
 
 @Serializable
 private class UserErrorResponse(
