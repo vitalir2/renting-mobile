@@ -19,6 +19,14 @@
 		FA2B96F729B1B64B00563065 /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B96F629B1B64B00563065 /* PrimaryButtonStyle.swift */; };
 		FA51EFCF29BDE5A200030E7E /* RentingInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA51EFCE29BDE5A200030E7E /* RentingInput.swift */; };
 		FA556CBB29B104FD00F2C2C8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA556CBA29B104FD00F2C2C8 /* Colors.swift */; };
+		FA68A0A929B8D84D00D9822F /* EnvironmentConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA68A0A829B8D84D00D9822F /* EnvironmentConfig.plist */; };
+		FA952FFE29FE598F006C893F /* PropertyDetailsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA952FFD29FE598F006C893F /* PropertyDetailsHeader.swift */; };
+		FA95300029FE59A4006C893F /* PropertyDetailsMainInfoBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA952FFF29FE59A4006C893F /* PropertyDetailsMainInfoBlock.swift */; };
+		FA95300229FE59C0006C893F /* PropertyDetailsLocationBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA95300129FE59C0006C893F /* PropertyDetailsLocationBlock.swift */; };
+		FA95300429FE59D1006C893F /* PropertyDetailsOwnerBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA95300329FE59D1006C893F /* PropertyDetailsOwnerBlock.swift */; };
+		FA95300629FE5A08006C893F /* PropertyDetailsDescriptionBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA95300529FE5A08006C893F /* PropertyDetailsDescriptionBlock.swift */; };
+		FA95300829FE5A27006C893F /* PropertyDetailsBookingFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA95300729FE5A27006C893F /* PropertyDetailsBookingFooter.swift */; };
+		FA95300A29FE5BC8006C893F /* LoadedPropertyDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA95300929FE5BC8006C893F /* LoadedPropertyDetailsView.swift */; };
 		FA98B2F629AB420C008E1CE4 /* ComponentHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA98B2F529AB420C008E1CE4 /* ComponentHolder.swift */; };
 		FA98B2F829AB4863008E1CE4 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA98B2F729AB4863008E1CE4 /* RootView.swift */; };
 		FA98B2FA29AB496C008E1CE4 /* ObservableValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA98B2F929AB496C008E1CE4 /* ObservableValue.swift */; };
@@ -96,6 +104,14 @@
 		FA2B96F629B1B64B00563065 /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
 		FA51EFCE29BDE5A200030E7E /* RentingInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentingInput.swift; sourceTree = "<group>"; };
 		FA556CBA29B104FD00F2C2C8 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		FA68A0A829B8D84D00D9822F /* EnvironmentConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = EnvironmentConfig.plist; sourceTree = "<group>"; };
+		FA952FFD29FE598F006C893F /* PropertyDetailsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyDetailsHeader.swift; sourceTree = "<group>"; };
+		FA952FFF29FE59A4006C893F /* PropertyDetailsMainInfoBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyDetailsMainInfoBlock.swift; sourceTree = "<group>"; };
+		FA95300129FE59C0006C893F /* PropertyDetailsLocationBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyDetailsLocationBlock.swift; sourceTree = "<group>"; };
+		FA95300329FE59D1006C893F /* PropertyDetailsOwnerBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyDetailsOwnerBlock.swift; sourceTree = "<group>"; };
+		FA95300529FE5A08006C893F /* PropertyDetailsDescriptionBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyDetailsDescriptionBlock.swift; sourceTree = "<group>"; };
+		FA95300729FE5A27006C893F /* PropertyDetailsBookingFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyDetailsBookingFooter.swift; sourceTree = "<group>"; };
+		FA95300929FE5BC8006C893F /* LoadedPropertyDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadedPropertyDetailsView.swift; sourceTree = "<group>"; };
 		FA98B2F529AB420C008E1CE4 /* ComponentHolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentHolder.swift; sourceTree = "<group>"; };
 		FA98B2F729AB4863008E1CE4 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		FA98B2F929AB496C008E1CE4 /* ObservableValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableValue.swift; sourceTree = "<group>"; };
@@ -321,6 +337,13 @@
 			isa = PBXGroup;
 			children = (
 				FAA71C1D29D976B100386CC4 /* PropertyDetailsView.swift */,
+				FA952FFD29FE598F006C893F /* PropertyDetailsHeader.swift */,
+				FA952FFF29FE59A4006C893F /* PropertyDetailsMainInfoBlock.swift */,
+				FA95300129FE59C0006C893F /* PropertyDetailsLocationBlock.swift */,
+				FA95300329FE59D1006C893F /* PropertyDetailsOwnerBlock.swift */,
+				FA95300529FE5A08006C893F /* PropertyDetailsDescriptionBlock.swift */,
+				FA95300729FE5A27006C893F /* PropertyDetailsBookingFooter.swift */,
+				FA95300929FE5BC8006C893F /* LoadedPropertyDetailsView.swift */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -612,29 +635,36 @@
 				FA10CFFB29EA6C140068572C /* QuickFilterView.swift in Sources */,
 				FA556CBB29B104FD00F2C2C8 /* Colors.swift in Sources */,
 				FA10CFFD29EA6D9A0068572C /* PropertyTypeQuickFiltersView.swift in Sources */,
+				FA95300229FE59C0006C893F /* PropertyDetailsLocationBlock.swift in Sources */,
 				FAA71C1729D966C800386CC4 /* PropertyPreview.swift in Sources */,
 				FAF6382529BF289D00AA8427 /* SecureInput.swift in Sources */,
 				FA98B2F829AB4863008E1CE4 /* RootView.swift in Sources */,
+				FA95300A29FE5BC8006C893F /* LoadedPropertyDetailsView.swift in Sources */,
 				FAE68BEF29BCC14500B71B2D /* ToastData.swift in Sources */,
 				FA51EFCF29BDE5A200030E7E /* RentingInput.swift in Sources */,
 				FAAC6DCD29D8794700BCE652 /* RentingImage.swift in Sources */,
 				FAD2733B29D830DC008D045B /* HomeToolbarView.swift in Sources */,
 				FAB875F929C71C29007F1378 /* FieldView.swift in Sources */,
+				FA95300429FE59D1006C893F /* PropertyDetailsOwnerBlock.swift in Sources */,
 				FA98B2FE29AB4CF7008E1CE4 /* MutableStateBuilder.swift in Sources */,
 				FA98B2FA29AB496C008E1CE4 /* ObservableValue.swift in Sources */,
 				FAB875FC29C71C54007F1378 /* Field.swift in Sources */,
 				FAFEA76829BC825400D62F2E /* HomeView.swift in Sources */,
 				FAE68BF129BCC16000B71B2D /* ToastView.swift in Sources */,
+				FA95300629FE5A08006C893F /* PropertyDetailsDescriptionBlock.swift in Sources */,
 				FA2B96F729B1B64B00563065 /* PrimaryButtonStyle.swift in Sources */,
 				FA9C189429C37AF500EF8517 /* LoginError.swift in Sources */,
 				FAF3C7C429F529A5007F8E4C /* SearchResultsView.swift in Sources */,
+				FA95300029FE59A4006C893F /* PropertyDetailsMainInfoBlock.swift in Sources */,
 				FAA71C1B29D96EA500386CC4 /* PropertySnippetsGrid.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				FA98B2F629AB420C008E1CE4 /* ComponentHolder.swift in Sources */,
+				FA952FFE29FE598F006C893F /* PropertyDetailsHeader.swift in Sources */,
 				FAB875FE29C71C6E007F1378 /* FieldMappers.swift in Sources */,
 				FA10CFFF29EA70E90068572C /* PropertyTypeQuickFiltersSkeleton.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 				FAEF027729E9CDDB0082C908 /* PropertyTypeQuickFilterView.swift in Sources */,
+				FA95300829FE5A27006C893F /* PropertyDetailsBookingFooter.swift in Sources */,
 				FAA71C1929D9695E00386CC4 /* PropertySnippetCard.swift in Sources */,
 				FAFEA76529BC823B00D62F2E /* RegistrationView.swift in Sources */,
 				FACBB63629E8764100667A96 /* SearchInput.swift in Sources */,
