@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-class NetworkUser(
+internal class NetworkUser(
     @SerialName("username")
     val login: String,
     @SerialName("firstName")

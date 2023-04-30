@@ -3,18 +3,20 @@ package com.renting.app.feature.property.details
 import com.arkivanov.mvikotlin.core.store.Reducer
 import com.arkivanov.mvikotlin.core.store.Store
 import com.arkivanov.mvikotlin.core.store.StoreFactory
+import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineBootstrapper
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
 import com.renting.app.core.monad.Either
 import com.renting.app.feature.property.details.PropertyDetailsStore.Intent
 import com.renting.app.feature.property.details.PropertyDetailsStore.Label
 import com.renting.app.feature.property.details.PropertyDetailsStore.State
+import com.renting.app.feature.property.model.OfferId
 import com.renting.app.feature.property.model.PropertyId
 import com.renting.app.feature.property.repository.PropertyRepository
 import kotlinx.coroutines.launch
 import com.renting.app.feature.property.model.PropertyDetails as DomainPropertyDetails
 
 internal class PropertyDetailsStoreFactory(
-    private val propertyId: PropertyId,
+    private val offerId: OfferId,
     private val storeFactory: StoreFactory,
     private val propertyRepository: PropertyRepository,
 ) {
@@ -23,9 +25,10 @@ internal class PropertyDetailsStoreFactory(
         object : PropertyDetailsStore, Store<Intent, State, Label> by storeFactory.create(
             name = "PropertyDetails",
             initialState = State.Loading,
+            bootstrapper = BootstrapperImpl(),
             executorFactory = {
                 ExecutorImpl(
-                    propertyId = propertyId,
+                    offerId = offerId,
                     propertyRepository = propertyRepository,
                 )
             },
@@ -40,8 +43,16 @@ internal class PropertyDetailsStoreFactory(
         data class PropertyDetails(val value: DomainPropertyDetails) : Msg
     }
 
+    private class BootstrapperImpl : CoroutineBootstrapper<Action>() {
+
+        override fun invoke() {
+            dispatch(Action.InitProperty)
+        }
+
+    }
+
     private class ExecutorImpl(
-        private val propertyId: PropertyId,
+        private val offerId: OfferId,
         private val propertyRepository: PropertyRepository,
     ) : CoroutineExecutor<Intent, Action, State, Msg, Label>() {
 
@@ -53,8 +64,10 @@ internal class PropertyDetailsStoreFactory(
 
         private fun initProperty() {
             scope.launch {
-                when (val result = propertyRepository.get(propertyId)) {
-                    is Either.Left -> result.error
+                when (val result = propertyRepository.getDetails(offerId)) {
+                    is Either.Left -> {
+                        // TODO handle error
+                    }
                     is Either.Right -> dispatch(Msg.PropertyDetails(result.value))
                 }
             }

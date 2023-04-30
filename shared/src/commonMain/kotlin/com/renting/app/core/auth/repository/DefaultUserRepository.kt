@@ -43,7 +43,7 @@ internal class DefaultUserRepository(
     }
 }
 
-fun NetworkUser.toDomainModel(): UserInfo {
+internal fun NetworkUser.toDomainModel(): UserInfo {
     return UserInfo(
         login = login,
         firstName = firstName,

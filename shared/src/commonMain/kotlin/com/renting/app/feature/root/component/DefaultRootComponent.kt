@@ -61,7 +61,7 @@ class DefaultRootComponent(
             createRegistrationComponent(componentContext)
         )
         is Configuration.PropertyDetails -> Child.PropertyDetails(
-            createPropertyDetailsComponent(componentContext, configuration.propertyId)
+            createPropertyDetailsComponent(componentContext, configuration.offerId)
         )
         is Configuration.Filters -> Child.Filters(
             createFiltersComponent(componentContext)
@@ -99,10 +99,10 @@ class DefaultRootComponent(
 
     private fun createPropertyDetailsComponent(
         componentContext: ComponentContext,
-        propertyId: Long,
+        offerId: Long,
     ): PropertyDetailsComponent {
         return DefaultPropertyDetailsComponent(
-            propertyId = propertyId,
+            offerId = offerId,
             componentContext = componentContext,
             storeFactory = storeFactory,
             navigateBack = { navigation.pop() },
@@ -158,7 +158,7 @@ class DefaultRootComponent(
 
     private sealed class Configuration : Parcelable {
         @Parcelize
-        data class PropertyDetails(val propertyId: Long) : Configuration()
+        data class PropertyDetails(val offerId: Long) : Configuration()
 
         @Parcelize
         data class SearchResults(val query: String) : Configuration()

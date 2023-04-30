@@ -4,10 +4,11 @@ import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.mvikotlin.core.instancekeeper.getStore
 import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.renting.app.feature.property.PropertyGraph
+import com.renting.app.feature.property.model.OfferId
 import com.renting.app.feature.property.model.PropertyId
 
 internal class DefaultPropertyDetailsComponent(
-    propertyId: PropertyId,
+    offerId: OfferId,
     componentContext: ComponentContext,
     storeFactory: StoreFactory,
     propertyGraph: PropertyGraph,
@@ -16,7 +17,7 @@ internal class DefaultPropertyDetailsComponent(
 
     private val store = instanceKeeper.getStore {
         PropertyDetailsStoreFactory(
-            propertyId = propertyId,
+            offerId = offerId,
             storeFactory = storeFactory,
             propertyRepository = propertyRepository,
         ).create()

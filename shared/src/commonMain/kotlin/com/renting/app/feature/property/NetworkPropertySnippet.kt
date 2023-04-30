@@ -19,6 +19,14 @@ internal class NetworkPropertySnippet(
     @SerialName("propertyType")
     @Serializable(with = PropertyTypeSerializer::class)
     val propertyType: PropertyType,
+    @SerialName("property")
+    val property: NetworkIdOnlyProperty,
+)
+
+@Serializable
+internal class NetworkIdOnlyProperty(
+    @SerialName("id")
+    val id: Long,
 )
 
 internal fun NetworkPropertySnippet.toDomainModel(): PropertySnippet {
@@ -28,5 +36,6 @@ internal fun NetworkPropertySnippet.toDomainModel(): PropertySnippet {
         location = description,
         image = imagePathList.firstOrNull()?.let(Image::Url),
         price = price.roundToInt(),
+        propertyId = property.id,
     )
 }
