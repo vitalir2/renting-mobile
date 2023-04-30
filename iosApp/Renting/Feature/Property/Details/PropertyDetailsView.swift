@@ -41,6 +41,9 @@ struct PropertyDetailsView: View {
 
 struct PropertyDetailsView_Previews: PreviewProvider {
     class Stub: PropertyDetailsComponent {
+        var models: Value<PropertyDetailsComponentModel> = valueOf(
+            PropertyDetailsComponentModelLoading()
+        )
         func onBackButtonClick() {
         }
     }
