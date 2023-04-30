@@ -13,4 +13,5 @@ val PropertySnippet.Companion.preview: PropertySnippet
             "https://photos.zillowstatic.com/fp/e57899af93feb02883e71c4a155c859f-p_e.jpg"
         ),
         price = 2350,
+        propertyId = previewId + 1,
     )

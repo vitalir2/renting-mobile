@@ -17,7 +17,8 @@ extension PropertySnippet {
             type: PropertyType.familyHouse,
             location: "2857 E Detroit St, Chandler, AZ 85225",
             image: SharedImageUrl(path: "https://photos.zillowstatic.com/fp/e57899af93feb02883e71c4a155c859f-p_e.jpg"),
-            price: 20223
+            price: 20223,
+            propertyId: PropertySnippet.companion.previewId + 1
         )
     }
 }
