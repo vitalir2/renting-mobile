@@ -30,7 +30,8 @@ internal class DefaultPropertyRepository(
         }
 
         val offer = offerResponse.body<NetworkPropertySnippet>()
-        val propertyTypePathPart = when (offer.propertyType) {
+        val propertyType = offer.propertyType
+        val propertyTypePathPart = when (propertyType) {
             PropertyType.FAMILY_HOUSE -> "family-houses"
             PropertyType.LAND -> "lands"
             PropertyType.APARTMENT -> "apartments"
@@ -41,9 +42,13 @@ internal class DefaultPropertyRepository(
             contentType(ContentType.Application.Json)
         }
         return if (propertyResponse.status.isSuccess()) {
-            val property = propertyResponse.body<NetworkFamilyHouse>()
+            val property = when (propertyType) {
+                PropertyType.FAMILY_HOUSE -> propertyResponse.body<NetworkFamilyHouse>()
+                PropertyType.LAND -> propertyResponse.body<NetworkLand>()
+                PropertyType.APARTMENT -> propertyResponse.body<NetworkApartment>()
+            }.toDomainModel()
             PropertyDetails(
-                property = property.toDomainModel(),
+                property = property,
                 propertyOffer = PropertyOffer(
                     price = offer.price.roundToInt(),
                     priceType = PropertyOffer.PriceType.PER_NIGHT,
