@@ -7,7 +7,7 @@ import com.renting.app.core.network.CommonErrorResponse
 import com.renting.app.feature.property.NetworkPropertySnippet
 import com.renting.app.feature.property.PropertyType
 import com.renting.app.feature.property.model.OfferId
-import com.renting.app.feature.property.model.PropertyDetails
+import com.renting.app.feature.property.details.domain.PropertyDetails
 import com.renting.app.feature.property.model.PropertyOffer
 import io.ktor.client.*
 import io.ktor.client.call.*

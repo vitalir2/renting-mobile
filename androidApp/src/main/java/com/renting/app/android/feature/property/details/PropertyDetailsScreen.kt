@@ -14,9 +14,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.arkivanov.decompose.extensions.compose.jetpack.subscribeAsState
 import com.renting.app.android.core.uikit.RentingPreviewContainer
-import com.renting.app.feature.property.details.PropertyDetailsComponent
-import com.renting.app.feature.property.details.PropertyDetailsComponent.Model
-import com.renting.app.feature.property.model.PropertyDetails
+import com.renting.app.feature.property.details.ui.PropertyDetailsComponent
+import com.renting.app.feature.property.details.ui.PropertyDetailsComponent.Model
+import com.renting.app.feature.property.details.ui.model.ComponentPropertyDetails
 
 @Composable
 fun PropertyDetailsScreen(component: PropertyDetailsComponent) {
@@ -41,7 +41,7 @@ private fun PropertyDetailsScreen(
 
 @Composable
 private fun LoadedPropertyDetailsScreen(
-    details: PropertyDetails,
+    details: ComponentPropertyDetails,
 ) {
     val scrollState = rememberScrollState()
 
@@ -56,7 +56,7 @@ private fun LoadedPropertyDetailsScreen(
         ) {
             PropertyDetailsHeader()
             PropertyDetailsMainInfoBlock(
-                details = details,
+                mainInfo = details.mainInfo,
             )
             PropertyDetailsLocationBlock()
             PropertyDetailsOwnerBlock()
@@ -85,7 +85,7 @@ private fun PropertyDetailsScreenPreview() {
     RentingPreviewContainer {
         PropertyDetailsScreen(
             model = Model.PropertyDetailsLoaded(
-                details = PropertyDetails.preview,
+                details = ComponentPropertyDetails.preview,
             ),
         )
     }

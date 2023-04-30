@@ -18,8 +18,8 @@ import com.renting.app.feature.home.DefaultHomeComponent
 import com.renting.app.feature.home.HomeComponent
 import com.renting.app.feature.login.component.DefaultLoginComponent
 import com.renting.app.feature.login.component.LoginComponent
-import com.renting.app.feature.property.details.DefaultPropertyDetailsComponent
-import com.renting.app.feature.property.details.PropertyDetailsComponent
+import com.renting.app.feature.property.details.ui.DefaultPropertyDetailsComponent
+import com.renting.app.feature.property.details.ui.PropertyDetailsComponent
 import com.renting.app.feature.registration.component.DefaultRegistrationComponent
 import com.renting.app.feature.registration.component.RegistrationComponent
 import com.renting.app.feature.root.component.RootComponent.Child

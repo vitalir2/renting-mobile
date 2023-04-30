@@ -1,4 +1,4 @@
-package com.renting.app.feature.property.details
+package com.renting.app.feature.property.details.ui
 
 import com.arkivanov.decompose.ComponentContext
 import com.arkivanov.decompose.value.Value
@@ -7,6 +7,7 @@ import com.arkivanov.mvikotlin.core.instancekeeper.getStore
 import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.renting.app.core.utils.stateAsValue
 import com.renting.app.feature.property.PropertyGraph
+import com.renting.app.feature.property.details.domain.PropertyDetailsStoreFactory
 import com.renting.app.feature.property.model.OfferId
 
 internal class DefaultPropertyDetailsComponent(

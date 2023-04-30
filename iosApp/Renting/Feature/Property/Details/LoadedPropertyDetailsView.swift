@@ -10,7 +10,7 @@ import SwiftUI
 import shared
 
 struct LoadedPropertyDetailsView: View {
-    let details: PropertyDetails
+    let details: ComponentPropertyDetails
     
     var body: some View {
         VStack {
@@ -29,7 +29,7 @@ struct LoadedPropertyDetailsView: View {
 struct LoadedPropertyDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         LoadedPropertyDetailsView(
-            details: PropertyDetails.companion.preview
+            details: ComponentPropertyDetails.companion.preview
         )
     }
 }

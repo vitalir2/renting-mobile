@@ -1,4 +1,9 @@
-package com.renting.app.feature.property.model
+package com.renting.app.feature.property.details.domain
+
+import com.renting.app.feature.property.model.FamilyHouse
+import com.renting.app.feature.property.model.Property
+import com.renting.app.feature.property.model.PropertyOffer
+import com.renting.app.feature.property.model.PropertyOwner
 
 data class PropertyDetails(
     val property: Property,

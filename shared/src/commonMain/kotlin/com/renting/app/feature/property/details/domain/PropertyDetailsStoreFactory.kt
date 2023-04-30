@@ -1,4 +1,4 @@
-package com.renting.app.feature.property.details
+package com.renting.app.feature.property.details.domain
 
 import com.arkivanov.mvikotlin.core.store.Reducer
 import com.arkivanov.mvikotlin.core.store.Store
@@ -6,14 +6,13 @@ import com.arkivanov.mvikotlin.core.store.StoreFactory
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineBootstrapper
 import com.arkivanov.mvikotlin.extensions.coroutines.CoroutineExecutor
 import com.renting.app.core.monad.Either
-import com.renting.app.feature.property.details.PropertyDetailsStore.Intent
-import com.renting.app.feature.property.details.PropertyDetailsStore.Label
-import com.renting.app.feature.property.details.PropertyDetailsStore.State
+import com.renting.app.feature.property.details.domain.PropertyDetailsStore.Intent
+import com.renting.app.feature.property.details.domain.PropertyDetailsStore.Label
+import com.renting.app.feature.property.details.domain.PropertyDetailsStore.State
 import com.renting.app.feature.property.model.OfferId
-import com.renting.app.feature.property.model.PropertyId
 import com.renting.app.feature.property.repository.PropertyRepository
 import kotlinx.coroutines.launch
-import com.renting.app.feature.property.model.PropertyDetails as DomainPropertyDetails
+import com.renting.app.feature.property.details.domain.PropertyDetails as DomainPropertyDetails
 
 internal class PropertyDetailsStoreFactory(
     private val offerId: OfferId,
