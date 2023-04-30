@@ -12,11 +12,17 @@ import shared
 struct PropertyDetailsView: View {
     let component: PropertyDetailsComponent
     
+    @ObservedObject
+    private var models: ObservableValue<PropertyDetailsComponentModel>
+    
     init(_ component: PropertyDetailsComponent) {
         self.component = component
+        self.models = ObservableValue(component.models)
     }
     
     var body: some View {
+        let model = models.value
+        
         VStack {
             HStack {
                 backButton
@@ -25,11 +31,20 @@ struct PropertyDetailsView: View {
             }
             .padding(16)
             Spacer()
-            Text("Property Details")
+            switch model {
+            case _ as PropertyDetailsComponentModelLoading:
+                ProgressView()
+            case let detailsLoaded as PropertyDetailsComponentModelPropertyDetailsLoaded:
+                LoadedPropertyDetailsView(
+                    details: detailsLoaded.details
+                )
+            default:
+                Text("Impossible case")
+            }
             Spacer()
         }
     }
-    
+
     var backButton: some View {
         Button {
             component.onBackButtonClick()
