@@ -16,7 +16,9 @@ struct LoadedPropertyDetailsView: View {
         VStack {
             ScrollView(showsIndicators: false) {
                 PropertyDetailsHeader()
-                PropertyDetailsMainInfoBlock()
+                PropertyDetailsMainInfoBlock(
+                    mainInfo: details.mainInfo
+                )
                 PropertyDetailsLocationBlock()
                 PropertyDetailsOwnerBlock()
                 PropertyDetailsDescriptionBlock()
