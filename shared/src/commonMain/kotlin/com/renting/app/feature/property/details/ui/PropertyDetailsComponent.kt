@@ -1,7 +1,7 @@
-package com.renting.app.feature.property.details
+package com.renting.app.feature.property.details.ui
 
 import com.arkivanov.decompose.value.Value
-import com.renting.app.feature.property.model.PropertyDetails
+import com.renting.app.feature.property.details.ui.model.ComponentPropertyDetails
 
 interface PropertyDetailsComponent {
 
@@ -12,7 +12,7 @@ interface PropertyDetailsComponent {
     sealed interface Model {
         object Loading : Model
         data class PropertyDetailsLoaded(
-            val details: PropertyDetails,
+            val details: ComponentPropertyDetails,
         ) : Model
     }
 }

@@ -5,7 +5,7 @@ import com.arkivanov.decompose.value.Value
 import com.renting.app.feature.filters.FiltersComponent
 import com.renting.app.feature.home.HomeComponent
 import com.renting.app.feature.login.component.LoginComponent
-import com.renting.app.feature.property.details.PropertyDetailsComponent
+import com.renting.app.feature.property.details.ui.PropertyDetailsComponent
 import com.renting.app.feature.registration.component.RegistrationComponent
 import com.renting.app.feature.search.results.component.SearchResultsComponent
 
