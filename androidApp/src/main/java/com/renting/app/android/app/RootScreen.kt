@@ -12,10 +12,10 @@ import com.arkivanov.decompose.extensions.compose.jetpack.subscribeAsState
 import com.arkivanov.decompose.router.stack.ChildStack
 import com.renting.app.android.feature.home.HomeScreen
 import com.renting.app.android.feature.login.LoginScreen
+import com.renting.app.android.feature.property.details.PropertyDetailsScreen
 import com.renting.app.android.feature.registration.RegistrationScreen
 import com.renting.app.android.feature.search.results.SearchResultsScreen
 import com.renting.app.feature.filters.FiltersComponent
-import com.renting.app.feature.property.details.PropertyDetailsComponent
 import com.renting.app.feature.root.component.RootComponent
 import com.renting.app.feature.root.component.RootComponent.Child
 
@@ -44,11 +44,6 @@ private fun RootNavigation(stack: State<ChildStack<*, Child>>) {
             is Child.SearchResults -> SearchResultsScreen(component = screen.component)
         }
     }
-}
-
-@Composable
-fun PropertyDetailsScreen(component: PropertyDetailsComponent) {
-    Text("Property details")
 }
 
 @Composable
