@@ -1,11 +1,13 @@
 package com.renting.app.feature.property.details
 
 import com.arkivanov.decompose.ComponentContext
+import com.arkivanov.decompose.value.Value
+import com.arkivanov.decompose.value.operator.map
 import com.arkivanov.mvikotlin.core.instancekeeper.getStore
 import com.arkivanov.mvikotlin.core.store.StoreFactory
+import com.renting.app.core.utils.stateAsValue
 import com.renting.app.feature.property.PropertyGraph
 import com.renting.app.feature.property.model.OfferId
-import com.renting.app.feature.property.model.PropertyId
 
 internal class DefaultPropertyDetailsComponent(
     offerId: OfferId,
@@ -22,6 +24,9 @@ internal class DefaultPropertyDetailsComponent(
             propertyRepository = propertyRepository,
         ).create()
     }
+
+    override val models: Value<PropertyDetailsComponent.Model> = store.stateAsValue()
+        .map(PropertyDetailsMappers.stateToModel)
 
     override fun onBackButtonClick() {
         navigateBack()
