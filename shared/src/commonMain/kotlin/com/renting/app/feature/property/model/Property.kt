@@ -5,5 +5,4 @@ sealed interface Property {
     val location: String
     val owner: PropertyOwner
     val area: Float
-    val description: String
 }

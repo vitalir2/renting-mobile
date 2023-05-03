@@ -5,5 +5,13 @@ data class FamilyHouse(
     override val location: String,
     override val owner: PropertyOwner,
     override val area: Float,
-    override val description: String
-) : Property
+    val building: Building,
+    val features: List<Feature>,
+    val numberOfRooms: Int,
+    val renovationType: String,
+) : Property {
+
+    enum class Feature {
+        SWIMMING_POOL,
+    }
+}

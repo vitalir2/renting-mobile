@@ -5,5 +5,13 @@ data class Apartment(
     override val location: String,
     override val owner: PropertyOwner,
     override val area: Float,
-    override val description: String,
-) : Property
+    val building: Building,
+    val features: List<Feature>,
+    val floor: Int,
+    val number: String,
+) : Property {
+
+    enum class Feature {
+        ELEVATOR,
+    }
+}

@@ -7,5 +7,7 @@ data class PropertyOffer(
 
     enum class PriceType {
         PER_NIGHT,
+        PER_MONTH,
+        SELL,
     }
 }
