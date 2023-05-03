@@ -3,6 +3,9 @@ package com.renting.app.feature.property.details.ui.model
 import com.renting.app.feature.property.details.domain.PropertyDetails
 import com.renting.app.feature.property.details.ui.model.ComponentPropertyDetails.MainInfo
 import com.renting.app.feature.property.details.ui.model.ComponentPropertyDetails.OwnerInfo
+import com.renting.app.feature.property.model.Apartment
+import com.renting.app.feature.property.model.FamilyHouse
+import com.renting.app.feature.property.model.Land
 import com.renting.app.feature.property.model.PropertyOffer
 import com.renting.app.feature.property.model.PropertyOwner
 import kotlin.math.roundToInt
@@ -13,10 +16,29 @@ data class ComponentPropertyDetails(
     val location: String,
 ) {
 
-    data class MainInfo(
-        val price: String,
-        val area: String,
-    )
+    sealed interface MainInfo {
+        val price: String
+        val area: String
+
+        data class Apartment(
+            override val price: String,
+            override val area: String,
+            val numberOfRooms: String,
+            val floor: String,
+        ) : MainInfo
+
+        data class FamilyHouse(
+            override val price: String,
+            override val area: String,
+            val numberOfRooms: String,
+            val renovationType: String,
+        ) : MainInfo
+
+        data class Land(
+            override val price: String,
+            override val area: String,
+        ) : MainInfo
+    }
 
     data class OwnerInfo(
         val fullName: String,
@@ -29,14 +51,39 @@ data class ComponentPropertyDetails(
     }
 }
 
-internal fun PropertyDetails.toUiModel() = ComponentPropertyDetails(
-    mainInfo = MainInfo(
-        price = propertyOffer.formattedPrice,
-        area = "${property.area.roundToInt()} ㎡",
-    ),
-    ownerInfo = property.owner.toUiModel(),
-    location = property.location,
-)
+internal fun PropertyDetails.toUiModel(): ComponentPropertyDetails {
+    val price = propertyOffer.formattedPrice
+    val area = "${property.area.roundToInt()} ㎡"
+
+    return ComponentPropertyDetails(
+        mainInfo = when (property) {
+            is Apartment -> MainInfo.Apartment(
+                price = price,
+                area = area,
+                numberOfRooms = formatNumberOfRooms(property.numberOfRooms),
+                floor = "${property.floor} of ${property.building.numberOfFloors}",
+            )
+            is FamilyHouse -> MainInfo.FamilyHouse(
+                price = price,
+                area = area,
+                numberOfRooms = formatNumberOfRooms(property.numberOfRooms),
+                renovationType = property.renovationType,
+            )
+            is Land -> MainInfo.Land(
+                price = price,
+                area = area,
+            )
+        },
+        ownerInfo = property.owner.toUiModel(),
+        location = property.location,
+    )
+}
+
+private fun formatNumberOfRooms(numberOfRooms: Int): String =
+    when (numberOfRooms) {
+        1 -> "1 room"
+        else -> "$numberOfRooms rooms"
+    }
 
 internal fun PropertyOwner.toUiModel() =
     OwnerInfo(

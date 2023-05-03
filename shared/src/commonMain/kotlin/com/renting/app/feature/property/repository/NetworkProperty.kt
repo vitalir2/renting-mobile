@@ -147,6 +147,7 @@ internal fun NetworkApartment.toDomainModel(): Apartment {
                 add(Apartment.Feature.ELEVATOR)
             }
         },
+        numberOfRooms = numberOfRooms,
         floor = floor,
         number = number,
     )
