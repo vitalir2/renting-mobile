@@ -11,7 +11,6 @@ data class ComponentPropertyDetails(
     val mainInfo: MainInfo,
     val ownerInfo: OwnerInfo,
     val location: String,
-    val description: String,
 ) {
 
     data class MainInfo(
@@ -37,7 +36,6 @@ internal fun PropertyDetails.toUiModel() = ComponentPropertyDetails(
     ),
     ownerInfo = property.owner.toUiModel(),
     location = property.location,
-    description = property.description,
 )
 
 internal fun PropertyOwner.toUiModel() =
@@ -50,7 +48,9 @@ private val PropertyOffer.formattedPrice: String
     get() {
         val price = "$price ₽"
         val type = when (priceType) {
-            PropertyOffer.PriceType.PER_NIGHT -> "/ night"
+            PropertyOffer.PriceType.PER_NIGHT -> " / night"
+            PropertyOffer.PriceType.PER_MONTH -> " / month"
+            PropertyOffer.PriceType.SELL -> " "
         }
-        return "$price $type"
+        return "$price$type"
     }
