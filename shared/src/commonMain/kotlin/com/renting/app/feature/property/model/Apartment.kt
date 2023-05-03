@@ -7,6 +7,7 @@ data class Apartment(
     override val area: Float,
     val building: Building,
     val features: List<Feature>,
+    val numberOfRooms: Int,
     val floor: Int,
     val number: String,
 ) : Property {
