@@ -17,6 +17,7 @@ import com.renting.app.android.core.uikit.RentingPreviewContainer
 import com.renting.app.feature.property.details.ui.PropertyDetailsComponent
 import com.renting.app.feature.property.details.ui.PropertyDetailsComponent.Model
 import com.renting.app.feature.property.details.ui.model.ComponentPropertyDetails
+import com.renting.app.feature.property.details.ui.model.ComponentPropertyDetailsPreviews
 
 @Composable
 fun PropertyDetailsScreen(component: PropertyDetailsComponent) {
@@ -85,7 +86,7 @@ private fun PropertyDetailsScreenPreview() {
     RentingPreviewContainer {
         PropertyDetailsScreen(
             model = Model.PropertyDetailsLoaded(
-                details = ComponentPropertyDetails.preview,
+                details = ComponentPropertyDetailsPreviews.familyHouse,
             ),
         )
     }

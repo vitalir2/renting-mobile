@@ -44,11 +44,6 @@ data class ComponentPropertyDetails(
         val fullName: String,
         val phoneNumber: String,
     )
-
-    companion object {
-        val preview: ComponentPropertyDetails
-            get() = PropertyDetails.preview.toUiModel()
-    }
 }
 
 internal fun PropertyDetails.toUiModel(): ComponentPropertyDetails {

@@ -31,7 +31,7 @@ struct LoadedPropertyDetailsView: View {
 struct LoadedPropertyDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         LoadedPropertyDetailsView(
-            details: ComponentPropertyDetails.companion.preview
+            details: ComponentPropertyDetailsPreviews.shared.apartment
         )
     }
 }
