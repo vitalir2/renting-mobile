@@ -53,10 +53,8 @@ private fun LandMainFeatures(mainInfo: MainInfo) {
 @Composable
 private fun FamilyHouseMainFeatures(
     mainInfo: MainInfo.FamilyHouse,
-    modifier: Modifier = Modifier,
 ) {
     Row(
-        modifier = modifier,
         horizontalArrangement = Arrangement.spacedBy(MainFeaturesSpacing, Alignment.Start),
         verticalAlignment = Alignment.CenterVertically,
     ) {
@@ -101,7 +99,7 @@ private fun MainInfoFeature(
     title: String,
     subtitle: String,
 ) {
-    Column {
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Text(
             text = title,
             style = MaterialTheme.typography.subtitle1,
