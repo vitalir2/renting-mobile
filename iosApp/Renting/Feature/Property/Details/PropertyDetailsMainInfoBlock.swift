@@ -17,10 +17,46 @@ struct PropertyDetailsMainInfoBlock: View {
             Text(mainInfo.price)
                 .font(.headline)
             Spacer()
-                .frame(height: 8)
-            Text(mainInfo.area_)
-                .font(.body)
-            Text("area")
+                .frame(height: 12)
+            switch mainInfo {
+            case let familyHouse as ComponentPropertyDetailsMainInfoFamilyHouse:
+                HStack(alignment: .center, spacing: mainFeaturesSpacing) {
+                    MainInfoFeature(title: familyHouse.area_, subtitle: "area")
+                    MainInfoFeature(title: familyHouse.renovationType, subtitle: "renovation")
+                    MainInfoFeature(title: familyHouse.numberOfRooms, subtitle: "total")
+                }
+            case let apartment as ComponentPropertyDetailsMainInfoApartment:
+                HStack(alignment: .center, spacing: mainFeaturesSpacing) {
+                    MainInfoFeature(title: apartment.area_, subtitle: "area")
+                    MainInfoFeature(title: apartment.floor, subtitle: "floor")
+                    MainInfoFeature(title: apartment.numberOfRooms, subtitle: "total")
+                }
+            case let land as ComponentPropertyDetailsMainInfoLand:
+                HStack {
+                    Text("Area:")
+                        .font(.title3)
+                        .fontWeight(.semibold)
+                    Text(land.area_)
+                        .font(.body)
+                }
+            default:
+                EmptyView()
+            }
+        }
+    }
+}
+
+private let mainFeaturesSpacing = CGFloat(16)
+
+private struct MainInfoFeature: View {
+    let title: String
+    let subtitle: String
+    
+    var body: some View {
+        VStack(alignment: .center) {
+            Text(title)
+                .font(.subheadline)
+            Text(subtitle)
                 .font(.caption)
                 .foregroundColor(Color.textSecondary)
         }
