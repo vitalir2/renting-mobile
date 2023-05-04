@@ -10,7 +10,7 @@ import SwiftUI
 import shared
 
 struct PropertyDetailsMainInfoBlock: View {
-    let mainInfo: ComponentPropertyDetails.MainInfo
+    let mainInfo: ComponentPropertyDetailsMainInfo
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -18,7 +18,7 @@ struct PropertyDetailsMainInfoBlock: View {
                 .font(.headline)
             Spacer()
                 .frame(height: 8)
-            Text(mainInfo.area)
+            Text(mainInfo.area_)
                 .font(.body)
             Text("area")
                 .font(.caption)
@@ -30,7 +30,8 @@ struct PropertyDetailsMainInfoBlock: View {
 struct PropertyDetailsMainInfoBlock_Previews: PreviewProvider {
     static var previews: some View {
         PropertyDetailsMainInfoBlock(
-            mainInfo: ComponentPropertyDetails.companion.preview.mainInfo
+            mainInfo: ComponentPropertyDetailsPreviews.shared
+                .apartment.mainInfo
         )
     }
 }
