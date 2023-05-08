@@ -54,6 +54,7 @@ internal class DefaultPropertyRepository(
                     price = offer.price.roundToInt(),
                     priceType = PropertyOffer.PriceType.PER_NIGHT,
                 ),
+                description = offer.description,
             ).right()
         } else {
             val error = propertyResponse.body<CommonErrorResponse>()

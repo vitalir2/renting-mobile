@@ -1,5 +1,6 @@
 package com.renting.app.feature.property.details.domain
 
+import com.renting.app.core.utils.LoremIpsum
 import com.renting.app.feature.property.model.Apartment
 import com.renting.app.feature.property.model.Building
 import com.renting.app.feature.property.model.FamilyHouse
@@ -11,6 +12,7 @@ import com.renting.app.feature.property.model.PropertyOwner
 data class PropertyDetails(
     val property: Property,
     val propertyOffer: PropertyOffer,
+    val description: String,
 )
 
 internal object PropertyDetailsPreviews {
@@ -40,7 +42,8 @@ internal object PropertyDetailsPreviews {
             propertyOffer = PropertyOffer(
                 price = 80,
                 priceType = PropertyOffer.PriceType.PER_NIGHT,
-            )
+            ),
+            description = LoremIpsum.DEFAULT,
         )
 
     val apartment: PropertyDetails
@@ -70,7 +73,8 @@ internal object PropertyDetailsPreviews {
             propertyOffer = PropertyOffer(
                 price = 80,
                 priceType = PropertyOffer.PriceType.PER_NIGHT,
-            )
+            ),
+            description = LoremIpsum.DEFAULT,
         )
 
     val land: PropertyDetails
@@ -91,5 +95,6 @@ internal object PropertyDetailsPreviews {
                 price = 80,
                 priceType = PropertyOffer.PriceType.PER_NIGHT,
             ),
+            description = LoremIpsum.DEFAULT,
         )
 }

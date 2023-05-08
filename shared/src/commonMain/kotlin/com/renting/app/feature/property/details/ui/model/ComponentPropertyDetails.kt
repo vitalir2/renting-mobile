@@ -1,6 +1,7 @@
 package com.renting.app.feature.property.details.ui.model
 
 import com.renting.app.core.model.Image
+import com.renting.app.core.utils.LoremIpsum
 import com.renting.app.feature.property.details.domain.PropertyDetails
 import com.renting.app.feature.property.details.ui.model.ComponentPropertyDetails.MainInfo
 import com.renting.app.feature.property.details.ui.model.ComponentPropertyDetails.OwnerInfo
@@ -16,6 +17,7 @@ data class ComponentPropertyDetails(
     val mainInfo: MainInfo,
     val ownerInfo: OwnerInfo,
     val location: String,
+    val description: String,
 ) {
 
     sealed interface MainInfo {
@@ -75,6 +77,7 @@ internal fun PropertyDetails.toUiModel(): ComponentPropertyDetails {
         },
         ownerInfo = property.owner.toUiModel(),
         location = property.location,
+        description = description,
     )
 }
 
