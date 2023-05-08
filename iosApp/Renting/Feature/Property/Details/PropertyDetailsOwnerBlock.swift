@@ -7,15 +7,23 @@
 //
 
 import SwiftUI
+import shared
 
 struct PropertyDetailsOwnerBlock: View {
+    let ownerInfo: ComponentPropertyDetails.OwnerInfo
+    
     var body: some View {
-        Text("Hello, World!")
+        HStack {
+            UserAvatar(avatar: ownerInfo.avatar, fullName: ownerInfo.fullName)
+                .frame(width: 64, height: 64)
+        }
     }
 }
 
 struct PropertyDetailsOwnerBlock_Previews: PreviewProvider {
     static var previews: some View {
-        PropertyDetailsOwnerBlock()
+        PropertyDetailsOwnerBlock(
+            ownerInfo: ComponentPropertyDetailsPreviews().apartment.ownerInfo
+        )
     }
 }
