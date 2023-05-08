@@ -21,7 +21,14 @@ struct LoadedPropertyDetailsView: View {
                 )
                 PropertyDetailsLocationBlock()
                 PropertyDetailsOwnerBlock(
-                    ownerInfo: details.ownerInfo
+                    ownerInfo: details.ownerInfo,
+                    onPhoneClicked: {
+                        if let url = URL(string: "telprompt:\(details.ownerInfo.phoneNumber)") {
+                            if UIApplication.shared.canOpenURL(url) {
+                                UIApplication.shared.open(url)
+                            }
+                        }
+                    }
                 )
                 PropertyDetailsDescriptionBlock()
             }
