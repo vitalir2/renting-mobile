@@ -13,9 +13,13 @@ struct LoadedPropertyDetailsView: View {
     let details: ComponentPropertyDetails
     
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             ScrollView(showsIndicators: false) {
-                PropertyDetailsHeader()
+                PropertyDetailsHeader(
+                    images: details.images
+                )
+                .frame(minWidth: 0, maxWidth: .infinity)
+                Spacer().frame(height: 8)
                 PropertyDetailsMainInfoBlock(
                     mainInfo: details.mainInfo
                 )
@@ -32,6 +36,7 @@ struct LoadedPropertyDetailsView: View {
                 )
                 PropertyDetailsDescriptionBlock()
             }
+            .frame(minWidth: 0, maxWidth: .infinity)
             PropertyDetailsBookingFooter()
         }
     }
