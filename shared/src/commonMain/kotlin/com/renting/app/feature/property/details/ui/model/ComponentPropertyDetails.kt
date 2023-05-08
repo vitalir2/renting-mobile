@@ -1,5 +1,6 @@
 package com.renting.app.feature.property.details.ui.model
 
+import com.renting.app.core.model.Image
 import com.renting.app.feature.property.details.domain.PropertyDetails
 import com.renting.app.feature.property.details.ui.model.ComponentPropertyDetails.MainInfo
 import com.renting.app.feature.property.details.ui.model.ComponentPropertyDetails.OwnerInfo
@@ -41,6 +42,7 @@ data class ComponentPropertyDetails(
     }
 
     data class OwnerInfo(
+        val avatar: Image?,
         val fullName: String,
         val phoneNumber: String,
     )
@@ -82,6 +84,7 @@ private fun formatNumberOfRooms(numberOfRooms: Int): String =
 
 internal fun PropertyOwner.toUiModel() =
     OwnerInfo(
+        avatar = null,
         fullName = "$firstName $lastName",
         phoneNumber = phoneNumber,
     )
