@@ -2,7 +2,9 @@ package com.renting.app.android.feature.property.details
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
@@ -15,6 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.arkivanov.decompose.extensions.compose.jetpack.subscribeAsState
 import com.renting.app.android.core.system.openPhoneApp
+import com.renting.app.android.core.uikit.Gap
 import com.renting.app.android.core.uikit.RentingPreviewContainer
 import com.renting.app.feature.property.details.ui.PropertyDetailsComponent
 import com.renting.app.feature.property.details.ui.PropertyDetailsComponent.Model
@@ -50,28 +53,35 @@ private fun LoadedPropertyDetailsScreen(
     val scrollState = rememberScrollState()
 
     Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(vertical = 4.dp)
-    ) {
+        modifier = Modifier.fillMaxSize(),
+
+        ) {
         Column(
             modifier = Modifier
-                .padding(horizontal = 16.dp)
                 .verticalScroll(scrollState)
                 .align(Alignment.TopCenter),
         ) {
-            PropertyDetailsHeader()
-            PropertyDetailsMainInfoBlock(
-                mainInfo = details.mainInfo,
+            PropertyDetailsHeader(
+                images = details.images,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .aspectRatio(1f, matchHeightConstraintsFirst = true),
             )
-            PropertyDetailsLocationBlock()
-            PropertyDetailsOwnerBlock(
-                ownerInfo = details.ownerInfo,
-                onPhoneClicked = {
-                    context.openPhoneApp(details.ownerInfo.phoneNumber)
-                },
-            )
-            PropertyDetailsDescriptionBlock()
+            Gap(8.dp)
+            Column(
+                modifier = Modifier.padding(horizontal = 16.dp),
+            ) {
+                PropertyDetailsMainInfoBlock(
+                    mainInfo = details.mainInfo,
+                )
+                PropertyDetailsLocationBlock()
+                PropertyDetailsOwnerBlock(
+                    ownerInfo = details.ownerInfo,
+                    onPhoneClicked = {
+                        context.openPhoneApp(details.ownerInfo.phoneNumber)
+                    },
+                )
+            }
         }
         PropertyDetailsBookingFooter(
             modifier = Modifier

@@ -32,7 +32,7 @@ fun RentingImage(
     check(image != null || error != null) { "You should set placeholder if image could be null" }
 
     val model = when (image) {
-        is Image.Url -> image.fullUrl
+        is Image.Url -> image.path
         null -> null
     }
     SubcomposeAsyncImage(

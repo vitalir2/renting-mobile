@@ -1,5 +1,6 @@
 package com.renting.app.feature.property.repository
 
+import com.renting.app.core.model.Image
 import com.renting.app.core.monad.Either
 import com.renting.app.core.monad.left
 import com.renting.app.core.monad.right
@@ -46,7 +47,7 @@ internal class DefaultPropertyRepository(
                 PropertyType.FAMILY_HOUSE -> propertyResponse.body<NetworkFamilyHouse>()
                 PropertyType.LAND -> propertyResponse.body<NetworkLand>()
                 PropertyType.APARTMENT -> propertyResponse.body<NetworkApartment>()
-            }.toDomainModel()
+            }.toDomainModel(images = offer.imagePathList.map(Image::Url))
             PropertyDetails(
                 property = property,
                 propertyOffer = PropertyOffer(

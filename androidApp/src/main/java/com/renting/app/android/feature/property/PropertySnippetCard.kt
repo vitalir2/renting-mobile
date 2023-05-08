@@ -26,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import com.renting.app.android.R
 import com.renting.app.android.core.uikit.Gap
 import com.renting.app.android.core.uikit.RentingImage
+import com.renting.app.android.core.uikit.RentingImagePlaceholder
 import com.renting.app.android.core.uikit.RentingPreviewContainer
 import com.renting.app.feature.property.PropertySnippet
 
@@ -66,11 +67,7 @@ fun PropertySnippetCard(
                     contentDescription = "Property $snippet", // TODO make content description better
                     modifier = imageModifier,
                     error = {
-                        // TODO replace by real placeholder
-                        Image(
-                            painter = painterResource(id = R.drawable.renting_logo_full),
-                            contentDescription = null,
-                        )
+                        RentingImagePlaceholder()
                     },
                 )
             }
