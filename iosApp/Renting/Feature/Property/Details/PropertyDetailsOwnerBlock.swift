@@ -15,7 +15,6 @@ struct PropertyDetailsOwnerBlock: View {
     
     var body: some View {
         HStack {
-            Spacer()
             UserAvatar(avatar: ownerInfo.avatar, fullName: ownerInfo.fullName)
                 .frame(width: 64, height: 64)
             VStack(alignment: .leading) {
@@ -38,7 +37,6 @@ struct PropertyDetailsOwnerBlock: View {
                 }
             )
             .padding(16)
-            Spacer()
         }
     }
 }
