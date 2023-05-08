@@ -1,5 +1,6 @@
 package com.renting.app.feature.property.repository
 
+import com.renting.app.core.model.Image
 import com.renting.app.feature.property.model.Apartment
 import com.renting.app.feature.property.model.Building
 import com.renting.app.feature.property.model.FamilyHouse
@@ -101,20 +102,25 @@ internal class NetworkApartmentBuilding(
     val numberOfFloors: Int,
 )
 
-internal fun NetworkProperty.toDomainModel(): Property {
+internal fun NetworkProperty.toDomainModel(
+    images: List<Image>,
+): Property {
     return when (this) {
-        is NetworkApartment -> toDomainModel()
-        is NetworkFamilyHouse -> toDomainModel()
-        is NetworkLand -> toDomainModel()
+        is NetworkApartment -> toDomainModel(images)
+        is NetworkFamilyHouse -> toDomainModel(images)
+        is NetworkLand -> toDomainModel(images)
     }
 }
 
-internal fun NetworkFamilyHouse.toDomainModel(): FamilyHouse {
+internal fun NetworkFamilyHouse.toDomainModel(
+    images: List<Image>,
+): FamilyHouse {
     return FamilyHouse(
         id = id,
         location = building.address,
         owner = owner.toDomainModel(),
         area = area,
+        images = images,
         building = building.toDomainModel(),
         features = buildList {
             if (building.hasSwimmingPool) {
@@ -126,21 +132,27 @@ internal fun NetworkFamilyHouse.toDomainModel(): FamilyHouse {
     )
 }
 
-internal fun NetworkLand.toDomainModel(): Land {
+internal fun NetworkLand.toDomainModel(
+    images: List<Image>,
+): Land {
     return Land(
         id = id,
         location = address,
         owner = owner.toDomainModel(),
         area = area,
+        images = images,
     )
 }
 
-internal fun NetworkApartment.toDomainModel(): Apartment {
+internal fun NetworkApartment.toDomainModel(
+    images: List<Image>,
+): Apartment {
     return Apartment(
         id = id,
         location = building.address,
         owner = owner.toDomainModel(),
         area = area,
+        images = images,
         building = building.toDomainModel(),
         features = buildList {
             if (building.hasElevator) {

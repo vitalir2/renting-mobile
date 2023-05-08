@@ -12,6 +12,7 @@ import com.renting.app.feature.property.model.PropertyOwner
 import kotlin.math.roundToInt
 
 data class ComponentPropertyDetails(
+    val images: List<Image>,
     val mainInfo: MainInfo,
     val ownerInfo: OwnerInfo,
     val location: String,
@@ -53,6 +54,7 @@ internal fun PropertyDetails.toUiModel(): ComponentPropertyDetails {
     val area = "${property.area.roundToInt()} ㎡"
 
     return ComponentPropertyDetails(
+        images = property.images,
         mainInfo = when (property) {
             is Apartment -> MainInfo.Apartment(
                 price = price,

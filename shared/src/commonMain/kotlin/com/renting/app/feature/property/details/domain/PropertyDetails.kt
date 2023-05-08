@@ -26,6 +26,7 @@ internal object PropertyDetailsPreviews {
                     phoneNumber = "972-848-9754",
                 ),
                 area = 84f,
+                images = emptyList(),
                 building = Building(
                     fromYear = 2020,
                     material = "Brick",
@@ -54,6 +55,7 @@ internal object PropertyDetailsPreviews {
                     phoneNumber = "972-848-9754",
                 ),
                 area = 84f,
+                images = emptyList(),
                 building = Building(
                     fromYear = 2020,
                     material = "Brick",
@@ -83,6 +85,7 @@ internal object PropertyDetailsPreviews {
                     phoneNumber = "972-848-9754",
                 ),
                 area = 84f,
+                images = emptyList(),
             ),
             propertyOffer = PropertyOffer(
                 price = 80,
