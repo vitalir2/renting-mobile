@@ -43,11 +43,7 @@ private fun ImagesCarousel(images: List<Image>) {
     HorizontalPager(
         pageCount = images.size,
         modifier = Modifier.fillMaxSize(),
-        key = { index ->
-            when (val image = images[index]) {
-                is Image.Url -> image.path
-            }
-        },
+        key = { index -> images[index].id },
     ) { index ->
         PagerPage(
             image = images[index],
