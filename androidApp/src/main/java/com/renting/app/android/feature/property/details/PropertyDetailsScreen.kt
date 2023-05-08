@@ -3,6 +3,7 @@ package com.renting.app.android.feature.property.details
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -19,14 +20,17 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.ReadOnlyComposable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
 import androidx.compose.ui.input.nestedscroll.NestedScrollSource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
@@ -86,6 +90,9 @@ private fun LoadedPropertyDetailsScreen(
         )
     }
 
+    val density = LocalDensity.current
+    var footerHeight by remember { mutableStateOf(0.dp) }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -104,7 +111,8 @@ private fun LoadedPropertyDetailsScreen(
             )
             Gap(8.dp)
             Column(
-                modifier = Modifier.padding(horizontal = 16.dp),
+                modifier = Modifier
+                    .padding(horizontal = 16.dp),
             ) {
                 PropertyDetailsMainInfoBlock(
                     mainInfo = details.mainInfo,
@@ -116,12 +124,21 @@ private fun LoadedPropertyDetailsScreen(
                         context.openPhoneApp(details.ownerInfo.phoneNumber)
                     },
                 )
+                PropertyDetailsDescriptionBlock(
+                    description = details.description,
+                )
+                Spacer(Modifier.height(footerHeight))
             }
         }
         PropertyDetailsBookingFooter(
             modifier = Modifier
+                .fillMaxWidth()
                 .align(Alignment.BottomCenter)
-                .fillMaxWidth(),
+                .onGloballyPositioned { layoutCoordinates ->
+                    footerHeight = with(density) {
+                        layoutCoordinates.size.height.toDp()
+                    }
+                }
         )
         PropertyDetailsScreenAppBar(
             onBackButtonClick = onBackButtonClick,
