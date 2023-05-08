@@ -13,18 +13,19 @@ struct LoadedPropertyDetailsView: View {
     let details: ComponentPropertyDetails
     
     var body: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .center) {
             ScrollView(showsIndicators: false) {
                 PropertyDetailsHeader(
                     images: details.images
                 )
                 .frame(minWidth: 0, maxWidth: .infinity)
                 Spacer().frame(height: 8)
-                PropertyDetailsMainInfoBlock(
-                    mainInfo: details.mainInfo
-                )
-                PropertyDetailsLocationBlock()
-                PropertyDetailsOwnerBlock(
+                VStack(alignment: .leading) {
+                    PropertyDetailsMainInfoBlock(
+                        mainInfo: details.mainInfo
+                    )
+                    PropertyDetailsLocationBlock()
+                    PropertyDetailsOwnerBlock(
                     ownerInfo: details.ownerInfo,
                     onPhoneClicked: {
                         if let url = URL(string: "telprompt:\(details.ownerInfo.phoneNumber)") {
@@ -32,11 +33,11 @@ struct LoadedPropertyDetailsView: View {
                                 UIApplication.shared.open(url)
                             }
                         }
-                    }
-                )
-                PropertyDetailsDescriptionBlock()
+                    })
+                }
+                .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
+                .padding(8)
             }
-            .frame(minWidth: 0, maxWidth: .infinity)
             PropertyDetailsBookingFooter()
         }
     }

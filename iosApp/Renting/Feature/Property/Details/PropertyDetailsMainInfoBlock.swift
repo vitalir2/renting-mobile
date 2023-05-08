@@ -20,19 +20,19 @@ struct PropertyDetailsMainInfoBlock: View {
                 .frame(height: 12)
             switch mainInfo {
             case let familyHouse as ComponentPropertyDetailsMainInfoFamilyHouse:
-                HStack(alignment: .center, spacing: mainFeaturesSpacing) {
+                HStack(alignment: .top, spacing: mainFeaturesSpacing) {
                     MainInfoFeature(title: familyHouse.area_, subtitle: "area")
                     MainInfoFeature(title: familyHouse.renovationType, subtitle: "renovation")
                     MainInfoFeature(title: familyHouse.numberOfRooms, subtitle: "total")
                 }
             case let apartment as ComponentPropertyDetailsMainInfoApartment:
-                HStack(alignment: .center, spacing: mainFeaturesSpacing) {
+                HStack(alignment: .top, spacing: mainFeaturesSpacing) {
                     MainInfoFeature(title: apartment.area_, subtitle: "area")
                     MainInfoFeature(title: apartment.floor, subtitle: "floor")
                     MainInfoFeature(title: apartment.numberOfRooms, subtitle: "total")
                 }
             case let land as ComponentPropertyDetailsMainInfoLand:
-                HStack {
+                HStack(alignment: .top) {
                     Text("Area:")
                         .font(.title3)
                         .fontWeight(.semibold)
@@ -69,5 +69,6 @@ struct PropertyDetailsMainInfoBlock_Previews: PreviewProvider {
             mainInfo: ComponentPropertyDetailsPreviews.shared
                 .apartment.mainInfo
         )
+        .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
     }
 }
