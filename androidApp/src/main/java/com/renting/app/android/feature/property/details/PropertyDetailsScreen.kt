@@ -60,7 +60,10 @@ private fun LoadedPropertyDetailsScreen(
                 mainInfo = details.mainInfo,
             )
             PropertyDetailsLocationBlock()
-            PropertyDetailsOwnerBlock()
+            PropertyDetailsOwnerBlock(
+                ownerInfo = details.ownerInfo,
+                onPhoneClicked = {},
+            )
             PropertyDetailsDescriptionBlock()
         }
         PropertyDetailsBookingFooter(
