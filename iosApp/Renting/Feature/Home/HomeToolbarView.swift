@@ -14,15 +14,8 @@ struct HomeToolbarView: View {
     
     var body: some View {
         HStack {
-            RentingImage(image: userInfo.avatar) { phase in
-                if let image = phase.image {
-                    image.resizable()
-                        .clipShape(Circle())
-                } else {
-                    placeholder
-                }
-            }
-            .frame(width: 40, height: 40)
+            UserAvatar(avatar: userInfo.avatar, fullName: userInfo.fullName)
+                .frame(width: 40, height: 40)
             
             Spacer()
                 .frame(width: 16)
@@ -39,19 +32,6 @@ struct HomeToolbarView: View {
             Spacer()
         }
         .padding(16)
-    }
-    
-    var placeholder: some View {
-        ZStack(alignment: .center) {
-            Circle().foregroundColor(Color.appPrimary)
-            if let firstNameCapitalizedChar = userInfo.firstName.first?.uppercased(),
-               let lastNameCapitalizedChar = userInfo.lastName.first?.uppercased() {
-                let placeholderText = "\(firstNameCapitalizedChar)\(lastNameCapitalizedChar)"
-                Text(placeholderText)
-                    .foregroundColor(Color.onPrimary)
-                    .font(.body)
-            }
-        }
     }
 }
 

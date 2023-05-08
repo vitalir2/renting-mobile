@@ -20,7 +20,9 @@ struct LoadedPropertyDetailsView: View {
                     mainInfo: details.mainInfo
                 )
                 PropertyDetailsLocationBlock()
-                PropertyDetailsOwnerBlock()
+                PropertyDetailsOwnerBlock(
+                    ownerInfo: details.ownerInfo
+                )
                 PropertyDetailsDescriptionBlock()
             }
             PropertyDetailsBookingFooter()

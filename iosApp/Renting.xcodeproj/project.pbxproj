@@ -19,7 +19,7 @@
 		FA2B96F729B1B64B00563065 /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B96F629B1B64B00563065 /* PrimaryButtonStyle.swift */; };
 		FA51EFCF29BDE5A200030E7E /* RentingInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA51EFCE29BDE5A200030E7E /* RentingInput.swift */; };
 		FA556CBB29B104FD00F2C2C8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA556CBA29B104FD00F2C2C8 /* Colors.swift */; };
-		FA68A0A929B8D84D00D9822F /* EnvironmentConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA68A0A829B8D84D00D9822F /* EnvironmentConfig.plist */; };
+		FA5ED4C42A09152900B1AEF6 /* UserAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5ED4C32A09152900B1AEF6 /* UserAvatar.swift */; };
 		FA952FFE29FE598F006C893F /* PropertyDetailsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA952FFD29FE598F006C893F /* PropertyDetailsHeader.swift */; };
 		FA95300029FE59A4006C893F /* PropertyDetailsMainInfoBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA952FFF29FE59A4006C893F /* PropertyDetailsMainInfoBlock.swift */; };
 		FA95300229FE59C0006C893F /* PropertyDetailsLocationBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA95300129FE59C0006C893F /* PropertyDetailsLocationBlock.swift */; };
@@ -105,7 +105,7 @@
 		FA2B96F629B1B64B00563065 /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
 		FA51EFCE29BDE5A200030E7E /* RentingInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentingInput.swift; sourceTree = "<group>"; };
 		FA556CBA29B104FD00F2C2C8 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
-		FA68A0A829B8D84D00D9822F /* EnvironmentConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = EnvironmentConfig.plist; sourceTree = "<group>"; };
+		FA5ED4C32A09152900B1AEF6 /* UserAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAvatar.swift; sourceTree = "<group>"; };
 		FA952FFD29FE598F006C893F /* PropertyDetailsHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyDetailsHeader.swift; sourceTree = "<group>"; };
 		FA952FFF29FE59A4006C893F /* PropertyDetailsMainInfoBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyDetailsMainInfoBlock.swift; sourceTree = "<group>"; };
 		FA95300129FE59C0006C893F /* PropertyDetailsLocationBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyDetailsLocationBlock.swift; sourceTree = "<group>"; };
@@ -392,6 +392,7 @@
 				FA92E1AA29BCFE78005592AF /* Toast */,
 				FAAC6DCC29D8794700BCE652 /* RentingImage.swift */,
 				FA9A5D4329FA363200BA305B /* RentingErrorPlaceholder.swift */,
+				FA5ED4C32A09152900B1AEF6 /* UserAvatar.swift */,
 			);
 			path = Uikit;
 			sourceTree = "<group>";
@@ -664,6 +665,7 @@
 				FA98B2F629AB420C008E1CE4 /* ComponentHolder.swift in Sources */,
 				FA952FFE29FE598F006C893F /* PropertyDetailsHeader.swift in Sources */,
 				FAB875FE29C71C6E007F1378 /* FieldMappers.swift in Sources */,
+				FA5ED4C42A09152900B1AEF6 /* UserAvatar.swift in Sources */,
 				FA9A5D4429FA363200BA305B /* RentingErrorPlaceholder.swift in Sources */,
 				FA10CFFF29EA70E90068572C /* PropertyTypeQuickFiltersSkeleton.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
