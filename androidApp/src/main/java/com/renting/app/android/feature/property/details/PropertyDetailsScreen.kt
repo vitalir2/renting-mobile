@@ -10,9 +10,11 @@ import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.arkivanov.decompose.extensions.compose.jetpack.subscribeAsState
+import com.renting.app.android.core.system.openPhoneApp
 import com.renting.app.android.core.uikit.RentingPreviewContainer
 import com.renting.app.feature.property.details.ui.PropertyDetailsComponent
 import com.renting.app.feature.property.details.ui.PropertyDetailsComponent.Model
@@ -44,11 +46,14 @@ private fun PropertyDetailsScreen(
 private fun LoadedPropertyDetailsScreen(
     details: ComponentPropertyDetails,
 ) {
+    val context = LocalContext.current
     val scrollState = rememberScrollState()
 
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .padding(vertical = 4.dp)) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(vertical = 4.dp)
+    ) {
         Column(
             modifier = Modifier
                 .padding(horizontal = 16.dp)
@@ -62,7 +67,9 @@ private fun LoadedPropertyDetailsScreen(
             PropertyDetailsLocationBlock()
             PropertyDetailsOwnerBlock(
                 ownerInfo = details.ownerInfo,
-                onPhoneClicked = {},
+                onPhoneClicked = {
+                    context.openPhoneApp(details.ownerInfo.phoneNumber)
+                },
             )
             PropertyDetailsDescriptionBlock()
         }
