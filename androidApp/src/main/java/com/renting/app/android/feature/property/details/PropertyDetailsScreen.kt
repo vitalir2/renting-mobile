@@ -117,7 +117,9 @@ private fun LoadedPropertyDetailsScreen(
                 PropertyDetailsMainInfoBlock(
                     mainInfo = details.mainInfo,
                 )
-                PropertyDetailsLocationBlock()
+                PropertyDetailsLocationBlock(
+                    location = details.location,
+                )
                 PropertyDetailsOwnerBlock(
                     ownerInfo = details.ownerInfo,
                     onPhoneClicked = {
