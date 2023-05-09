@@ -127,6 +127,7 @@ private fun LoadedPropertyDetailsScreen(
                     },
                 )
                 PropertyDetailsDescriptionBlock(
+                    buildingInfo = details.buildingInfo,
                     description = details.description,
                 )
                 Spacer(Modifier.height(footerHeight))
