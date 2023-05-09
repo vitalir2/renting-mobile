@@ -40,6 +40,7 @@ dependencies {
     implementation(libs.androidx.compose.material2.icons)
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.activity.compose)
+    implementation(libs.accompanist.systemui)
 
     implementation(libs.bundles.coil.compose)
 

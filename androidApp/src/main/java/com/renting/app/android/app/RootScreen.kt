@@ -10,6 +10,8 @@ import androidx.compose.ui.Modifier
 import com.arkivanov.decompose.extensions.compose.jetpack.stack.Children
 import com.arkivanov.decompose.extensions.compose.jetpack.subscribeAsState
 import com.arkivanov.decompose.router.stack.ChildStack
+import com.google.accompanist.systemuicontroller.SystemUiController
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import com.renting.app.android.feature.home.HomeScreen
 import com.renting.app.android.feature.login.LoginScreen
 import com.renting.app.android.feature.property.details.PropertyDetailsScreen
@@ -34,7 +36,10 @@ fun RootScreen(
 
 @Composable
 private fun RootNavigation(stack: State<ChildStack<*, Child>>) {
+    val systemUiController = rememberSystemUiController()
+
     Children(stack = stack.value) { child ->
+        setupSystemUi(child.instance, systemUiController)
         when (val screen = child.instance) {
             is Child.Login -> LoginScreen(component = screen.component)
             is Child.Home -> HomeScreen(component = screen.component)
@@ -43,6 +48,19 @@ private fun RootNavigation(stack: State<ChildStack<*, Child>>) {
             is Child.Filters -> FiltersScreen(component = screen.component)
             is Child.SearchResults -> SearchResultsScreen(component = screen.component)
         }
+    }
+}
+
+private fun setupSystemUi(
+    child: Child,
+    systemUiController: SystemUiController
+) {
+    val showStatusBar = when (child) {
+        is Child.PropertyDetails -> false
+        else -> true
+    }
+    systemUiController.apply {
+        isStatusBarVisible = showStatusBar
     }
 }
 
