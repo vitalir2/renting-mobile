@@ -12,6 +12,7 @@
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 		B6DB54D7992C4BA8EEDC4F4A /* Pods_Renting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CCA8426D3B6FDA34F2BF2BE /* Pods_Renting.framework */; };
+		FA00EEF72A0AB69A003C65A4 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA00EEF62A0AB69A003C65A4 /* SplashScreen.swift */; };
 		FA0E0C9A29A533B400EECB1E /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = FA0E0C9929A533B400EECB1E /* Podfile */; };
 		FA10CFFB29EA6C140068572C /* QuickFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA10CFFA29EA6C140068572C /* QuickFilterView.swift */; };
 		FA10CFFD29EA6D9A0068572C /* PropertyTypeQuickFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA10CFFC29EA6D9A0068572C /* PropertyTypeQuickFiltersView.swift */; };
@@ -100,6 +101,7 @@
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B9D38A03E20123BCFE0B256A /* Pods-Renting.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Renting.debug.xcconfig"; path = "Target Support Files/Pods-Renting/Pods-Renting.debug.xcconfig"; sourceTree = "<group>"; };
+		FA00EEF62A0AB69A003C65A4 /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		FA0E0C9929A533B400EECB1E /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		FA10CFFA29EA6C140068572C /* QuickFilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickFilterView.swift; sourceTree = "<group>"; };
 		FA10CFFC29EA6D9A0068572C /* PropertyTypeQuickFiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyTypeQuickFiltersView.swift; sourceTree = "<group>"; };
@@ -399,6 +401,7 @@
 				FAAC6DCC29D8794700BCE652 /* RentingImage.swift */,
 				FA9A5D4329FA363200BA305B /* RentingErrorPlaceholder.swift */,
 				FA5ED4C32A09152900B1AEF6 /* UserAvatar.swift */,
+				FA00EEF62A0AB69A003C65A4 /* SplashScreen.swift */,
 			);
 			path = Uikit;
 			sourceTree = "<group>";
@@ -664,6 +667,7 @@
 				FAE68BF129BCC16000B71B2D /* ToastView.swift in Sources */,
 				FA95300629FE5A08006C893F /* PropertyDetailsDescriptionBlock.swift in Sources */,
 				FA2B96F729B1B64B00563065 /* PrimaryButtonStyle.swift in Sources */,
+				FA00EEF72A0AB69A003C65A4 /* SplashScreen.swift in Sources */,
 				FA9C189429C37AF500EF8517 /* LoginError.swift in Sources */,
 				FAF3C7C429F529A5007F8E4C /* SearchResultsView.swift in Sources */,
 				FA48FDD62A0A47490064EAE1 /* PropertyDetailsBuildingDescriptionBlock.swift in Sources */,
