@@ -17,6 +17,7 @@
 		FA10CFFD29EA6D9A0068572C /* PropertyTypeQuickFiltersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA10CFFC29EA6D9A0068572C /* PropertyTypeQuickFiltersView.swift */; };
 		FA10CFFF29EA70E90068572C /* PropertyTypeQuickFiltersSkeleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA10CFFE29EA70E90068572C /* PropertyTypeQuickFiltersSkeleton.swift */; };
 		FA2B96F729B1B64B00563065 /* PrimaryButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2B96F629B1B64B00563065 /* PrimaryButtonStyle.swift */; };
+		FA48FDD62A0A47490064EAE1 /* PropertyDetailsBuildingDescriptionBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA48FDD52A0A47490064EAE1 /* PropertyDetailsBuildingDescriptionBlock.swift */; };
 		FA51EFCF29BDE5A200030E7E /* RentingInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA51EFCE29BDE5A200030E7E /* RentingInput.swift */; };
 		FA556CBB29B104FD00F2C2C8 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA556CBA29B104FD00F2C2C8 /* Colors.swift */; };
 		FA5ED4C42A09152900B1AEF6 /* UserAvatar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5ED4C32A09152900B1AEF6 /* UserAvatar.swift */; };
@@ -104,6 +105,7 @@
 		FA10CFFC29EA6D9A0068572C /* PropertyTypeQuickFiltersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyTypeQuickFiltersView.swift; sourceTree = "<group>"; };
 		FA10CFFE29EA70E90068572C /* PropertyTypeQuickFiltersSkeleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyTypeQuickFiltersSkeleton.swift; sourceTree = "<group>"; };
 		FA2B96F629B1B64B00563065 /* PrimaryButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButtonStyle.swift; sourceTree = "<group>"; };
+		FA48FDD52A0A47490064EAE1 /* PropertyDetailsBuildingDescriptionBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PropertyDetailsBuildingDescriptionBlock.swift; sourceTree = "<group>"; };
 		FA51EFCE29BDE5A200030E7E /* RentingInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RentingInput.swift; sourceTree = "<group>"; };
 		FA556CBA29B104FD00F2C2C8 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		FA5ED4C32A09152900B1AEF6 /* UserAvatar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAvatar.swift; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 				FA95300529FE5A08006C893F /* PropertyDetailsDescriptionBlock.swift */,
 				FA95300729FE5A27006C893F /* PropertyDetailsBookingFooter.swift */,
 				FA95300929FE5BC8006C893F /* LoadedPropertyDetailsView.swift */,
+				FA48FDD52A0A47490064EAE1 /* PropertyDetailsBuildingDescriptionBlock.swift */,
 			);
 			path = Details;
 			sourceTree = "<group>";
@@ -663,6 +666,7 @@
 				FA2B96F729B1B64B00563065 /* PrimaryButtonStyle.swift in Sources */,
 				FA9C189429C37AF500EF8517 /* LoginError.swift in Sources */,
 				FAF3C7C429F529A5007F8E4C /* SearchResultsView.swift in Sources */,
+				FA48FDD62A0A47490064EAE1 /* PropertyDetailsBuildingDescriptionBlock.swift in Sources */,
 				FA95300029FE59A4006C893F /* PropertyDetailsMainInfoBlock.swift in Sources */,
 				FAA71C1B29D96EA500386CC4 /* PropertySnippetsGrid.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,

@@ -16,28 +16,6 @@ struct PropertyDetailsDescriptionBlock: View {
     @State private var isDescriptionCanBeExpanded = false
         
     var body: some View {
-        generalDescription
-    }
-    
-    private func determineTruncation(_ geometry: GeometryProxy) {
-        // Calculate the bounding box we'd need to render the
-        // text given the width from the GeometryReader.
-        let total = self.description.boundingRect(
-            with: CGSize(
-                width: geometry.size.width,
-                height: .greatestFiniteMagnitude
-            ),
-            options: .usesLineFragmentOrigin,
-            attributes: [.font: UIFont.systemFont(ofSize: systemFontSize)],
-            context: nil
-        )
-
-        if total.size.height > geometry.size.height {
-            self.isDescriptionCanBeExpanded = true
-        }
-    }
-    
-    var generalDescription: some View {
         VStack(alignment: .leading) {
             Text("Overview")
                 .font(.headline)
@@ -59,6 +37,24 @@ struct PropertyDetailsDescriptionBlock: View {
                         isDescriptionExpanded = !isDescriptionExpanded
                     }
             }
+        }
+    }
+    
+    private func determineTruncation(_ geometry: GeometryProxy) {
+        // Calculate the bounding box we'd need to render the
+        // text given the width from the GeometryReader.
+        let total = self.description.boundingRect(
+            with: CGSize(
+                width: geometry.size.width,
+                height: .greatestFiniteMagnitude
+            ),
+            options: .usesLineFragmentOrigin,
+            attributes: [.font: UIFont.systemFont(ofSize: systemFontSize)],
+            context: nil
+        )
+
+        if total.size.height > geometry.size.height {
+            self.isDescriptionCanBeExpanded = true
         }
     }
 }
