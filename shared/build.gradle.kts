@@ -3,6 +3,8 @@
 import com.android.build.api.dsl.LibraryDefaultConfig
 import java.util.*
 
+
+@Suppress("DSL_SCOPE_VIOLATION") // TODO Remove when updated to Gradle 8.1
 plugins {
     id("renting.android.lib")
     kotlin("multiplatform")

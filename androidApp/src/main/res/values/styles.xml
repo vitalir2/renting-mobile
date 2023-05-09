@@ -1,8 +1,7 @@
 <resources>
     <!-- TODO fix splash image -->
     <style name="AppTheme.Splash" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@color/background_primary</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/renting_logo_with_brand</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/logo_image</item>
         <item name="windowSplashScreenAnimationDuration">200</item>
         <item name="postSplashScreenTheme">@style/AppTheme</item>
     </style>
