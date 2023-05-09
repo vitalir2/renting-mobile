@@ -8,10 +8,13 @@
     <application
         android:name=".app.RentingApplication"
         android:allowBackup="false"
+        android:icon="@mipmap/logo_image"
         android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@mipmap/logo_image_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Splash"
-        tools:targetApi="n">
+        tools:targetApi="n"
+        tools:ignore="DataExtractionRules">
 
         <activity
             android:name=".app.MainActivity"

@@ -1,5 +1,6 @@
 @file:Suppress("UnstableApiUsage")
 
+@Suppress("DSL_SCOPE_VIOLATION") // TODO Remove when updated to Gradle 8.1
 plugins {
     id("renting.android.app")
     alias(libs.plugins.detekt)
@@ -44,7 +45,7 @@ dependencies {
 
     implementation(libs.bundles.coil.compose)
 
-    implementation("androidx.core:core-splashscreen:1.0.0")
+    implementation(libs.androidx.core.splash)
 
     implementation(libs.decompose.compose)
 
