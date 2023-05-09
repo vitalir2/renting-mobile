@@ -1,5 +1,6 @@
 package com.renting.app.android.feature.property.details
 
+import android.content.Context
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -12,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.CircularProgressIndicator
+import androidx.compose.material.Divider
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.TopAppBar
@@ -27,6 +29,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
 import androidx.compose.ui.input.nestedscroll.NestedScrollSource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
@@ -35,6 +38,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.arkivanov.decompose.extensions.compose.jetpack.subscribeAsState
 import com.renting.app.android.core.system.openPhoneApp
@@ -110,28 +114,7 @@ private fun LoadedPropertyDetailsScreen(
                     .aspectRatio(1f, matchHeightConstraintsFirst = true),
             )
             Gap(8.dp)
-            Column(
-                modifier = Modifier
-                    .padding(horizontal = 16.dp),
-            ) {
-                PropertyDetailsMainInfoBlock(
-                    mainInfo = details.mainInfo,
-                )
-                PropertyDetailsLocationBlock(
-                    location = details.location,
-                )
-                PropertyDetailsOwnerBlock(
-                    ownerInfo = details.ownerInfo,
-                    onPhoneClicked = {
-                        context.openPhoneApp(details.ownerInfo.phoneNumber)
-                    },
-                )
-                PropertyDetailsDescriptionBlock(
-                    buildingInfo = details.buildingInfo,
-                    description = details.description,
-                )
-                Spacer(Modifier.height(footerHeight))
-            }
+            MainBlocks(details, context, footerHeight)
         }
         PropertyDetailsBookingFooter(
             modifier = Modifier
@@ -151,6 +134,41 @@ private fun LoadedPropertyDetailsScreen(
 }
 
 @Composable
+private fun MainBlocks(
+    details: ComponentPropertyDetails,
+    context: Context,
+    footerHeight: Dp,
+) {
+    Column(
+        modifier = Modifier
+            .padding(horizontal = 16.dp),
+    ) {
+        PropertyDetailsMainInfoBlock(
+            mainInfo = details.mainInfo,
+        )
+        Gap(8.dp)
+        Divider()
+        Gap(12.dp)
+        PropertyDetailsOwnerBlock(
+            ownerInfo = details.ownerInfo,
+            onPhoneClicked = {
+                context.openPhoneApp(details.ownerInfo.phoneNumber)
+            },
+        )
+        Gap(12.dp)
+        PropertyDetailsLocationBlock(
+            location = details.location,
+        )
+        Gap(12.dp)
+        PropertyDetailsDescriptionBlock(
+            buildingInfo = details.buildingInfo,
+            description = details.description,
+        )
+        Spacer(Modifier.height(footerHeight))
+    }
+}
+
+@Composable
 private fun PropertyDetailsScreenAppBar(
     onBackButtonClick: () -> Unit,
     alpha: Float,
@@ -164,7 +182,8 @@ private fun PropertyDetailsScreenAppBar(
                 imageVector = Icons.Default.ArrowBack,
                 contentDescription = "back to previous screen",
                 modifier = Modifier
-                    .clickable { onBackButtonClick() }
+                    .clickable { onBackButtonClick() },
+                tint = if (alpha > 0.75f) Color.Black else Color.White,
             )
         },
         backgroundColor = MaterialTheme.colors.background.copy(
@@ -201,7 +220,7 @@ private fun getScreenWidthPx(): Float {
     }
 }
 
-private const val APP_BAR_ANIMATION_THRESHOLD_PERCENT = 0.8f
+private const val APP_BAR_ANIMATION_THRESHOLD_PERCENT = 0.2f
 private val toolbarHeight = 48.dp
 private val defaultAppBarElevation = 4.dp
 
