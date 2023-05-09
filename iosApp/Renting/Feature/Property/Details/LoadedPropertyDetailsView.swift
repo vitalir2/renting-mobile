@@ -22,10 +22,11 @@ struct LoadedPropertyDetailsView: View {
                 )
                 .frame(minWidth: 0, maxWidth: .infinity)
                 Spacer().frame(height: 8)
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 12) {
                     PropertyDetailsMainInfoBlock(
                         mainInfo: details.mainInfo
                     )
+                    Divider()
                     PropertyDetailsOwnerBlock(
                         ownerInfo: details.ownerInfo,
                         onPhoneClicked: {
