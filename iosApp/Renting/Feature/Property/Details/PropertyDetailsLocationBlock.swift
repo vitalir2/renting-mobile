@@ -7,15 +7,32 @@
 //
 
 import SwiftUI
+import shared
 
 struct PropertyDetailsLocationBlock: View {
+    let location: String
+    
     var body: some View {
-        Text("Hello, World!")
+        VStack(alignment: .leading) {
+            Text("Location")
+                .font(.headline)
+                .fontWeight(.semibold)
+            Spacer().frame(height: 12)
+            HStack {
+                Image(systemName: "location")
+                    .tint(Color.appPrimary)
+                Spacer().frame(width: 8)
+                Text(location)
+                    .font(.body)
+            }
+        }
     }
 }
 
 struct PropertyDetailsLocationBlock_Previews: PreviewProvider {
     static var previews: some View {
-        PropertyDetailsLocationBlock()
+        PropertyDetailsLocationBlock(
+            location: ComponentPropertyDetailsPreviews().apartment.location
+        )
     }
 }
