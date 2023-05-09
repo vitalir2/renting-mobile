@@ -39,6 +39,9 @@ struct LoadedPropertyDetailsView: View {
                     PropertyDetailsLocationBlock(
                         location: details.location
                     )
+                    PropertyDetailsDescriptionBlock(
+                        description: details.description_
+                    )
                 }
                 .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
                 .padding(8)
