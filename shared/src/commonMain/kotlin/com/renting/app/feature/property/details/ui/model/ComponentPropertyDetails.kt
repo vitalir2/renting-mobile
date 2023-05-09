@@ -1,11 +1,11 @@
 package com.renting.app.feature.property.details.ui.model
 
 import com.renting.app.core.model.Image
-import com.renting.app.core.utils.LoremIpsum
 import com.renting.app.feature.property.details.domain.PropertyDetails
 import com.renting.app.feature.property.details.ui.model.ComponentPropertyDetails.MainInfo
 import com.renting.app.feature.property.details.ui.model.ComponentPropertyDetails.OwnerInfo
 import com.renting.app.feature.property.model.Apartment
+import com.renting.app.feature.property.model.Building
 import com.renting.app.feature.property.model.FamilyHouse
 import com.renting.app.feature.property.model.Land
 import com.renting.app.feature.property.model.PropertyOffer
@@ -16,6 +16,7 @@ data class ComponentPropertyDetails(
     val images: List<Image>,
     val mainInfo: MainInfo,
     val ownerInfo: OwnerInfo,
+    val buildingInfo: BuildingInfo?,
     val location: String,
     val description: String,
 ) {
@@ -49,6 +50,22 @@ data class ComponentPropertyDetails(
         val fullName: String,
         val phoneNumber: String,
     )
+
+    data class BuildingInfo(
+        val buildingYear: String,
+        val numberOfFloors: String,
+        val buildingType: String,
+        val material: String,
+    )
+}
+
+private fun Building.toUiModel(): ComponentPropertyDetails.BuildingInfo {
+    return ComponentPropertyDetails.BuildingInfo(
+        buildingYear = fromYear.toString(),
+        numberOfFloors = numberOfFloors.toString(),
+        buildingType = type,
+        material = material,
+    )
 }
 
 internal fun PropertyDetails.toUiModel(): ComponentPropertyDetails {
@@ -76,6 +93,11 @@ internal fun PropertyDetails.toUiModel(): ComponentPropertyDetails {
             )
         },
         ownerInfo = property.owner.toUiModel(),
+        buildingInfo = when (property) {
+            is Apartment -> property.building.toUiModel()
+            is FamilyHouse -> property.building.toUiModel()
+            is Land -> null
+        },
         location = property.location,
         description = description,
     )
