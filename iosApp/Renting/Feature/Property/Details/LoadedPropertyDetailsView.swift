@@ -26,7 +26,6 @@ struct LoadedPropertyDetailsView: View {
                     PropertyDetailsMainInfoBlock(
                         mainInfo: details.mainInfo
                     )
-                    PropertyDetailsLocationBlock()
                     PropertyDetailsOwnerBlock(
                         ownerInfo: details.ownerInfo,
                         onPhoneClicked: {
@@ -36,6 +35,9 @@ struct LoadedPropertyDetailsView: View {
                                 }
                             }
                         }
+                    )
+                    PropertyDetailsLocationBlock(
+                        location: details.location
                     )
                 }
                 .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
