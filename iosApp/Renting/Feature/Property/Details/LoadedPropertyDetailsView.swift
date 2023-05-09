@@ -39,6 +39,11 @@ struct LoadedPropertyDetailsView: View {
                     PropertyDetailsLocationBlock(
                         location: details.location
                     )
+                    if let buildingInfo = details.buildingInfo {
+                        PropertyDetailsBuildingDescriptionBlock(
+                            buildingInfo: buildingInfo
+                        )
+                    }
                     PropertyDetailsDescriptionBlock(
                         description: details.description_
                     )
