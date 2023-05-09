@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.Badge
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -40,15 +41,23 @@ fun PropertyDetailsHeader(
 @Composable
 @OptIn(ExperimentalFoundationApi::class)
 private fun ImagesCarousel(images: List<Image>) {
-    HorizontalPager(
-        pageCount = images.size,
-        modifier = Modifier.fillMaxSize(),
-        key = { index -> images[index].id },
-    ) { index ->
-        PagerPage(
-            image = images[index],
-            pageNumber = index + 1,
+    val pagerState = rememberPagerState()
+
+    Box {
+        HorizontalPager(
+            pageCount = images.size,
+            modifier = Modifier.fillMaxSize(),
+            state = pagerState,
+            key = { index -> images[index].id },
+        ) { index ->
+            PagerPage(
+                image = images[index],
+            )
+        }
+        ImagesCounter(
+            pageNumber = pagerState.currentPage + 1,
             imagesCount = images.size,
+            modifier = Modifier.align(Alignment.BottomEnd),
         )
     }
 }
@@ -56,26 +65,17 @@ private fun ImagesCarousel(images: List<Image>) {
 @Composable
 private fun PagerPage(
     image: Image,
-    pageNumber: Int,
-    imagesCount: Int,
 ) {
-    Box(modifier = Modifier.fillMaxSize()) {
-        RentingImage(
-            image = image,
-            contentDescription = null,
-            modifier = Modifier
-                .fillMaxSize(),
-            contentScale = ContentScale.Crop,
-            error = {
-                RentingImagePlaceholder()
-            },
-        )
-        ImagesCounter(
-            pageNumber = pageNumber,
-            imagesCount = imagesCount,
-            modifier = Modifier.align(Alignment.BottomEnd),
-        )
-    }
+    RentingImage(
+        image = image,
+        contentDescription = null,
+        modifier = Modifier
+            .fillMaxSize(),
+        contentScale = ContentScale.Crop,
+        error = {
+            RentingImagePlaceholder()
+        },
+    )
 }
 
 @Composable
