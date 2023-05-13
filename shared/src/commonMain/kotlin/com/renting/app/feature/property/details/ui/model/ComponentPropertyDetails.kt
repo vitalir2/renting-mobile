@@ -54,7 +54,7 @@ data class ComponentPropertyDetails(
     data class BuildingInfo(
         val buildingYear: String,
         val numberOfFloors: String,
-        val buildingType: String,
+        val buildingType: String?,
         val material: String,
     )
 }
@@ -63,7 +63,11 @@ private fun Building.toUiModel(): ComponentPropertyDetails.BuildingInfo {
     return ComponentPropertyDetails.BuildingInfo(
         buildingYear = fromYear.toString(),
         numberOfFloors = numberOfFloors.toString(),
-        buildingType = type,
+        buildingType = when (type) {
+            Building.Type.NEW_CONSTRUCTION -> "New construction"
+            Building.Type.SECONDARY -> "Secondary"
+            Building.Type.UNKNOWN -> null
+        },
         material = material,
     )
 }

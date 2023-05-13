@@ -32,12 +32,12 @@ internal object PropertyDetailsPreviews {
                 building = Building(
                     fromYear = 2020,
                     material = "Brick",
-                    type = "NEW_CONSTRUCTION",
+                    type = Building.Type.NEW_CONSTRUCTION,
                     numberOfFloors = 2,
                 ),
                 features = listOf(FamilyHouse.Feature.SWIMMING_POOL),
                 numberOfRooms = 4,
-                renovationType = "No renovation",
+                renovationType = "Europian",
             ),
             propertyOffer = PropertyOffer(
                 price = 80,
@@ -62,7 +62,7 @@ internal object PropertyDetailsPreviews {
                 building = Building(
                     fromYear = 2020,
                     material = "Brick",
-                    type = "NEW_CONSTRUCTION",
+                    type = Building.Type.NEW_CONSTRUCTION,
                     numberOfFloors = 14,
                 ),
                 features = listOf(Apartment.Feature.ELEVATOR),

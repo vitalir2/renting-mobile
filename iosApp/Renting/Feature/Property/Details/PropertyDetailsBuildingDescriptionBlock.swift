@@ -20,7 +20,9 @@ struct PropertyDetailsBuildingDescriptionBlock: View {
             Spacer().frame(height: 4)
             BuildingFeature(title: "Building year", value: buildingInfo.buildingYear)
             BuildingFeature(title: "Number of floors", value: buildingInfo.numberOfFloors)
-            BuildingFeature(title: "Type", value: buildingInfo.buildingType)
+            if let buildingType = buildingInfo.buildingType {
+                BuildingFeature(title: "Type", value: buildingType)
+            }
             BuildingFeature(title: "Material", value: buildingInfo.material)
         }
     }

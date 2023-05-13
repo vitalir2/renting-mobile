@@ -169,7 +169,7 @@ private fun NetworkApartmentBuilding.toDomainModel(): Building {
     return Building(
         fromYear = buildingYear,
         material = material,
-        type = housingType,
+        type = housingType.toBuildingType(),
         numberOfFloors = numberOfFloors,
     )
 }
@@ -178,7 +178,15 @@ private fun NetworkFamilyBuilding.toDomainModel(): Building {
     return Building(
         fromYear = buildingYear,
         material = material,
-        type = housingType,
+        type = housingType.toBuildingType(),
         numberOfFloors = numberOfFloors,
     )
+}
+
+private fun String.toBuildingType(): Building.Type {
+    return when (this) {
+        "NEW_CONSTRUCTION" -> Building.Type.NEW_CONSTRUCTION
+        "SECONDARY" -> Building.Type.SECONDARY
+        else -> Building.Type.UNKNOWN
+    }
 }
