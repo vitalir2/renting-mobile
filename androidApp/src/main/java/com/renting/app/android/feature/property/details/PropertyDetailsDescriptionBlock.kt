@@ -91,7 +91,9 @@ private fun BuildingDescription(
         Gap(8.dp)
         BuildingFeature(title = "Building year", value = buildingInfo.buildingYear)
         BuildingFeature(title = "Number of floors", value = buildingInfo.numberOfFloors)
-        BuildingFeature(title = "Type", value = buildingInfo.buildingType)
+        buildingInfo.buildingType?.let { type ->
+            BuildingFeature(title = "Type", value = type)
+        }
         BuildingFeature(title = "Material", value = buildingInfo.material)
     }
 }
