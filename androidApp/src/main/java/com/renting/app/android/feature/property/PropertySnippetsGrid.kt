@@ -1,6 +1,5 @@
 package com.renting.app.android.feature.property
 
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
