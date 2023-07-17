@@ -33,12 +33,12 @@ internal class DefaultPropertyRepository(
         val offer = offerResponse.body<NetworkPropertySnippet>()
         val propertyType = offer.propertyType
         val propertyTypePathPart = when (propertyType) {
-            PropertyType.FAMILY_HOUSE -> "family-houses"
+            PropertyType.FAMILY_HOUSE -> "housing/family-houses"
             PropertyType.LAND -> "lands"
-            PropertyType.APARTMENT -> "apartments"
+            PropertyType.APARTMENT -> "housing/apartments"
         }
         val propertyResponse = httpClient.get(
-            "/api/properties/housing/${propertyTypePathPart}/${offer.property.id}"
+            "/api/properties/${propertyTypePathPart}/${offer.property.id}"
         ) {
             contentType(ContentType.Application.Json)
         }

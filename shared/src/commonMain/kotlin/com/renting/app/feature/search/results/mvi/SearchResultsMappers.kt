@@ -11,7 +11,11 @@ internal object SearchResultsMappers {
             quickFilters = quickFilters,
             searchState = if (searchState is SearchState.Results && appliedFilter != null) {
                 val filteredSnippets = appliedFilter.applyTo(searchState.snippets)
-                searchState.copy(snippets = filteredSnippets)
+                if (filteredSnippets.isEmpty()) {
+                    SearchState.EmptyResults
+                } else {
+                    searchState.copy(snippets = filteredSnippets)
+                }
             } else {
                 searchState
             },

@@ -1,5 +1,6 @@
 package com.renting.app.android.core.uikit.form.textfield
 
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.Icon
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
@@ -15,6 +16,7 @@ internal fun LoginInput(
     login: String,
     modifier: Modifier = Modifier,
     onInputChanged: (String) -> Unit,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
 ) {
     NameInput(
         value = login,
@@ -27,6 +29,7 @@ internal fun LoginInput(
             )
         },
         placeholder = "Login",
+        keyboardOptions = keyboardOptions,
     )
 }
 

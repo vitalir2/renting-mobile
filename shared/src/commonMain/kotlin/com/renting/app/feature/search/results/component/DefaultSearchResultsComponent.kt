@@ -37,6 +37,7 @@ internal class DefaultSearchResultsComponent(
 
     override val searchInputComponent: SearchInputComponent = DefaultSearchInputComponent(
         componentContext = childContext("search_input"),
+        initQuery = initQuery,
         onFullFiltersClick = openFullFilters,
         onSearchClick = { query -> store.accept(Intent.SearchSnippets(query)) },
     )

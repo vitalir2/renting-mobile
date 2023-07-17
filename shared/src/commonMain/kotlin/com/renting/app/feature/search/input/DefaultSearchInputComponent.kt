@@ -7,13 +7,14 @@ import com.renting.app.feature.search.input.SearchInputComponent.Model
 
 internal class DefaultSearchInputComponent(
     componentContext: ComponentContext,
+    initQuery: String,
     private val onFullFiltersClick: () -> Unit,
     private val onSearchClick: (query: String) -> Unit,
 ) : SearchInputComponent, ComponentContext by componentContext {
 
     private val innerModels = MutableValue(
         Model(
-            query = "",
+            query = initQuery,
         )
     )
     override val models: Value<Model> = innerModels
