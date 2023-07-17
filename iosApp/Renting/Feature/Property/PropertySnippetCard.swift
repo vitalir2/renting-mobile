@@ -22,7 +22,7 @@ struct PropertySnippetCard: View {
                     if let image = phase.image {
                         image
                             .resizable()
-                            .aspectRatio(contentMode: .fit)
+                            .aspectRatio(1, contentMode: .fit)
                             .frame(width: .infinity)
                             .clipShape(RoundedRectangle(cornerRadius: 4))
                     } else {

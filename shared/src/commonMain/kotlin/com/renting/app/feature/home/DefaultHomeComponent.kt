@@ -45,6 +45,7 @@ internal class DefaultHomeComponent(
 
     override val searchInput: SearchInputComponent = DefaultSearchInputComponent(
         componentContext = childContext("search_input"),
+        initQuery = "",
         onFullFiltersClick = openFullFilters,
         onSearchClick = openSearchResults,
     )
