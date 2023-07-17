@@ -1,9 +1,27 @@
 package com.renting.app.feature.filters
 
-import com.renting.app.feature.property.PropertySnippet
+import com.arkivanov.mvikotlin.core.store.Store
+import com.renting.app.feature.filters.FiltersStore.Intent
+import com.renting.app.feature.filters.FiltersStore.State
 import com.renting.app.feature.property.PropertyType
 
-interface FiltersStore {
+interface FiltersStore : Store<Intent, State, Nothing> {
+
+    sealed interface Intent {
+        data class SelectToggle(
+            val id: String,
+            val name: String,
+        ) : Intent
+        data class ChangeRangeFilter(
+            val id: String,
+            val range: IntRange,
+        ) : Intent
+
+        data class SelectFilterValue(
+            val id: String,
+            val value: String,
+        ) : Intent
+    }
 
     data class State(
         val filterGroups: List<PropertyFilterGroup> = createFilters(),
@@ -13,30 +31,29 @@ interface FiltersStore {
 private fun createFilters(): List<PropertyFilterGroup> = buildList {
     val category = PropertyFilterGroup(
         name = "Category",
-        filter = object : ToggleablePropertyFilter<PropertyType>(
+        filter = PropertyTypeFilter(
+            id = "PROPERTY_TYPE",
             toggles = listOf(
-                Toggle(name = "House", value = PropertyType.FAMILY_HOUSE),
-                Toggle(name = "Apartment", value = PropertyType.APARTMENT),
-                Toggle(name = "Land", value = PropertyType.LAND),
+                SelectionPropertyFilter.Toggle(name = "House", value = PropertyType.FAMILY_HOUSE),
+                SelectionPropertyFilter.Toggle(name = "Apartment", value = PropertyType.APARTMENT),
+                SelectionPropertyFilter.Toggle(name = "Land", value = PropertyType.LAND),
             ),
-        ) {
-            override val predicate: (
-                PropertyType,
-                snippet: PropertySnippet,
-            ) -> Boolean = { type, snippet -> type == snippet.type }
-        }
+        )
     )
     add(category)
 
     val price = PropertyFilterGroup(
         name = "Price Range",
-        filter = PricePropertyFilter(),
+        filter = PricePropertyFilter(
+            id = "PRICE"
+        ),
     )
     add(price)
 
     val location = PropertyFilterGroup(
         name = "Location",
-        filter = PropertyLocationSelector(
+        filter = PropertyLocationChooser(
+            id = "PROPERTY_LOCATION",
             values = listOf(
                 "Moscow",
                 "Saint Petersburg",
